@@ -1,6 +1,4 @@
-/dist/
+/dist
 /build
-/bin
-.project
-.settings
+
 
