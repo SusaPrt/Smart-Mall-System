@@ -5,6 +5,9 @@
 package Model.administration.payment;
 
 import Model.administration.Customer;
+import Model.administration.Item;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 
 /**
@@ -13,13 +16,17 @@ import java.util.LinkedList;
  */
 public class Cart {
     private LinkedList<Order> orderList;
-    private Customer costumer;
+    private HashMap<String, HashSet<Item>> purchasedProducts;
     private double check;
     
     public Cart(Customer c){
-        this.costumer = c;
         this.check = 0;
         this.orderList = new LinkedList();
+        this.purchasedProducts = new HashMap();
+        
+        this.purchasedProducts.put("Shop", new HashSet<Item>());
+        this.purchasedProducts.put("Restourant", new HashSet<Item>());
+        this.purchasedProducts.put("Library", new HashSet<Item>());
     }
     
     public void addOrder(Order o){
@@ -35,10 +42,6 @@ public class Cart {
         cost = this.orderList.stream().map(o -> o.getCost())
                 .reduce(cost, (accumulator, _item) -> accumulator + _item);
         return cost;
-    }
-    
-    public Customer getCostumer(){
-        return this.costumer;
     }
     
     @Override

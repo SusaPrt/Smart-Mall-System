@@ -27,8 +27,7 @@ public class Payment {
     
     @Override
     public String toString(){
-        return "\nPayment related to the kind Costumer: "+this.cart.getCostumer().getName()+"\nof "+
-                +this.cost+"€"+"\nDiscount: "+!this.overBudget;
+        return "\nPayment of "+this.cost+"€"+"\nDiscount: "+!this.overBudget;
     }
     
     public boolean getStatus(){

@@ -4,36 +4,66 @@
  */
 package Model.administration;
 
+import java.util.Objects;
+
 /**
  *
  * @author Mars_DB
  */
 public class Staff extends Person{
-    private  final int    idLocker;
+    private  final int id;
 
     
     public Staff(String name, String password){
         super(name, password);
-        this.idLocker = (int) (Math.random() * 100);
+        this.id = (int) (Math.random() * 100);
     }
-    
-    @Override
-    public String getName(){
-        return super.getName();
-    }
-    
-    @Override
-    public String getPassword(){
-        return super.getPassword();
-    }
-    
-    public int getIdLocker(){
-        return this.idLocker;
+
+    public int getId(){
+        return this.id;
     }
     
      @Override
     public String toString(){
-        return "\nName: " + super.getName() + "\nPassword: " + super.getPassword() + "\nId Locker: " + this.idLocker;
+        return "\nName: " + super.getName() + "\nPassword: " + super.getPassword() + "\nId Locker: " + this.id;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 67 * hash + Objects.hashCode(super.getName());
+        hash = 67 * hash + Objects.hashCode(super.getPassword());
+        hash = 67 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Staff other = (Staff) obj;
+        
+        if (!Objects.equals(super.getName(), other.getName())) {
+            return false;
+        }
+        
+        if (!Objects.equals(super.getPassword(), other.getPassword())) {
+            return false;
+        }
+        
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }
 

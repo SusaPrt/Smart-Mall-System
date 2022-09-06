@@ -35,7 +35,8 @@ public class DataInterpreter {
             if(s.contains("#")){     
                 type = s.substring(1);
                 this.data.add(new LinkedList<Item>());
-                i++;
+                if(type.equals("Restourant"))
+                   i++;
             }else{
                     parseData(s, type, i);
             }              
@@ -45,7 +46,8 @@ public class DataInterpreter {
     public LinkedList<LinkedList> getData(){
         return this.data;
     }
-    
+    // "\\D+ serve per far riconoscere i numeri float da stringhe, regola la presa dei numeri forzandoli a vedere oltre
+    // il . nel caso se sono numeri con la virgola fino allo spazio successivo!
     private void parseData(String s, String type, int i){       
         String[] tokens = s.split(",");
         if(this.listReq.equals("Restourant")){           
@@ -57,12 +59,13 @@ public class DataInterpreter {
             this.data.get(i).add(new Book(tokens[0], 
                             tokens[1], Double.parseDouble(tokens[2].replaceAll("\\D+", "")),
                             Integer.parseInt(tokens[3].replaceAll("\\D+", "")), 
-                            Integer.parseInt(tokens[4].replaceAll("\\D+", "")), type));
+                            Integer.parseInt(tokens[4].replaceAll("\\D+", "")), 
+                            type, Integer.parseInt(tokens[5].replaceAll("\\D+", ""))));
         }
         else if(this.listReq.equals("Shop")){
             this.data.get(i).add(new Item(tokens[0], 
-                    Double.parseDouble(tokens[2].replaceAll("\\D+", "")), 
-                    Integer.parseInt(tokens[3].replaceAll("\\D+", ""))));
+                    Double.parseDouble(tokens[1].replaceAll("\\D+", "")), 
+                    Integer.parseInt(tokens[2].replaceAll("\\D+", ""))));
         }
     }
 }
