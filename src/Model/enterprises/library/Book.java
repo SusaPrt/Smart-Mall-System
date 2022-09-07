@@ -13,7 +13,7 @@ public class Book extends Item {
     private final String    author;
     private final int       publishingYear;
     private final String    genre;
-    private final int    ISBN;
+    private final int       ISBN;
     
     public Book(String name,  String author, double price, int quantity, int year, String genre, int isbn){
         super(name, price, quantity);
@@ -59,7 +59,7 @@ public class Book extends Item {
     public String toString(){
         return ("\nTitle: " + super.getName() + "\nAuthor: " + this.author +
                 "\nPublishing Year: " + this.publishingYear + "\nGenre: " + this.genre +
-                "\nPrice: " + super.getPrice() + "\nISBN: " + this.getISBN()) + 
-                "\nAvailable: " + super.getQuantity() + "\n";
+                "\nISBN: " + this.getISBN()) + "\nPrice: " + super.getPrice() + 
+                "\nAvailable: " + "\n";
     }
 }
