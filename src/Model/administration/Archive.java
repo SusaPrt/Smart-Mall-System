@@ -13,38 +13,69 @@ import java.util.HashSet;
 public class Archive {
     private HashSet<Staff> staff;
     private HashSet<Customer> costumers;
-    private HashSet<Person> persons;
     
     public Archive(){
         this.staff = new HashSet();
         this.costumers = new HashSet();
-        this.persons = new HashSet();
     }
     
-    public void addPerson(Person p){
-        this.persons.add(p);
-        
-        if(p instanceof Customer customer)
-            this.costumers.add(customer);
-        else if(p instanceof Staff staff1)
-            this.staff.add(staff1);
+    public <T> void addPerson(T p){        
+        if(p instanceof Customer)
+            this.costumers.add((Customer)p);
+        else
+            this.staff.add((Staff)p);
     }
-    
-    public void remove(Person p){
-        this.persons.remove(p);
         
-        if(p instanceof Customer customer)
-            this.costumers.remove(customer);
-        else if(p instanceof Staff staff1)
-            this.staff.remove(staff1);
-    }
-    
-    public boolean autentication(String name, String password){
-        
-        return this.persons.contains(this.persons.stream()
-                .filter(p -> p.getName()
-                .equals(name) && p.getPassword().equals(password))
+    public boolean autentication(int id, String password){  
+        boolean found = false;
+        if(this.costumers.stream()
+                .filter(c -> c.getIdLocker()==id && c.getPassword().equals(password))
                 .findAny()
-                .get());
+                .isPresent()){
+        
+           found = true;
+        }else if(this.staff.stream()
+                .filter(c -> c.getId()==id && c.getPassword().equals(password))
+                .findAny()
+                .isPresent()){
+            
+           found = true;
+        }       
+        return found;
     } 
+       
+    public void removeById(int id){
+        this.remove(this.getById(id));        
+    }
+    
+    private <T> void remove(T p){        
+        if(p instanceof Customer)
+            this.costumers.remove((Customer)p);
+        else
+            this.staff.remove((Staff)p);
+    }
+    
+    private Object getById(int id){
+        Object person = null;        
+        if(this.costumers.stream()
+                .filter(c -> c.getIdLocker()==id)
+                .findAny()
+                .isPresent()){
+        
+            person = this.costumers.stream()
+                                    .filter(c -> c.getIdLocker()==id)
+                                    .findAny()
+                                    .get();
+        }else if(this.staff.stream()
+                .filter(c -> c.getId()==id)
+                .findAny()
+                .isPresent()){
+            
+            person = this.staff.stream()
+                                .filter(c -> c.getId()==id)
+                                .findAny()
+                                .get();
+        }        
+        return person;
+    }
 }
