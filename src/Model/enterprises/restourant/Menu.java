@@ -4,10 +4,10 @@
  */
 package Model.enterprises.restourant;
 
-/**
- *
- * @author Mars_DB
- */
+// @author Susanna
+
+import java.util.Map;
+
 public class Menu {
-    
+    private Map<String,Dish> menu;
 }

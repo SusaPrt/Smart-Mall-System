@@ -10,7 +10,7 @@ import java.util.Objects;
  *
  * @author Mars_DB
  */
-public class Item { 
+public class Item{
     private final String name;
     private final double price;
     private int quantity;
@@ -34,8 +34,9 @@ public class Item {
     }
     
     public void decreaseQuantity(int i){
-        this.quantity =- i;                 
-    }                                           
+        this.quantity =- i;                 // i come parametro, per non richiamare f. 20 volte nel caso di un ordine di 20 elementi
+    }                                           // per stesso oggetto
+
     public void increaseQuantity(int i){
         this.quantity =+ i;
     }
@@ -78,6 +79,7 @@ public class Item {
         }
         return true;
     }
-    
-    
-}
+}        
+
+
+
