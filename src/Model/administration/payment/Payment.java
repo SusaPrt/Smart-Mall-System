@@ -4,6 +4,8 @@
  */
 package Model.administration.payment;
 
+import Model.administration.Customer;
+
 /**
  *
  * @author Mars_DB
@@ -14,10 +16,10 @@ public class Payment {
     private final double cost;                                              
     private boolean overBudget;
     
-    public Payment(Cart cart){                                                                   
+    public Payment(Cart cart, Customer c){                                                                   
         this.cart = cart;    
-        this.cost = finallBill();
-        this.overBudget = checkStatus(this.cost);
+        this.cost = this.cart.getTotCost();
+        this.overBudget = checkStatus(c.getCredit());
     }
 
     public double getCost() {
@@ -34,24 +36,11 @@ public class Payment {
         return this.overBudget;
     }
     
-    public Cart getCart(){
-        return this.cart;
-    }
-    
     private boolean checkStatus(double CostumerCredit){
         boolean b = false;
-        if(this.cost > CostumerCredit)
+        if(this.cost < CostumerCredit)
             b = true;
         return b;
-    }
-    
-    private double finallBill(){
-        double d = 0.0;
-        if(this.overBudget)
-            d = this.cart.getTotCost();
-        else
-            d = this.cart.getTotCost()-(this.cart.getTotCost()*0.1);
-        return d;
     }
 }
 

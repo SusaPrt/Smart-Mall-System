@@ -5,6 +5,7 @@
 package Model.administration;
 
 import Model.administration.payment.Cart;
+import Model.administration.payment.Payment;
 import java.util.Objects;
 import java.util.Random;
 
@@ -14,32 +15,34 @@ import java.util.Random;
  */
 public class Customer extends Person{
 
-    private final int idLocker;
+    private final int id;
     private double credit;
     private final Cart cart;
+    private Payment payment;
 
     public Customer(String name, String password, int credit){
         super(name, password);  
         Random r = new Random();
-        this.idLocker = r.nextInt(1000)+101;
+        this.id = r.nextInt(1000)+101;
         this.credit = credit;
         this.cart = new Cart(this);
     }
     
-    public String payTheCart(){                                 //inserimento pagamento
+    public String payTheCart(){                                 //inserimento pagamento       
         String goodBye =""; 
-        if(this.cart.getTotCost() <= this.credit){
-            this.credit-= this.cart.getTotCost();
-            goodBye = this.cart.getTotCost()+"€.\nThanks to shop here, goodbye!";
-        }
-        else
+        this.payment = new Payment(this.cart, this);
+        if(this.payment.getStatus()){
+            this.credit-=this.payment.getCost();
+            goodBye = this.payment.getCost()+"€.\nThanks to shop here, goodbye!";
+        }else{
             goodBye = "Your credit is not enough to afford the payment of "
-                    +this.cart.getTotCost()+"€.\nThanks to shop here, goodbye!";
+                    +this.payment.getCost()+"€.\nThanks to shop here, goodbye!";           
+        }
         return goodBye;
     }
         
-    public int getIdLocker(){
-        return this.idLocker;
+    public int getId(){
+        return this.id;
     }
     
     
@@ -58,7 +61,7 @@ public class Customer extends Person{
     @Override
     public String toString(){
         return "\nName: " + super.getName() + "\nCredit: "
-                + this.credit + "€" + "\nId Loacker: " + this.idLocker;                                
+                + this.credit + "€" + "\nId Loacker: " + this.id;                                
     }
 
     @Override
@@ -66,7 +69,7 @@ public class Customer extends Person{
         int hash = 3;
         hash = 47 * hash + Objects.hashCode(super.getName());
         hash = 47 * hash + Objects.hashCode(super.getPassword());
-        hash = 47 * hash + this.idLocker;
+        hash = 47 * hash + this.id;
         return hash;
     }
 
@@ -90,7 +93,7 @@ public class Customer extends Person{
             return false;
         }
         
-        if (this.idLocker != other.idLocker) {
+        if (this.id != other.id) {
             return false;
         }
         return true;

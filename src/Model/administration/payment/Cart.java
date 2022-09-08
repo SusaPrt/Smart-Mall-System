@@ -5,9 +5,6 @@
 package Model.administration.payment;
 
 import Model.administration.Customer;
-import Model.administration.Item;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 
 /**
@@ -16,25 +13,25 @@ import java.util.LinkedList;
  */
 public class Cart {
     private LinkedList<Order> orderList;
-    private HashMap<String, HashSet<Item>> purchasedProducts;
-    private double check;
+    private int orderCounter;
     
     public Cart(Customer c){
-        this.check = 0;
         this.orderList = new LinkedList();
-        this.purchasedProducts = new HashMap();
+        this.orderCounter = 1;
+    }
+    
+    public void addOrder(){
+        this.orderList.add(new Order(this.orderCounter));
+        this.orderCounter++;
+    }
+    
+    public void removeOrder(int orderToRemove){
+        this.orderList.remove(this.orderList
+                .stream()
+                .filter(o -> o.getNOrder()==orderToRemove)
+                .findFirst()
+                .get());
         
-        this.purchasedProducts.put("Shop", new HashSet<Item>());
-        this.purchasedProducts.put("Restourant", new HashSet<Item>());
-        this.purchasedProducts.put("Library", new HashSet<Item>());
-    }
-    
-    public void addOrder(Order o){
-        this.orderList.add(o);
-    }
-    
-    public void removeOrder(Order o){
-        this.orderList.remove(o);
     }
     
     public double getTotCost(){
@@ -47,9 +44,9 @@ public class Cart {
     @Override
     public String toString(){
         String show = "Order list of this cart:";
-       for(Order o: this.orderList){
-           show.concat("\n"+o.toString());
-       }
+        this.orderList.forEach(o -> {
+            show.concat("\n"+o.toString());
+        });
         return show;
     }
 }

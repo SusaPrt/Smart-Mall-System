@@ -4,9 +4,8 @@
  */
 package Model.administration.payment;
 
-import Model.administration.Customer;
 import Model.administration.Item;
-import java.util.LinkedList;
+import java.util.HashSet;
 
 /**
  *
@@ -14,39 +13,37 @@ import java.util.LinkedList;
  */
 public class Order {
 
-    private Customer account;                                           // account di riferimento
-    private LinkedList<Item> items;                                     // lista prodotti
-    private int orderPin;                                               // codice ordine    
+    private HashSet<Item> purchasedProducts;                            // lista prodotti    
     private double totCost;                                             // costo complessivo
+    private final int nOrder;
                                               
-    public Order(int orderCode, Customer account){                                       
-        this.orderPin = orderCode;
-        this.items = new LinkedList();
-        this.account = account;
+    public Order(int nOrder){                                       
+        this.purchasedProducts = new HashSet();
+        this.nOrder = nOrder;
     }
     
     public void addItem(Item item){                                             //aggiunta elemento          
-        this.items.add(item);
+        this.purchasedProducts.add(item);
     }
     
     public void removeItem(Item item){                                          //rimozione elemento  
-        items.remove(item);         
+        purchasedProducts.remove(item);         
     }   
     
     public double getCost(){                                                   //costo complessivo ordine
         this.totCost = 0;
-        items.forEach(i -> {
+        purchasedProducts.forEach(i -> {
             this.totCost += i.getPrice();
         });       
         return this.totCost;
     }
     
-    public Customer getAccount(){
-        return this.account;
+    public int getNOrder(){
+        return this.nOrder;
     }
-    
+
     @Override
     public String toString(){
-        return "Order n°"+this.orderPin+"\n"+items.toString();
+        return "Order n°"+nOrder+"\n"+purchasedProducts.toString();
     }
 }

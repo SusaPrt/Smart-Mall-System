@@ -19,17 +19,20 @@ public class Archive {
         this.costumers = new HashSet();
     }
     
-    public <T> void addPerson(T p){        
+    public <T> String addPerson(T p){        
         if(p instanceof Customer)
             this.costumers.add((Customer)p);
         else
             this.staff.add((Staff)p);
+        
+        return "Il "+p.getClass()+" has been added!";
     }
         
     public boolean autentication(int id, String password){  
         boolean found = false;
+        
         if(this.costumers.stream()
-                .filter(c -> c.getIdLocker()==id && c.getPassword().equals(password))
+                .filter(c -> c.getId()==id && c.getPassword().equals(password))
                 .findAny()
                 .isPresent()){
         
@@ -40,12 +43,14 @@ public class Archive {
                 .isPresent()){
             
            found = true;
-        }       
+        }    
         return found;
     } 
        
-    public void removeById(int id){
-        this.remove(this.getById(id));        
+    public String removeById(int id){
+        String output = null;
+        this.remove(this.getById(id));    
+        return (this.getById(id)!=null)?"Account has been removed!":"Account not found!";
     }
     
     private <T> void remove(T p){        
@@ -58,12 +63,12 @@ public class Archive {
     private Object getById(int id){
         Object person = null;        
         if(this.costumers.stream()
-                .filter(c -> c.getIdLocker()==id)
+                .filter(c -> c.getId()==id)
                 .findAny()
                 .isPresent()){
         
             person = this.costumers.stream()
-                                    .filter(c -> c.getIdLocker()==id)
+                                    .filter(c -> c.getId()==id)
                                     .findAny()
                                     .get();
         }else if(this.staff.stream()
