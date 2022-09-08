@@ -16,6 +16,7 @@ import java.util.LinkedList;
  * @author Mars_DB
  */
 public class DataInterpreter {
+    private DataWriter dW;
     private DataReader dR;
     private LinkedList<LinkedList> data;
     private String listReq;                    // riferimento all'oggetto chiamante per tipo di oggetti da mettere in lista
@@ -24,7 +25,8 @@ public class DataInterpreter {
         this.dR = new DataReader(f);
         this.data = new LinkedList<>();
         this.listReq = requirer;
-        readData(this.dR.getRawData());
+        this.readData(this.dR.getRawData());
+        this.dW = new dataWriter(f, requirer, this.dR.getRawData());
     }
     
     private void readData(LinkedList<String> rawData){
