@@ -37,18 +37,35 @@ public class DataWriter {
             this.bW.write(s);
             this.bW.newLine();
         }
-            
+        this.bW.close();           
     }
     
-    public void addItem(Object i){
-        if(i instanceof Dish){
+    public void addItem(Object o){
+        if(o instanceof Dish){
+            //String name, double price, int q, String course
+            Dish d = (Dish)o;
             
-        }else if(i instanceof Book){
+        }else if(o instanceof Book){
+        //String name,  String author, double price, int quantity, int year, String genre, int sbn
+            Book b = (Book)o;
+    //       this.insertLine(""+b.getName()+ ecc ecc, requirer);
+    //this.itemsTowrite.
             
         }else{
-            
+            Item i = (Item)o;
+            this.itemsTowrite.add(""+i.getName()+","+i.getPrice()+","+i.getQuantity());
         }
+    } 
+    // non serve cè metodo per inserire e shifta tutti gli elementi dopo
+    private void insertLine(String newLine, String type){
+        String work = null;
+        int index = 0;
+        for(String s:this.itemsTowrite){
+            if(s.equals("#"+type)){
+            //    work = 
+            }
+                
+        }
+        
     }
-    
-    
 }
