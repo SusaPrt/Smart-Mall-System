@@ -4,7 +4,12 @@
  */
 package Model.administration;
 
+import Model.system.DataInterpreter;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.function.Consumer;
 
 /**
  *
@@ -13,15 +18,18 @@ import java.util.HashSet;
 public class Archive {
     private HashSet<Staff> staff;
     private HashSet<Customer> costumers;
+    private DataInterpreter dI;
     
-    public Archive(){
+    public Archive() throws FileNotFoundException{
         this.staff = new HashSet();
         this.costumers = new HashSet();
+        this.dI = new DataInterpreter(new File("./src/Model/system/DataFolder/Account.txt"), "Archive");
+        this.accountLoader();
     }
     
     public <T> String addPerson(T p){        
-        if(p instanceof Customer)
-            this.costumers.add((Customer)p);
+        if(p instanceof Customer customer)
+            this.costumers.add(customer);
         else
             this.staff.add((Staff)p);
         
@@ -54,8 +62,8 @@ public class Archive {
     }
     
     private <T> void remove(T p){        
-        if(p instanceof Customer)
-            this.costumers.remove((Customer)p);
+        if(p instanceof Customer customer)
+            this.costumers.remove(customer);
         else
             this.staff.remove((Staff)p);
     }
@@ -82,5 +90,15 @@ public class Archive {
                                 .get();
         }        
         return person;
+    }
+    
+    private void accountLoader(){
+        this.dI.getAccounts().stream().forEach((Person p) -> {
+            if (p instanceof Staff staff1)
+                Archive.this.staff.add(staff1);
+            else
+                Archive.this.costumers.add((Customer)p);
+        });
+        
     }
 }

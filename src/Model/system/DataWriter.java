@@ -40,32 +40,27 @@ public class DataWriter {
         this.bW.close();           
     }
     
+    //aggiunge una stringa alla posizione corretta alla lista di stringhe da scrivere su file
+    //la lista di stringhe originale viene caricata alla creazione del DataWriter partendo dalle
+    //stringhe rawData lette dal DataReader
     public void addItem(Object o){
+        int index = 0;
         if(o instanceof Dish){
             //String name, double price, int q, String course
             Dish d = (Dish)o;
+            this.itemsTowrite.add(this.itemsTowrite.indexOf("#"+d.getDescription())+1,
+                    d.getName()+","+d.getPrice()+","+d.getQuantity()+","+d.getDescription());
+            
             
         }else if(o instanceof Book){
         //String name,  String author, double price, int quantity, int year, String genre, int sbn
             Book b = (Book)o;
-    //       this.insertLine(""+b.getName()+ ecc ecc, requirer);
-    //this.itemsTowrite.
-            
+            this.itemsTowrite.add(this.itemsTowrite.indexOf("#"+b.getGenre())+1,
+                    b.getName()+","+b.getAuthor()+","+b.getPrice()+","+b.getQuantity()
+                    +","+b.getPublishingYear()+","+b.getGenre()+","+b.getISBN());           
         }else{
             Item i = (Item)o;
             this.itemsTowrite.add(""+i.getName()+","+i.getPrice()+","+i.getQuantity());
         }
     } 
-    // non serve cè metodo per inserire e shifta tutti gli elementi dopo
-    private void insertLine(String newLine, String type){
-        String work = null;
-        int index = 0;
-        for(String s:this.itemsTowrite){
-            if(s.equals("#"+type)){
-            //    work = 
-            }
-                
-        }
-        
-    }
 }

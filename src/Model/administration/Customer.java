@@ -20,13 +20,22 @@ public class Customer extends Person{
     private final Cart cart;
     private Payment payment;
 
-    public Customer(String name, String password, int credit){
+    public Customer(String name, String password, double credit){
         super(name, password);  
         Random r = new Random();
         this.id = r.nextInt(1000)+101;
         this.credit = credit;
         this.cart = new Cart(this);
     }
+    
+    public Customer(String name, String password, double credit, int id){
+        super(name, password);  
+        this.id = id;
+        this.credit = credit;
+        this.cart = new Cart(this);
+    }
+    
+    
     
     public String payTheCart(){                                 //inserimento pagamento       
         String goodBye =""; 

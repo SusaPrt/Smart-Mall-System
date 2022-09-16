@@ -4,7 +4,10 @@
  */
 package Model.system;
 
+import Model.administration.Customer;
 import Model.administration.Item;
+import Model.administration.Person;
+import Model.administration.Staff;
 import Model.enterprises.restourant.Dish;
 import Model.enterprises.library.Book;
 import java.io.File;
@@ -19,14 +22,16 @@ public class DataInterpreter {
     private DataWriter dW;
     private DataReader dR;
     private LinkedList<LinkedList> data;
+    private LinkedList<Person> accounts;
     private String listReq;                    // riferimento all'oggetto chiamante per tipo di oggetti da mettere in lista
     
     public DataInterpreter(File f, String requirer) throws FileNotFoundException{
         this.dR = new DataReader(f);
-        this.data = new LinkedList<>();
+        this.data = new LinkedList();
+        this.accounts = new LinkedList();
         this.listReq = requirer;
         this.readData(this.dR.getRawData());
-        this.dW = new dataWriter(f, requirer, this.dR.getRawData());
+        this.dW = new DataWriter(f, requirer, this.dR.getRawData());
     }
     
     private void readData(LinkedList<String> rawData){
@@ -35,10 +40,11 @@ public class DataInterpreter {
         int i = 0;        
         for(String s: rawData){
             if(s.contains("#")){     
-                type = s.substring(1);
-                this.data.add(new LinkedList<Item>());
-                if(type.equals("Restourant"))
+                type = s.substring(1);               
+                if(this.listReq.equals("Restourant")){
+                   this.data.add(new LinkedList<Item>());
                    i++;
+                }
             }else{
                     parseData(s, type, i);
             }              
@@ -47,6 +53,10 @@ public class DataInterpreter {
         
     public LinkedList<LinkedList> getData(){
         return this.data;
+    }
+    
+    public LinkedList<Person> getAccounts(){
+        return this.accounts;
     }
     // "\\D+ serve per far riconoscere i numeri float da stringhe, regola la presa dei numeri forzandoli a vedere oltre
     // il . nel caso se sono numeri con la virgola fino allo spazio successivo!
@@ -68,6 +78,21 @@ public class DataInterpreter {
             this.data.get(i).add(new Item(tokens[0], 
                     Double.parseDouble(tokens[1].replaceAll("\\D+", "")), 
                     Integer.parseInt(tokens[2].replaceAll("\\D+", ""))));
+        }
+        else if(this.listReq.equals("Archive")){
+            Person p;
+            if(type.equals("Staff")){
+                Staff person = new Staff(tokens[0], 
+                        tokens[1], 
+                        Integer.parseInt(tokens[2].replaceAll("\\D+", "")));
+                p = (Person)person;
+            }else{
+                Customer person = new Customer(tokens[0], 
+                        tokens[1], Double.parseDouble(tokens[2].replaceAll("\\D+", "")), 
+                        Integer.parseInt(tokens[3].replaceAll("\\D+", "")));
+                p = (Person)person;
+            }
+            this.accounts.add(p);
         }
     }
 }

@@ -5,6 +5,7 @@
 package Model.administration;
 
 import java.util.Objects;
+import java.util.Random;
 
 /**
  *
@@ -16,7 +17,13 @@ public class Staff extends Person{
     
     public Staff(String name, String password){
         super(name, password);
-        this.id = (int) (Math.random() * 100);
+        Random rnd = new Random();
+        this.id = rnd.nextInt(1000)+101;
+    }
+    
+    public Staff(String name, String password, int id){
+        super(name, password);
+        this.id = id;
     }
 
     public int getId(){
