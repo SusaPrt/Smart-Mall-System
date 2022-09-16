@@ -5,6 +5,7 @@
 package Model.administration;
 
 import java.util.Objects;
+import java.util.Random;
 
 /**
  *
@@ -13,10 +14,19 @@ import java.util.Objects;
 public class Person {
     private  final String name;
     private  final String password;
+    private final int id;
     
-    public Person(String n, String p){
-        this.name = n;
-        this.password = p;
+    public Person(String name, String password){
+        this.name = name;
+        this.password = password;
+        Random r = new Random();
+        this.id = r.nextInt(1000)+101;
+    }
+    
+    public Person(String name, String password, int id){
+        this.name = name;
+        this.password = password;
+        this.id = id;
     }
     
     public String getName(){
@@ -25,7 +35,11 @@ public class Person {
     
     public String getPassword(){
         return this.password;
-    }    
+    }  
+    
+    public int getId(){
+        return this.id;
+    }
     @Override
     public String toString(){
         return "\nName: "+this.name+"\nPassword: "+this.password;
@@ -33,9 +47,10 @@ public class Person {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 37 * hash + Objects.hashCode(this.name);
-        hash = 37 * hash + Objects.hashCode(this.password);
+        int hash = 5;
+        hash = 79 * hash + Objects.hashCode(this.name);
+        hash = 79 * hash + Objects.hashCode(this.password);
+        hash = 79 * hash + this.id;
         return hash;
     }
 
@@ -51,6 +66,9 @@ public class Person {
             return false;
         }
         final Person other = (Person) obj;
+        if (this.id != other.id) {
+            return false;
+        }
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
@@ -59,6 +77,8 @@ public class Person {
         }
         return true;
     }
+
+    
     
 }
 

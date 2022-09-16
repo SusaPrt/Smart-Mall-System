@@ -12,27 +12,18 @@ import java.util.Random;
  * @author Mars_DB
  */
 public class Staff extends Person{
-    private  final int id;
-
-    
+   
     public Staff(String name, String password){
         super(name, password);
-        Random rnd = new Random();
-        this.id = rnd.nextInt(1000)+101;
     }
     
     public Staff(String name, String password, int id){
-        super(name, password);
-        this.id = id;
+        super(name, password, id);
     }
 
-    public int getId(){
-        return this.id;
-    }
-    
-     @Override
+    @Override
     public String toString(){
-        return "\nName: " + super.getName() + "\nPassword: " + super.getPassword() + "\nId Locker: " + this.id;
+        return "\nName: " + super.getName() + "\nPassword: " + super.getPassword() + "\nId Locker: " + super.getId();
     }
 
     @Override
@@ -40,7 +31,7 @@ public class Staff extends Person{
         int hash = 3;
         hash = 67 * hash + Objects.hashCode(super.getName());
         hash = 67 * hash + Objects.hashCode(super.getPassword());
-        hash = 67 * hash + this.id;
+        hash = 67 * hash + super.getId();
         return hash;
     }
 
@@ -65,7 +56,7 @@ public class Staff extends Person{
             return false;
         }
         
-        if (this.id != other.id) {
+        if (super.getId() != other.getId()) {
             return false;
         }
         return true;

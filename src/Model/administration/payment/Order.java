@@ -6,6 +6,7 @@ package Model.administration.payment;
 
 import Model.administration.Item;
 import java.util.HashSet;
+import java.util.Objects;
 
 /**
  *
@@ -46,4 +47,39 @@ public class Order {
     public String toString(){
         return "Order n°"+nOrder+"\n"+purchasedProducts.toString();
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 73 * hash + Objects.hashCode(this.purchasedProducts);
+        hash = 73 * hash + (int) (Double.doubleToLongBits(this.totCost) ^ (Double.doubleToLongBits(this.totCost) >>> 32));
+        hash = 73 * hash + this.nOrder;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Order other = (Order) obj;
+        if (Double.doubleToLongBits(this.totCost) != Double.doubleToLongBits(other.totCost)) {
+            return false;
+        }
+        if (this.nOrder != other.nOrder) {
+            return false;
+        }
+        if (!Objects.equals(this.purchasedProducts, other.purchasedProducts)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }

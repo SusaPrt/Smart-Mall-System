@@ -15,7 +15,7 @@ public class Cart {
     private LinkedList<Order> orderList;
     private int orderCounter;
     
-    public Cart(Customer c){
+    public Cart(){
         this.orderList = new LinkedList();
         this.orderCounter = 1;
     }

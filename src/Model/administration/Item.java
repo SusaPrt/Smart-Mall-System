@@ -34,11 +34,11 @@ public class Item{
     }
     
     public void decreaseQuantity(int i){
-        this.quantity =- i;                 // i come parametro, per non richiamare f. 20 volte nel caso di un ordine di 20 elementi
-    }                                           // per stesso oggetto
+        this.quantity = this.quantity - i;                  
+    }                                           
 
     public void increaseQuantity(int i){
-        this.quantity =+ i;
+        this.quantity = this.quantity + i;
     }
     
     public boolean isAvailable(){

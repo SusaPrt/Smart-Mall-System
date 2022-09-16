@@ -15,28 +15,22 @@ import java.util.Random;
  */
 public class Customer extends Person{
 
-    private final int id;
     private double credit;
     private final Cart cart;
     private Payment payment;
 
     public Customer(String name, String password, double credit){
         super(name, password);  
-        Random r = new Random();
-        this.id = r.nextInt(1000)+101;
         this.credit = credit;
-        this.cart = new Cart(this);
+        this.cart = new Cart();
     }
     
     public Customer(String name, String password, double credit, int id){
-        super(name, password);  
-        this.id = id;
+        super(name, password, id);  
         this.credit = credit;
-        this.cart = new Cart(this);
+        this.cart = new Cart();
     }
-    
-    
-    
+       
     public String payTheCart(){                                 //inserimento pagamento       
         String goodBye =""; 
         this.payment = new Payment(this.cart, this);
@@ -49,12 +43,7 @@ public class Customer extends Person{
         }
         return goodBye;
     }
-        
-    public int getId(){
-        return this.id;
-    }
-    
-    
+      
     public double getCredit(){
         return this.credit;
     }
@@ -70,7 +59,7 @@ public class Customer extends Person{
     @Override
     public String toString(){
         return "\nName: " + super.getName() + "\nCredit: "
-                + this.credit + "€" + "\nId Loacker: " + this.id;                                
+                + this.credit + "€" + "\nId Loacker: " + super.getId();                                
     }
 
     @Override
@@ -78,7 +67,7 @@ public class Customer extends Person{
         int hash = 3;
         hash = 47 * hash + Objects.hashCode(super.getName());
         hash = 47 * hash + Objects.hashCode(super.getPassword());
-        hash = 47 * hash + this.id;
+        hash = 47 * hash + super.getId();
         return hash;
     }
 
@@ -102,12 +91,9 @@ public class Customer extends Person{
             return false;
         }
         
-        if (this.id != other.id) {
+        if (super.getId() != other.getId()) {
             return false;
         }
         return true;
     }
-    
-    
-
 }
