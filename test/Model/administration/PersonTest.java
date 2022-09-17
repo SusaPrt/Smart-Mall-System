@@ -37,8 +37,8 @@ public class PersonTest {
     @Test
     public void testEquals() {
         System.out.println("Test metodo 'equals' true per passare");
-        Object obj = new Person("Simone", "ovolollo");
-        Person instance = new Person("Simone", "ovolollo");
+        Object obj = new Person("Simone", "ovolollo", 9494949);
+        Person instance = new Person("Simone", "ovolollo", 9494949);
         boolean expResult = true;
         boolean result = instance.equals(obj);
         assertEquals(expResult, result);

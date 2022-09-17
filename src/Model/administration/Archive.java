@@ -4,10 +4,12 @@
  */
 package Model.administration;
 
+
 import Model.system.DataInterpreter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashSet;
+
 
 /**
  *
@@ -18,10 +20,14 @@ public class Archive {
     private HashSet<Customer> costumers;
     private DataInterpreter dataInterpreter;
     
-    public Archive() throws FileNotFoundException{
+    public Archive(Administration aD){
         this.staff = new HashSet();
         this.costumers = new HashSet();
-        this.dataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Account.txt"), "Archive");
+        try {
+            this.dataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Account.txt"), "Archive", aD);
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex);
+        }
         this.accountLoader();
     }
     
@@ -66,7 +72,7 @@ public class Archive {
             this.staff.remove((Staff)p);
     }
     
-    private Object getById(int id){
+    public Object getById(int id){
         Object person = null;        
         if(this.costumers.stream()
                 .filter(c -> c.getId()==id)
@@ -98,4 +104,6 @@ public class Archive {
                 Archive.this.costumers.add((Customer)p);
         });       
     }
+    
+
 }

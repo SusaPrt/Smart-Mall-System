@@ -4,7 +4,10 @@
  */
 package Model.system;
 
+import Model.administration.Customer;
 import Model.administration.Item;
+import Model.administration.Person;
+import Model.administration.Staff;
 import Model.enterprises.library.Book;
 import Model.enterprises.restourant.Dish;
 import java.io.BufferedWriter;
@@ -63,4 +66,17 @@ public class DataWriter {
             this.itemsTowrite.add(""+i.getName()+","+i.getPrice()+","+i.getQuantity());
         }
     } 
+    
+    public void addPerson(Person p){
+        if(p instanceof Staff){
+            Staff s = (Staff)p;
+            this.itemsTowrite.add(this.itemsTowrite.indexOf("#Staff")+1,
+                    s.getName()+","+s.getPassword()+","+s.getId());
+        }else{
+            Customer c = (Customer)p;
+            this.itemsTowrite.add(this.itemsTowrite.indexOf("#Customer")+1,
+                    c.getName()+","+c.getPassword()+","+c.getCredit()+","+c.getId());
+        }
+            
+    }
 }

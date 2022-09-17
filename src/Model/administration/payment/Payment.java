@@ -5,6 +5,7 @@
 package Model.administration.payment;
 
 import Model.administration.Customer;
+import java.util.Random;
 
 /**
  *
@@ -12,35 +13,46 @@ import Model.administration.Customer;
  */
 public class Payment {
     
-    private final Cart cart;
+    private final Customer customer;
     private final double cost;                                              
-    private boolean overBudget;
+    private final int id;
     
-    public Payment(Cart cart, Customer c){                                                                   
-        this.cart = cart;    
-        this.cost = this.cart.getTotCost();
-        this.overBudget = checkStatus(c.getCredit());
+    public Payment(Customer c, int id){                                                                     
+        this.cost = c.getCart().getTotCost(); 
+        this.customer = c;
+        this.id = id;
+    }
+    
+    public Payment(Customer c){                                                                    
+        this.cost = c.getCart().getTotCost(); 
+        this.customer = c;
+        Random rnd = new Random();
+        this.id = rnd.nextInt(1000)+101;
     }
 
     public double getCost() {
        return this.cost;
     }
-    
-    
+        
     @Override
     public String toString(){
-        return "\nPayment of "+this.cost+"€"+"\nDiscount: "+!this.overBudget;
+        return "\nPayment of "+this.cost+"€"+"\nCustomer: "
+                +this.customer.getName()+" id: "+this.customer.getId();
     }
-    
-    public boolean getStatus(){
-        return this.overBudget;
-    }
-    
-    private boolean checkStatus(double CostumerCredit){
+
+    public boolean checkStatus(){
         boolean b = false;
-        if(this.cost < CostumerCredit)
+        if(this.cost < this.customer.getCredit())
             b = true;
         return b;
+    }
+    
+    public Customer getCustomer(){
+        return this.customer;
+    }
+    
+    public int getId(){
+        return this.id;
     }
 }
 

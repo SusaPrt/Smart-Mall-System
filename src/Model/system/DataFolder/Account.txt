@@ -1,5 +1,5 @@
 #Staff
-Marzio,marsdb001,1111
-Susanna,123stella!,2222
+Marzio,1111,2222
+Susanna,3333,4444
 #Customer
-Simone,password,7,3333
+Simone,7777,500,12345

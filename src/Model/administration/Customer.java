@@ -7,7 +7,6 @@ package Model.administration;
 import Model.administration.payment.Cart;
 import Model.administration.payment.Payment;
 import java.util.Objects;
-import java.util.Random;
 
 /**
  *
@@ -18,30 +17,33 @@ public class Customer extends Person{
     private double credit;
     private final Cart cart;
     private Payment payment;
+    private Administration aD;
 
-    public Customer(String name, String password, double credit){
+    public Customer(String name, String password, double credit, Administration ad){
         super(name, password);  
         this.credit = credit;
         this.cart = new Cart();
+        this.aD = ad;
+        
     }
     
-    public Customer(String name, String password, double credit, int id){
+    public Customer(String name, String password, double credit, int id, Administration ad){
         super(name, password, id);  
         this.credit = credit;
         this.cart = new Cart();
+        this.aD = ad;
     }
        
-    public String payTheCart(){                                 //inserimento pagamento       
-        String goodBye =""; 
-        this.payment = new Payment(this.cart, this);
-        if(this.payment.getStatus()){
+    public Boolean payTheCart(){                                 //inserimento pagamento       
+        Boolean paid =false; 
+        this.payment = new Payment(this);
+        if(this.payment.checkStatus()){
             this.credit-=this.payment.getCost();
-            goodBye = this.payment.getCost()+"€.\nThanks to shop here, goodbye!";
-        }else{
-            goodBye = "Your credit is not enough to afford the payment of "
-                    +this.payment.getCost()+"€.\nThanks to shop here, goodbye!";           
+            paid = true;
         }
-        return goodBye;
+        if(paid)
+            this.aD.addPayment(payment);
+        return paid;
     }
       
     public double getCredit(){
