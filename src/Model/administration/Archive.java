@@ -24,20 +24,21 @@ public class Archive {
         this.staff = new HashSet();
         this.costumers = new HashSet();
         try {
-            this.dataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Account.txt"), "Archive", aD);
+            this.dataInterpreter = 
+                    new DataInterpreter(new File("./src/Model/system/DataFolder/Account.txt")
+                                                , "Archive", aD);
         } catch (FileNotFoundException ex) {
             System.out.println(ex);
         }
         this.accountLoader();
     }
     
-    public <T> String addPerson(T p){        
+    public void addPerson(Person p){        
         if(p instanceof Customer customer)
             this.costumers.add(customer);
         else
             this.staff.add((Staff)p);
         
-        return "Il "+p.getClass()+" has been added!";
     }
         
     public boolean autentication(int id, String password){  
@@ -59,13 +60,12 @@ public class Archive {
         return found;
     } 
        
-    public String removeById(int id){
+    public void removeById(int id){
         String output = null;
-        this.remove(this.getById(id));    
-        return (this.getById(id)!=null)?"Account has been removed!":"Account not found!";
+        this.remove((Person)this.getById(id));    
     }
     
-    private <T> void remove(T p){        
+    private void remove(Person p){        
         if(p instanceof Customer customer)
             this.costumers.remove(customer);
         else

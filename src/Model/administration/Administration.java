@@ -5,7 +5,6 @@
 package Model.administration;
 
 import Model.administration.payment.Payment;
-import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -37,5 +36,9 @@ public class Administration {
     
     public Archive getArchive(){
         return this.personArchive;
+    }
+    
+    public double getTotalDayEarnings(){
+        return this.payments.stream().mapToDouble(Payment::getCost).sum();
     }
 }

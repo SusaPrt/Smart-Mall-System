@@ -13,16 +13,13 @@ import java.util.LinkedList;
  */
 public class Cart {
     private LinkedList<Item> purchasedProducts;
-    private int orderCounter;
     
     public Cart(){
         this.purchasedProducts = new LinkedList();
-        this.orderCounter = 1;
     }
     
     public void addItem(Item i){
         this.purchasedProducts.add(i);
-        this.orderCounter++;
     }
     
     public void removeProducts(Item i){
@@ -30,11 +27,19 @@ public class Cart {
         
     }
     
+    public LinkedList<Item> getProducts(){
+        return Cart.defend(this.purchasedProducts);
+    }
+    
     public double getTotCost(){
-        double cost = 0.0;
+    /*    double cost = 0.0;
         cost = this.purchasedProducts.stream().map(i -> i.getPrice())
-                .reduce(cost, (accumulator, _item) -> accumulator + _item);
-        return cost;
+                .reduce(cost, (accumulator, _item) -> accumulator + _item);*/
+        return this.purchasedProducts.stream().mapToDouble(Item::getPrice).sum();
+    /*    for(Item i:this.purchasedProducts){
+            cost = cost + i.getPrice();
+        }
+        return cost;*/
     }
     
     @Override
@@ -44,5 +49,9 @@ public class Cart {
             show.concat("\n"+i.toString());
         });
         return show;
+    }
+    
+    private static <T> LinkedList<T>  defend(LinkedList<T> list){
+        return (LinkedList<T>) list.clone();
     }
 }

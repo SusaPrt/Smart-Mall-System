@@ -42,7 +42,7 @@ public class Payment {
 
     public boolean checkStatus(){
         boolean b = false;
-        if(this.cost < this.customer.getCredit())
+        if(this.cost <= this.customer.getCredit())
             b = true;
         return b;
     }
