@@ -4,6 +4,7 @@
  */
 package Model.administration;
 
+import Model.administration.AdministrationInterfaces.PersonInterface;
 import java.util.Objects;
 import java.util.Random;
 
@@ -11,7 +12,7 @@ import java.util.Random;
  *
  * @author Mars_DB
  */
-public class Person {
+public class Person implements PersonInterface{
     private  final String name;
     private  final String password;
     private final int id;
@@ -29,14 +30,17 @@ public class Person {
         this.id = id;
     }
     
+    @Override
     public String getName(){
         return this.name;
     }
     
+    @Override
     public String getPassword(){
         return this.password;
     }  
     
+    @Override
     public int getId(){
         return this.id;
     }

@@ -5,6 +5,7 @@
 package Model.administration;
 
 
+import Model.administration.AdministrationInterfaces.ArchiveInterface;
 import Model.system.DataInterpreter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,7 +16,7 @@ import java.util.HashSet;
  *
  * @author Mars_DB
  */
-public class Archive {
+public class Archive implements ArchiveInterface{
     private HashSet<Staff> staff;
     private HashSet<Customer> costumers;
     private DataInterpreter dataInterpreter;
@@ -33,6 +34,7 @@ public class Archive {
         this.accountLoader();
     }
     
+    @Override
     public void addPerson(Person p){        
         if(p instanceof Customer customer)
             this.costumers.add(customer);
@@ -41,6 +43,7 @@ public class Archive {
         
     }
         
+    @Override
     public boolean autentication(int id, String password){  
         boolean found = false;
         
@@ -60,18 +63,12 @@ public class Archive {
         return found;
     } 
        
+    @Override
     public void removeById(int id){
-        String output = null;
         this.remove((Person)this.getById(id));    
     }
     
-    private void remove(Person p){        
-        if(p instanceof Customer customer)
-            this.costumers.remove(customer);
-        else
-            this.staff.remove((Staff)p);
-    }
-    
+    @Override
     public Object getById(int id){
         Object person = null;        
         if(this.costumers.stream()
@@ -96,6 +93,16 @@ public class Archive {
         return person;
     }
     
+    @Override
+    public HashSet<Staff> getStaff(){
+        return Archive.defend(this.staff);
+    }
+    
+    @Override
+    public HashSet<Customer> getCustomers(){
+        return Archive.defend(this.costumers);
+    }
+    
     private void accountLoader(){
         this.dataInterpreter.getAccounts().stream().forEach((Person p) -> {
             if (p instanceof Staff staff1)
@@ -105,5 +112,15 @@ public class Archive {
         });       
     }
     
-
+    private void remove(Person p){        
+        if(p instanceof Customer customer)
+            this.costumers.remove(customer);
+        else
+            this.staff.remove((Staff)p);
+    }
+    
+    
+    private static <T> HashSet<T> defend(HashSet<T> set){
+        return (HashSet<T>) set.clone();
+    }
 }

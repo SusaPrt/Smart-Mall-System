@@ -4,6 +4,7 @@
  */
 package Model.administration;
 
+import Model.administration.AdministrationInterfaces.CustomerInterface;
 import Model.administration.payment.Cart;
 import Model.administration.payment.Payment;
 import java.util.Objects;
@@ -12,12 +13,12 @@ import java.util.Objects;
  *
  * @author Mars_DB
  */
-public class Customer extends Person{
+public class Customer extends Person implements CustomerInterface{
 
     private double credit;
     private final Cart cart;
     private Payment payment;
-    private Administration aD;
+    private final Administration aD;
 
     public Customer(String name, String password, double credit, Administration ad){
         super(name, password);  
@@ -34,6 +35,7 @@ public class Customer extends Person{
         this.aD = ad;
     }
        
+    @Override
     public Boolean payTheCart(){                                 //inserimento pagamento       
         Boolean paid =false; 
         this.payment = new Payment(this);
@@ -46,14 +48,17 @@ public class Customer extends Person{
         return paid;
     }
       
+    @Override
     public double getCredit(){
         return this.credit;
     }
     
+    @Override
     public void addCredit(double d){
         this.credit += d;
     }
     
+    @Override
     public Cart getCart(){
         return this.cart;
     }

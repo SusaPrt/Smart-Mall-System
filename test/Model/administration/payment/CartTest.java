@@ -28,9 +28,7 @@ public class CartTest {
         instance.addItem(i);
         int expResult = 1;
         int result = instance.getProducts().size();
-        assertEquals(expResult, result);
-        instance.removeProducts(i);
-        
+        assertEquals(expResult, result);      
     }
 
     @Test
@@ -52,8 +50,6 @@ public class CartTest {
         double expResult = 250.0;
         double result = instance.getTotCost();
         assertEquals(expResult, result, 0.01);
-        instance.removeProducts(i);
-        instance.removeProducts(e);
     }    
     
     @Test

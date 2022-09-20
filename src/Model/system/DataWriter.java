@@ -47,7 +47,6 @@ public class DataWriter {
     //la lista di stringhe originale viene caricata alla creazione del DataWriter partendo dalle
     //stringhe rawData lette dal DataReader
     public void addItem(Object o){
-        int index = 0;
         if(o instanceof Dish){
             //String name, double price, int q, String course
             Dish d = (Dish)o;
@@ -76,7 +75,6 @@ public class DataWriter {
             Customer c = (Customer)p;
             this.itemsTowrite.add(this.itemsTowrite.indexOf("#Customer")+1,
                     c.getName()+","+c.getPassword()+","+c.getCredit()+","+c.getId());
-        }
-            
+        }            
     }
 }

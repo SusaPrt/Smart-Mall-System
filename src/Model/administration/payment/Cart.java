@@ -5,41 +5,39 @@
 package Model.administration.payment;
 
 import Model.administration.Item;
+import Model.administration.payment.PaymentInterfaces.CartInterface;
 import java.util.LinkedList;
 
 /**
  *
  * @author Mars_DB
  */
-public class Cart {
+public class Cart implements CartInterface{
     private LinkedList<Item> purchasedProducts;
     
     public Cart(){
         this.purchasedProducts = new LinkedList();
     }
     
+    @Override
     public void addItem(Item i){
         this.purchasedProducts.add(i);
     }
     
+    @Override
     public void removeProducts(Item i){
         this.purchasedProducts.remove(i);
         
     }
     
+    @Override
     public LinkedList<Item> getProducts(){
         return Cart.defend(this.purchasedProducts);
     }
     
+    @Override
     public double getTotCost(){
-    /*    double cost = 0.0;
-        cost = this.purchasedProducts.stream().map(i -> i.getPrice())
-                .reduce(cost, (accumulator, _item) -> accumulator + _item);*/
         return this.purchasedProducts.stream().mapToDouble(Item::getPrice).sum();
-    /*    for(Item i:this.purchasedProducts){
-            cost = cost + i.getPrice();
-        }
-        return cost;*/
     }
     
     @Override

@@ -70,6 +70,10 @@ public class DataInterpreter {
     public LinkedList<Person> getAccounts(){
         return this.accounts;
     }
+    
+    public DataWriter getDataWriter(){
+        return this.dW;
+    }
     // "\\D+ serve per far riconoscere i numeri float da stringhe, regola la presa dei numeri forzandoli a vedere oltre
     // il . nel caso se sono numeri con la virgola fino allo spazio successivo!
     private void parseData(String s, String type, int i){       

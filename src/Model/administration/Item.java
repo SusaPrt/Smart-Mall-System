@@ -4,13 +4,14 @@
  */
 package Model.administration;
 
+import Model.administration.AdministrationInterfaces.ItemInterface;
 import java.util.Objects;
 
 /**
  *
  * @author Mars_DB
  */
-public class Item{
+public class Item implements ItemInterface{
     private final String name;
     private final double price;
     private int quantity;
@@ -21,26 +22,32 @@ public class Item{
         this.quantity = quantity;
     }
     
+    @Override
     public String getName(){
         return this.name;
     }
     
+    @Override
     public double getPrice(){
         return this.price;
     }
     
+    @Override
     public int getQuantity(){
         return this.quantity;
     }
     
+    @Override
     public void decreaseQuantity(int i){
         this.quantity = this.quantity - i;                  
     }                                           
 
+    @Override
     public void increaseQuantity(int i){
         this.quantity = this.quantity + i;
     }
     
+    @Override
     public boolean isAvailable(){
         return this.quantity > 0;
     }

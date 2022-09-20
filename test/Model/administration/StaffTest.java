@@ -12,14 +12,15 @@ import static org.junit.Assert.*;
  * @author Mars_DB
  */
 public class StaffTest {
+    private final Staff instance;
     
     public StaffTest() {
+        this.instance = new Staff("Marzio", "1111", 12345678);
     }
 
     @Test
     public void testGetId() {
         System.out.println("Test metodo 'getId'");
-        Staff instance = new Staff("Marzio", "1111", 12345678);
         int expResult = 12345678;
         int result = instance.getId();
         assertEquals(expResult, result);
@@ -29,7 +30,6 @@ public class StaffTest {
     public void testNotEquals() {
         System.out.println("Test metodo 'equals' false per passare");
         Object obj = new Staff("Susanna", "2222");
-        Staff instance = new Staff("Marzio", "1111");
         boolean expResult = false;
         boolean result = instance.equals(obj);
         assertEquals(expResult, result);
@@ -39,7 +39,6 @@ public class StaffTest {
     public void testEquals() {
         System.out.println("Test metodo 'equals' true per passare");
         Object obj = new Staff("Marzio", "1111", 12345678);
-        Staff instance = new Staff("Marzio", "1111", 12345678);
         boolean expResult = true;
         boolean result = instance.equals(obj);
         assertEquals(expResult, result);

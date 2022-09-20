@@ -5,13 +5,14 @@
 package Model.administration.payment;
 
 import Model.administration.Customer;
+import Model.administration.payment.PaymentInterfaces.PaymentInterface;
 import java.util.Random;
 
 /**
  *
  * @author Mars_DB
  */
-public class Payment {
+public class Payment implements PaymentInterface{
     
     private final Customer customer;
     private final double cost;                                              
@@ -30,16 +31,12 @@ public class Payment {
         this.id = rnd.nextInt(1000)+101;
     }
 
+    @Override
     public double getCost() {
        return this.cost;
     }
-        
-    @Override
-    public String toString(){
-        return "\nPayment of "+this.cost+"€"+"\nCustomer: "
-                +this.customer.getName()+" id: "+this.customer.getId();
-    }
 
+    @Override
     public boolean checkStatus(){
         boolean b = false;
         if(this.cost <= this.customer.getCredit())
@@ -47,12 +44,20 @@ public class Payment {
         return b;
     }
     
+    @Override
     public Customer getCustomer(){
         return this.customer;
     }
     
+    @Override
     public int getId(){
         return this.id;
+    }
+    
+    @Override
+    public String toString(){
+        return "\nPayment of "+this.cost+"€"+"\nCustomer: "
+                +this.customer.getName()+" id: "+this.customer.getId();
     }
 }
 
