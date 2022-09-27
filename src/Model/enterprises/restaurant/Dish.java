@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Model.enterprises.restourant;
+package Model.enterprises.restaurant;
 
-// @author Susanna
+//@author Susanna
 
 import Model.administration.Item;
 import java.util.Objects;

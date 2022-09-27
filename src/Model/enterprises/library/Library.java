@@ -109,7 +109,7 @@ public class Library {
 
     @Override
     public String toString() {
-        return "Library: " + name;
+        return "Library: " + this.name;
     }
     
     
