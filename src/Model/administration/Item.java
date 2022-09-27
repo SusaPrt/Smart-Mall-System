@@ -54,7 +54,7 @@ public class Item implements ItemInterface{
     
     @Override
     public String toString(){
-        return "\nItem: "+this.name+"\nPrice: "+this.price+"\n"+"Quantity: "+this.quantity+"\n";
+        return "\nItem: "+this.name+"\nPrice: "+this.price+"\n"+"Quantity: "+this.quantity+"\n"+"Available: "+this.isAvailable();
     }
 
     @Override
@@ -78,9 +78,6 @@ public class Item implements ItemInterface{
             return false;
         }
         final Item other = (Item) obj;
-        if (this.quantity != other.quantity) {
-            return false;
-        }
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }

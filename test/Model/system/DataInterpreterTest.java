@@ -10,6 +10,7 @@ import Model.administration.Item;
 import Model.administration.Person;
 import Model.administration.Staff;
 import Model.enterprises.library.Book;
+import Model.enterprises.restourant.Dish;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
@@ -71,6 +72,7 @@ public class DataInterpreterTest {
         System.out.println("Test relativo a shop per metodo 'getData'");
         LinkedList<LinkedList> expResult = new LinkedList();
         expResult.add(new LinkedList());
+        //String name, double price, int quantity
         expResult.get(0).add(new Item("YYYYYY", 10, 129));
         expResult.get(0).add(new Item("YYYY", 9, 372));
         expResult.get(0).add(new Item("YYYYYY", 11, 281));
@@ -79,15 +81,35 @@ public class DataInterpreterTest {
         LinkedList<LinkedList> result = ShopDataInterpreter.getData();
         assertEquals(expResult, result);
     }
-    /*
+    
     @Test
     public void testGetRestourantData() {
-        System.out.println("getData");
-        LinkedList<LinkedList> expResult = null;
+        System.out.println("Test relativo a restaurant per metodo 'getData'");
+        LinkedList<LinkedList> expResult = new LinkedList();
+        expResult.add(new LinkedList());
+        //String name, double price, int quantity, String description
+        expResult.get(0).add(new Dish("YYYYY",4,625, "FIRSTS"));
+        expResult.get(0).add(new Dish("YYYYYYY",3,253, "FIRSTS"));
+        expResult.get(0).add(new Dish("YYYY",4,485, "FIRSTS"));
+        
+        expResult.add(new LinkedList());
+        expResult.get(1).add(new Dish("YYYYYYYYY",5,720, "SECONDS"));
+        expResult.get(1).add(new Dish("YYYYYY",12,312, "SECONDS"));
+        
+        expResult.add(new LinkedList());
+        expResult.get(2).add(new Dish("YYYYYYYY",7,182, "DESSERTS"));
+        expResult.get(2).add(new Dish("YYYYY",8,109, "DESSERTS"));
+        
+        expResult.add(new LinkedList());
+        expResult.get(3).add(new Dish("YYYY",4,102, "WINESANDSOFT"));
+        expResult.get(3).add(new Dish("YYYYY",8,182, "WINESANDSOFT"));
+        expResult.get(3).add(new Dish("YYYYYY",2,625, "WINESANDSOFT"));
+        
+        
         LinkedList<LinkedList> result = RestourantDataInterpreter.getData();
         assertEquals(expResult, result);
     }
-    */
+    
     @Test
     public void testGetAccounts() {
         System.out.println("Test per metodo 'getAccounts'");

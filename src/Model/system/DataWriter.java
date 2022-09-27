@@ -49,7 +49,7 @@ public class DataWriter {
             //String name, double price, int q, String course
             Dish d = (Dish)o;
             this.itemsTowrite.add(this.itemsTowrite.indexOf("#"+d.getDescription())+1,
-                    d.getName()+","+d.getPrice()+","+d.getQuantity()+","+d.getDescription());
+                    d.getName()+","+d.getPrice()+","+d.getQuantity());
             
             
         }else if(o instanceof Book){
@@ -57,7 +57,7 @@ public class DataWriter {
             Book b = (Book)o;
             this.itemsTowrite.add(this.itemsTowrite.indexOf("#"+b.getGenre())+1,
                     b.getName()+","+b.getAuthor()+","+b.getPrice()+","+b.getQuantity()
-                    +","+b.getPublishingYear()+","+b.getGenre()+","+b.getISBN());           
+                    +","+b.getPublishingYear()+","+b.getISBN());           
         }else{
             Item i = (Item)o;
             this.itemsTowrite.add(""+i.getName()+","+i.getPrice()+","+i.getQuantity());
@@ -74,5 +74,9 @@ public class DataWriter {
             this.itemsTowrite.add(this.itemsTowrite.indexOf("#Customer")+1,
                     c.getName()+","+c.getPassword()+","+c.getCredit()+","+c.getId());
         }            
+    }
+    
+    public LinkedList<String> getStuffToWrite(){
+        return this.itemsTowrite;
     }
 }

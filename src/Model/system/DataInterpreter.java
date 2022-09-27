@@ -53,7 +53,7 @@ public class DataInterpreter {
         for(String s: rawData){
             if(s.contains("#")){     
                 type = s.substring(1);               
-                if(this.listReq.equals("Restourant")){
+                if(!type.equals("FIRSTS") && this.listReq.equals("Restourant")){
                    this.data.add(new LinkedList<Item>());
                    i++;
                 }
