@@ -23,19 +23,17 @@ import java.util.LinkedList;
 public class DataWriter {
     private BufferedWriter bW;
     private final String requirer;
+    private final File file;
     private LinkedList<String> itemsTowrite;
     
     public DataWriter(File file, String requirer, LinkedList<String> rawData){
-        try {
-            this.bW = new BufferedWriter(new FileWriter(file));
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
+        this.file = file;
         this.requirer = requirer;
         this.itemsTowrite = rawData;
     }
     
     public void writeOnFile() throws IOException{
+        this.bW = new BufferedWriter(new FileWriter(this.file));
         for(String s: this.itemsTowrite){
             this.bW.write(s);
             this.bW.newLine();

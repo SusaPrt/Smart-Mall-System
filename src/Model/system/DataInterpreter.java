@@ -82,7 +82,7 @@ public class DataInterpreter {
                     this.data.get(i).add(new Dish(tokens[0], 
                             Double.parseDouble(tokens[1].replaceAll("\\D+", "")),
                             Integer.parseInt(tokens[2].replaceAll("\\D+", "")), type));
-        }              
+        } 
         else if(this.listReq.equals("Library")){           
             this.data.get(i).add(new Book(tokens[0], 
                             tokens[1], Double.parseDouble(tokens[2].replaceAll("\\D+", "")),
@@ -104,11 +104,12 @@ public class DataInterpreter {
                 p = (Person)person;
             }else{
                 Customer person = new Customer(tokens[0], 
-                        tokens[1], Double.parseDouble(tokens[2].replaceAll("\\D+", "")), 
+                        tokens[1], Double.parseDouble(tokens[2]), 
                         Integer.parseInt(tokens[3].replaceAll("\\D+", "")), this.aD);
                 p = (Person)person;
             }
             this.accounts.add(p);
         }
+        //.replaceAll("\\D+", "")
     }
 }
