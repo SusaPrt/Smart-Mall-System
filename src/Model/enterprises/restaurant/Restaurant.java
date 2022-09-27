@@ -65,6 +65,72 @@ public class Restaurant {
         return done;
     }      
     
+    public boolean orderADish(Dish d, int n) {
+        boolean done = false;
+        switch(n) {
+            case 0 -> {
+                if(this.menu.getAvailableFirsts().contains(d)) {
+                    d.decreaseQuantity(1);
+                    done = true;
+                }
+            }
+            case 1 -> {
+                if(this.menu.getAvailableSeconds().contains(d)) {
+                    d.decreaseQuantity(1);
+                    done = true;
+                }
+            }
+            case 2 -> {
+                if(this.menu.getAvailableDesserts().contains(d)) {
+                    d.decreaseQuantity(1);
+                    done = true;
+                }
+            }
+            case 3 -> {
+                if(this.menu.getAvailableWinesAndSoft().contains(d)) {
+                    d.decreaseQuantity(1);
+                    done = true;
+                }
+            }
+        }
+        if(!done)
+            System.out.println("Dish not available");
+        return done;
+    }   
+    
+    public boolean refueling(Dish d, int n, int i) {
+        boolean done = false;
+        switch(n) {
+            case 0 -> {
+                if(this.menu.getFirsts().contains(d)) {
+                    d.increaseQuantity(i);
+                    done = true;
+                }
+            }
+            case 1 -> {
+                if(this.menu.getSeconds().contains(d)) {
+                    d.increaseQuantity(i);
+                    done = true;
+                }
+            }
+            case 2 -> {
+                if(this.menu.getDesserts().contains(d)) {
+                    d.increaseQuantity(i);
+                    done = true;
+                }
+            }
+            case 3 -> {
+                if(this.menu.getWinesAndSoft().contains(d)) {
+                    d.increaseQuantity(i);
+                    done = true;
+                }
+            }
+        }
+        if(!done)
+            System.out.println("Dish not in the menu");
+        return done;
+    }
+    
     public void newDay() {
         this.reservations.clear();
         this.freeSeats = this.totSeats;
@@ -77,7 +143,7 @@ public class Restaurant {
 
     @Override
     public int hashCode() {
-        final int hash = 3;
+        final int hash = 31;
         int result = 1;
         result = result * hash + Objects.hashCode(this.name);
         result = result * hash + this.totSeats;

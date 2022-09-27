@@ -25,13 +25,13 @@ public class MenuOfTheDay {
     } 
     
     private void makeMenuOFTheDay() {
-        this.lunch.add(this.menu.getFirst().get(this.rnd.nextInt(this.menu.getFirst().size())));
-        this.lunch.add(this.menu.getSeconds().get(this.rnd.nextInt(this.menu.getSeconds().size())));
-        this.lunch.add(this.menu.getDesserts().get(this.rnd.nextInt(this.menu.getDesserts().size())));
+        this.lunch.add(this.menu.getAvailableFirsts().get(this.rnd.nextInt(this.menu.getAvailableFirsts().size())));
+        this.lunch.add(this.menu.getAvailableSeconds().get(this.rnd.nextInt(this.menu.getAvailableSeconds().size())));
+        this.lunch.add(this.menu.getAvailableDesserts().get(this.rnd.nextInt(this.menu.getAvailableDesserts().size())));
 
-        this.dinner.add(this.menu.getFirst().get(this.rnd.nextInt(this.menu.getFirst().size())));
-        this.dinner.add(this.menu.getSeconds().get(this.rnd.nextInt(this.menu.getSeconds().size())));
-        this.dinner.add(this.menu.getDesserts().get(this.rnd.nextInt(this.menu.getDesserts().size())));
+        this.dinner.add(this.menu.getAvailableFirsts().get(this.rnd.nextInt(this.menu.getAvailableFirsts().size())));
+        this.dinner.add(this.menu.getAvailableSeconds().get(this.rnd.nextInt(this.menu.getAvailableSeconds().size())));
+        this.dinner.add(this.menu.getAvailableDesserts().get(this.rnd.nextInt(this.menu.getAvailableDesserts().size())));
     }
 
     @Override

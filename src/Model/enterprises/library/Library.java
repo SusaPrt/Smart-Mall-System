@@ -49,22 +49,21 @@ public class Library {
         }
     }
     
-    public void removeBook(int isbn) {
-        for(Book book : this.booksList) {
-            if(book.getISBN() == isbn)
-                this.booksList.remove(book);
-        }
+    public void removeBook(Book b) {
+        this.booksList.remove(b);
     }
     
     public void createLoan(Customer customer, Book book) {
         if(!this.loansList.containsKey(customer))
             this.loansList.put(customer, new HashSet<Loan>());
+        book.decreaseQuantity(1);
         this.loansList.get(customer).add(new Loan(book));
     }
     
     public void cancelLoan(Customer customer, Book book) {
         Loan work = this.loansList.get(customer).stream().filter(l -> l.getBorrowedBook().equals(book)).findFirst().get();
         this.loansList.get(customer).remove(work);
+        book.increaseQuantity(1);
     }
     
     public Set<Book> searchBookByTitle(String title) {
@@ -81,6 +80,17 @@ public class Library {
     
     public Set<Loan> getCustomerLoans(Customer customer) {
         return this.loansList.get(customer);
+    }
+    
+    public boolean refueling(Book b, int n) {
+        boolean done = false;
+        if(this.checkISBN(b.getISBN())) {
+            b.increaseQuantity(n);
+            done = true;
+        }
+        if(!done)
+            System.out.println("Error: book not registered");
+        return done;
     }
     
     private boolean checkISBN(int isbn) {

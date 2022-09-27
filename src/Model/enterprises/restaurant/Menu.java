@@ -25,25 +25,41 @@ public class Menu {
         this.winesAndSoft = new LinkedList(l.get(3));
     }
 
-    public List<Dish> getFirst() {
+    public LinkedList<Dish> getFirsts() {
+        return this.firsts;
+    }
+
+    public LinkedList<Dish> getSeconds() {
+        return this.seconds;
+    }
+
+    public LinkedList<Dish> getDesserts() {
+        return this.desserts;
+    }
+
+    public LinkedList<Dish> getWinesAndSoft() {
+        return this.winesAndSoft;
+    }   
+
+    public List<Dish> getAvailableFirsts() {
         return this.firsts.stream().filter(d -> d.getQuantity() > 0).collect(Collectors.toList());
     }
-    public List<Dish> getSeconds() {
+    public List<Dish> getAvailableSeconds() {
         return this.seconds.stream().filter(d -> d.getQuantity() > 0).collect(Collectors.toList());
     }
-    public List<Dish> getDesserts() {
+    public List<Dish> getAvailableDesserts() {
         return this.desserts.stream().filter(d -> d.getQuantity() > 0).collect(Collectors.toList());
     }
-    public List<Dish> getWinesAndSoft() {
+    public List<Dish> getAvailableWinesAndSoft() {
         return this.winesAndSoft.stream().filter(d -> d.getQuantity() > 0).collect(Collectors.toList());
     }
     
-    public void addDish(Dish d, int n) {
+    public void addDish(String name, double price, int quantity, String description, int n) {
         switch(n) {
-            case 1 -> this.firsts.add(d);
-            case 2 -> this.seconds.add(d);
-            case 3 -> this.desserts.add(d);
-            case 4 -> this.winesAndSoft.add(d);
+            case 1 -> this.firsts.add(new Dish(name, price, quantity, description));
+            case 2 -> this.seconds.add(new Dish(name, price, quantity, description));
+            case 3 -> this.desserts.add(new Dish(name, price, quantity, description));
+            case 4 -> this.winesAndSoft.add(new Dish(name, price, quantity, description));
         }
     }
     
