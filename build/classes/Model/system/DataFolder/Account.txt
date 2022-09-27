@@ -1,0 +1,5 @@
+#Staff
+Marzio,1111,12345
+Susanna,2222,53421
+#Customers
+Simone,3333,300.50,12543 
