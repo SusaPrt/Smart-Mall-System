@@ -53,7 +53,7 @@ public class DataInterpreter {
         for(String s: rawData){
             if(s.contains("#")){     
                 type = s.substring(1);               
-                if(!type.equals("FIRSTS") && this.listReq.equals("Restourant")){
+                if(!type.equals("FIRSTS") && this.listReq.equals("Restaurant")){
                    this.data.add(new LinkedList<Item>());
                    i++;
                 }
@@ -78,7 +78,7 @@ public class DataInterpreter {
     // il . nel caso se sono numeri con la virgola fino allo spazio successivo!
     private void parseData(String s, String type, int i){       
         String[] tokens = s.split(",");
-        if(this.listReq.equals("Restourant")){           
+        if(this.listReq.equals("Restaurant")){           
                     this.data.get(i).add(new Dish(tokens[0], 
                             Double.parseDouble(tokens[1]),
                             Integer.parseInt(tokens[2].replaceAll("\\D+", "")), type));
@@ -110,6 +110,5 @@ public class DataInterpreter {
             }
             this.accounts.add(p);
         }
-        //.replaceAll("\\D+", "")
     }
 }

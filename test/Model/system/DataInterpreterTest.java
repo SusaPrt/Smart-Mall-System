@@ -38,7 +38,7 @@ public class DataInterpreterTest {
         this.ShopDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Shop.txt")
                                                 ,"Shop");
         this.RestourantDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Menu.txt")
-                                                ,"Restourant");
+                                                ,"Restaurant");
     }
 
     
