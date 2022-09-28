@@ -7,6 +7,9 @@ package Model.enterprises.library;
 //@author Susanna
 
 import Model.administration.Customer;
+import Model.system.DataInterpreter;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -18,15 +21,16 @@ import java.util.stream.Collectors;
 
 public class Library {
     private final String name;
+    private final LinkedList<Book> booksList;
+    private final Map<Customer, Set<Loan>> loansList; 
+    private final DataInterpreter dataInt;
     
-    private LinkedList<Book> booksList;
-    private Map<Customer, Set<Loan>> loansList; 
-    
-    public Library(String name, LinkedList<LinkedList> list) {
+    public Library(String name) throws FileNotFoundException{
         super();
-        this.name = name;
-        this.booksList = new LinkedList(list.get(0));
+        this.name = name;        
         this.loansList = new HashMap();
+        this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/Library.txt"), "Library");
+        this.booksList = this.dataInt.getData().getFirst();
     }
     
     public String getName() {
@@ -43,19 +47,22 @@ public class Library {
     
     public void addBook(String name,  String author, double price, int quantity, int year, String genre, int isbn) {
         if(this.checkISBN(isbn))
-            System.out.println("This book is already registered!");
-        else {
+            System.out.println("Error: book already registered");
+        else
             this.booksList.add(new Book(name, author, price, quantity, year, genre, isbn));
-        }
+        
     }
     
     public void removeBook(Book b) {
-        this.booksList.remove(b);
+        if(this.checkISBN(b.getISBN()))
+            this.booksList.remove(b);
+        else
+            System.out.println("Error: book non registered");
     }
     
     public void createLoan(Customer customer, Book book) {
         if(!this.loansList.containsKey(customer))
-            this.loansList.put(customer, new HashSet<Loan>());
+            this.loansList.put(customer, new HashSet<>());
         book.decreaseQuantity(1);
         this.loansList.get(customer).add(new Loan(book));
     }

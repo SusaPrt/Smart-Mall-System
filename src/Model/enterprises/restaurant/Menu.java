@@ -6,80 +6,56 @@ package Model.enterprises.restaurant;
 
 //@author Susanna
 
+import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Menu {
     
-    private final LinkedList<Dish> firsts;
-    private final LinkedList<Dish> seconds;
-    private final LinkedList<Dish> desserts;
-    private final LinkedList<Dish> winesAndSoft;
+    private final Map<Course, LinkedList<Dish>> warehouse;
     
     public Menu(LinkedList<LinkedList> l) {
-        this.firsts = new LinkedList(l.get(0));
-        this.seconds = new LinkedList(l.get(1));
-        this.desserts = new LinkedList(l.get(2));
-        this.winesAndSoft = new LinkedList(l.get(3));
-    }
-
-    public LinkedList<Dish> getFirsts() {
-        return this.firsts;
-    }
-
-    public LinkedList<Dish> getSeconds() {
-        return this.seconds;
-    }
-
-    public LinkedList<Dish> getDesserts() {
-        return this.desserts;
-    }
-
-    public LinkedList<Dish> getWinesAndSoft() {
-        return this.winesAndSoft;
-    }   
-
-    public List<Dish> getAvailableFirsts() {
-        return this.firsts.stream().filter(d -> d.getQuantity() > 0).collect(Collectors.toList());
-    }
-    public List<Dish> getAvailableSeconds() {
-        return this.seconds.stream().filter(d -> d.getQuantity() > 0).collect(Collectors.toList());
-    }
-    public List<Dish> getAvailableDesserts() {
-        return this.desserts.stream().filter(d -> d.getQuantity() > 0).collect(Collectors.toList());
-    }
-    public List<Dish> getAvailableWinesAndSoft() {
-        return this.winesAndSoft.stream().filter(d -> d.getQuantity() > 0).collect(Collectors.toList());
+        this.warehouse = new HashMap<>();
+        this.warehouse.put(Course.FIRSTS, l.get(0));
+        this.warehouse.put(Course.SECONDS, l.get(1));
+        this.warehouse.put(Course.DESSERTS, l.get(2));
+        this.warehouse.put(Course.WINESANDSOFT, l.get(3));
+    }  
+    
+    public LinkedList<Dish> getTypeDishes(Course type) {
+        return this.warehouse.get(type);
     }
     
-    public void addDish(String name, double price, int quantity, String description, int n) {
-        switch(n) {
-            case 1 -> this.firsts.add(new Dish(name, price, quantity, description));
-            case 2 -> this.seconds.add(new Dish(name, price, quantity, description));
-            case 3 -> this.desserts.add(new Dish(name, price, quantity, description));
-            case 4 -> this.winesAndSoft.add(new Dish(name, price, quantity, description));
-        }
+    public Set<Dish> getAvailableTypeDishes(Course type) {
+        return this.warehouse.get(type).stream().filter(d -> d.getQuantity() > 0).collect(Collectors.toSet());
     }
     
-    public void removeDish(Dish d, int n) {
-        switch(n) {
-            case 1 -> this.firsts.remove(d);
-            case 2 -> this.seconds.remove(d);
-            case 3 -> this.desserts.remove(d);
-            case 4 -> this.winesAndSoft.remove(d);
-        }
+    public void addDish(String name, double price, int quantity, String type) {
+        if(!(this.checkDish(name, Course.selectType(type))))
+            this.warehouse.get(Course.selectType(type)).add(new Dish(name, price, quantity, type));
+        else
+            System.out.println("Error: dish already registered");
+    }
+    
+    public void removeDish(Dish d) {
+        if(this.checkDish(d.getName(), d.getCourse()))    
+            this.warehouse.get(d.getCourse()).remove(d);
+        else
+            System.out.println("Error: dish not in the menu");
+    }    
+    
+    private boolean checkDish(String name, Course type) {
+        return this.warehouse.get(type).stream().filter(dish -> dish.getName().equalsIgnoreCase(name)).findFirst().isPresent();
     }
 
     @Override
     public int hashCode() {
-        int hash = 31;
+        final int hash = 31;
         int result = 1;
-        result = result * hash + Objects.hashCode(this.firsts);
-        result = result * hash + Objects.hashCode(this.seconds);
-        result = result * hash + Objects.hashCode(this.desserts);
-        result = result * hash + Objects.hashCode(this.winesAndSoft);
+        result = result * hash + Objects.hashCode(this.warehouse);
         return result;
     }
 
@@ -95,25 +71,12 @@ public class Menu {
             return false;
         }
         final Menu other = (Menu) obj;
-        if (!Objects.equals(this.firsts, other.firsts)) {
-            return false;
-        }
-        if (!Objects.equals(this.seconds, other.seconds)) {
-            return false;
-        }
-        if (!Objects.equals(this.desserts, other.desserts)) {
-            return false;
-        }
-        return Objects.equals(this.winesAndSoft, other.winesAndSoft);
+        return true;
     }
 
     @Override
     public String toString() {
-        return "Menu" + 
-                "\nFirsts: " + this.firsts + 
-                "\nSeconds: " + this.seconds + 
-                "\nDesserts: " + this.desserts + 
-                "\nWines And Soft: " + this.winesAndSoft;
+        return "Menu\n" + this.warehouse;
     }
     
     

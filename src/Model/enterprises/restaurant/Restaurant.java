@@ -19,31 +19,43 @@ public class Restaurant {
     private final String name;
     private final int totSeats;
     private int freeSeats;
-    private Map<String, Integer> reservations;
+    private final Map<String, Integer> reservations;
     private MenuOfTheDay dailyMenu;
-    private Menu menu;
+    private final Menu menu;
+    private final DataInterpreter dataInt;
+
     
-    public Restaurant(String name, int seats, File file) throws FileNotFoundException{
+    public Restaurant(String name, int seats) throws FileNotFoundException{
+        super();
         this.name = name;
         this.totSeats = seats;
         this.freeSeats = seats;
         this.reservations = new HashMap<>();
-        DataInterpreter dataInt = new DataInterpreter(file, this.getClass().getSimpleName());
+        this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/Menu.txt"), "Restaurant");
         this.menu = new Menu(dataInt.getData());
         this.dailyMenu = new MenuOfTheDay(menu);
     }
+
+    public MenuOfTheDay getDailyMenu() {
+        return this.dailyMenu;
+    }
+
+    public Menu getMenu() {
+        return this.menu;
+    }
     
-    public String getMenu() {
+    public String getStringMenu() {
         return this.menu.toString();
     }
-    public String getDailyMenu() {
+    
+    public String getStringDailyMenu() {
         return this.dailyMenu.toString();
     }    
     
     public boolean reserveSeats(int n, String name) {
         boolean done = false;
         if((this.freeSeats - n) >= 0) {
-            if(!(this.checkName(name))) {
+            if(!(this.checkReservationName(name))) {
                 this.reservations.put(name, n);
                 this.freeSeats -= n;
                 done = true;
@@ -56,7 +68,7 @@ public class Restaurant {
     
     public boolean cancelReservation(String name) {
         boolean done = false;
-        if(this.checkName(name)) {
+        if(this.checkReservationName(name)) {
             this.freeSeats += this.reservations.get(name);
             this.reservations.remove(name);
             done = true;
@@ -65,69 +77,25 @@ public class Restaurant {
         return done;
     }      
     
-    public boolean orderADish(Dish d, int n) {
+    public boolean orderADish(Dish d) {
         boolean done = false;
-        switch(n) {
-            case 0 -> {
-                if(this.menu.getAvailableFirsts().contains(d)) {
-                    d.decreaseQuantity(1);
-                    done = true;
-                }
-            }
-            case 1 -> {
-                if(this.menu.getAvailableSeconds().contains(d)) {
-                    d.decreaseQuantity(1);
-                    done = true;
-                }
-            }
-            case 2 -> {
-                if(this.menu.getAvailableDesserts().contains(d)) {
-                    d.decreaseQuantity(1);
-                    done = true;
-                }
-            }
-            case 3 -> {
-                if(this.menu.getAvailableWinesAndSoft().contains(d)) {
-                    d.decreaseQuantity(1);
-                    done = true;
-                }
-            }
+        if(this.checkAvaiableDish(d)) {
+            d.decreaseQuantity(1);
+            done = true;
         }
         if(!done)
-            System.out.println("Dish not available");
+            System.out.println("Error: dish not available");
         return done;
     }   
     
-    public boolean refueling(Dish d, int n, int i) {
+    public boolean refueling(Dish d, int i) {
         boolean done = false;
-        switch(n) {
-            case 0 -> {
-                if(this.menu.getFirsts().contains(d)) {
-                    d.increaseQuantity(i);
-                    done = true;
-                }
-            }
-            case 1 -> {
-                if(this.menu.getSeconds().contains(d)) {
-                    d.increaseQuantity(i);
-                    done = true;
-                }
-            }
-            case 2 -> {
-                if(this.menu.getDesserts().contains(d)) {
-                    d.increaseQuantity(i);
-                    done = true;
-                }
-            }
-            case 3 -> {
-                if(this.menu.getWinesAndSoft().contains(d)) {
-                    d.increaseQuantity(i);
-                    done = true;
-                }
-            }
+        if(this.checkDish(d)) {
+            d.increaseQuantity(i);
+            done = true;
         }
         if(!done)
-            System.out.println("Dish not in the menu");
+            System.out.println("Error: dish not in the menu");
         return done;
     }
     
@@ -136,8 +104,16 @@ public class Restaurant {
         this.freeSeats = this.totSeats;
         this.dailyMenu = new MenuOfTheDay(menu);
     }
+    
+    private boolean checkDish(Dish d) {
+        return this.menu.getTypeDishes(d.getCourse()).stream().filter(dish -> dish.equals(d)).findFirst().isPresent();
+    }
+    
+    private boolean checkAvaiableDish(Dish d) {
+        return this.menu.getAvailableTypeDishes(d.getCourse()).stream().filter(dish -> dish.equals(d)).findFirst().isPresent();
+    }
 
-    private boolean checkName(String name) {
+    private boolean checkReservationName(String name) {
         return this.reservations.entrySet().stream().filter(r -> r.getKey().equalsIgnoreCase(name)).findFirst().isPresent();
     }
 

@@ -17,21 +17,22 @@ public class MenuOfTheDay {
     private final Random rnd;
     
     public MenuOfTheDay(Menu m) {
+        super();
         this.menu = m;
-        this.lunch = new LinkedList<Dish>();
-        this.dinner = new LinkedList<Dish>();
+        this.lunch = new LinkedList<>();
+        this.dinner = new LinkedList<>();
         this.rnd = new Random();
         this.makeMenuOFTheDay();
     } 
     
     private void makeMenuOFTheDay() {
-        this.lunch.add(this.menu.getAvailableFirsts().get(this.rnd.nextInt(this.menu.getAvailableFirsts().size())));
-        this.lunch.add(this.menu.getAvailableSeconds().get(this.rnd.nextInt(this.menu.getAvailableSeconds().size())));
-        this.lunch.add(this.menu.getAvailableDesserts().get(this.rnd.nextInt(this.menu.getAvailableDesserts().size())));
-
-        this.dinner.add(this.menu.getAvailableFirsts().get(this.rnd.nextInt(this.menu.getAvailableFirsts().size())));
-        this.dinner.add(this.menu.getAvailableSeconds().get(this.rnd.nextInt(this.menu.getAvailableSeconds().size())));
-        this.dinner.add(this.menu.getAvailableDesserts().get(this.rnd.nextInt(this.menu.getAvailableDesserts().size())));
+        this.lunch.add(this.menu.getTypeDishes(Course.FIRSTS).get(this.rnd.nextInt(this.menu.getTypeDishes(Course.FIRSTS).size())));
+        this.lunch.add(this.menu.getTypeDishes(Course.SECONDS).get(this.rnd.nextInt(this.menu.getTypeDishes(Course.SECONDS).size())));
+        this.lunch.add(this.menu.getTypeDishes(Course.DESSERTS).get(this.rnd.nextInt(this.menu.getTypeDishes(Course.DESSERTS).size())));
+       
+        this.lunch.add(this.menu.getTypeDishes(Course.FIRSTS).get(this.rnd.nextInt(this.menu.getTypeDishes(Course.FIRSTS).size())));
+        this.lunch.add(this.menu.getTypeDishes(Course.SECONDS).get(this.rnd.nextInt(this.menu.getTypeDishes(Course.SECONDS).size())));
+        this.lunch.add(this.menu.getTypeDishes(Course.DESSERTS).get(this.rnd.nextInt(this.menu.getTypeDishes(Course.DESSERTS).size())));    
     }
 
     @Override

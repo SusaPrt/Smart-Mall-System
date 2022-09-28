@@ -7,16 +7,22 @@ package Model.enterprises.shop;
 //@Author Susanna
 
 import Model.administration.Item;
+import Model.system.DataInterpreter;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.Objects;
 
 public class Shop {
     private final String name;
-    private LinkedList<Item> warehouse;
+    private final LinkedList<Item> warehouse;
+    private final DataInterpreter dataInt;
 
-    public Shop(String name) {
+    public Shop(String name) throws FileNotFoundException {
+        super();
         this.name = name;
-        this.warehouse = new LinkedList<Item>();
+        this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/Shop.txt"), "Shop");
+        this.warehouse = this.dataInt.getData().getFirst();
     }
 
     public LinkedList<Item> getWarehouse() {
@@ -31,7 +37,10 @@ public class Shop {
     }
     
     public void removeItem(Item i) {
-        this.warehouse.remove(i);
+        if(this.checkItemByName(i.getName()))
+            this.warehouse.remove(i);
+        else
+            System.out.println("Error: item not registered");
     }
 
     private boolean checkItemByName(String name) {

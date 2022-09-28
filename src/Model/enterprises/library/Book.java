@@ -5,15 +5,14 @@
 package Model.enterprises.library;
 
 import Model.administration.Item;
-import java.util.Objects;
 
 //@author Susanna
 
 public class Book extends Item {
-    private final String    author;
-    private final int       publishingYear;
-    private final String    genre;
-    private final int       ISBN;
+    private final String author;
+    private final int publishingYear;
+    private final String genre;
+    private final int ISBN;
     
     public Book(String name,  String author, double price, int quantity, int year, String genre, int isbn){
         super(name, price, quantity);
