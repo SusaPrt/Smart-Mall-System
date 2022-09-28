@@ -6,26 +6,24 @@ package Model.administration;
 
 import java.util.Objects;
 
+
 /**
  *
  * @author Mars_DB
  */
 public class Staff extends Person{
-    private  final int id;
-
-    
+   
     public Staff(String name, String password){
         super(name, password);
-        this.id = (int) (Math.random() * 100);
-    }
-
-    public int getId(){
-        return this.id;
     }
     
-     @Override
+    public Staff(String name, String password, int id){
+        super(name, password, id);
+    }
+
+    @Override
     public String toString(){
-        return "\nName: " + super.getName() + "\nPassword: " + super.getPassword() + "\nId Locker: " + this.id;
+        return "\nName: " + super.getName() + "\nPassword: " + super.getPassword() + "\nId Locker: " + super.getId();
     }
 
     @Override
@@ -33,7 +31,7 @@ public class Staff extends Person{
         int hash = 3;
         hash = 67 * hash + Objects.hashCode(super.getName());
         hash = 67 * hash + Objects.hashCode(super.getPassword());
-        hash = 67 * hash + this.id;
+        hash = 67 * hash + super.getId();
         return hash;
     }
 
@@ -58,7 +56,7 @@ public class Staff extends Person{
             return false;
         }
         
-        if (this.id != other.id) {
+        if (super.getId() != other.getId()) {
             return false;
         }
         return true;
