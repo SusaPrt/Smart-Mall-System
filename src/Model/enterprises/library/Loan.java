@@ -10,9 +10,9 @@ import java.util.Calendar;
 import java.util.Objects;
  
 public class Loan {
-    private final Book      borrowedBook;
-    private final Calendar  issueDate;      //data di emissione prestito
-    private Calendar        dueDate;        //scadenza prestito
+    private final Book borrowedBook;
+    private final Calendar issueDate;      //data di emissione prestito
+    private final Calendar dueDate;        //scadenza prestito
     
     public Loan(Book book) {
         super();

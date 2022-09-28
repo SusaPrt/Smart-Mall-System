@@ -1,7 +1,7 @@
 
 import Model.administration.Administration;
 import Model.enterprises.library.Library;
-import Model.enterprises.restourant.Restourant;
+import Model.enterprises.restaurant.Restaurant;
 import Model.enterprises.shop.Shop;
 import java.io.FileNotFoundException;
 
@@ -17,14 +17,14 @@ import java.io.FileNotFoundException;
 public class MainApplication {
     private final Administration adminstration;
     private final Library library;
-    private final Restourant restourant;
+    private final Restaurant restourant;
     private final Shop shop;
     
     public MainApplication() throws FileNotFoundException{
         this.adminstration = new Administration();
         this.library = new Library("Library");
-        this.restourant = new Restourant();
-        this.shop = new Shop();
+        this.restourant = new Restaurant("Restaurant", 200);
+        this.shop = new Shop("Shop");
     }
 
     public Administration getAdminstration() {
@@ -35,7 +35,7 @@ public class MainApplication {
         return this.library;
     }
 
-    public Restourant getRestourant() {
+    public Restaurant getRestourant() {
         return this.restourant;
     }
 

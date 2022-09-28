@@ -9,7 +9,7 @@ import Model.administration.Item;
 import Model.administration.Person;
 import Model.administration.Staff;
 import Model.enterprises.library.Book;
-import Model.enterprises.restourant.Dish;
+import Model.enterprises.restaurant.Dish;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -48,7 +48,7 @@ public class DataWriter {
         if(o instanceof Dish){
             //String name, double price, int q, String course
             Dish d = (Dish)o;
-            this.itemsTowrite.add(this.itemsTowrite.indexOf("#"+d.getDescription())+1,
+            this.itemsTowrite.add(this.itemsTowrite.indexOf("#"+d.getCourse())+1,
                     d.getName()+","+d.getPrice()+","+d.getQuantity());
             
             

@@ -10,7 +10,7 @@ import Model.administration.Item;
 import Model.administration.Person;
 import Model.administration.Staff;
 import Model.enterprises.library.Book;
-import Model.enterprises.restourant.Dish;
+import Model.enterprises.restaurant.Dish;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;

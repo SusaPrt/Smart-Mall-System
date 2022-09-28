@@ -2,30 +2,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Model.enterprises.restourant;
+package Model.enterprises.restaurant;
 
-// @author Susanna
+//@author Susanna
 
 import Model.administration.Item;
 import java.util.Objects;
 
 public class Dish extends Item {
-    private final String description;
+    private final Course course;
     
-    public Dish (String name, double price, int quantity, String description) {
+    public Dish (String name, double price, int quantity, String course) {
         super(name, price, quantity);
-        this.description = description;
+        this.course = Course.selectType(course);
     }
     
-    public String getDescription() {
-        return this.description;
+    public Course getCourse() {
+        return this.course;
     }
 
     @Override
     public int hashCode() {
         final int hash = 31;
         int result = 1;
-        result = result * hash + Objects.hashCode(this.description);
+        result = result * hash + Objects.hashCode(this.course);
         return result;
     }
 
@@ -38,14 +38,14 @@ public class Dish extends Item {
             return false;
         }
         final Dish other = (Dish) obj;
-        return Objects.equals(this.description, other.description);
+        return Objects.equals(this.course, other.course);
     }
 
     @Override
     public String toString() {
-        return "\nDish: " + super.getName() + " \nPrice: " + super.getPrice() +
-                "\nDescription: " + this.description;
+        return "\nDish: " + super.getName() + " - " + super.getPrice() + " €";
     }
+    
     
     
 }
