@@ -80,19 +80,19 @@ public class DataInterpreter {
         String[] tokens = s.split(",");
         if(this.listReq.equals("Restourant")){           
                     this.data.get(i).add(new Dish(tokens[0], 
-                            Double.parseDouble(tokens[1].replaceAll("\\D+", "")),
+                            Double.parseDouble(tokens[1]),
                             Integer.parseInt(tokens[2].replaceAll("\\D+", "")), type));
         } 
         else if(this.listReq.equals("Library")){           
             this.data.get(i).add(new Book(tokens[0], 
-                            tokens[1], Double.parseDouble(tokens[2].replaceAll("\\D+", "")),
+                            tokens[1], Double.parseDouble(tokens[2]),
                             Integer.parseInt(tokens[3].replaceAll("\\D+", "")), 
                             Integer.parseInt(tokens[4].replaceAll("\\D+", "")), 
                             type, Integer.parseInt(tokens[5].replaceAll("\\D+", ""))));
         }
         else if(this.listReq.equals("Shop")){
             this.data.get(i).add(new Item(tokens[0], 
-                    Double.parseDouble(tokens[1].replaceAll("\\D+", "")), 
+                    Double.parseDouble(tokens[1]), 
                     Integer.parseInt(tokens[2].replaceAll("\\D+", ""))));
         }
         else if(this.listReq.equals("Archive")){
