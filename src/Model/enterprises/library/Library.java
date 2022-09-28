@@ -7,6 +7,9 @@ package Model.enterprises.library;
 //@author Susanna
 
 import Model.administration.Customer;
+import Model.system.DataInterpreter;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -20,13 +23,16 @@ public class Library {
     private final String name;
     
     private LinkedList<Book> booksList;
-    private Map<Customer, Set<Loan>> loansList; 
+    private Map<Customer, Set<Loan>> loansList;
+    private final DataInterpreter dI;
     
-    public Library(String name, LinkedList<LinkedList> list) {
+    public Library(String name) throws FileNotFoundException {
         super();
-        this.name = name;
-        this.booksList = new LinkedList(list.get(0));
+        this.dI = new DataInterpreter(new File("./src/Model/system/DataFolder/Library.txt")
+                                                ,"Library");
+        this.booksList = new LinkedList(this.dI.getData().get(0));
         this.loansList = new HashMap();
+        this.name = name;
     }
     
     public String getName() {
