@@ -4,49 +4,52 @@
  */
 package Model.administration.payment;
 
-import Model.administration.Customer;
+import Model.administration.Item;
+import Model.administration.payment.PaymentInterfaces.CartInterface;
 import java.util.LinkedList;
 
 /**
  *
  * @author Mars_DB
  */
-public class Cart {
-    private LinkedList<Order> orderList;
-    private int orderCounter;
+public class Cart implements CartInterface{
+    private LinkedList<Item> purchasedProducts;
     
-    public Cart(Customer c){
-        this.orderList = new LinkedList();
-        this.orderCounter = 1;
+    public Cart(){
+        this.purchasedProducts = new LinkedList();
     }
     
-    public void addOrder(){
-        this.orderList.add(new Order(this.orderCounter));
-        this.orderCounter++;
+    @Override
+    public void addItem(Item i){
+        this.purchasedProducts.add(i);
     }
     
-    public void removeOrder(int orderToRemove){
-        this.orderList.remove(this.orderList
-                .stream()
-                .filter(o -> o.getNOrder()==orderToRemove)
-                .findFirst()
-                .get());
+    @Override
+    public void removeProducts(Item i){
+        this.purchasedProducts.remove(i);
         
     }
     
+    @Override
+    public LinkedList<Item> getProducts(){
+        return Cart.defend(this.purchasedProducts);
+    }
+    
+    @Override
     public double getTotCost(){
-        double cost = 0.0;
-        cost = this.orderList.stream().map(o -> o.getCost())
-                .reduce(cost, (accumulator, _item) -> accumulator + _item);
-        return cost;
+        return this.purchasedProducts.stream().mapToDouble(Item::getPrice).sum();
     }
     
     @Override
     public String toString(){
         String show = "Order list of this cart:";
-        this.orderList.forEach(o -> {
-            show.concat("\n"+o.toString());
+        this.purchasedProducts.forEach(i -> {
+            show.concat("\n"+i.toString());
         });
         return show;
+    }
+    
+    private static <T> LinkedList<T>  defend(LinkedList<T> list){
+        return (LinkedList<T>) list.clone();
     }
 }

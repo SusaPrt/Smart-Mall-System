@@ -5,42 +5,59 @@
 package Model.administration.payment;
 
 import Model.administration.Customer;
+import Model.administration.payment.PaymentInterfaces.PaymentInterface;
+import java.util.Random;
 
 /**
  *
  * @author Mars_DB
  */
-public class Payment {
+public class Payment implements PaymentInterface{
     
-    private final Cart cart;
+    private final Customer customer;
     private final double cost;                                              
-    private boolean overBudget;
+    private final int id;
     
-    public Payment(Cart cart, Customer c){                                                                   
-        this.cart = cart;    
-        this.cost = this.cart.getTotCost();
-        this.overBudget = checkStatus(c.getCredit());
+    public Payment(Customer c, int id){                                                                     
+        this.cost = c.getCart().getTotCost(); 
+        this.customer = c;
+        this.id = id;
+    }
+    
+    public Payment(Customer c){                                                                    
+        this.cost = c.getCart().getTotCost(); 
+        this.customer = c;
+        Random rnd = new Random();
+        this.id = rnd.nextInt(1000)+101;
     }
 
+    @Override
     public double getCost() {
        return this.cost;
     }
+
+    @Override
+    public boolean checkStatus(){
+        boolean b = false;
+        if(this.cost <= this.customer.getCredit())
+            b = true;
+        return b;
+    }
     
+    @Override
+    public Customer getCustomer(){
+        return this.customer;
+    }
+    
+    @Override
+    public int getId(){
+        return this.id;
+    }
     
     @Override
     public String toString(){
-        return "\nPayment of "+this.cost+"€"+"\nDiscount: "+!this.overBudget;
-    }
-    
-    public boolean getStatus(){
-        return this.overBudget;
-    }
-    
-    private boolean checkStatus(double CostumerCredit){
-        boolean b = false;
-        if(this.cost < CostumerCredit)
-            b = true;
-        return b;
+        return "\nPayment of "+this.cost+"€"+"\nCustomer: "
+                +this.customer.getName()+" id: "+this.customer.getId();
     }
 }
 
