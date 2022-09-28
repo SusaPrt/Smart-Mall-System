@@ -5,7 +5,7 @@
 package Model.system;
 
 import Model.administration.Item;
-import Model.enterprises.restourant.Dish;
+import Model.enterprises.restaurant.Dish;
 import Model.enterprises.library.Book;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,7 +26,7 @@ public class DataInterpreter {
         this.data = new LinkedList<>();
         this.listReq = requirer;
         this.readData(this.dR.getRawData());
-        this.dW = new dataWriter(f, requirer, this.dR.getRawData());
+        this.dW = new DataWriter(f, requirer, this.dR.getRawData());
     }
     
     private void readData(LinkedList<String> rawData){

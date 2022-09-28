@@ -6,7 +6,7 @@ package Model.system;
 
 import Model.administration.Item;
 import Model.enterprises.library.Book;
-import Model.enterprises.restourant.Dish;
+import Model.enterprises.restaurant.Dish;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
