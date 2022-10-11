@@ -12,7 +12,7 @@ import java.util.Random;
  *
  * @author Mars_DB
  */
-public class Person implements PersonInterface{
+public abstract class Person implements PersonInterface{
     private  final String name;
     private  final String password;
     private final int id;
@@ -80,9 +80,6 @@ public class Person implements PersonInterface{
             return false;
         }
         return true;
-    }
-
-    
-    
+    }    
 }
 

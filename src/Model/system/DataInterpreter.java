@@ -11,6 +11,7 @@ import Model.enterprises.restaurant.Dish;
 import Model.administration.Person;
 import Model.administration.Staff;
 import Model.enterprises.library.Book;
+import Model.enterprises.restaurant.Course;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
@@ -81,7 +82,7 @@ public class DataInterpreter {
         if(this.listReq.equals("Restaurant")){           
                     this.data.get(i).add(new Dish(tokens[0], 
                             Double.parseDouble(tokens[1]),
-                            Integer.parseInt(tokens[2].replaceAll("\\D+", "")), type));
+                            Integer.parseInt(tokens[2].replaceAll("\\D+", "")), Course.selectType(type)));
         } 
         else if(this.listReq.equals("Library")){           
             this.data.get(i).add(new Book(tokens[0], 

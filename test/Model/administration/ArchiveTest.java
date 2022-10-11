@@ -20,16 +20,23 @@ public class ArchiveTest {
     public ArchiveTest() {
         this.Ad = new Administration();
         this.instance = new Archive(this.Ad);
-        this.staff = new Staff("Marzio", "1111", 12345);
+        this.staff = new Staff("Marzio", "1111", 123458);
         this.customer = new Customer("Simone", "2222", 100.00, 54321, this.Ad);
     }
+    /*La classe Archivio compone la classe Administration che alla sua creazione
+      carica gli account, se ce ne sono, dal file di test Account.txt, su file 
+      sono presenti 2 staff e 1 customer, quindi per la verifica del corretto 
+      funzionamento dei test sono stai presi in considerazione anche gli account
+      presenti su file*/
 
     @Test
     public void testAddStaff() {
         System.out.println("Test metodo 'addPerson' per instanza di Staff");
+        System.out.println("Numero staff in organico prima: "+instance.getStaff().size());
         instance.addPerson(staff);
+        System.out.println("Numero staff in organico dopo add: "+instance.getStaff().size());
         int result = instance.getStaff().size();
-        int expResult = 1;
+        int expResult = 3;
         assertEquals(expResult, result);
     }
     
@@ -38,7 +45,7 @@ public class ArchiveTest {
         System.out.println("Test metodo 'addPerson' per instanza di Customer");
         instance.addPerson(customer);
         int result = instance.getCustomers().size();
-        int expResult = 1;
+        int expResult = 2;
         assertEquals(expResult, result);
     }
 
@@ -69,9 +76,9 @@ public class ArchiveTest {
         System.out.println("Test metodo 'removeById' per instanza di Staff");
         int id = 12345;
         instance.addPerson(staff);
-        instance.removeById(id);
+        instance.removeById(id);    
         int result = instance.getStaff().size();
-        int expResult = 0;
+        int expResult = 2;
         assertEquals(expResult, result);
     }
     
@@ -82,7 +89,7 @@ public class ArchiveTest {
         instance.addPerson(customer);
         instance.removeById(id);
         int result = instance.getCustomers().size();
-        int expResult = 0;
+        int expResult = 1;
         assertEquals(expResult, result);
     }
 
@@ -90,7 +97,7 @@ public class ArchiveTest {
     public void testGetStaffById() {
         System.out.println("Test metodo 'getById' per instanza di Staff");
         instance.addPerson(staff);
-        int id = 12345;
+        int id = 123458;
         Object expResult = staff;
         Object result = instance.getById(id);
         assertEquals(expResult, result);
