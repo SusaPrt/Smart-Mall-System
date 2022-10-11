@@ -25,18 +25,17 @@ public class Menu {
         this.warehouse.put(Course.WINESANDSOFT, l.get(3));
     }  
     
-    public LinkedList<Dish> getTypeDishes(Course type) {
-        return this.warehouse.get(type);
+    public LinkedList<Dish> getTypeDishes(Course course) {
+        return this.warehouse.get(course);
     }
     
-    public Set<Dish> getAvailableTypeDishes(Course type) {
-        return this.warehouse.get(type).stream().filter(d -> d.getQuantity() > 0).collect(Collectors.toSet());
+    public Set<Dish> getAvailableTypeDishes(Course course) {
+        return this.warehouse.get(course).stream().filter(d -> d.getQuantity() > 0).collect(Collectors.toSet());
     }
     
-    //conversione
-    public void addDish(String name, double price, int quantity, String type) {
-        if(!(this.checkDish(name, Course.selectType(type))))
-            this.warehouse.get(Course.selectType(type)).add(new Dish(name, price, quantity, type));
+    public void addDish(String name, double price, int quantity, Course course) {
+        if(!(this.checkDish(name, course)))
+            this.warehouse.get(course).add(new Dish(name, price, quantity, course));
         else
             System.out.println("Error: dish already registered");
     }
@@ -46,10 +45,10 @@ public class Menu {
             this.warehouse.get(d.getCourse()).remove(d);
         else
             System.out.println("Error: dish not in the menu");
-    }    
+    } 
     
-    private boolean checkDish(String name, Course type) {
-        return this.warehouse.get(type).stream().filter(dish -> dish.getName().equalsIgnoreCase(name)).findFirst().isPresent();
+    private boolean checkDish(String name, Course course) {
+        return this.warehouse.get(course).stream().filter(dish -> dish.getName().equalsIgnoreCase(name)).findFirst().isPresent();
     }
 
     @Override

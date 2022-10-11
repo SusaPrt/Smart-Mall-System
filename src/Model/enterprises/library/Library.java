@@ -7,19 +7,21 @@ package Model.enterprises.library;
 //@author Susanna
 
 import Model.administration.Customer;
+import Model.enterprises.libraryInterfaces.ILibrary;
 import Model.system.DataInterpreter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 
-public class Library {
+public class Library implements ILibrary {
     private final String name;
     private final LinkedList<Book> booksList;
     private final Map<Customer, Set<Loan>> loansList; 
@@ -34,18 +36,22 @@ public class Library {
         this.booksList = this.dataInt.getData().getFirst();
     }
     
+    @Override
     public String getName() {
         return this.name;
     }
     
-    public LinkedList<Book> getAllBooks() {
-        return this.booksList;
+    @Override
+    public List<Book> getAllBooks() {
+        return this.booksList.stream().filter(b -> b.getQuantity() > 0).collect(Collectors.toList());
     }
     
+    @Override
     public Map<Customer, Set<Loan>> getAllLoans() {
         return this.loansList;
     }
     
+    @Override
     public void addBook(String name,  String author, double price, int quantity, int year, String genre, int isbn) {
         if(this.checkISBN(isbn))
             System.out.println("Error: book already registered");
@@ -54,6 +60,7 @@ public class Library {
         
     }
     
+    @Override
     public void removeBook(Book b) {
         if(this.checkISBN(b.getISBN()))
             this.booksList.remove(b);
@@ -61,6 +68,7 @@ public class Library {
             System.out.println("Error: book non registered");
     }
     
+    @Override
     public void createLoan(Customer customer, Book book) {
         if(!this.loansList.containsKey(customer))
             this.loansList.put(customer, new HashSet<>());
@@ -68,28 +76,34 @@ public class Library {
         this.loansList.get(customer).add(new Loan(book));
     }
     
+    @Override
     public void cancelLoan(Customer customer, Book book) {
         Loan work = this.loansList.get(customer).stream().filter(l -> l.getBorrowedBook().equals(book)).findFirst().get();
         this.loansList.get(customer).remove(work);
         book.increaseQuantity(1);
     }
     
+    @Override
     public Set<Book> searchBookByTitle(String title) {
         return this.booksList.stream().filter(b -> b.getName().contains(title)).collect(Collectors.toSet());
     }
     
+    @Override
     public Set<Book> searchBookByGenre(String genre) {
         return this.booksList.stream().filter(b -> b.getGenre().equals(genre)).collect(Collectors.toSet());
     }
     
+    @Override
     public Set<Book> searchBookByAuthor(String author) {
         return this.booksList.stream().filter(b -> b.getAuthor().contains(author)).collect(Collectors.toSet());
     }
     
+    @Override
     public Set<Loan> getCustomerLoans(Customer customer) {
         return this.loansList.get(customer);
     }
     
+    @Override
     public boolean refueling(Book b, int n) {
         boolean done = false;
         if(this.checkISBN(b.getISBN())) {

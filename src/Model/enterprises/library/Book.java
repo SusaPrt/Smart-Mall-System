@@ -5,10 +5,11 @@
 package Model.enterprises.library;
 
 import Model.administration.Item;
+import Model.enterprises.libraryInterfaces.IBook;
 
 //@author Susanna
 
-public class Book extends Item {
+public class Book extends Item implements IBook {
     private final String author;
     private final int publishingYear;
     private final String genre;
@@ -22,15 +23,19 @@ public class Book extends Item {
         this.ISBN           = isbn;
     }
 
+    @Override
     public String getAuthor(){
         return this.author;
     }
+    @Override
     public int getPublishingYear(){
         return this.publishingYear;
     }
+    @Override
     public String getGenre(){
         return this.genre;
     }
+    @Override
     public int getISBN() {
         return this.ISBN;
     }
