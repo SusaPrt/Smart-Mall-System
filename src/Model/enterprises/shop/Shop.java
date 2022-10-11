@@ -7,13 +7,16 @@ package Model.enterprises.shop;
 //@Author Susanna
 
 import Model.administration.Item;
+import Model.enterprises.shopInterfaces.IShop;
 import Model.system.DataInterpreter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
-public class Shop {
+public class Shop implements IShop {
     private final String name;
     private final LinkedList<Item> warehouse;
     private final DataInterpreter dataInt;
@@ -25,8 +28,8 @@ public class Shop {
         this.warehouse = this.dataInt.getData().getFirst();
     }
 
-    public LinkedList<Item> getWarehouse() {
-        return this.warehouse;
+    public List<Item> getWarehouse() {
+        return this.warehouse.stream().filter(i -> i.getQuantity() > 0).collect(Collectors.toList());
     }
     
     public void addItem(String name, double price, int quantity) {
@@ -43,6 +46,17 @@ public class Shop {
             System.out.println("Error: item not registered");
     }
 
+    public boolean refueling(Item i, int n) {
+        boolean done = false;
+        if(this.checkItemByName(i.getName())) {
+            i.increaseQuantity(n);
+            done = true;
+        }
+        if(!done)
+            System.out.println("Error: book not registered");
+        return done;
+    }
+    
     private boolean checkItemByName(String name) {
         return this.warehouse.stream().filter(item -> item.getName().equalsIgnoreCase(name)).findFirst().isPresent();
     }

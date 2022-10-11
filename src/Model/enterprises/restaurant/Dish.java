@@ -7,14 +7,15 @@ package Model.enterprises.restaurant;
 //@author Susanna
 
 import Model.administration.Item;
+import Model.enterprises.restaurantInterfaces.IDish;
 import java.util.Objects;
 
-public class Dish extends Item {
+public class Dish extends Item implements IDish {
     private final Course course;
     
-    public Dish (String name, double price, int quantity, String course) {
+    public Dish (String name, double price, int quantity, Course course) {
         super(name, price, quantity);
-        this.course = Course.selectType(course);
+        this.course = course;
     }
     
     public Course getCourse() {

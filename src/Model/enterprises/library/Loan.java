@@ -6,13 +6,14 @@ package Model.enterprises.library;
 
 //@author Susanna
 
+import Model.enterprises.libraryInterfaces.ILoan;
 import java.util.Calendar;
 import java.util.Objects;
  
-public class Loan {
+public class Loan implements ILoan {
     private final Book borrowedBook;
-    private final Calendar issueDate;      //data di emissione prestito
-    private final Calendar dueDate;        //scadenza prestito
+    private final Calendar issueDate;      
+    private final Calendar dueDate;        
     
     public Loan(Book book) {
         super();
@@ -25,18 +26,22 @@ public class Loan {
         this.dueDate        = calendar;
     }
     
+    @Override
     public Book getBorrowedBook() {
         return this.borrowedBook;
     }
    
+    @Override
     public Calendar getIssueDate() {
         return this.issueDate;
     }
     
+    @Override
     public Calendar getDueDate() {
         return this.dueDate;
     }
     
+    @Override
     public void increaseLoanDays(int i) {
         this.dueDate.add(Calendar.DATE, i);
     }
