@@ -79,6 +79,7 @@ public class DataWriterTest {
         System.out.println("Test relativo al ristorante del metodo 'addItem'");
         Dish d = new Dish("Cannelloni alla besciamella", 12.5, 100, Course.selectType("FIRSTS"));
         boolean expResult = true;
+        System.out.println(d.getCourse().toString());
         this.RestourantDataInterpreter.getDataWriter().addItem(d);
         this.RestourantDataInterpreter.getDataWriter().writeOnFile();
         //simulo la chiusura e la riaccensione del sistema cosi che il DataReader legge i dati precedentemente salvati

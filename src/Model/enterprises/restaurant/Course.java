@@ -23,4 +23,18 @@ public class Course {
             }
         return work;
     }
+    
+    public static String getCourse(Course c){
+        String out;
+        if(c.equals(Course.FIRSTS))
+            out = "FIRSTS";
+        else if(c.equals(Course.SECONDS))
+            out = "SECONDS";
+        else if(c.equals(Course.DESSERTS))
+            out = "DESSERTS";
+        else
+            out = "WINESANDSOFT";  
+        
+        return out;
+    }
 }
