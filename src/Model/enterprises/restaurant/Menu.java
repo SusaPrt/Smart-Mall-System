@@ -33,6 +33,7 @@ public class Menu {
         return this.warehouse.get(type).stream().filter(d -> d.getQuantity() > 0).collect(Collectors.toSet());
     }
     
+    //conversione
     public void addDish(String name, double price, int quantity, String type) {
         if(!(this.checkDish(name, Course.selectType(type))))
             this.warehouse.get(Course.selectType(type)).add(new Dish(name, price, quantity, type));
