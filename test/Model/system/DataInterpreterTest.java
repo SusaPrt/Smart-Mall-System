@@ -10,6 +10,7 @@ import Model.administration.Item;
 import Model.administration.Person;
 import Model.administration.Staff;
 import Model.enterprises.library.Book;
+import Model.enterprises.restaurant.Course;
 import Model.enterprises.restaurant.Dish;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -88,22 +89,22 @@ public class DataInterpreterTest {
         LinkedList<LinkedList> expResult = new LinkedList();
         expResult.add(new LinkedList());
         //String name, double price, int quantity, String description
-        expResult.get(0).add(new Dish("YYYYY",4,625, "FIRSTS"));
-        expResult.get(0).add(new Dish("YYYYYYY",3,253, "FIRSTS"));
-        expResult.get(0).add(new Dish("YYYY",4,485, "FIRSTS"));
+        expResult.get(0).add(new Dish("YYYYY",4,625, Course.selectType("FIRSTS")));
+        expResult.get(0).add(new Dish("YYYYYYY",3,253, Course.selectType("FIRSTS")));
+        expResult.get(0).add(new Dish("YYYY",4,485, Course.selectType("FIRSTS")));
         
         expResult.add(new LinkedList());
-        expResult.get(1).add(new Dish("YYYYYYYYY",5,720, "SECONDS"));
-        expResult.get(1).add(new Dish("YYYYYY",12,312, "SECONDS"));
+        expResult.get(1).add(new Dish("YYYYYYYYY",5,720, Course.selectType("SECONDS")));
+        expResult.get(1).add(new Dish("YYYYYY",12,312, Course.selectType("SECONDS")));
         
         expResult.add(new LinkedList());
-        expResult.get(2).add(new Dish("YYYYYYYY",7,182, "DESSERTS"));
-        expResult.get(2).add(new Dish("YYYYY",8,109, "DESSERTS"));
+        expResult.get(2).add(new Dish("YYYYYYYY",7,182, Course.selectType("DESSERTS")));
+        expResult.get(2).add(new Dish("YYYYY",8,109, Course.selectType("DESSERTS")));
         
         expResult.add(new LinkedList());
-        expResult.get(3).add(new Dish("YYYY",4,102, "WINESANDSOFT"));
-        expResult.get(3).add(new Dish("YYYYY",8,182, "WINESANDSOFT"));
-        expResult.get(3).add(new Dish("YYYYYY",2,625, "WINESANDSOFT"));
+        expResult.get(3).add(new Dish("YYYY",4,102, Course.selectType("WINESANDSOFT")));
+        expResult.get(3).add(new Dish("YYYYY",8,182, Course.selectType("WINESANDSOFT")));
+        expResult.get(3).add(new Dish("YYYYYY",2,625, Course.selectType("WINESANDSOFT")));
         
         
         LinkedList<LinkedList> result = RestourantDataInterpreter.getData();

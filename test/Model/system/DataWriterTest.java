@@ -9,6 +9,7 @@ import Model.administration.Item;
 import Model.administration.Person;
 import Model.administration.Staff;
 import Model.enterprises.library.Book;
+import Model.enterprises.restaurant.Course;
 import Model.enterprises.restaurant.Dish;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -76,7 +77,7 @@ public class DataWriterTest {
     @Test 
     public void testAddDish() throws IOException{
         System.out.println("Test relativo al ristorante del metodo 'addItem'");
-        Dish d = new Dish("Cannelloni alla besciamella", 12.5, 100, "FIRSTS");
+        Dish d = new Dish("Cannelloni alla besciamella", 12.5, 100, Course.selectType("FIRSTS"));
         boolean expResult = true;
         this.RestourantDataInterpreter.getDataWriter().addItem(d);
         this.RestourantDataInterpreter.getDataWriter().writeOnFile();
