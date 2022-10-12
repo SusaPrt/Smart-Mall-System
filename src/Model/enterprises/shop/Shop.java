@@ -11,6 +11,7 @@ import Model.enterprises.shopInterfaces.IShop;
 import Model.system.DataInterpreter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -18,14 +19,20 @@ import java.util.stream.Collectors;
 
 public class Shop implements IShop {
     private final String name;
-    private final LinkedList<Item> warehouse;
-    private final DataInterpreter dataInt;
+    private LinkedList<Item> warehouse;
+    private DataInterpreter dataInt;
 
-    public Shop(String name) throws FileNotFoundException {
+    public Shop() throws FileNotFoundException {
         super();
-        this.name = name;
+        this.name = "Shop";
         this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/Shop.txt"), "Shop");
         this.warehouse = this.dataInt.getData().getFirst();
+    }
+    
+    public Shop(String name) throws IOException {
+        super();
+        this.name = name;
+        this.fileChecker();
     }
 
     // >> METODI PUBBLICI <<
@@ -62,9 +69,21 @@ public class Shop implements IShop {
         return done;
     }
     
-    // >> METODO PRIVATO <<
+    // >> METODI PRIVATI <<
     private boolean checkItemByName(String name) {
         return this.warehouse.stream().filter(item -> item.getName().equalsIgnoreCase(name)).findFirst().isPresent();
+    }
+    
+    private void fileChecker() throws IOException{
+        try{
+        this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/" + name + ".txt"), "Shop");       
+        }catch(FileNotFoundException fNf){
+            File f = new File("./src/Model/system/DataFolder/" + name + ".txt");
+            f.createNewFile();
+            this.dataInt = new DataInterpreter(f, "Library");
+        }finally{
+            this.warehouse = dataInt.getData().getFirst();          
+        }
     }
 
     @Override
@@ -99,5 +118,5 @@ public class Shop implements IShop {
         return "Shop " + this.name;
     }
     
-    
+     
 }

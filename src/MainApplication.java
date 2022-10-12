@@ -22,9 +22,9 @@ public class MainApplication {
     
     public MainApplication() throws FileNotFoundException{
         this.adminstration = new Administration();
-        this.library = new Library("Library");
-        this.restourant = new Restaurant("Restaurant", 200);
-        this.shop = new Shop("Shop");
+        this.library = new Library();
+        this.restourant = new Restaurant(200);
+        this.shop = new Shop();
     }
 
     public Administration getAdminstration() {
