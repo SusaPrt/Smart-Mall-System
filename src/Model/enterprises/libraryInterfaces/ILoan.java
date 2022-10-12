@@ -7,7 +7,7 @@ package Model.enterprises.libraryInterfaces;
 // @author Susanna
 
 import Model.enterprises.library.Book;
-import java.util.Calendar;
+import java.time.LocalDate;
 
  
 public interface ILoan {
@@ -15,10 +15,10 @@ public interface ILoan {
     public Book getBorrowedBook();
     
     //ritorna la data di emissione del prestito
-    public Calendar getIssueDate();
+    public LocalDate getIssueDate();
     
     //ritorna la data di scadenza del prestito
-    public Calendar getDueDate();
+    public LocalDate getDueDate();
     
     //permette di incrementare i giorni del prestito di i giorni
     public void increaseLoanDays(int i);

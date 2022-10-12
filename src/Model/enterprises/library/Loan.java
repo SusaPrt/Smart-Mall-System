@@ -7,23 +7,28 @@ package Model.enterprises.library;
 //@author Susanna
 
 import Model.enterprises.libraryInterfaces.ILoan;
+import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
  
 public class Loan implements ILoan {
     private final Book borrowedBook;
-    private final Calendar issueDate;      
-    private final Calendar dueDate;        
+    private final LocalDate issueDate;      
+    private LocalDate dueDate;        
     
     public Loan(Book book) {
         super();
         this.borrowedBook   = book;
-        
+        /*
         Calendar calendar   = Calendar.getInstance();
-        this.issueDate      = calendar;
+        this.issueDate      = calendar.getTime();
         
-        calendar.add(Calendar.DATE, 30);
-        this.dueDate        = calendar;
+        calendar.add(Calendar.DAY_OF_MONTH, 30);
+        this.dueDate        = calendar.getTime();
+*/
+        this.issueDate = LocalDate.now();
+        this.dueDate = LocalDate.now().plusDays(30);
     }
     
     // >> METODI PUBBLICI <<
@@ -33,18 +38,18 @@ public class Loan implements ILoan {
     }
    
     @Override
-    public Calendar getIssueDate() {
+    public LocalDate getIssueDate() {
         return this.issueDate;
     }
     
     @Override
-    public Calendar getDueDate() {
+    public LocalDate getDueDate() {
         return this.dueDate;
     }
     
     @Override
     public void increaseLoanDays(int i) {
-        this.dueDate.add(Calendar.DATE, i);
+        this.dueDate = dueDate.plusDays(i);
     }
 
     @Override

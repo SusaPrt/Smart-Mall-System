@@ -22,10 +22,14 @@ public class Shop implements IShop {
     private LinkedList<Item> warehouse;
     private DataInterpreter dataInt;
 
-    public Shop() throws FileNotFoundException {
+    public Shop(){
         super();
         this.name = "Shop";
-        this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/Shop.txt"), "Shop");
+        try {
+            this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/Shop.txt"), "Shop");
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex);
+        }
         this.warehouse = this.dataInt.getData().getFirst();
     }
     

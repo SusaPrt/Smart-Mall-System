@@ -23,22 +23,22 @@ import static org.junit.Assert.*;
  * @author Mars_DB
  */
 public class DataInterpreterTest {
-    private final DataInterpreter LibraryDataInterpreter;
-    private final DataInterpreter ShopDataInterpreter;
-    private final DataInterpreter RestourantDataInterpreter;
-    private final DataInterpreter ArchiveDataInterpreter;
+    private final DataInterpreter libraryDataInterpreter;
+    private final DataInterpreter shopDataInterpreter;
+    private final DataInterpreter restourantDataInterpreter;
+    private final DataInterpreter archiveDataInterpreter;
     private final Administration aD;
     
     
     public DataInterpreterTest() throws FileNotFoundException {
         this.aD = new Administration();
-        this.ArchiveDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Account.txt")
+        this.archiveDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Account.txt")
                                                 , "Archive", aD);
-        this.LibraryDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Library.txt")
+        this.libraryDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Library.txt")
                                                 ,"Library");
-        this.ShopDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Shop.txt")
+        this.shopDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Shop.txt")
                                                 ,"Shop");
-        this.RestourantDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Menu.txt")
+        this.restourantDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Menu.txt")
                                                 ,"Restaurant");
     }
 
@@ -64,7 +64,7 @@ public class DataInterpreterTest {
         expResult.get(0).add(new Book("YYYYYY","XXXXXX",27,817,2017,"Comic",28475));//11
         expResult.get(0).add(new Book("YYYYYYY","XXXXXX",6,72,2009,"Comic",38485));//12
                
-        LinkedList<LinkedList> result = LibraryDataInterpreter.getData();
+        LinkedList<LinkedList> result = libraryDataInterpreter.getData();
         assertEquals(expResult, result);
     }
     
@@ -79,7 +79,7 @@ public class DataInterpreterTest {
         expResult.get(0).add(new Item("YYYYYY", 11, 281));
         expResult.get(0).add(new Item("YYYYYYY", 19, 829));
         expResult.get(0).add(new Item("YYYYY", 51, 271));
-        LinkedList<LinkedList> result = ShopDataInterpreter.getData();
+        LinkedList<LinkedList> result = shopDataInterpreter.getData();
         assertEquals(expResult, result);
     }
     
@@ -107,7 +107,7 @@ public class DataInterpreterTest {
         expResult.get(3).add(new Dish("YYYYYY",2,625, Course.selectType("WINESANDSOFT")));
         
         
-        LinkedList<LinkedList> result = RestourantDataInterpreter.getData();
+        LinkedList<LinkedList> result = restourantDataInterpreter.getData();
         assertEquals(expResult, result);
     }
     
@@ -118,7 +118,7 @@ public class DataInterpreterTest {
         expResult.add(new Staff("Marzio", "1111", 12345));            
         expResult.add(new Staff("Susanna", "2222", 53421));
         expResult.add(new Customer("Simone", "3333", 300.5, 12543, aD));
-        LinkedList<Person> result = ArchiveDataInterpreter.getAccounts();
+        LinkedList<Person> result = archiveDataInterpreter.getAccounts();
         assertEquals(expResult, result);
     }   
 }

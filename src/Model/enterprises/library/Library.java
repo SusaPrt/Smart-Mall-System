@@ -27,15 +27,19 @@ import java.util.stream.Collectors;
 public class Library implements ILibrary {
     private final String name;
     private LinkedList<Book> booksList;
-    private final Map<Customer, Set<Loan>> loansList; 
+    private Map<Customer, Set<Loan>> loansList; 
     private DataInterpreter dataInt;
     
         
-    public Library() throws FileNotFoundException{
+    public Library(){
         super();
         this.name = "Library";        
         this.loansList = new HashMap();
-        this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/Library.txt"), "Library");
+        try {
+            this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/Library.txt"), "Library");
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex);
+        }
         this.booksList = this.dataInt.getData().getFirst();
     }
     
