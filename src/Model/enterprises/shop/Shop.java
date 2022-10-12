@@ -11,6 +11,7 @@ import Model.enterprises.shopInterfaces.IShop;
 import Model.system.DataInterpreter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -18,20 +19,29 @@ import java.util.stream.Collectors;
 
 public class Shop implements IShop {
     private final String name;
-    private final LinkedList<Item> warehouse;
-    private final DataInterpreter dataInt;
+    private LinkedList<Item> warehouse;
+    private DataInterpreter dataInt;
 
-    public Shop(String name) throws FileNotFoundException {
+    public Shop() throws FileNotFoundException {
         super();
-        this.name = name;
+        this.name = "Shop";
         this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/Shop.txt"), "Shop");
         this.warehouse = this.dataInt.getData().getFirst();
     }
+    
+    public Shop(String name) throws IOException {
+        super();
+        this.name = name;
+        this.fileChecker();
+    }
 
+    // >> METODI PUBBLICI <<
+    @Override
     public List<Item> getWarehouse() {
         return this.warehouse.stream().filter(i -> i.getQuantity() > 0).collect(Collectors.toList());
     }
     
+    @Override
     public void addItem(String name, double price, int quantity) {
         if(!this.checkItemByName(name))
             this.warehouse.add(new Item(name, price, quantity));
@@ -39,6 +49,7 @@ public class Shop implements IShop {
             System.out.println("Error: item already registered");
     }
     
+    @Override
     public void removeItem(Item i) {
         if(this.checkItemByName(i.getName()))
             this.warehouse.remove(i);
@@ -46,6 +57,7 @@ public class Shop implements IShop {
             System.out.println("Error: item not registered");
     }
 
+    @Override
     public boolean refueling(Item i, int n) {
         boolean done = false;
         if(this.checkItemByName(i.getName())) {
@@ -57,8 +69,21 @@ public class Shop implements IShop {
         return done;
     }
     
+    // >> METODI PRIVATI <<
     private boolean checkItemByName(String name) {
         return this.warehouse.stream().filter(item -> item.getName().equalsIgnoreCase(name)).findFirst().isPresent();
+    }
+    
+    private void fileChecker() throws IOException{
+        try{
+        this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/" + name + ".txt"), "Shop");       
+        }catch(FileNotFoundException fNf){
+            File f = new File("./src/Model/system/DataFolder/" + name + ".txt");
+            f.createNewFile();
+            this.dataInt = new DataInterpreter(f, "Library");
+        }finally{
+            this.warehouse = dataInt.getData().getFirst();          
+        }
     }
 
     @Override
@@ -93,5 +118,5 @@ public class Shop implements IShop {
         return "Shop " + this.name;
     }
     
-    
+     
 }

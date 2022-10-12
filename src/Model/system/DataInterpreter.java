@@ -82,7 +82,8 @@ public class DataInterpreter {
         if(this.listReq.equals("Restaurant")){           
                     this.data.get(i).add(new Dish(tokens[0], 
                             Double.parseDouble(tokens[1]),
-                            Integer.parseInt(tokens[2].replaceAll("\\D+", "")), Course.selectType(type)));
+                            Integer.parseInt(tokens[2].replaceAll("\\D+", "")),
+                            Course.selectType(type)));
         } 
         else if(this.listReq.equals("Library")){           
             this.data.get(i).add(new Book(tokens[0], 

@@ -23,6 +23,7 @@ public class Book extends Item implements IBook {
         this.ISBN           = isbn;
     }
 
+    // >> METODI PUBBLICI <<
     @Override
     public String getAuthor(){
         return this.author;

@@ -18,6 +18,7 @@ public class Dish extends Item implements IDish {
         this.course = course;
     }
     
+    // >> METODI PUBBLICI <<
     @Override
     public Course getCourse() {
         return this.course;

@@ -8,9 +8,12 @@ package Model.enterprises.library;
 
 import Model.administration.Customer;
 import Model.enterprises.libraryInterfaces.ILibrary;
+import Model.enterprises.restaurant.Menu;
+import Model.enterprises.restaurant.MenuOfTheDay;
 import Model.system.DataInterpreter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -23,19 +26,27 @@ import java.util.stream.Collectors;
 
 public class Library implements ILibrary {
     private final String name;
-    private final LinkedList<Book> booksList;
+    private LinkedList<Book> booksList;
     private final Map<Customer, Set<Loan>> loansList; 
-    private final DataInterpreter dataInt;
+    private DataInterpreter dataInt;
     
         
-    public Library(String name) throws FileNotFoundException{
+    public Library() throws FileNotFoundException{
         super();
-        this.name = name;        
+        this.name = "Library";        
         this.loansList = new HashMap();
         this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/Library.txt"), "Library");
         this.booksList = this.dataInt.getData().getFirst();
     }
     
+    public Library(String name) throws IOException{
+        super();
+        this.name = name;        
+        this.loansList = new HashMap();
+        this.fileChecker();
+    }
+    
+    // >> METODI PUBBLICI <<
     @Override
     public String getName() {
         return this.name;
@@ -115,8 +126,21 @@ public class Library implements ILibrary {
         return done;
     }
     
+    // >> METODI PRIVATI <<
     private boolean checkISBN(int isbn) {
         return this.booksList.stream().anyMatch(b -> isbn == b.getISBN());
+    }
+    
+    private void fileChecker() throws IOException{
+        try{
+        this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/" + name + ".txt"), "Library");       
+        }catch(FileNotFoundException fNf){
+            File f = new File("./src/Model/system/DataFolder/" + name + ".txt");
+            f.createNewFile();
+            this.dataInt = new DataInterpreter(f, "Library");
+        }finally{
+            this.booksList = dataInt.getData().getFirst();          
+        }
     }
     
     @Override
@@ -142,7 +166,6 @@ public class Library implements ILibrary {
     @Override
     public String toString() {
         return "Library: " + this.name;
-    }
-    
+    }   
     
 }
