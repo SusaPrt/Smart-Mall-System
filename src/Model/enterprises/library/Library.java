@@ -58,6 +58,26 @@ public class Library implements ILibrary {
     }
     
     @Override
+    public Set<Book> searchBookByTitle(String title) {
+        return this.booksList.stream().filter(b -> b.getName().contains(title)).collect(Collectors.toSet());
+    }
+    
+    @Override
+    public Set<Book> searchBookByGenre(String genre) {
+        return this.booksList.stream().filter(b -> b.getGenre().equals(genre)).collect(Collectors.toSet());
+    }
+    
+    @Override
+    public Set<Book> searchBookByAuthor(String author) {
+        return this.booksList.stream().filter(b -> b.getAuthor().contains(author)).collect(Collectors.toSet());
+    }
+    @Override
+    public Set<Loan> getCustomerLoans(Customer customer) {
+        return this.loansList.get(customer);
+    }
+    
+    // >> METODI STAFF <<
+    @Override
     public Map<Customer, Set<Loan>> getAllLoans() {
         return this.loansList;
     }
@@ -67,8 +87,7 @@ public class Library implements ILibrary {
         if(this.checkISBN(isbn))
             System.out.println("Error: book already registered");
         else
-            this.booksList.add(new Book(name, author, price, quantity, year, genre, isbn));
-        
+            this.booksList.add(new Book(name, author, price, quantity, year, genre, isbn));        
     }
     
     @Override
@@ -95,26 +114,6 @@ public class Library implements ILibrary {
     }
     
     @Override
-    public Set<Book> searchBookByTitle(String title) {
-        return this.booksList.stream().filter(b -> b.getName().contains(title)).collect(Collectors.toSet());
-    }
-    
-    @Override
-    public Set<Book> searchBookByGenre(String genre) {
-        return this.booksList.stream().filter(b -> b.getGenre().equals(genre)).collect(Collectors.toSet());
-    }
-    
-    @Override
-    public Set<Book> searchBookByAuthor(String author) {
-        return this.booksList.stream().filter(b -> b.getAuthor().contains(author)).collect(Collectors.toSet());
-    }
-    
-    @Override
-    public Set<Loan> getCustomerLoans(Customer customer) {
-        return this.loansList.get(customer);
-    }
-    
-    @Override
     public boolean refueling(Book b, int n) {
         boolean done = false;
         if(this.checkISBN(b.getISBN())) {
@@ -125,11 +124,26 @@ public class Library implements ILibrary {
             System.out.println("Error: book not registered");
         return done;
     }
+    // >> METODO CUSTOMER <<
+    public boolean buyABook(Book b, int i, Customer c) {
+        boolean done = false;
+        if(b.getQuantity() >= i) {
+            if ((c.getCredit() - b.getPrice()) >= 0) {
+                b.decreaseQuantity(i);
+                c.getCart().addItem(b);
+                done = true;
+            } else
+                System.out.println("Error: insufficient credit ");
+        } else
+            System.out.println("Error: books not enough"); 
+        return done;
+    }
     
     // >> METODI PRIVATI <<
     private boolean checkISBN(int isbn) {
         return this.booksList.stream().anyMatch(b -> isbn == b.getISBN());
     }
+
     
     private void fileChecker() throws IOException{
         try{

@@ -4,9 +4,15 @@
  */
 package Controllers.CustomerControllers;
 
+import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -15,12 +21,39 @@ import javafx.fxml.Initializable;
  */
 public class LibraryCustomerViewController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private Text name;
+    @FXML
+    private Button btnAllBooks;
+    @FXML
+    private Button btnSearch;
+    @FXML
+    private Button btnCLoans;
+    @FXML
+    private Button btnBack;
+    @FXML
+    private Pane pnlAllBooks;
+    @FXML
+    private Pane pnlSearch;
+    @FXML
+    private Pane pnlCLoans;
+
+    private void handleButtonAction(ActionEvent event) {
+        if(event.getSource() == this.btnAllBooks)
+            this.pnlAllBooks.toFront();
+        else if(event.getSource() == this.btnSearch)
+            this.pnlSearch.toFront();
+        else 
+            this.pnlCLoans.toFront();
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void searchView(MouseDragEvent event) {
+    }
     
 }

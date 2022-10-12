@@ -6,6 +6,7 @@ package Model.enterprises.restaurant;
 
 //@author Susanna
 
+import Model.administration.Customer;
 import Model.enterprises.restaurantInterfaces.IRestaurant;
 import Model.system.DataInterpreter;
 import java.io.File;
@@ -47,22 +48,75 @@ public class Restaurant implements IRestaurant {
     }
 
     // >> METODI PUBBLICI <<
+    @Override
     public MenuOfTheDay getDailyMenu() {
         return this.menuOfTheDay;
     }
 
+    @Override
     public Menu getMenu() {
         return this.menu;
     }
     
+    @Override
     public String getStringMenu() {
         return this.menu.toString();
     }
     
+    @Override
     public String getStringDailyMenu() {
         return this.menuOfTheDay.toString();
     }    
     
+    // >> METODI STAFF <<
+    @Override
+    public boolean cancelReservation(String name) {
+        boolean done = false;
+        if(this.checkReservationName(name)) {
+            this.freeSeats += this.reservations.get(name);
+            this.reservations.remove(name);
+            done = true;
+        } else
+            System.out.println("Error: unregistered name");
+        return done;
+    }        
+    
+    @Override
+    public boolean refueling(Dish d, int i) {
+        boolean done = false;
+        if(this.checkDish(d)) {
+            d.increaseQuantity(i);
+            done = true;
+        }
+        if(!done)
+            System.out.println("Error: dish not in the menu");
+        return done;
+    }
+    
+    @Override
+    public void newDay() {
+        this.reservations.clear();
+        this.freeSeats = this.totSeats;
+        this.menuOfTheDay = new MenuOfTheDay(menu);
+    }
+    
+    // >> METODI CUSTOMER <<
+    @Override
+    public boolean orderADish(Dish d, int n, Customer c) {
+        boolean done = false;
+        if(d.getQuantity() >= n) {
+            if ((c.getCredit() - d.getPrice()) >= 0) {
+                d.decreaseQuantity(n);
+                c.getCart().addItem(d);
+                done = true;
+            } else
+                System.out.println("Error: insufficient credit ");
+        } else
+            System.out.println("Error: books not enough"); 
+        return done;
+    }
+    
+    @Override
     public boolean reserveSeats(int n, String name) {
         boolean done = false;
         if((this.freeSeats - n) >= 0) {
@@ -75,45 +129,6 @@ public class Restaurant implements IRestaurant {
         } else
             System.out.println("Error: seats are not enough");
         return done;
-    }
-    
-    public boolean cancelReservation(String name) {
-        boolean done = false;
-        if(this.checkReservationName(name)) {
-            this.freeSeats += this.reservations.get(name);
-            this.reservations.remove(name);
-            done = true;
-        } else
-            System.out.println("Error: unregistered name");
-        return done;
-    }      
-    
-    public boolean orderADish(Dish d) {
-        boolean done = false;
-        if(this.checkAvaiableDish(d)) {
-            d.decreaseQuantity(1);
-            done = true;
-        }
-        if(!done)
-            System.out.println("Error: dish not available");
-        return done;
-    }   
-    
-    public boolean refueling(Dish d, int i) {
-        boolean done = false;
-        if(this.checkDish(d)) {
-            d.increaseQuantity(i);
-            done = true;
-        }
-        if(!done)
-            System.out.println("Error: dish not in the menu");
-        return done;
-    }
-    
-    public void newDay() {
-        this.reservations.clear();
-        this.freeSeats = this.totSeats;
-        this.menuOfTheDay = new MenuOfTheDay(menu);
     }
     
     // >> METODI PRIVATI <<
