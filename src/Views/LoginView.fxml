@@ -1,11 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginViewController">
-    
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #182747;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginViewController">
+   <children>
+      <AnchorPane layoutX="37.0" layoutY="145.0" prefHeight="226.0" prefWidth="298.0" style="-fx-background-color: #D8D8D8; -fx-background-radius: 10;">
+         <children>
+            <PasswordField alignment="CENTER_RIGHT" layoutX="39.0" layoutY="161.0" prefHeight="26.0" prefWidth="221.0" style="-fx-background-radius: 10;" />
+            <TextField alignment="CENTER_RIGHT" layoutX="39.0" layoutY="98.0" prefHeight="26.0" prefWidth="222.0" style="-fx-background-radius: 10;" />
+            <TextField layoutX="38.0" layoutY="76.0" style="-fx-background-color: #D8D8D8;" text="Username">
+               <font>
+                  <Font name="Calibri Bold" size="12.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="38.0" layoutY="138.0" style="-fx-background-color: #D8D8D8;" text="Password">
+               <font>
+                  <Font name="Calibri Bold" size="12.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="14.0" layoutY="14.0" prefHeight="46.0" prefWidth="146.0" style="-fx-background-color: #D8D8D8;" text="Login">
+               <font>
+                  <Font name="Calibri Bold" size="33.0" />
+               </font>
+            </TextField>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="364.0" layoutY="145.0" prefHeight="226.0" prefWidth="298.0" style="-fx-background-color: #D8D8D8; -fx-background-radius: 10;">
+         <children>
+            <PasswordField alignment="CENTER_RIGHT" layoutX="39.0" layoutY="161.0" prefHeight="26.0" prefWidth="221.0" style="-fx-background-radius: 10;" />
+            <TextField fx:id="sign_up_username" alignment="CENTER_RIGHT" layoutX="39.0" layoutY="98.0" prefHeight="26.0" prefWidth="222.0" style="-fx-background-radius: 10;" />
+            <TextField layoutX="38.0" layoutY="76.0" style="-fx-background-color: #D8D8D8;" text="Username">
+               <font>
+                  <Font name="Calibri Bold" size="12.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="38.0" layoutY="138.0" style="-fx-background-color: #D8D8D8;" text="Password">
+               <font>
+                  <Font name="Calibri Bold" size="12.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="14.0" layoutY="14.0" prefHeight="46.0" prefWidth="146.0" style="-fx-background-color: #D8D8D8;" text="Sign up">
+               <font>
+                  <Font name="Calibri Bold" size="33.0" />
+               </font>
+            </TextField>
+            <Button layoutX="224.0" layoutY="187.0" mnemonicParsing="false" text="Button" />
+         </children>
+      </AnchorPane>
+      <Text layoutX="50.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Smart Mall" textAlignment="CENTER">
+         <font>
+            <Font name="Calibri Bold" size="58.0" />
+         </font>
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.4053030005007079" startY="0.38636362913883093">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.3921568691730499" green="0.4941176474094391" blue="0.40784314274787903" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+         
+      </Text>
+      <Text fill="WHITE" layoutX="419.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="developed by Marzio Della Bosca">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="507.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Susanna Peretti">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Text>
+   </children>
 </AnchorPane>
