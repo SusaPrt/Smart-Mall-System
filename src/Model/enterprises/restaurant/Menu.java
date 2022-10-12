@@ -6,6 +6,7 @@ package Model.enterprises.restaurant;
 
 //@author Susanna
 
+import Model.enterprises.restaurantInterfaces.IMenu;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -13,7 +14,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Menu {
+public class Menu implements IMenu {
     
     private final Map<Course, LinkedList<Dish>> warehouse;
     
@@ -25,14 +26,18 @@ public class Menu {
         this.warehouse.put(Course.WINESANDSOFT, l.get(3));
     }  
     
+    // >> METODI PUBBLICI <<
+    @Override
     public LinkedList<Dish> getTypeDishes(Course course) {
         return this.warehouse.get(course);
-    }
     
+    }
+    @Override
     public Set<Dish> getAvailableTypeDishes(Course course) {
         return this.warehouse.get(course).stream().filter(d -> d.getQuantity() > 0).collect(Collectors.toSet());
     }
     
+    @Override
     public void addDish(String name, double price, int quantity, Course course) {
         if(!(this.checkDish(name, course)))
             this.warehouse.get(course).add(new Dish(name, price, quantity, course));
@@ -40,6 +45,7 @@ public class Menu {
             System.out.println("Error: dish already registered");
     }
     
+    @Override
     public void removeDish(Dish d) {
         if(this.checkDish(d.getName(), d.getCourse()))    
             this.warehouse.get(d.getCourse()).remove(d);
@@ -47,6 +53,7 @@ public class Menu {
             System.out.println("Error: dish not in the menu");
     } 
     
+    // >> METODO PRIVATO <<
     private boolean checkDish(String name, Course course) {
         return this.warehouse.get(course).stream().filter(dish -> dish.getName().equalsIgnoreCase(name)).findFirst().isPresent();
     }

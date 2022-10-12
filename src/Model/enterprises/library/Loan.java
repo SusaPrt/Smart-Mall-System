@@ -26,6 +26,7 @@ public class Loan implements ILoan {
         this.dueDate        = calendar;
     }
     
+    // >> METODI PUBBLICI <<
     @Override
     public Book getBorrowedBook() {
         return this.borrowedBook;

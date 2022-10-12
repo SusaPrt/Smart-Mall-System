@@ -6,38 +6,50 @@ package Model.enterprises.restaurant;
 
 //@author Susanna
 
+import Model.enterprises.restaurantInterfaces.IRestaurant;
 import Model.system.DataInterpreter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Objects;
 
 
-public class Restaurant {
+public class Restaurant implements IRestaurant {
     
     private final String name;
     private final int totSeats;
     private int freeSeats;
     private final Map<String, Integer> reservations;
-    private MenuOfTheDay dailyMenu;
-    private final Menu menu;
-    private final DataInterpreter dataInt;
+    private MenuOfTheDay menuOfTheDay;
+    private Menu menu;
+    private DataInterpreter dataInt;
 
     
-    public Restaurant(String name, int seats) throws FileNotFoundException{
+    public Restaurant(int seats) throws FileNotFoundException{
         super();
-        this.name = name;
+        this.name = "Restaurant";
         this.totSeats = seats;
         this.freeSeats = seats;
         this.reservations = new HashMap<>();
         this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/Menu.txt"), "Restaurant");
         this.menu = new Menu(dataInt.getData());
-        this.dailyMenu = new MenuOfTheDay(menu);
+        this.menuOfTheDay = new MenuOfTheDay(menu);
+    }
+    public Restaurant(String name, int seats) throws IOException{
+        super();
+        this.name = name;
+        this.totSeats = seats;
+        this.freeSeats = seats;
+        this.reservations = new HashMap<>();
+        this.fileChecker();       
     }
 
+    // >> METODI PUBBLICI <<
     public MenuOfTheDay getDailyMenu() {
-        return this.dailyMenu;
+        return this.menuOfTheDay;
     }
 
     public Menu getMenu() {
@@ -49,7 +61,7 @@ public class Restaurant {
     }
     
     public String getStringDailyMenu() {
-        return this.dailyMenu.toString();
+        return this.menuOfTheDay.toString();
     }    
     
     public boolean reserveSeats(int n, String name) {
@@ -102,9 +114,22 @@ public class Restaurant {
     public void newDay() {
         this.reservations.clear();
         this.freeSeats = this.totSeats;
-        this.dailyMenu = new MenuOfTheDay(menu);
+        this.menuOfTheDay = new MenuOfTheDay(menu);
     }
     
+    // >> METODI PRIVATI <<
+    private void fileChecker() throws IOException{
+        try{
+        this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/" + name + ".txt"), "Restaurant");       
+        }catch(FileNotFoundException fNf){
+            File f = new File("./src/Model/system/DataFolder/" + name + ".txt");
+            f.createNewFile();
+            this.dataInt = new DataInterpreter(f, "Restaurant");
+        }finally{
+            this.menu = new Menu(dataInt.getData());
+            this.menuOfTheDay = new MenuOfTheDay(menu);           
+        }
+    }    
     private boolean checkDish(Dish d) {
         return this.menu.getTypeDishes(d.getCourse()).stream().filter(dish -> dish.equals(d)).findFirst().isPresent();
     }
@@ -154,9 +179,6 @@ public class Restaurant {
 
     @Override
     public String toString() {
-        return "Restaurant "+ this.name;
-        
-    }
-    
-    
+        return "Restaurant "+ this.name; 
+    }    
 }

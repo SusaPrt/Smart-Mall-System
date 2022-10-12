@@ -28,10 +28,13 @@ public class Shop implements IShop {
         this.warehouse = this.dataInt.getData().getFirst();
     }
 
+    // >> METODI PUBBLICI <<
+    @Override
     public List<Item> getWarehouse() {
         return this.warehouse.stream().filter(i -> i.getQuantity() > 0).collect(Collectors.toList());
     }
     
+    @Override
     public void addItem(String name, double price, int quantity) {
         if(!this.checkItemByName(name))
             this.warehouse.add(new Item(name, price, quantity));
@@ -39,6 +42,7 @@ public class Shop implements IShop {
             System.out.println("Error: item already registered");
     }
     
+    @Override
     public void removeItem(Item i) {
         if(this.checkItemByName(i.getName()))
             this.warehouse.remove(i);
@@ -46,6 +50,7 @@ public class Shop implements IShop {
             System.out.println("Error: item not registered");
     }
 
+    @Override
     public boolean refueling(Item i, int n) {
         boolean done = false;
         if(this.checkItemByName(i.getName())) {
@@ -57,6 +62,7 @@ public class Shop implements IShop {
         return done;
     }
     
+    // >> METODO PRIVATO <<
     private boolean checkItemByName(String name) {
         return this.warehouse.stream().filter(item -> item.getName().equalsIgnoreCase(name)).findFirst().isPresent();
     }

@@ -22,9 +22,9 @@ public class Course {
         this.name = name;
     }
     
-    public static Course selectType(String type) {
+    public static Course selectType(String course) {
         Course work = null;
-        switch(type) {
+        switch(course) {
             case "FIRSTS" -> work = Course.FIRSTS;
             case "SECONDS" -> work = Course.SECONDS;
             case "DESSERTS" -> work = Course.DESSERTS;
@@ -38,9 +38,10 @@ public class Course {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 43 * hash + Objects.hashCode(this.name);
-        return hash;
+        final int hash = 31;
+        int result = 1;
+        result = result * hash + Objects.hashCode(this.name);
+        return result;
     }
 
     @Override

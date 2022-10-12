@@ -36,6 +36,7 @@ public class Library implements ILibrary {
         this.booksList = this.dataInt.getData().getFirst();
     }
     
+    // >> METODI PUBBLICI <<
     @Override
     public String getName() {
         return this.name;
@@ -115,6 +116,7 @@ public class Library implements ILibrary {
         return done;
     }
     
+    // >> METODO PRIVATO <<
     private boolean checkISBN(int isbn) {
         return this.booksList.stream().anyMatch(b -> isbn == b.getISBN());
     }
