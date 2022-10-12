@@ -1,16 +1,4 @@
 #Adventure
-Il mondo di Sofia,Jostein Gaarder,20.5,1,1991,9928
-Il mondo di Sofia,Jostein Gaarder,20.5,1,1991,9928
-Il mondo di Sofia,Jostein Gaarder,20.5,1,1991,9928
-Il mondo di Sofia,Jostein Gaarder,20.5,1,1991,9928
-Il mondo di Sofia,Jostein Gaarder,20.5,1,1991,9928
-Il mondo di Sofia,Jostein Gaarder,20.5,1,1991,9928
-Il mondo di Sofia,Jostein Gaarder,20.5,1,1991,9928
-Il mondo di Sofia,Jostein Gaarder,20.5,1,1991,9928
-Il mondo di Sofia,Jostein Gaarder,20.5,1,1991,9928
-Il mondo di Sofia,Jostein Gaarder,20.5,1,1991,9928
-Il mondo di Sofia,Jostein Gaarder,20.5,1,1991,9928
-Il mondo di Sofia,Jostein Gaarder,20.5,1,1991,9928
 YYYYY,XXXX,4,283,1989,34524
 YYYYYY,XXXXX,5,623,1993,34566
 YYY,XXXXX,5,837,2009,7896

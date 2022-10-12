@@ -79,14 +79,14 @@ public class DataWriterTest {
         System.out.println("Test relativo al ristorante del metodo 'addItem'");
         Dish d = new Dish("Cannelloni alla besciamella", 12.5, 100, Course.selectType("FIRSTS"));
         boolean expResult = true;
-        System.out.println(d.getCourse().toString());
         this.RestourantDataInterpreter.getDataWriter().addItem(d);
         this.RestourantDataInterpreter.getDataWriter().writeOnFile();
         //simulo la chiusura e la riaccensione del sistema cosi che il DataReader legge i dati precedentemente salvati
         DataInterpreter RestourantDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Menu.txt")
-                                                ,"Restourant");
+                                                ,"Restaurant");
         LinkedList<LinkedList> data = RestourantDataInterpreter.getData();
         boolean result = data.get(0).contains(d);
+        System.out.println(data.get(0).size());
         assertEquals(expResult, result);      
     }
 
@@ -104,5 +104,6 @@ public class DataWriterTest {
         boolean result = data.contains(p);
         
         assertEquals(expResult, result);
-    }     
+    }  
+
 }

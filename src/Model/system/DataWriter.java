@@ -49,7 +49,7 @@ public class DataWriter {
         if(o instanceof Dish){
             //String name, double price, int q, String course
             Dish d = (Dish)o;
-            this.itemsTowrite.add(this.itemsTowrite.indexOf("#"+Course.getCourse(d.getCourse()))+1,
+            this.itemsTowrite.add(this.itemsTowrite.indexOf("#"+d.getCourse().getName())+1,
                     d.getName()+","+d.getPrice()+","+d.getQuantity());
             
             

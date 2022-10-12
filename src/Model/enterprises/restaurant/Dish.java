@@ -47,7 +47,5 @@ public class Dish extends Item implements IDish {
     public String toString() {
         return "\nDish: " + super.getName() + " - " + super.getPrice() + " €";
     }
-    
-    
-    
+        
 }

@@ -4,14 +4,23 @@
  */
 package Model.enterprises.restaurant;
 
-// @author Susanna
+// @author Susanna & Marzio
+
+import java.util.Objects;
+
 
 public class Course {
 
-    protected static Course FIRSTS;
-    protected static Course SECONDS;
-    protected static Course DESSERTS;
-    protected static Course WINESANDSOFT;
+    public static final Course FIRSTS = new Course("FIRSTS");
+    public static final Course SECONDS = new Course("SECONDS");
+    public static final Course DESSERTS = new Course("DESSERTS");
+    public static final Course WINESANDSOFT = new Course("WINESANDSOFT");
+    
+    private final String name;
+    
+    private Course(String name){
+        this.name = name;
+    }
     
     public static Course selectType(String type) {
         Course work = null;
@@ -23,18 +32,32 @@ public class Course {
             }
         return work;
     }
-    
-    public static String getCourse(Course c){
-        String out;
-        if(c.equals(Course.FIRSTS))
-            out = "FIRSTS";
-        else if(c.equals(Course.SECONDS))
-            out = "SECONDS";
-        else if(c.equals(Course.DESSERTS))
-            out = "DESSERTS";
-        else
-            out = "WINESANDSOFT";  
-        
-        return out;
+    public String getName(){
+        return this.name;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 43 * hash + Objects.hashCode(this.name);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Course other = (Course) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        return true;
     }
 }
