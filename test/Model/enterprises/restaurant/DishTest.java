@@ -12,49 +12,35 @@ import static org.junit.Assert.*;
  * @author Mars_DB
  */
 public class DishTest {
+    private final Dish instance;
     
     public DishTest() {
+        this.instance = new Dish("Cannelloni alla besciamella", 12.5, 100, Course.selectType("FIRSTS"));
     }
 
     @Test
     public void testGetCourse() {
         System.out.println("getCourse");
-        Dish instance = null;
-        Course expResult = null;
-        Course result = instance.getCourse();
+        Course expResult = Course.FIRSTS;
+        Course result = this.instance.getCourse();
         assertEquals(expResult, result);
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testHashCode() {
-        System.out.println("hashCode");
-        Dish instance = null;
-        int expResult = 0;
-        int result = instance.hashCode();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
     }
 
     @Test
     public void testEquals() {
         System.out.println("equals");
-        Object obj = null;
-        Dish instance = null;
+        Object obj = new Dish("Cannelloni alla besciamella", 12.5, 100, Course.selectType("FIRSTS"));
+        boolean expResult = true;
+        boolean result = instance.equals(obj);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testNotEquals() {
+        System.out.println("equals");
+        Object obj = new Dish("Lasagne radicchio e noci", 15.5, 88, Course.selectType("SECONDS"));
         boolean expResult = false;
         boolean result = instance.equals(obj);
         assertEquals(expResult, result);
-        fail("The test case is a prototype.");
     }
-
-    @Test
-    public void testToString() {
-        System.out.println("toString");
-        Dish instance = null;
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
-    }
-    
 }

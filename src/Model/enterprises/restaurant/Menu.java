@@ -86,5 +86,8 @@ public class Menu implements IMenu {
         return "Menu\n" + this.warehouse;
     }
     
+    public Map<Course, LinkedList<Dish>> getWareouse(){
+        return this.warehouse;
+    }
     
 }

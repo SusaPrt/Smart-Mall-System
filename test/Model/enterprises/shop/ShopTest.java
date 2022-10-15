@@ -5,6 +5,9 @@
 package Model.enterprises.shop;
 
 import Model.administration.Item;
+import Model.system.DataInterpreter;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -14,81 +17,58 @@ import static org.junit.Assert.*;
  * @author Susanna
  */
 public class ShopTest {
+    private final Shop instance;
+    private List<Item> initialWarehouse;
+    private final Item item1;
+    private final Item item2;
     
     public ShopTest() {
+        this.instance = new Shop();
+        this.item1 = new Item("monitor", 120.5, 10);
+        this.item2 = new Item("switch", 64.9, 23);
+        
+        try {
+            DataInterpreter dI = new DataInterpreter(new File("./src/Model/system/DataFolder/Shop.txt")
+                    ,"Shop");
+            this.initialWarehouse = dI.getData().getFirst();
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex);
+        }
     }
 
     @Test
     public void testGetWarehouse() {
         System.out.println("getWarehouse");
-        Shop instance = new Shop();
-        List<Item> expResult = null;
+        List<Item> expResult = this.initialWarehouse;
         List<Item> result = instance.getWarehouse();
         assertEquals(expResult, result);
-        fail("The test case is a prototype.");
     }
 
     @Test
     public void testAddItem() {
         System.out.println("addItem");
-        String name = "";
-        double price = 0.0;
-        int quantity = 0;
-        Shop instance = new Shop();
-        instance.addItem(name, price, quantity);
-        fail("The test case is a prototype.");
+
+        this.instance.addItem(this.item1.getName(), this.item1.getPrice(), this.item1.getQuantity());
+        
+        boolean expResult = true;
+        boolean result = this.instance.getWarehouse().contains(this.item1);
+        assertEquals(expResult, result);
     }
 
     @Test
     public void testRemoveItem() {
         System.out.println("removeItem");
-        Item i = null;
-        Shop instance = new Shop();
-        instance.removeItem(i);
-        fail("The test case is a prototype.");
+        this.instance.addItem(this.item1.getName(), this.item1.getPrice(), this.item1.getQuantity());
+        instance.removeItem(this.item1);
     }
 
     @Test
     public void testRefueling() {
         System.out.println("refueling");
-        Item i = null;
-        int n = 0;
-        Shop instance = new Shop();
-        boolean expResult = false;
-        boolean result = instance.refueling(i, n);
+        this.instance.addItem(this.item1.getName(), this.item1.getPrice(), this.item1.getQuantity());
+        int n = 10;
+        boolean expResult = true;
+        boolean result = this.instance.refueling(this.item1, n);
         assertEquals(expResult, result);
-        fail("The test case is a prototype.");
     }
-
-    @Test
-    public void testHashCode() {
-        System.out.println("hashCode");
-        Shop instance = new Shop();
-        int expResult = 0;
-        int result = instance.hashCode();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testEquals() {
-        System.out.println("equals");
-        Object obj = null;
-        Shop instance = new Shop();
-        boolean expResult = false;
-        boolean result = instance.equals(obj);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testToString() {
-        System.out.println("toString");
-        Shop instance = new Shop();
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
-    }
-    
 }

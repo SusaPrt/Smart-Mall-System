@@ -4,6 +4,7 @@
  */
 package Model.enterprises.restaurant;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
 import org.junit.Test;
@@ -14,82 +15,60 @@ import static org.junit.Assert.*;
  * @author Mars_DB
  */
 public class MenuTest {
+    private final Menu instance;
+    private final Dish dish;
     
     public MenuTest() {
+        Restaurant r = new Restaurant(200);
+        this.instance = r.getMenu();
+        this.dish = new Dish("Cannelloni alla besciamella", 12.5, 100, Course.selectType("FIRSTS"));
     }
 
     @Test
     public void testGetTypeDishes() {
         System.out.println("getTypeDishes");
-        Course course = null;
-        Menu instance = null;
-        LinkedList<Dish> expResult = null;
+        Course course = Course.SECONDS;
+        LinkedList<Dish> expResult = new LinkedList();
+        expResult.add(new Dish("YYYYYYYYY", 5, 720, Course.SECONDS));
+        expResult.add(new Dish("YYYYYY", 12, 312, Course.SECONDS));
+        
         LinkedList<Dish> result = instance.getTypeDishes(course);
         assertEquals(expResult, result);
-        fail("The test case is a prototype.");
     }
 
     @Test
     public void testGetAvailableTypeDishes() {
         System.out.println("getAvailableTypeDishes");
-        Course course = null;
-        Menu instance = null;
-        Set<Dish> expResult = null;
-        Set<Dish> result = instance.getAvailableTypeDishes(course);
+        Set<Dish> expResult = new HashSet();
+        expResult.add(new Dish("YYYYYYYYY", 5, 720, Course.SECONDS));
+        expResult.add(new Dish("YYYYYY", 12, 312, Course.SECONDS));
+        
+        Set<Dish> result = instance.getAvailableTypeDishes(Course.SECONDS);
         assertEquals(expResult, result);
-        fail("The test case is a prototype.");
     }
 
     @Test
     public void testAddDish() {
         System.out.println("addDish");
-        String name = "";
-        double price = 0.0;
-        int quantity = 0;
-        Course course = null;
-        Menu instance = null;
-        instance.addDish(name, price, quantity, course);
-        fail("The test case is a prototype.");
+
+        instance.addDish(this.dish.getName(),this.dish.getPrice(), 
+                this.dish.getQuantity(), this.dish.getCourse());
+        boolean expResult = true;
+        boolean result = this.instance.getWareouse()
+                .get(this.dish.getCourse()).contains(this.dish);
+        assertEquals(expResult, result);
     }
 
     @Test
     public void testRemoveDish() {
         System.out.println("removeDish");
-        Dish d = null;
-        Menu instance = null;
-        instance.removeDish(d);
-        fail("The test case is a prototype.");
-    }
 
-    @Test
-    public void testHashCode() {
-        System.out.println("hashCode");
-        Menu instance = null;
-        int expResult = 0;
-        int result = instance.hashCode();
+        instance.addDish(this.dish.getName(),this.dish.getPrice(), 
+                this.dish.getQuantity(), this.dish.getCourse());
+        boolean expResult = true;
+        instance.removeDish(this.dish);
+        boolean result = this.instance.getWareouse()
+                .get(this.dish.getCourse()).contains(this.dish);
         assertEquals(expResult, result);
-        fail("The test case is a prototype.");
     }
-
-    @Test
-    public void testEquals() {
-        System.out.println("equals");
-        Object obj = null;
-        Menu instance = null;
-        boolean expResult = false;
-        boolean result = instance.equals(obj);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testToString() {
-        System.out.println("toString");
-        Menu instance = null;
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
-    }
-    
 }

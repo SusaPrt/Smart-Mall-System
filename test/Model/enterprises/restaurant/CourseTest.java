@@ -12,49 +12,45 @@ import static org.junit.Assert.*;
  * @author Mars_DB
  */
 public class CourseTest {
+    private final Course instance;
     
     public CourseTest() {
+        this.instance = Course.DESSERTS;
     }
 
     @Test
     public void testSelectType() {
         System.out.println("selectType");
-        String course = "";
-        Course expResult = null;
+        String course = "FIRSTS";
+        Course expResult = Course.FIRSTS;
         Course result = Course.selectType(course);
         assertEquals(expResult, result);
-        fail("The test case is a prototype.");
     }
 
     @Test
     public void testGetName() {
         System.out.println("getName");
-        Course instance = null;
-        String expResult = "";
-        String result = instance.getName();
+        String expResult = "DESSERTS";
+        String result = this.instance.getName();
         assertEquals(expResult, result);
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testHashCode() {
-        System.out.println("hashCode");
-        Course instance = null;
-        int expResult = 0;
-        int result = instance.hashCode();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
     }
 
     @Test
     public void testEquals() {
         System.out.println("equals");
-        Object obj = null;
-        Course instance = null;
+        Object obj = Course.DESSERTS;
+        boolean expResult = true;
+        boolean result = instance.equals(obj);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testNotEquals() {
+        System.out.println("equals");
+        Object obj = Course.WINESANDSOFT;
         boolean expResult = false;
         boolean result = instance.equals(obj);
         assertEquals(expResult, result);
-        fail("The test case is a prototype.");
     }
     
 }

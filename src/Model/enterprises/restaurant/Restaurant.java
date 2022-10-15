@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Objects;
 
 
+
 public class Restaurant implements IRestaurant {
     
     private final String name;
@@ -27,13 +28,17 @@ public class Restaurant implements IRestaurant {
     private DataInterpreter dataInt;
 
     
-    public Restaurant(int seats) throws FileNotFoundException{
+    public Restaurant(int seats){
         super();
         this.name = "Restaurant";
         this.totSeats = seats;
         this.freeSeats = seats;
         this.reservations = new HashMap<>();
-        this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/Menu.txt"), "Restaurant");
+        try {
+            this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/Menu.txt"), "Restaurant");
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex);
+        }
         this.menu = new Menu(dataInt.getData());
         this.menuOfTheDay = new MenuOfTheDay(menu);
     }
