@@ -6,6 +6,7 @@ package Model.enterprises.shop;
 
 //@Author Susanna
 
+import Model.administration.Customer;
 import Model.administration.Item;
 import Model.enterprises.shopInterfaces.IShop;
 import Model.system.DataInterpreter;
@@ -45,6 +46,7 @@ public class Shop implements IShop {
         return this.warehouse.stream().filter(i -> i.getQuantity() > 0).collect(Collectors.toList());
     }
     
+    // >> METODI STAFF <<
     @Override
     public void addItem(String name, double price, int quantity) {
         if(!this.checkItemByName(name))
@@ -70,6 +72,22 @@ public class Shop implements IShop {
         }
         if(!done)
             System.out.println("Error: book not registered");
+        return done;
+    }
+    
+    // >> METODO CUSTOMER <<
+    @Override
+    public boolean buyAItem(Item i, int n, Customer c) {
+        boolean done = false;
+        if(i.getQuantity() >= n) {
+            if ((c.getCredit() - i.getPrice()) >= 0) {
+                i.decreaseQuantity(n);
+                c.getCart().addItem(i);
+                done = true;
+            } else
+                System.out.println("Error: insufficient credit ");
+        } else
+            System.out.println("Error: books not enough"); 
         return done;
     }
     

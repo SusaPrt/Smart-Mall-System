@@ -4,6 +4,8 @@
  */
 package Model.enterprises.restaurant;
 
+import Model.administration.Administration;
+import Model.administration.Customer;
 import Model.system.DataInterpreter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -71,7 +73,8 @@ public class RestaurantTest {
     public void testOrderADish() {
         System.out.println("orderADish");    
         boolean expResult = true;
-        boolean result = instance.orderADish(this.dish);
+        boolean result = instance.orderADish(this.dish, 1, 
+                new Customer("Gino", "123", 200.5, new Administration()));
         assertEquals(expResult, result);
     }
 

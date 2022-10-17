@@ -6,22 +6,24 @@ package Model.enterprises.shopInterfaces;
 
 // @author Susanna
 
+import Model.administration.Customer;
 import Model.administration.Item;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public interface IShop {
     
-    //ritorna tutti gli item in magazzino
+    // >> METODI PUBBLICI <<
     public List<Item> getWarehouse();
     
-    //aggiunge un item al magazzino
+    // >> METODI STAFF <<
     public void addItem(String name, double price, int quantity);
     
-    //rimuove un item dal magazzino
     public void removeItem(Item i);
-
-    //rifornisce di n quantità l'item indicato, ritorna il risultato dell'operazione
+    
     public boolean refueling(Item i, int n);
     
+    // >> METODO CUSTOMER <<
+    public boolean buyAItem(Item i, int n, Customer c);
 }

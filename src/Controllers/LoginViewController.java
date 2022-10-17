@@ -6,21 +6,64 @@ package Controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
-/**
- * FXML Controller class
- *
- * @author Mars_DB
- */
 public class LoginViewController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private TextField sign_up_username;
+    @FXML
+    private PasswordField sign_in_password;
+    @FXML
+    private TextField sign_in_username;
+    @FXML
+    private PasswordField sign_up_password;
+    @FXML
+    private Button btn_sign_in;
+    @FXML
+    private Button btn_sign_up;
+    @FXML
+    private Label error_sign_in;
+    @FXML
+    private Label error_sign_up;
+
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        /*Carica un immagine
+        File nomeFile = new File("percorso image");
+        Image nomeImgae = new Image(nomeFile.toURI().toString());
+        nomeFXML.setImage(nomeImage);
+        */
+
+        
     }    
+    
+    @FXML
+    public void signIn(ActionEvent event) {
+        if(this.sign_in_username.getText().isBlank() == false && this.sign_in_password.getText().isBlank() == false) {
+
+            if(true) {
+                
+            }
+        } else {
+            this.error_sign_in.setText("Error: try again");
+        }
+    }
+
+    @FXML
+    private void signUp(ActionEvent event) {
+        if(this.sign_in_username.getText().isBlank() == false && this.sign_in_password.getText().isBlank() == false) {
+            
+        } else {
+            this.error_sign_in.setText("Error: try again");
+        }
+    }
     
 }
