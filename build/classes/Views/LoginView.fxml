@@ -37,7 +37,7 @@
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Button>
-            <Label fx:id="error_sign_in" layoutX="92.0" layoutY="259.0" prefHeight="18.0" prefWidth="135.0" textAlignment="CENTER" textFill="RED">
+            <Label fx:id="label_error_sign_in" layoutX="92.0" layoutY="259.0" prefHeight="18.0" prefWidth="135.0" textAlignment="CENTER" textFill="RED">
                <font>
                   <Font name="Calibri Bold" size="12.0" />
                </font>
@@ -68,7 +68,7 @@
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Button>
-            <Label fx:id="error_sign_up" layoutX="82.0" layoutY="259.0" prefHeight="18.0" prefWidth="135.0" textAlignment="CENTER" textFill="RED">
+            <Label fx:id="label_error_sign_up" layoutX="82.0" layoutY="259.0" prefHeight="18.0" prefWidth="135.0" textAlignment="CENTER" textFill="RED">
                <font>
                   <Font name="Calibri Bold" size="12.0" />
                </font>
