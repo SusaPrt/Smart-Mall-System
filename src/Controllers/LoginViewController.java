@@ -47,23 +47,12 @@ public class LoginViewController implements Initializable {
     
     @FXML
     public void signIn(ActionEvent event) {
-        if(this.sign_in_username.getText().isBlank() == false && this.sign_in_password.getText().isBlank() == false) {
 
-            if(true) {
-                
-            }
-        } else {
-            this.error_sign_in.setText("Error: try again");
-        }
     }
 
     @FXML
     private void signUp(ActionEvent event) {
-        if(this.sign_in_username.getText().isBlank() == false && this.sign_in_password.getText().isBlank() == false) {
-            
-        } else {
-            this.error_sign_in.setText("Error: try again");
-        }
+    
     }
     
 }
