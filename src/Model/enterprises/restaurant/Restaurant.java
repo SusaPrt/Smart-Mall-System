@@ -145,6 +145,14 @@ public class Restaurant implements IRestaurant {
     private boolean checkReservationName(String name) {
         return this.reservations.entrySet().stream().filter(r -> r.getKey().equalsIgnoreCase(name)).findFirst().isPresent();
     }
+    
+    public int getTotSeats(){
+        return this.totSeats;
+    }
+    
+    public int getFreeSeats(){
+        return this.freeSeats;
+    }
 
     @Override
     public int hashCode() {
