@@ -7,8 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #25316D;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="Controllers.CustomerControllers.ShopCustomerViewController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #25316D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CustomerControllers.ShopCustomerViewController">
    <children>
       <AnchorPane prefHeight="409.0" prefWidth="195.0" style="-fx-background-color: #5F6F94;">
          <children>
@@ -31,7 +30,7 @@
       </AnchorPane>
       <Pane fx:id="pnl_your_loans" layoutX="206.0" layoutY="9.0" prefHeight="392.0" prefWidth="382.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;">
          <children>
-            <ListView fx:id="list_items" layoutX="5.0" layoutY="6.0" prefHeight="382.0" prefWidth="372.0" style="-fx-background-color: #97D2EC;" />
+            <ListView fx:id="list_items" layoutX="5.0" layoutY="6.0" prefHeight="382.0" prefWidth="372.0" style="-fx-background-radius: 10;" />
          </children>
       </Pane>
    </children>
