@@ -17,13 +17,13 @@ import java.io.FileNotFoundException;
 public class MainApplication {
     private final Administration adminstration;
     private final Library library;
-    private final Restaurant restourant;
+    private final Restaurant restaurant;
     private final Shop shop;
     
     public MainApplication() throws FileNotFoundException{
         this.adminstration = new Administration();
         this.library = new Library();
-        this.restourant = new Restaurant(200);
+        this.restaurant = new Restaurant(200);
         this.shop = new Shop();
     }
 
@@ -35,8 +35,8 @@ public class MainApplication {
         return this.library;
     }
 
-    public Restaurant getRestourant() {
-        return this.restourant;
+    public Restaurant getRestaurant() {
+        return this.restaurant;
     }
 
     public Shop getShop() {
