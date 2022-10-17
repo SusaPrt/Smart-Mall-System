@@ -9,6 +9,7 @@ import Model.administration.Item;
 import Model.administration.Person;
 import Model.administration.Staff;
 import Model.enterprises.library.Book;
+import Model.enterprises.library.Loan;
 import Model.enterprises.restaurant.Course;
 import Model.enterprises.restaurant.Dish;
 import java.io.BufferedWriter;
@@ -75,6 +76,12 @@ public class DataWriter {
             this.itemsTowrite.add(this.itemsTowrite.indexOf("#Customer")+1,
                     c.getName()+","+c.getPassword()+","+c.getCredit()+","+c.getId());
         }            
+    }
+    
+    public void addLoan(Customer c, Loan l){
+        this.itemsTowrite.add(this.itemsTowrite.indexOf("#Loans")+1,
+                    c.getId()+","+l.getBorrowedBook().getISBN()+","+l.getIssueDate()+","+l.getDueDate());
+        
     }
     
     public LinkedList<String> getStuffToWrite(){

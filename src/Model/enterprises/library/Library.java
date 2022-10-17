@@ -6,6 +6,8 @@ package Model.enterprises.library;
 
 //@author Susanna
 
+import Model.administration.Administration;
+import Model.administration.Archive;
 import Model.administration.Customer;
 import Model.enterprises.libraryInterfaces.ILibrary;
 import Model.enterprises.restaurant.Menu;
@@ -13,7 +15,9 @@ import Model.enterprises.restaurant.MenuOfTheDay;
 import Model.system.DataInterpreter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -29,9 +33,10 @@ public class Library implements ILibrary {
     private LinkedList<Book> booksList;
     private Map<Customer, Set<Loan>> loansList; 
     private DataInterpreter dataInt;
+    private final Archive archive;
     
         
-    public Library(){
+    public Library(Administration ad){
         super();
         this.name = "Library";        
         this.loansList = new HashMap();
@@ -41,12 +46,15 @@ public class Library implements ILibrary {
             System.out.println(ex);
         }
         this.booksList = this.dataInt.getData().getFirst();
+        this.archive = ad.getArchive();
+        this.loansLoader();
     }
     
-    public Library(String name) throws IOException{
+    public Library(String name, Administration ad) throws IOException{
         super();
         this.name = name;        
         this.loansList = new HashMap();
+        this.archive = ad.getArchive();
         this.fileChecker();
     }
     
@@ -104,10 +112,14 @@ public class Library implements ILibrary {
     
     @Override
     public void createLoan(Customer customer, Book book) {
-        if(!this.loansList.containsKey(customer))
-            this.loansList.put(customer, new HashSet<>());
-        book.decreaseQuantity(1);
-        this.loansList.get(customer).add(new Loan(book));
+        if(book.getQuantity() > 0){
+            if(!this.loansList.containsKey(customer))
+                this.loansList.put(customer, new HashSet<>());
+            book.decreaseQuantity(1);
+            this.loansList.get(customer).add(new Loan(book));
+        }else{
+            System.out.println("Error!");
+        }
     }
     
     @Override
@@ -151,10 +163,16 @@ public class Library implements ILibrary {
     
     private void fileChecker() throws IOException{
         try{
-        this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/" + name + ".txt"), "Library");       
+        this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/" + name + ".txt"), "Library"); 
+        this.loansLoader();
         }catch(FileNotFoundException fNf){
             File f = new File("./src/Model/system/DataFolder/" + name + ".txt");
             f.createNewFile();
+            FileWriter fw = new FileWriter(f, true);
+            fw.write("#Adventure\n");
+            fw.write("#Classics\n");
+            fw.write("#Comic\n");
+            fw.write("#Loan\n");
             this.dataInt = new DataInterpreter(f, "Library");
         }finally{
             this.booksList = dataInt.getData().getFirst();          
@@ -185,5 +203,26 @@ public class Library implements ILibrary {
     public String toString() {
         return "Library: " + this.name;
     }   
-    
+
+    private void loansLoader() {
+        Customer c;
+        Book b;
+        Loan l;
+        LocalDate start, due;
+        
+        for(String[] s: (LinkedList<String[]>)this.dataInt.getData().get(1)){
+            c = (Customer) this.archive.getById(Integer.parseInt(s[0]));
+            b = this.booksList.stream().filter(bo -> bo.getISBN() == Integer.parseInt(s[1])).findFirst().get();
+            start = LocalDate.parse(s[2]);
+            due = LocalDate.parse(s[3]);
+            l = new Loan(b, start, due);
+            
+            if(!this.loansList.containsKey(c)){
+                this.loansList.put(c, new HashSet());
+                this.loansList.get(c).add(l);
+            }else{
+                this.loansList.get(c).add(l);
+            }           
+        }     
+    } 
 }

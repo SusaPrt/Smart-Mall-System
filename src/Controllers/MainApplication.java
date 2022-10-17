@@ -24,7 +24,7 @@ public class MainApplication {
     
     public MainApplication(){
         this.adminstration = new Administration();
-        this.library = new Library();
+        this.library = new Library(this.adminstration);
         this.restourant = new Restaurant(200);
         this.shop = new Shop();
     }

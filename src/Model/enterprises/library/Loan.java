@@ -8,8 +8,6 @@ package Model.enterprises.library;
 
 import Model.enterprises.libraryInterfaces.ILoan;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Objects;
  
 public class Loan implements ILoan {
@@ -20,15 +18,14 @@ public class Loan implements ILoan {
     public Loan(Book book) {
         super();
         this.borrowedBook   = book;
-        /*
-        Calendar calendar   = Calendar.getInstance();
-        this.issueDate      = calendar.getTime();
-        
-        calendar.add(Calendar.DAY_OF_MONTH, 30);
-        this.dueDate        = calendar.getTime();
-*/
         this.issueDate = LocalDate.now();
         this.dueDate = LocalDate.now().plusDays(30);
+    }
+    
+    public Loan(Book book, LocalDate start, LocalDate due){
+        this.borrowedBook = book;
+        this.issueDate = start;
+        this.dueDate = due;
     }
     
     // >> METODI PUBBLICI <<

@@ -46,25 +46,24 @@ public class DataInterpreterTest {
     @Test
     public void testGetLibraryData() {
         System.out.println("Test relativo a libreria per metodo 'getData'");
-        LinkedList<LinkedList> expResult = new LinkedList();
-        expResult.add(new LinkedList());
+        LinkedList expResult = new LinkedList();
         //String name,  String author, double price, int quantity, int year, String genre, int isbn
-        expResult.get(0).add(new Book("YYYYY","XXXX",4,283,1989,"Adventure",34524));//1
-        expResult.get(0).add(new Book("YYYYYY","XXXXX",5,623,1993,"Adventure",34566));//2
-        expResult.get(0).add(new Book("YYY","XXXXX",5,837,2009,"Adventure",7896));//3
-        expResult.get(0).add(new Book("YYYYYYY","XXXXX",7,625,2010,"Adventure",745));//4
+        expResult.add(new Book("YYYYY","XXXX",4,283,1989,"Adventure",34524));//1
+        expResult.add(new Book("YYYYYY","XXXXX",5,623,1993,"Adventure",34566));//2
+        expResult.add(new Book("YYY","XXXXX",5,837,2009,"Adventure",7896));//3
+        expResult.add(new Book("YYYYYYY","XXXXX",7,625,2010,"Adventure",745));//4
         
-        expResult.get(0).add(new Book("YYYYY","XXXXXX",2,872,2009,"Classics",123445));//5
-        expResult.get(0).add(new Book("YYY","XXXXX",9,615,1993,"Classics",378123));//6
-        expResult.get(0).add(new Book("YYYYYYY","XXXX",8,102,1999,"Classics",93847));//7
-        expResult.get(0).add(new Book("YYYYYY","XXXXX",7,61,2010,"Classics",94576));//8
+        expResult.add(new Book("YYYYY","XXXXXX",2,872,2009,"Classics",123445));//5
+        expResult.add(new Book("YYY","XXXXX",9,615,1993,"Classics",378123));//6
+        expResult.add(new Book("YYYYYYY","XXXX",8,102,1999,"Classics",93847));//7
+        expResult.add(new Book("YYYYYY","XXXXX",7,61,2010,"Classics",94576));//8
         
-        expResult.get(0).add(new Book("YYYYY","XXXXX",23,827,1979,"Comic",8355));//9
-        expResult.get(0).add(new Book("YYYYYY","XXXXX",9,201,2010,"Comic",93745));//10
-        expResult.get(0).add(new Book("YYYYYY","XXXXXX",27,817,2017,"Comic",28475));//11
-        expResult.get(0).add(new Book("YYYYYYY","XXXXXX",6,72,2009,"Comic",38485));//12
+        expResult.add(new Book("YYYYY","XXXXX",23,827,1979,"Comic",8355));//9
+        expResult.add(new Book("YYYYYY","XXXXX",9,201,2010,"Comic",93745));//10
+        expResult.add(new Book("YYYYYY","XXXXXX",27,817,2017,"Comic",28475));//11
+        expResult.add(new Book("YYYYYYY","XXXXXX",6,72,2009,"Comic",38485));//12
                
-        LinkedList<LinkedList> result = libraryDataInterpreter.getData();
+        LinkedList result = libraryDataInterpreter.getData().getFirst();
         assertEquals(expResult, result);
     }
     

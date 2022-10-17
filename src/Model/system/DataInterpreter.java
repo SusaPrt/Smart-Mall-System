@@ -58,6 +58,10 @@ public class DataInterpreter {
                    this.data.add(new LinkedList<Item>());
                    i++;
                 }
+                else if(type.equals("Loans")){
+                    this.data.add(new LinkedList<String[]>());
+                    i++;
+                }
             }else{
                     parseData(s, type, i);
             }              
@@ -85,12 +89,15 @@ public class DataInterpreter {
                             Integer.parseInt(tokens[2].replaceAll("\\D+", "")),
                             Course.selectType(type)));
         } 
-        else if(this.listReq.equals("Library")){           
+        else if(this.listReq.equals("Library") && i == 0){           
             this.data.get(i).add(new Book(tokens[0], 
                             tokens[1], Double.parseDouble(tokens[2]),
                             Integer.parseInt(tokens[3].replaceAll("\\D+", "")), 
                             Integer.parseInt(tokens[4].replaceAll("\\D+", "")), 
                             type, Integer.parseInt(tokens[5].replaceAll("\\D+", ""))));
+        }
+        else if(this.listReq.equals("Library") && i > 0){
+            this.data.get(i).add(tokens);
         }
         else if(this.listReq.equals("Shop")){
             this.data.get(i).add(new Item(tokens[0], 

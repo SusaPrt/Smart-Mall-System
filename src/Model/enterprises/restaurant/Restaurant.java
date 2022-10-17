@@ -11,6 +11,7 @@ import Model.enterprises.restaurantInterfaces.IRestaurant;
 import Model.system.DataInterpreter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -143,6 +144,11 @@ public class Restaurant implements IRestaurant {
         }catch(FileNotFoundException fNf){
             File f = new File("./src/Model/system/DataFolder/" + name + ".txt");
             f.createNewFile();
+            FileWriter fw = new FileWriter(f, true);
+            fw.write("#FIRSTS\n");
+            fw.write("#SECONDS\n");
+            fw.write("#DESSERTS\n");
+            fw.write("#WINESANDSOFT\n");
             this.dataInt = new DataInterpreter(f, "Restaurant");
         }finally{
             this.menu = new Menu(dataInt.getData());
