@@ -53,10 +53,10 @@ public class ArchiveTest {
     public void testStaffAutentication() {
         System.out.println("Test metodo 'autentication' per instanza di Staff");
         instance.addPerson(staff);
-        int id = 12345;
+        String name = "Marzio";
         String password = "1111";
         boolean expResult = true;
-        boolean result = instance.autentication(id, password);
+        boolean result = instance.autentication(name, password);
         assertEquals(expResult, result);
     }
     
@@ -64,10 +64,10 @@ public class ArchiveTest {
     public void testCustomerAutentication() {
         System.out.println("Test metodo 'autentication' per instanza di Customer");
         instance.addPerson(customer);
-        int id = 54321;
+        String name = "Simone";
         String password = "2222";
         boolean expResult = true;
-        boolean result = instance.autentication(id, password);
+        boolean result = instance.autentication(name, password);
         assertEquals(expResult, result);
     }
 

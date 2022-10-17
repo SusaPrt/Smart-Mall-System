@@ -44,17 +44,17 @@ public class Archive implements ArchiveInterface{
     }
         
     @Override
-    public boolean autentication(int id, String password){  
+    public boolean autentication(String name, String password){  
         boolean found = false;
         
         if(this.costumers.stream()
-                .filter(c -> c.getId()==id && c.getPassword().equals(password))
+                .filter(c -> c.getName().equals(name) && c.getPassword().equals(password))
                 .findAny()
                 .isPresent()){
         
            found = true;
         }else if(this.staff.stream()
-                .filter(c -> c.getId()==id && c.getPassword().equals(password))
+                .filter(c -> c.getName().equals(name) && c.getPassword().equals(password))
                 .findAny()
                 .isPresent()){
             
@@ -101,6 +101,31 @@ public class Archive implements ArchiveInterface{
     @Override
     public HashSet<Customer> getCustomers(){
         return Archive.defend(this.costumers);
+    }
+    
+    @Override
+    public Person getAccount(String name, String pwd){
+        Person p = null;
+        if(this.costumers.stream()
+                .filter(c -> c.getName().equals(name) && c.getPassword().equals(pwd))
+                .findAny()
+                .isPresent()){
+        
+            p = this.costumers.stream()
+                    .filter(c -> c.getName().equals(name) && c.getPassword().equals(pwd))
+                    .findAny()
+                    .get();
+        }else if(this.staff.stream()
+                .filter(c -> c.getName().equals(name) && c.getPassword().equals(pwd))
+                .findAny()
+                .isPresent()){
+            
+            p = this.staff.stream()
+                                .filter(c -> c.getName().equals(name) && c.getPassword().equals(pwd))
+                                .findAny()
+                                .get();
+        }       
+        return p;
     }
     
     private void accountLoader(){

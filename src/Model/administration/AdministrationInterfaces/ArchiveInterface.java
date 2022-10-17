@@ -17,7 +17,9 @@ public interface ArchiveInterface {
     
     public void addPerson(Person p);
     
-    public boolean autentication(int id, String password);
+    public boolean autentication(String name, String password);
+    
+    public Person getAccount(String name, String pwd);
     
     public void removeById(int id);
     

@@ -4,17 +4,26 @@
  */
 package Controllers;
 
+import Model.administration.Customer;
+import Model.administration.Person;
+import Model.administration.Staff;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class LoginViewController implements Initializable {
+    private MainApplication mainApp;
 
     @FXML
     private TextField sign_up_username;
@@ -41,16 +50,23 @@ public class LoginViewController implements Initializable {
         Image nomeImgae = new Image(nomeFile.toURI().toString());
         nomeFXML.setImage(nomeImage);
         */
-
-        
+        this.mainApp = new MainApplication();
+       
     }    
     
     @FXML
     public void signIn(ActionEvent event) {
-        if(this.sign_in_username.getText().isBlank() == false && this.sign_in_password.getText().isBlank() == false) {
-
-            if(true) {
-                
+        String userName = this.sign_in_username.getText();
+        String userPwd = this.sign_in_password.getText();
+        Person p = this.mainApp.getAdminstration().getArchive().getAccount(userName, userPwd);
+        
+        if(this.mainApp.getAdminstration().getArchive().autentication(userName, userPwd)) {
+            if( p instanceof Staff){
+                Staff s = (Staff)p;
+                // richiamo view per STAFF
+            }else{
+                Customer c = (Customer)p;
+                //richiamo view per CUSTOMER
             }
         } else {
             this.error_sign_in.setText("Error: try again");
@@ -59,11 +75,28 @@ public class LoginViewController implements Initializable {
 
     @FXML
     private void signUp(ActionEvent event) {
-        if(this.sign_in_username.getText().isBlank() == false && this.sign_in_password.getText().isBlank() == false) {
-            
+        String userName = this.sign_in_username.getText();
+        String userPwd = this.sign_in_password.getText();
+        
+        if(!userName.isBlank() && !userPwd.isBlank()) {
+            this.mainApp.getAdminstration().getArchive()
+                    .addPerson(new Customer(userName, userPwd, 
+                            100, this.mainApp.getAdminstration()));
+            // richiamo view per customer
         } else {
             this.error_sign_in.setText("Error: try again");
         }
+    }
+    
+    private void switchScene(String arg){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(arg));
+        try {
+            Parent root = loader.load();
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+        // finire logica, serve classe homepage customer e staff (vv brocode)
+        
     }
     
 }

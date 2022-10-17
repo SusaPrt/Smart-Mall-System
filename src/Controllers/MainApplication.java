@@ -1,3 +1,5 @@
+package Controllers;
+
 
 import Model.administration.Administration;
 import Model.enterprises.library.Library;
@@ -20,7 +22,7 @@ public class MainApplication {
     private final Restaurant restourant;
     private final Shop shop;
     
-    public MainApplication() throws FileNotFoundException{
+    public MainApplication(){
         this.adminstration = new Administration();
         this.library = new Library();
         this.restourant = new Restaurant(200);

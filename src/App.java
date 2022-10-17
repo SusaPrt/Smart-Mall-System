@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 
+import Controllers.MainApplication;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
