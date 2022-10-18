@@ -13,26 +13,26 @@
    <children>
       <AnchorPane prefHeight="409.0" prefWidth="195.0" style="-fx-background-color: #5F6F94;">
          <children>
-            <Text fx:id="txt_name_enterprise" fill="#d8d8d8" layoutX="-5.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;name&gt;" textAlignment="CENTER" wrappingWidth="199.2244110107422">
-               <font>
-                  <Font name="Calibri Bold" size="28.0" />
-               </font>
-            </Text>
-            <Button fx:id="btn_menu" layoutX="7.0" layoutY="104.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="176.0" style="-fx-background-color: #5F6F94;" text="Menu" textFill="WHITE">
+            <Button fx:id="btn_menu" layoutX="7.0" layoutY="104.0" mnemonicParsing="false" onAction="#showMenu" prefHeight="85.0" prefWidth="176.0" style="-fx-background-color: #5F6F94;" text="Menu" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btn_reserve" layoutX="7.0" layoutY="190.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="176.0" style="-fx-background-color: #5F6F94;" text="Reserve" textFill="WHITE">
+            <Button fx:id="btn_reserve" layoutX="7.0" layoutY="190.0" mnemonicParsing="false" onAction="#showReserve" prefHeight="85.0" prefWidth="176.0" style="-fx-background-color: #5F6F94;" text="Reserve" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btn_back" layoutX="15.0" layoutY="366.0" mnemonicParsing="false" onMouseDragOver="#searchView" prefHeight="20.0" prefWidth="48.0" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Back">
+            <Button fx:id="btn_back" layoutX="15.0" layoutY="366.0" mnemonicParsing="false" onAction="#toHomepage" onMouseDragOver="#searchView" prefHeight="20.0" prefWidth="48.0" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Back">
                <font>
                   <Font name="Calibri Bold" size="14.0" />
                </font>
             </Button>
+            <Label fx:id="label_name_enterprise" layoutX="52.0" layoutY="57.0" text="&lt;name&gt;" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="27.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="195.0" prefHeight="410.0" prefWidth="406.0">
@@ -61,12 +61,12 @@
                         <Font name="Calibri Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Button fx:id="btn_send" layoutX="23.0" layoutY="163.0" mnemonicParsing="false" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Send">
+                  <Button fx:id="btn_send" layoutX="23.0" layoutY="163.0" mnemonicParsing="false" onAction="#addReservation" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Send">
                      <font>
                         <Font name="Calibri Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btn_clear" layoutX="126.0" layoutY="163.0" mnemonicParsing="false" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Clear">
+                  <Button fx:id="btn_clear" layoutX="126.0" layoutY="163.0" mnemonicParsing="false" onAction="#clearInputs" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Clear">
                      <font>
                         <Font name="Calibri Bold" size="15.0" />
                      </font>

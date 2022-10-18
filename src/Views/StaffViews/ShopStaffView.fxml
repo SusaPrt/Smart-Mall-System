@@ -9,8 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #25316D;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="Controllers.StaffControllers.ShopStaffViewController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #25316D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.StaffControllers.ShopStaffViewController">
    <children>
       <AnchorPane prefHeight="412.0" prefWidth="195.0" style="-fx-background-color: #5F6F94;">
          <children>
@@ -19,12 +18,12 @@
                   <Font name="Calibri Bold" size="28.0" />
                </font>
             </Text>
-            <Button fx:id="btn_items" layoutX="7.0" layoutY="104.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="176.0" style="-fx-background-color: #5F6F94;" text="Items" textFill="WHITE">
+            <Button fx:id="btn_items" layoutX="7.0" layoutY="104.0" mnemonicParsing="false" onAction="#showItems" prefHeight="85.0" prefWidth="176.0" style="-fx-background-color: #5F6F94;" text="Items" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btn_back" layoutX="15.0" layoutY="366.0" mnemonicParsing="false" onAction="#homePage" prefHeight="20.0" prefWidth="48.0" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Back">
+            <Button fx:id="btn_back" layoutX="15.0" layoutY="366.0" mnemonicParsing="false" onAction="#toHomepage" prefHeight="20.0" prefWidth="48.0" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Back">
                <font>
                   <Font name="Calibri Bold" size="14.0" />
                </font>
@@ -49,19 +48,19 @@
                   <Font name="Calibri Bold" size="12.0" />
                </font>
             </TextField>
-            <Button fx:id="btn_add_send" layoutX="191.0" layoutY="69.0" mnemonicParsing="false" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Send">
+            <Button fx:id="btn_add_send" layoutX="191.0" layoutY="69.0" mnemonicParsing="false" onAction="#addItem" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Send">
                <font>
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btn_add_clear" layoutX="252.0" layoutY="69.0" mnemonicParsing="false" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Clear">
+            <Button fx:id="btn_add_clear" layoutX="252.0" layoutY="69.0" mnemonicParsing="false" onAction="#clearInputs" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Clear">
                <font>
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Button>
             <Label fx:id="label_add_response" layoutX="191.0" layoutY="47.0" text="&lt;response&gt;">
                <font>
-                  <Font name="Calibri Bold" size="12.0" />
+                  <Font name="Calibri Bold" size="15.0" />
                </font>
             </Label>
          </children>
