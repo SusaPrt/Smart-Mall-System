@@ -137,6 +137,10 @@ public class Restaurant implements IRestaurant {
         return done;
     }
     
+    public String getName(){
+        return this.name;
+    }
+    
     // >> METODI PRIVATI <<
     private void fileChecker() throws IOException{
         try{

@@ -75,6 +75,9 @@ public class Shop implements IShop {
         return done;
     }
     
+    public String getName(){
+        return this.name;
+    }
     // >> METODO CUSTOMER <<
     @Override
     public boolean buyAItem(Item i, int n, Customer c) {
