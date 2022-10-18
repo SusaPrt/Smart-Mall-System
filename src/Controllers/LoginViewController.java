@@ -15,30 +15,33 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class LoginViewController implements Initializable {
     private MainApplication mainApp;
 
     @FXML
-    private TextField sign_up_username;
-    @FXML
-    private PasswordField sign_in_password;
+    private TextField sign_up_username;    
     @FXML
     private TextField sign_in_username;
     @FXML
     private PasswordField sign_up_password;
     @FXML
+    private PasswordField sign_in_password;
+    @FXML
     private Button btn_sign_in;
     @FXML
     private Button btn_sign_up;
     @FXML
-    private Label error_sign_in;
+    private Label label_error_sign_in;
     @FXML
-    private Label error_sign_up;
+    private Label label_error_sign_up;
 
     
     @Override
@@ -67,7 +70,7 @@ public class LoginViewController implements Initializable {
                 //richiamo view per CUSTOMER
             }
         } else {
-            this.error_sign_in.setText("Error: try again");
+            this.label_error_sign_in.setText("Error: try again");
         }
     }
 
@@ -82,19 +85,16 @@ public class LoginViewController implements Initializable {
                             100, this.mainApp.getAdminstration()));
             // richiamo view per customer
         } else {
-            this.error_sign_in.setText("Error: try again");
+            this.label_error_sign_in.setText("Error: try again");
         }
     }
     
-    private void switchScene(String arg){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(arg));
-        try {
-            Parent root = loader.load();
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-        // finire logica, serve classe homepage customer e staff (vv brocode)
-        
+    private void switchScene() throws IOException{
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("src/Views/Homepage.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Homepage");
+        stage.setScene(new Scene(root, 450, 450));
+        stage.show();
     }
     
 }
