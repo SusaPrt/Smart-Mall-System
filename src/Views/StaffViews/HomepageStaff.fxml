@@ -8,21 +8,21 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #25316D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CustomerControllers.ShopCustomerViewController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #25316D;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.StaffControllers.StaffHomepageViewController">
    <children>
       <AnchorPane prefHeight="59.0" prefWidth="600.0" style="-fx-background-color: #5F6F94;">
          <children>
-            <Label fx:id="label_user_name" layoutX="14.0" layoutY="8.0" text="&lt;name staff&gt;">
+            <Label fx:id="label_staff_name" layoutX="14.0" layoutY="8.0" text="&lt;name staff&gt;">
                <font>
                   <Font name="Calibri Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="label_user_id" layoutX="14.0" layoutY="31.0" text="&lt;id staff&gt;">
+            <Label fx:id="label_staff_id" layoutX="14.0" layoutY="31.0" text="&lt;id staff&gt;">
                <font>
                   <Font name="Calibri Bold" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="btn_logout" layoutX="522.0" layoutY="16.0" mnemonicParsing="false" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Logout" textFill="RED">
+            <Button fx:id="btn_logout" layoutX="522.0" layoutY="16.0" mnemonicParsing="false" onAction="#toLogout" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Logout" textFill="RED">
                <font>
                   <Font name="Calibri Bold" size="15.0" />
                </font>
@@ -46,16 +46,16 @@
       </Text>
       <AnchorPane layoutX="14.0" layoutY="275.0" prefHeight="114.0" prefWidth="571.0" style="-fx-background-color: #5F6F94; -fx-background-radius: 10;">
          <children>
-            <TextField alignment="TOP_LEFT" layoutY="14.0" prefHeight="26.0" prefWidth="160.0" promptText="Name" style="-fx-background-radius: 10;" />
-            <TextField layoutX="206.0" layoutY="14.0" prefHeight="26.0" prefWidth="160.0" promptText="Name" style="-fx-background-radius: 10;" />
-            <TextField layoutX="411.0" layoutY="14.0" prefHeight="26.0" prefWidth="160.0" promptText="Name" style="-fx-background-radius: 10;" />
-            <TextField layoutX="206.0" layoutY="49.0" prefHeight="26.0" prefWidth="160.0" promptText="N° tot Seats" style="-fx-background-radius: 10;" />
-            <Button layoutX="231.0" layoutY="83.0" mnemonicParsing="false" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Send">
+            <TextField fx:id="name_new_library" alignment="TOP_LEFT" layoutY="14.0" prefHeight="26.0" prefWidth="160.0" promptText="Name" style="-fx-background-radius: 10;" />
+            <TextField fx:id="name_new_restaurant" layoutX="206.0" layoutY="14.0" prefHeight="26.0" prefWidth="160.0" promptText="Name" style="-fx-background-radius: 10;" />
+            <TextField fx:id="name_new_shop" layoutX="411.0" layoutY="14.0" prefHeight="26.0" prefWidth="160.0" promptText="Name" style="-fx-background-radius: 10;" />
+            <TextField fx:id="n_seats_new_restaurant" layoutX="206.0" layoutY="49.0" prefHeight="26.0" prefWidth="160.0" promptText="N° tot Seats" style="-fx-background-radius: 10;" />
+            <Button fx:id="btn_send" layoutX="231.0" layoutY="83.0" mnemonicParsing="false" onAction="#toCommit" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Send">
                <font>
                   <Font name="Calibri Bold" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="292.0" layoutY="83.0" mnemonicParsing="false" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Clear">
+            <Button fx:id="btn_clear" layoutX="292.0" layoutY="83.0" mnemonicParsing="false" onAction="#toClear" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Clear">
                <font>
                   <Font name="Calibri Bold" size="12.0" />
                </font>

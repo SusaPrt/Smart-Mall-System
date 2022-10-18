@@ -4,36 +4,37 @@
  */
 package Controllers.CustomerControllers;
 
+import Controllers.MainApplication;
+import Model.administration.Customer;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseDragEvent;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
  *
  * @author Mars_DB
  */
-public class ShopCustomerViewController implements Initializable {
-
+public class HomepageCustomerViewController implements Initializable {
+    private MainApplication mainApplication;
+    private Customer customer;
+    
     @FXML
-    private Text txt_name_enterprise;
+    private Label label_user_name;
     @FXML
-    private Button btn_items;
+    private Label label_user_id;
     @FXML
-    private Button btn_back;
+    private Button btn_logout;
     @FXML
-    private Pane pnl_your_loans;
+    private ListView<?> list_libreries;
     @FXML
-    private ListView<?> list_items;
+    private ListView<?> list_restaurants;
+    @FXML
+    private ListView<?> list_shops;
 
     /**
      * Initializes the controller class.
@@ -41,16 +42,10 @@ public class ShopCustomerViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-
-    @FXML
-    private void showItems(ActionEvent event) {
+    }   
+    public void setData(Customer c, MainApplication mainApp){
+        this.customer = c;
+        this.mainApplication = mainApp;
     }
-
-    @FXML
-    private void homePage(ActionEvent event) {
-    }
-
-
     
 }

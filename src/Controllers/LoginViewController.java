@@ -4,6 +4,8 @@
  */
 package Controllers;
 
+import Controllers.CustomerControllers.HomepageCustomerViewController;
+import Controllers.StaffControllers.StaffHomepageViewController;
 import Model.administration.Customer;
 import Model.administration.Person;
 import Model.administration.Staff;
@@ -14,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -25,6 +28,9 @@ import javafx.stage.Stage;
 
 public class LoginViewController implements Initializable {
     private MainApplication mainApp;
+    private Parent root;
+    private Stage stage;
+    private Scene scene;
 
     @FXML
     private TextField sign_up_username;    
@@ -56,7 +62,7 @@ public class LoginViewController implements Initializable {
     }    
     
     @FXML
-    public void signIn(ActionEvent event) {
+    public void signIn(ActionEvent event) throws IOException {
         String userName = this.sign_in_username.getText();
         String userPwd = this.sign_in_password.getText();
         Person p = this.mainApp.getAdminstration().getArchive().getAccount(userName, userPwd);
@@ -65,9 +71,26 @@ public class LoginViewController implements Initializable {
             if( p instanceof Staff){
                 Staff s = (Staff)p;
                 // richiamo view per STAFF
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/StaffViews/HomepageStaff.fxml"));
+                root = loader.load();
+                StaffHomepageViewController sC = loader.getController();
+                sC.setData(s, this.mainApp);
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show(); 
+                
             }else{
                 Customer c = (Customer)p;
                 //richiamo view per CUSTOMER
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/CustomerViews/HomepageCustomer.fxml"));
+                root = loader.load();
+                HomepageCustomerViewController hC = loader.getController();
+                hC.setData(c, this.mainApp);
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();                
             }
         } else {
             this.label_error_sign_in.setText("Error: try again");
@@ -75,26 +98,28 @@ public class LoginViewController implements Initializable {
     }
 
     @FXML
-    private void signUp(ActionEvent event) {
+    private void signUp(ActionEvent event) throws IOException {
         String userName = this.sign_in_username.getText();
         String userPwd = this.sign_in_password.getText();
+        Customer c = null;
         
         if(!userName.isBlank() && !userPwd.isBlank()) {
             this.mainApp.getAdminstration().getArchive()
-                    .addPerson(new Customer(userName, userPwd, 
+                    .addPerson(c = new Customer(userName, userPwd, 
                             100, this.mainApp.getAdminstration()));
             // richiamo view per customer
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/CustomerViews/HomepageCustomer.fxml"));
+            root = loader.load();
+            HomepageCustomerViewController hC = loader.getController();
+            hC.setData(c, this.mainApp);
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show(); 
+            
         } else {
             this.label_error_sign_in.setText("Error: try again");
         }
-    }
-    
-    private void switchScene() throws IOException{
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("src/Views/Homepage.fxml"));
-        Stage stage = new Stage();
-        stage.setTitle("Homepage");
-        stage.setScene(new Scene(root, 450, 450));
-        stage.show();
-    }
-    
+    }   
 }
