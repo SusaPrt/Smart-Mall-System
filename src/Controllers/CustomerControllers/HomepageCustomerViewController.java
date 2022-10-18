@@ -8,6 +8,7 @@ import Controllers.MainApplication;
 import Model.administration.Customer;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -46,6 +47,10 @@ public class HomepageCustomerViewController implements Initializable {
     public void setData(Customer c, MainApplication mainApp){
         this.customer = c;
         this.mainApplication = mainApp;
+    }
+
+    @FXML
+    private void toLogin(ActionEvent event) {
     }
     
 }

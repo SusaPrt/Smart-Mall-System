@@ -25,11 +25,11 @@ import javafx.scene.text.Text;
 public class ShopCustomerViewController implements Initializable {
 
     @FXML
-    private Text txt_name_enterprise;
+    private Button btn_back;
+    @FXML
+    private Label label_name_enterprise;
     @FXML
     private Button btn_items;
-    @FXML
-    private Button btn_back;
     @FXML
     private Pane pnl_your_loans;
     @FXML
@@ -43,13 +43,15 @@ public class ShopCustomerViewController implements Initializable {
         // TODO
     }    
 
+
+    @FXML
+    private void toHomepage(ActionEvent event) {
+    }
+
     @FXML
     private void showItems(ActionEvent event) {
     }
 
-    @FXML
-    private void homePage(ActionEvent event) {
-    }
 
 
     

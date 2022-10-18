@@ -58,21 +58,22 @@ public class StaffHomepageViewController implements Initializable {
         // TODO
     }    
 
-    @FXML
-    private void toLogout(ActionEvent event) {
-    }
-
-    @FXML
-    private void toCommit(ActionEvent event) {
-    }
-
-    @FXML
-    private void toClear(ActionEvent event) {
-    }
 
     public void setData(Staff s, MainApplication mainApp) {
         this.mainApplication = mainApp;
         this.staff = s;
+    }
+
+    @FXML
+    private void toLogin(ActionEvent event) {
+    }
+
+    @FXML
+    private void addEnterprise(ActionEvent event) {
+    }
+
+    @FXML
+    private void clearInputs(ActionEvent event) {
     }
     
 }
