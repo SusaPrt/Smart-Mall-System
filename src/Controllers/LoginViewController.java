@@ -23,7 +23,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class LoginViewController implements Initializable {
@@ -66,7 +65,7 @@ public class LoginViewController implements Initializable {
     }
     
     @FXML
-    public void signIn(ActionEvent event) throws IOException {
+    public void signIn(ActionEvent event) {
         String userName = this.sign_in_username.getText();
         String userPwd = this.sign_in_password.getText();
         Person p = this.mainApp.getAdminstration().getArchive().getAccount(userName, userPwd);
@@ -76,7 +75,11 @@ public class LoginViewController implements Initializable {
                 Staff s = (Staff)p;
                 // richiamo view per STAFF
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/StaffViews/HomepageStaff.fxml"));
-                root = loader.load();
+                try {
+                    root = loader.load();
+                } catch (IOException ex) {
+                    System.out.println(ex+"\nEccezione caricamento staff homepage");
+                }
                 StaffHomepageViewController sC = loader.getController();
                 sC.setData(s, this.mainApp);
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -88,7 +91,11 @@ public class LoginViewController implements Initializable {
                 Customer c = (Customer)p;
                 //richiamo view per CUSTOMER
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/CustomerViews/HomepageCustomer.fxml"));
-                root = loader.load();
+                try {
+                    root = loader.load();
+                } catch (IOException ex) {
+                    System.out.println(ex+"\nEccezione caricamento customer homepage");
+                }
                 HomepageCustomerViewController hC = loader.getController();
                 hC.setData(c, this.mainApp);
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -102,7 +109,7 @@ public class LoginViewController implements Initializable {
     }
 
     @FXML
-    private void signUp(ActionEvent event) throws IOException {
+    private void signUp(ActionEvent event){
         String userName = this.sign_in_username.getText();
         String userPwd = this.sign_in_password.getText();
         Customer c = null;
@@ -114,7 +121,11 @@ public class LoginViewController implements Initializable {
             // richiamo view per customer
             
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/CustomerViews/HomepageCustomer.fxml"));
-            root = loader.load();
+            try {
+                root = loader.load();
+            } catch (IOException ex) {
+                System.out.println(ex+"\nEccezione caricamento customer homepage");
+            }
             HomepageCustomerViewController hC = loader.getController();
             hC.setData(c, this.mainApp);
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -76,9 +76,13 @@ public class StaffHomepageViewController implements Initializable {
     }
 
     @FXML
-    private void toLogin(ActionEvent event) throws IOException {
+    private void toLogin(ActionEvent event){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/LoginView.fxml"));
-        root = loader.load();
+        try {
+            root = loader.load();
+        } catch (IOException ex) {
+            System.out.println(ex+"\nEccezione caricamento staff homepage");
+        }
         LoginViewController lVcontroller = loader.getController();
         lVcontroller.setData(this.mainApplication);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -11,12 +11,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #182747;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginViewController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #182747;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginViewController">
    <children>
       <AnchorPane layoutX="36.0" layoutY="86.0" prefHeight="292.0" prefWidth="298.0" style="-fx-background-color: #D8D8D8; -fx-background-radius: 10;">
          <children>
-            <PasswordField fx:id="sign_in_password" alignment="CENTER_RIGHT" layoutX="39.0" layoutY="161.0" prefHeight="26.0" prefWidth="221.0" style="-fx-background-radius: 10;" />
-            <TextField fx:id="sign_in_username" alignment="CENTER_RIGHT" layoutX="39.0" layoutY="98.0" prefHeight="26.0" prefWidth="222.0" style="-fx-background-radius: 10;" />
+            <PasswordField fx:id="sign_in_password" layoutX="39.0" layoutY="161.0" prefHeight="26.0" prefWidth="221.0" style="-fx-background-radius: 10;" />
+            <TextField fx:id="sign_in_username" layoutX="39.0" layoutY="98.0" prefHeight="26.0" prefWidth="222.0" style="-fx-background-radius: 10;" />
             <TextField layoutX="38.0" layoutY="76.0" style="-fx-background-color: #D8D8D8;" text="Username">
                <font>
                   <Font name="Calibri Bold" size="12.0" />
@@ -46,8 +46,8 @@
       </AnchorPane>
       <AnchorPane layoutX="359.0" layoutY="86.0" prefHeight="292.0" prefWidth="298.0" style="-fx-background-color: #D8D8D8; -fx-background-radius: 10;">
          <children>
-            <PasswordField fx:id="sign_up_password" alignment="CENTER_RIGHT" layoutX="39.0" layoutY="161.0" prefHeight="26.0" prefWidth="221.0" style="-fx-background-radius: 10;" />
-            <TextField fx:id="sign_up_username" alignment="CENTER_RIGHT" layoutX="39.0" layoutY="98.0" prefHeight="26.0" prefWidth="222.0" style="-fx-background-radius: 10;" />
+            <PasswordField fx:id="sign_up_password" layoutX="39.0" layoutY="161.0" prefHeight="26.0" prefWidth="221.0" style="-fx-background-radius: 10;" />
+            <TextField fx:id="sign_up_username" layoutX="39.0" layoutY="98.0" prefHeight="26.0" prefWidth="222.0" style="-fx-background-radius: 10;" />
             <TextField layoutX="38.0" layoutY="76.0" style="-fx-background-color: #D8D8D8;" text="Username">
                <font>
                   <Font name="Calibri Bold" size="12.0" />
