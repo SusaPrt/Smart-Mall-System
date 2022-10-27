@@ -61,6 +61,10 @@ public class LoginViewController implements Initializable {
        
     }    
     
+    public void setData(MainApplication mainApp){
+        this.mainApp = mainApp;
+    }
+    
     @FXML
     public void signIn(ActionEvent event) throws IOException {
         String userName = this.sign_in_username.getText();

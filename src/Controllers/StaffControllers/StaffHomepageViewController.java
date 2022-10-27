@@ -4,17 +4,25 @@
  */
 package Controllers.StaffControllers;
 
+import Controllers.CustomerControllers.HomepageCustomerViewController;
+import Controllers.LoginViewController;
 import Controllers.MainApplication;
 import Model.administration.Staff;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -24,6 +32,9 @@ import javafx.scene.control.TextField;
 public class StaffHomepageViewController implements Initializable {
     private MainApplication mainApplication;
     private Staff staff;
+    private Parent root;
+    private Stage stage;
+    private Scene scene;
 
     @FXML
     private Label label_staff_name;
@@ -65,7 +76,15 @@ public class StaffHomepageViewController implements Initializable {
     }
 
     @FXML
-    private void toLogin(ActionEvent event) {
+    private void toLogin(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/LoginView.fxml"));
+        root = loader.load();
+        LoginViewController lVcontroller = loader.getController();
+        lVcontroller.setData(this.mainApplication);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
