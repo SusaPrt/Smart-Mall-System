@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -20,7 +19,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Mars_DB
+ * @author Susanna
  */
 public class LibraryTest {
     private Library instance;
@@ -52,21 +51,12 @@ public class LibraryTest {
         this.loans.get(customer2).add(new Loan(book1));
         
         this.dFault = new Book("H.P. e la pietra filosofale", 
-                "J.K. Rowling", 20.00, 50, 1997, "Fantasy", 3945);
-        /*
-        this.loans.add(new Loan(new Book("Il mondo di Sofia", 
-                "Jostein Gaarder", 20.50, 1, 1991, "Adventure", 9928)));
-        this.loans.add(new Loan(new Book("Il trono di spade", "G.R.R. Martin", 9.50, 40, 1996, "Fantasy", 6830)));
-
-        */
-        
-        
-             
+                "J.K. Rowling", 20.00, 50, 1997, "Fantasy", 3945);         
     }
 
     @Test
     public void testGetName() {
-        System.out.println("getName");
+        System.out.println("Test per metodo 'getName'");
         String expResult = "Library";
         String result = this.instance.getName();
         assertEquals(expResult, result);
@@ -74,7 +64,7 @@ public class LibraryTest {
 
     @Test
     public void testGetAllBooks() throws FileNotFoundException {
-        System.out.println("getAllBooks");
+        System.out.println("Test per metodo 'getAllBooks'");
         DataInterpreter libraryDataInterpreter;        
         
         libraryDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Library.txt")
@@ -88,7 +78,7 @@ public class LibraryTest {
 
     @Test
     public void testGetAllLoans() {
-        System.out.println("getAllLoans");
+        System.out.println("Test per metodo 'getAllLoans'");
         Map<Customer, Set<Loan>> expResult = this.loans;
         Map<Customer, Set<Loan>> result = instance.getAllLoans();
         
@@ -97,7 +87,7 @@ public class LibraryTest {
 
     @Test
     public void testAddBook() {
-        System.out.println("addBook");
+        System.out.println("Test per metodo 'addBook'");
         Book b = new Book("Il signore degli anelli", "J.R.R. Tolkien", 20.60, 40, 1954, "Fantasy", 73737);
         this.instance.addBook("Il signore degli anelli", "J.R.R. Tolkien", 20.60, 40, 1954, "Fantasy", 73737);
         boolean expResult = true;
@@ -107,7 +97,7 @@ public class LibraryTest {
 
     @Test
     public void testRemoveBook() {
-        System.out.println("removeBook");
+        System.out.println("Test per metodo 'removeBook'");
         Book b = new Book("Il signore degli anelli", "J.R.R. Tolkien", 20.60, 40, 1954, "Fantasy", 73737);
         this.instance.addBook("Il signore degli anelli", "J.R.R. Tolkien", 20.60, 40, 1954, "Fantasy", 73737);
         this.instance.removeBook(b);
@@ -118,7 +108,7 @@ public class LibraryTest {
 
     @Test
     public void testCreateLoan() {
-        System.out.println("createLoan");
+        System.out.println("Test per metodo 'createLoan'");
         instance.createLoan(this.customer2, this.book2);
         Loan l = new Loan(this.book2);
         boolean expResult = true;
@@ -128,7 +118,7 @@ public class LibraryTest {
 
     @Test
     public void testCancelLoan() {
-        System.out.println("cancelLoan");
+        System.out.println("Test per metodo 'cancelLoan'");
         instance.createLoan(this.customer2, this.book2);
         instance.cancelLoan(this.customer2, this.book2);
         Loan l = new Loan(this.book2);
@@ -139,7 +129,7 @@ public class LibraryTest {
 
     @Test
     public void testSearchBookByTitle() {
-        System.out.println("searchBookByTitle");
+        System.out.println("Test per metodo 'searchBookByTitle'");
         String title = "H.P. e la pietra filosofale";
         this.instance.addBook("H.P. e la pietra filosofale", 
                 "J.K. Rowling", 20.00, 50, 1997, "Fantasy", 3945);
@@ -151,7 +141,7 @@ public class LibraryTest {
 
     @Test
     public void testSearchBookByGenre() {
-        System.out.println("searchBookByGenre");
+        System.out.println("Test per metodo 'searchBookByGenre'");
         String genre = "Fantasy";
         this.instance.addBook("H.P. e la pietra filosofale", 
                 "J.K. Rowling", 20.00, 50, 1997, "Fantasy", 3945);
@@ -163,7 +153,7 @@ public class LibraryTest {
 
     @Test
     public void testSearchBookByAuthor() {
-        System.out.println("searchBookByAuthor");
+        System.out.println("Test per metodo 'searchBookByAuthor'");
         String author = "J.K. Rowling";
         this.instance.addBook("H.P. e la pietra filosofale", 
                 "J.K. Rowling", 20.00, 50, 1997, "Fantasy", 3945);
@@ -175,7 +165,7 @@ public class LibraryTest {
 
     @Test
     public void testGetCustomerLoans() {
-        System.out.println("getCustomerLoans");
+        System.out.println("Test per metodo 'getCustomerLoans'");
         Set<Loan> expResult = new HashSet();
         expResult.add(new Loan(this.book1));
         expResult.add(new Loan(this.book2));
@@ -186,7 +176,7 @@ public class LibraryTest {
 
     @Test
     public void testRefueling() {
-        System.out.println("refueling");
+        System.out.println("Test per metodo 'refueling'");
         int n = 10;
         boolean expResult = true;
         boolean result = instance.refueling(this.book1, n);

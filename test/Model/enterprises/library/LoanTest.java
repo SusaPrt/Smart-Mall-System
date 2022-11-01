@@ -5,14 +5,12 @@
 package Model.enterprises.library;
 
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
  *
- * @author Mars_DB
+ * @author Susanna
  */
 public class LoanTest {
     private final Loan instance;
@@ -62,7 +60,7 @@ public class LoanTest {
     
     @Test
     public void testEquals() {
-        System.out.println("Test per metodo 'equals'");
+        System.out.println("Test per metodo 'equals' true per passare");
         Object obj = this.instance;
         boolean expResult = true;
         boolean result = instance.equals(obj);
@@ -71,7 +69,7 @@ public class LoanTest {
     
     @Test
     public void testNotEquals() {
-        System.out.println("Test per metodo 'equals'");
+        System.out.println("Test per metodo 'equals' false per passare");
         Object obj = this.today.plusDays(3);
         boolean expResult = false;
         boolean result = instance.equals(obj);

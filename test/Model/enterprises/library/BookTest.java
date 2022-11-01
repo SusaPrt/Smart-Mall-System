@@ -52,7 +52,7 @@ public class BookTest {
 
     @Test
     public void testEquals() {
-        System.out.println("Test per metodo 'equals'");
+        System.out.println("Test per metodo 'equals' true per passare");
         Object obj = new Book("Il mondo di Sofia", "Jostein Gaarder", 20.50, 1, 1991, "Adventure", 9928 );
         boolean expResult = true;
         boolean result = instance.equals(obj);
@@ -61,7 +61,7 @@ public class BookTest {
     
     @Test
     public void testNotEquals() {
-        System.out.println("Test per metodo 'equals'");
+        System.out.println("Test per metodo 'equals' false per passare");
         Object obj = new Book("Il mondo di Sofia", "Jostein Gaarder", 20.50, 1, 1991, "Adventure", 9938 );
         boolean expResult = false;
         boolean result = instance.equals(obj);

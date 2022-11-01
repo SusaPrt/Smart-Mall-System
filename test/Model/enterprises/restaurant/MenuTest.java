@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Mars_DB
+ * @author Susanna
  */
 public class MenuTest {
     private final Menu instance;
@@ -26,7 +26,7 @@ public class MenuTest {
 
     @Test
     public void testGetTypeDishes() {
-        System.out.println("getTypeDishes");
+        System.out.println("Test per metodo 'getTypeDishes'");
         Course course = Course.SECONDS;
         LinkedList<Dish> expResult = new LinkedList();
         expResult.add(new Dish("YYYYYYYYY", 5, 720, Course.SECONDS));
@@ -38,7 +38,7 @@ public class MenuTest {
 
     @Test
     public void testGetAvailableTypeDishes() {
-        System.out.println("getAvailableTypeDishes");
+        System.out.println("Test per metodo 'getAvailableTypeDishes'");
         Set<Dish> expResult = new HashSet();
         expResult.add(new Dish("YYYYYYYYY", 5, 720, Course.SECONDS));
         expResult.add(new Dish("YYYYYY", 12, 312, Course.SECONDS));
@@ -49,7 +49,7 @@ public class MenuTest {
 
     @Test
     public void testAddDish() {
-        System.out.println("addDish");
+        System.out.println("Test per metodo 'addDish'");
 
         instance.addDish(this.dish.getName(),this.dish.getPrice(), 
                 this.dish.getQuantity(), this.dish.getCourse());
@@ -61,7 +61,7 @@ public class MenuTest {
 
     @Test
     public void testRemoveDish() {
-        System.out.println("removeDish");
+        System.out.println("Test per metodo 'removeDish'");
 
         instance.addDish(this.dish.getName(),this.dish.getPrice(), 
                 this.dish.getQuantity(), this.dish.getCourse());

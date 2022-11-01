@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Mars_DB
+ * @author Susanna
  */
 public class DishTest {
     private final Dish instance;
@@ -20,7 +20,7 @@ public class DishTest {
 
     @Test
     public void testGetCourse() {
-        System.out.println("getCourse");
+        System.out.println("Test per metodo 'getCourse'");
         Course expResult = Course.FIRSTS;
         Course result = this.instance.getCourse();
         assertEquals(expResult, result);
@@ -28,7 +28,7 @@ public class DishTest {
 
     @Test
     public void testEquals() {
-        System.out.println("equals");
+        System.out.println("Test per metodo 'equals' true per passare");
         Object obj = new Dish("Cannelloni alla besciamella", 12.5, 100, Course.selectType("FIRSTS"));
         boolean expResult = true;
         boolean result = instance.equals(obj);
@@ -37,7 +37,7 @@ public class DishTest {
     
     @Test
     public void testNotEquals() {
-        System.out.println("equals");
+        System.out.println("Test per metodo 'equals' false per passare");
         Object obj = new Dish("Lasagne radicchio e noci", 15.5, 88, Course.selectType("SECONDS"));
         boolean expResult = false;
         boolean result = instance.equals(obj);

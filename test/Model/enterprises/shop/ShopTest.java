@@ -38,7 +38,7 @@ public class ShopTest {
 
     @Test
     public void testGetWarehouse() {
-        System.out.println("getWarehouse");
+        System.out.println("Test per metodo 'getWarehouse'");
         List<Item> expResult = this.initialWarehouse;
         List<Item> result = instance.getWarehouse();
         assertEquals(expResult, result);
@@ -46,7 +46,7 @@ public class ShopTest {
 
     @Test
     public void testAddItem() {
-        System.out.println("addItem");
+        System.out.println("Test per metodo 'addItem'");
 
         this.instance.addItem(this.item1.getName(), this.item1.getPrice(), this.item1.getQuantity());
         
@@ -57,14 +57,14 @@ public class ShopTest {
 
     @Test
     public void testRemoveItem() {
-        System.out.println("removeItem");
+        System.out.println("Test per metodo 'removeItem'");
         this.instance.addItem(this.item1.getName(), this.item1.getPrice(), this.item1.getQuantity());
         instance.removeItem(this.item1);
     }
 
     @Test
     public void testRefueling() {
-        System.out.println("refueling");
+        System.out.println("Test per metodo 'refueling'");
         this.instance.addItem(this.item1.getName(), this.item1.getPrice(), this.item1.getQuantity());
         int n = 10;
         boolean expResult = true;

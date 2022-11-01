@@ -74,7 +74,7 @@ public class LoginViewController implements Initializable {
             if( p instanceof Staff){
                 Staff s = (Staff)p;
                 // richiamo view per STAFF
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/StaffViews/HomepageStaff.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/StaffViews/HomepageStaff.fxml"));
                 try {
                     root = loader.load();
                 } catch (IOException ex) {
@@ -90,7 +90,8 @@ public class LoginViewController implements Initializable {
             }else{
                 Customer c = (Customer)p;
                 //richiamo view per CUSTOMER
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/CustomerViews/HomepageCustomer.fxml"));
+                
+                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/CustomerViews/HomepageCustomer.fxml"));
                 try {
                     root = loader.load();
                 } catch (IOException ex) {
@@ -101,7 +102,8 @@ public class LoginViewController implements Initializable {
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
-                stage.show();                
+                stage.show();
+                
             }
         } else {
             this.label_error_sign_in.setText("Error: try again");
@@ -120,7 +122,7 @@ public class LoginViewController implements Initializable {
                             100, this.mainApp.getAdminstration()));
             // richiamo view per customer
             
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/CustomerViews/HomepageCustomer.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/CustomerViews/HomepageCustomer.fxml"));
             try {
                 root = loader.load();
             } catch (IOException ex) {

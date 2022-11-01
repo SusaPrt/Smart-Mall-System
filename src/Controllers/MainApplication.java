@@ -6,6 +6,7 @@ import Model.enterprises.library.Library;
 import Model.enterprises.restaurant.Restaurant;
 import Model.enterprises.shop.Shop;
 import java.util.HashSet;
+import java.util.Set;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -88,5 +89,9 @@ public class MainApplication {
             success = this.shops.remove(s);
         }
         return success;
-    }   
+    }  
+    
+    public Set<Library> getLibraries(){
+        return this.libraries;
+    }
 }

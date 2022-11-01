@@ -9,14 +9,12 @@ import Model.administration.Customer;
 import Model.system.DataInterpreter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
  *
- * @author Mars_DB
+ * @author Susanna
  */
 public class RestaurantTest {
     private final Restaurant instance;
@@ -35,7 +33,7 @@ public class RestaurantTest {
 
     @Test
     public void testGetDailyMenu() {
-        System.out.println("getDailyMenu");
+        System.out.println("Test per metodo 'getDailyMenu'");
         MenuOfTheDay result = instance.getDailyMenu();      
         MenuOfTheDay expResult = new MenuOfTheDay(new Menu(this.dI.getData()));
         assertEquals(expResult, result);      
@@ -43,7 +41,7 @@ public class RestaurantTest {
 
     @Test
     public void testGetMenu() {
-        System.out.println("getMenu");
+        System.out.println("Test per metodo 'getMenu'");
         Menu expResult = new Menu(this.dI.getData());
         Menu result = instance.getMenu();
         assertEquals(expResult, result);
@@ -51,7 +49,7 @@ public class RestaurantTest {
 
     @Test
     public void testReserveSeats() {
-        System.out.println("reserveSeats");
+        System.out.println("Test per metodo 'reserveSeats'");
         int n = 10;
         String name = "Giovanni";
         boolean expResult = true;
@@ -61,7 +59,7 @@ public class RestaurantTest {
 
     @Test
     public void testCancelReservation() {
-        System.out.println("cancelReservation");
+        System.out.println("Test per metodo 'cancelReservation'");
         instance.reserveSeats(10, "Giovanni");
         String name = "Giovanni";
         boolean expResult = true;
@@ -71,7 +69,7 @@ public class RestaurantTest {
 
     @Test
     public void testOrderADish() {
-        System.out.println("orderADish");    
+        System.out.println("Test per metodo 'orderADish'");    
         boolean expResult = true;
         boolean result = instance.orderADish(this.dish, 1, 
                 new Customer("Gino", "123", 200.5, new Administration()));
@@ -80,7 +78,7 @@ public class RestaurantTest {
 
     @Test
     public void testRefueling() {
-        System.out.println("refueling");
+        System.out.println("Test per metodo 'refueling'");
         int i = 10;
         boolean expResult = true;
         boolean result = instance.refueling(this.dish, i);
@@ -89,6 +87,7 @@ public class RestaurantTest {
 
     @Test
     public void testNewDay() {
+        System.out.println("Test per metodo 'newDay'");
         this.instance.reserveSeats(10, "Giovanni");
         instance.newDay();
         int expResult = this.instance.getTotSeats();

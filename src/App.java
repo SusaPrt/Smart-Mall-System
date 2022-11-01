@@ -9,8 +9,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class App extends Application{
@@ -19,7 +17,10 @@ public class App extends Application{
     public void start(Stage primaryStage){
         
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("Views/LoginView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("Views/LoginView.fxml"));
+            //fxmlLoader.setLocation(getClass().getResource("Views/CustomerViews/HomepageCustomer.fxml"));
+            Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
             
             primaryStage.setTitle("Login");
@@ -29,15 +30,6 @@ public class App extends Application{
         } catch(IOException e) {
             System.out.println(e);
         }
-/*
-        Button btnl = new Button("Hello World");
-        StackPane root = new StackPane();
-        root.getChildren().add(btnl);
-        Scene scene = new Scene(root, 600, 400);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Prova JavaFX application");
-        primaryStage.show();
-*/
     }
     public static void main(String[] args) {
         launch(args);

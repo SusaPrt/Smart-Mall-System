@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Mars_DB
+ * @author Susanna
  */
 public class CourseTest {
     private final Course instance;
@@ -20,7 +20,7 @@ public class CourseTest {
 
     @Test
     public void testSelectType() {
-        System.out.println("selectType");
+        System.out.println("Test per metodo 'selectType'");
         String course = "FIRSTS";
         Course expResult = Course.FIRSTS;
         Course result = Course.selectType(course);
@@ -29,7 +29,7 @@ public class CourseTest {
 
     @Test
     public void testGetName() {
-        System.out.println("getName");
+        System.out.println("Test per metodo 'getName'");
         String expResult = "DESSERTS";
         String result = this.instance.getName();
         assertEquals(expResult, result);
@@ -37,7 +37,7 @@ public class CourseTest {
 
     @Test
     public void testEquals() {
-        System.out.println("equals");
+        System.out.println("Test per metodo 'equals'");
         Object obj = Course.DESSERTS;
         boolean expResult = true;
         boolean result = instance.equals(obj);
@@ -46,7 +46,7 @@ public class CourseTest {
     
     @Test
     public void testNotEquals() {
-        System.out.println("equals");
+        System.out.println("Test per metodo 'equals'");
         Object obj = Course.WINESANDSOFT;
         boolean expResult = false;
         boolean result = instance.equals(obj);

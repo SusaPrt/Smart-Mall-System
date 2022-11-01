@@ -57,6 +57,8 @@ public class HomepageCustomerViewController implements Initializable {
     public void setData(Customer c, MainApplication mainApp){
         this.customer = c;
         this.mainApplication = mainApp;
+        this.label_user_name.setText(c.getName());
+        this.label_user_id.setText(""+c.getId());
     }
 
     @FXML
