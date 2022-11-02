@@ -99,9 +99,8 @@ public class LibraryTest {
     public void testAddBook() {
         System.out.println("addBook");
         Book b = new Book("Il signore degli anelli", "J.R.R. Tolkien", 20.60, 40, 1954, "Fantasy", 73737);
-        this.instance.addBook("Il signore degli anelli", "J.R.R. Tolkien", 20.60, 40, 1954, "Fantasy", 73737);
         boolean expResult = true;
-        boolean result = this.instance.getAllBooks().contains(b);
+        boolean result = this.instance.addBook("Il signore degli anelli", "J.R.R. Tolkien", 20.60, 40, 1954, "Fantasy", 73737);
         assertEquals(expResult, result);       
     }
 
@@ -110,30 +109,27 @@ public class LibraryTest {
         System.out.println("removeBook");
         Book b = new Book("Il signore degli anelli", "J.R.R. Tolkien", 20.60, 40, 1954, "Fantasy", 73737);
         this.instance.addBook("Il signore degli anelli", "J.R.R. Tolkien", 20.60, 40, 1954, "Fantasy", 73737);
-        this.instance.removeBook(b);
-        boolean expResult = false;
-        boolean result = this.instance.getAllBooks().contains(b);
+        boolean expResult = true;
+        boolean result = this.instance.removeBook(b);
         assertEquals(expResult, result);
     }
 
     @Test
     public void testCreateLoan() {
         System.out.println("createLoan");
-        instance.createLoan(this.customer2, this.book2);
         Loan l = new Loan(this.book2);
         boolean expResult = true;
-        boolean result = this.instance.getAllLoans().get(this.customer2).contains(l);
+        boolean result = instance.createLoan(customer2, book2);
         assertEquals(expResult, result);
     }
 
     @Test
     public void testCancelLoan() {
         System.out.println("cancelLoan");
-        instance.createLoan(this.customer2, this.book2);
-        instance.cancelLoan(this.customer2, this.book2);
+        instance.createLoan(this.customer2, this.book2);        
         Loan l = new Loan(this.book2);
-        boolean expResult = false;
-        boolean result = this.instance.getAllLoans().get(this.customer2).contains(l);
+        boolean expResult = true;
+        boolean result = instance.cancelLoan(this.customer2, this.book2);
         assertEquals(expResult, result);
     }
 

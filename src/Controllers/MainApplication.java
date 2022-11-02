@@ -6,6 +6,8 @@ import Model.enterprises.library.Library;
 import Model.enterprises.restaurant.Restaurant;
 import Model.enterprises.shop.Shop;
 import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -40,24 +42,24 @@ public class MainApplication {
         return this.libraries.stream().filter(l -> l.getName().equals("Library")).findFirst().get();
     }
     
-    public Library getLibrary(String name){
-        return this.libraries.stream().filter(l -> l.getName().equals(name)).findFirst().get();
+    public List getLibraries(){
+        return this.libraries.stream().collect(Collectors.toList());
     }
 
     public Restaurant getDefaultRestaurant() {
         return this.restaurants.stream().filter(r -> r.getName().equals("Restaurant")).findFirst().get();
     }
     
-    public Restaurant getRestaurant(String name){
-        return this.restaurants.stream().filter(r -> r.getName().equals(name)).findFirst().get();
+    public List getRestaurants(){
+        return this.restaurants.stream().collect(Collectors.toList());
     }
 
     public Shop getDefaultShop() {
         return this.shops.stream().filter(s -> s.getName().equals("Shop")).findFirst().get();
     }
     
-    public Shop getShop(String name){
-        return this.shops.stream().filter(s -> s.getName().equals(name)).findFirst().get();
+    public List getShops(){
+        return this.shops.stream().collect(Collectors.toList());
     }
     
     public boolean addEnterprises(Object o){

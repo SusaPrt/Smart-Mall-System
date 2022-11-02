@@ -4,6 +4,8 @@
  */
 package Controllers.CustomerControllers;
 
+import Model.administration.Customer;
+import Model.enterprises.shop.Shop;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -23,7 +25,8 @@ import javafx.scene.text.Text;
  * @author Mars_DB
  */
 public class ShopCustomerViewController implements Initializable {
-
+    private Shop shop;
+    private Customer customer;
     @FXML
     private Button btn_back;
     @FXML
@@ -43,7 +46,10 @@ public class ShopCustomerViewController implements Initializable {
         // TODO
     }    
 
-
+    void setData(Customer customer, Shop s) {
+        this.customer = customer;
+        this.shop = s;
+    }
     @FXML
     private void toHomepage(ActionEvent event) {
     }
@@ -51,6 +57,8 @@ public class ShopCustomerViewController implements Initializable {
     @FXML
     private void showItems(ActionEvent event) {
     }
+
+   
 
 
 

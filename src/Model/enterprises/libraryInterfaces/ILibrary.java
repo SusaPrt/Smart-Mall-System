@@ -31,13 +31,13 @@ public interface ILibrary {
     // >> METODI STAFF <<
     public Map<Customer, Set<Loan>> getAllLoans();
     
-    public void addBook(String name,  String author, double price, int quantity, int year, String genre, int isbn);
+    public boolean addBook(String name,  String author, double price, int quantity, int year, String genre, int isbn);
     
-    public void removeBook(Book b);
+    public boolean removeBook(Book b);
     
-    public void createLoan(Customer customer, Book book);
+    public boolean createLoan(Customer customer, Book book);
     
-    public void cancelLoan(Customer customer, Book book);
+    public boolean cancelLoan(Customer customer, Book book);
     
     public boolean refueling(Book b, int n);
     

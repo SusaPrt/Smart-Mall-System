@@ -2,12 +2,12 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #25316D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CustomerControllers.HomepageCustomerViewController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #25316D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CustomerControllers.Homepage">
    <children>
       <AnchorPane prefHeight="78.0" prefWidth="600.0" style="-fx-background-color: #5F6F94;">
          <children>
@@ -21,7 +21,12 @@
                   <Font name="Calibri Bold" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="btn_logout" layoutX="522.0" layoutY="38.0" mnemonicParsing="false" onAction="#toLogin" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Logout" textFill="RED">
+            <Button layoutX="522.0" layoutY="38.0" mnemonicParsing="false" onAction="#toLogin" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Logout" textFill="RED">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button layoutX="436.0" layoutY="38.0" mnemonicParsing="false" onAction="#toCart" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="MySpace">
                <font>
                   <Font name="Calibri Bold" size="15.0" />
                </font>
@@ -33,21 +38,21 @@
             <Font name="Calibri Bold" size="20.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="250.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Restaurants">
+      <Text fill="WHITE" layoutX="233.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Restaurants">
          <font>
             <Font name="Calibri Bold" size="20.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="535.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Shops">
+      <Text fill="WHITE" layoutX="454.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Shops">
          <font>
             <Font name="Calibri Bold" size="20.0" />
          </font>
       </Text>
       <AnchorPane layoutX="14.0" layoutY="123.0" prefHeight="262.0" prefWidth="571.0">
          <children>
-            <ListView fx:id="list_libreries" prefHeight="262.0" prefWidth="160.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;" />
-            <ListView fx:id="list_restaurants" layoutX="206.0" prefHeight="262.0" prefWidth="160.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;" />
-            <ListView fx:id="list_shops" layoutX="411.0" prefHeight="262.0" prefWidth="160.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;" />
+            <VBox fx:id="vBox_libreries" prefHeight="262.0" prefWidth="129.0" />
+            <VBox fx:id="vBox_restaurants" layoutX="221.0" prefHeight="262.0" prefWidth="129.0" />
+            <VBox fx:id="vBox_shops" layoutX="441.0" layoutY="3.0" prefHeight="262.0" prefWidth="129.0" />
          </children>
       </AnchorPane>
    </children>

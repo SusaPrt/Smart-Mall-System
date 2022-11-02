@@ -4,7 +4,7 @@
  */
 package Controllers.StaffControllers;
 
-import Controllers.CustomerControllers.HomepageCustomerViewController;
+import Controllers.CustomerControllers.Homepage;
 import Controllers.LoginViewController;
 import Controllers.MainApplication;
 import Model.administration.Staff;

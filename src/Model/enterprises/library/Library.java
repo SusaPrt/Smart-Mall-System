@@ -76,7 +76,7 @@ public class Library implements ILibrary {
     
     @Override
     public Set<Book> searchBookByGenre(String genre) {
-        return this.booksList.stream().filter(b -> b.getGenre().equals(genre)).collect(Collectors.toSet());
+        return this.booksList.stream().filter(b -> b.getGenre().contains(genre)).collect(Collectors.toSet());
     }
     
     @Override
@@ -95,38 +95,48 @@ public class Library implements ILibrary {
     }
     
     @Override
-    public void addBook(String name,  String author, double price, int quantity, int year, String genre, int isbn) {
-        if(this.checkISBN(isbn))
-            System.out.println("Error: book already registered");
-        else
-            this.booksList.add(new Book(name, author, price, quantity, year, genre, isbn));        
+    public boolean addBook(String name,  String author, double price, int quantity, int year, String genre, int isbn) {
+        boolean done = false;
+        if(!(this.checkISBN(isbn))){
+            this.booksList.add(new Book(name, author, price, quantity, year, genre, isbn));  
+            done = true;
+        }
+        return done;
     }
     
     @Override
-    public void removeBook(Book b) {
-        if(this.checkISBN(b.getISBN()))
+    public boolean removeBook(Book b) {
+        boolean done = false;
+        if(this.checkISBN(b.getISBN())) {
             this.booksList.remove(b);
-        else
-            System.out.println("Error: book non registered");
+            done = true;
+        }
+        return done;
     }
     
     @Override
-    public void createLoan(Customer customer, Book book) {
+    public boolean createLoan(Customer customer, Book book) {
+        boolean done = false;
         if(book.getQuantity() > 0){
             if(!this.loansList.containsKey(customer))
                 this.loansList.put(customer, new HashSet<>());
             book.decreaseQuantity(1);
+            done = true;
             this.loansList.get(customer).add(new Loan(book));
-        }else{
-            System.out.println("Error!");
         }
+        return done;
     }
     
     @Override
-    public void cancelLoan(Customer customer, Book book) {
+    public boolean cancelLoan(Customer customer, Book book) {
+        boolean done = false;
         Loan work = this.loansList.get(customer).stream().filter(l -> l.getBorrowedBook().equals(book)).findFirst().get();
-        this.loansList.get(customer).remove(work);
-        book.increaseQuantity(1);
+        if(!(work == null)) {
+            this.loansList.get(customer).remove(work);
+            book.increaseQuantity(1);
+            done = true;
+        }
+        return done;
     }
     
     @Override

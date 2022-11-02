@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #25316D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CustomerControllers.PersonalSpace">
+   <children>
+      <AnchorPane prefHeight="78.0" prefWidth="600.0" style="-fx-background-color: #5F6F94;">
+         <children>
+            <Button layoutX="522.0" layoutY="38.0" mnemonicParsing="false" onAction="#toLogin" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Logout" textFill="RED">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="14.0" layoutY="91.0" prefHeight="294.0" prefWidth="571.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;">
+         <children>
+            <Label fx:id="label_user_id" layoutX="34.0" layoutY="45.0" text="&lt;id user&gt;">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Label>
+            <Text layoutX="14.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id:">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Text>
+            <Label fx:id="label_user_credit" layoutX="60.0" layoutY="65.0" text="&lt;credit&gt;">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Label>
+            <Text layoutX="14.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Credit:">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Text>
+            <Text layoutX="270.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cart:">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Text>
+            <ScrollPane fx:id="scrollPane_cart" layoutX="270.0" layoutY="28.0" prefHeight="218.0" prefWidth="284.0" />
+            <Button layoutX="270.0" layoutY="259.0" mnemonicParsing="false" onAction="#payCart" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Pay">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Button>
+            <Text layoutX="13.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add credit">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Text>
+            <TextField fx:id="credit_to_add" layoutX="13.0" layoutY="147.0" prefHeight="26.0" prefWidth="65.0" />
+            <Button layoutX="90.0" layoutY="146.0" mnemonicParsing="false" onAction="#addCredit" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Add">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Button>
+            <Text layoutX="14.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Text>
+            <Label fx:id="label_user_name" layoutX="62.0" layoutY="26.0" prefHeight="18.0" prefWidth="158.0" text="&lt;name user&gt;">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Label>
+            <Button layoutX="9.0" layoutY="259.0" mnemonicParsing="false" onAction="#toHomepage" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Back">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -4,7 +4,7 @@
  */
 package Controllers;
 
-import Controllers.CustomerControllers.HomepageCustomerViewController;
+import Controllers.CustomerControllers.Homepage;
 import Controllers.StaffControllers.StaffHomepageViewController;
 import Model.administration.Customer;
 import Model.administration.Person;
@@ -74,14 +74,14 @@ public class LoginViewController implements Initializable {
             if( p instanceof Staff){
                 Staff s = (Staff)p;
                 // richiamo view per STAFF
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/StaffViews/HomepageStaff.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/StaffViews/HomepageStaff.fxml"));
                 try {
                     root = loader.load();
                 } catch (IOException ex) {
                     System.out.println(ex+"\nEccezione caricamento staff homepage");
                 }
-                StaffHomepageViewController sC = loader.getController();
-                sC.setData(s, this.mainApp);
+                StaffHomepageViewController sHController = loader.getController();
+                sHController.setData(s, this.mainApp);
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
@@ -90,18 +90,18 @@ public class LoginViewController implements Initializable {
             }else{
                 Customer c = (Customer)p;
                 //richiamo view per CUSTOMER
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/CustomerViews/HomepageCustomer.fxml"));
-                try {
+                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/CustomerViews/HomepageCustomer.fxml"));
+                try {                                   
                     root = loader.load();
                 } catch (IOException ex) {
                     System.out.println(ex+"\nEccezione caricamento customer homepage");
                 }
-                HomepageCustomerViewController hC = loader.getController();
-                hC.setData(c, this.mainApp);
+                Homepage cHController = loader.getController();
+                cHController.setData(c, this.mainApp);
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
-                stage.show();                
+                stage.show();       
             }
         } else {
             this.label_error_sign_in.setText("Error: try again");
@@ -126,7 +126,7 @@ public class LoginViewController implements Initializable {
             } catch (IOException ex) {
                 System.out.println(ex+"\nEccezione caricamento customer homepage");
             }
-            HomepageCustomerViewController hC = loader.getController();
+            Homepage hC = loader.getController();
             hC.setData(c, this.mainApp);
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
