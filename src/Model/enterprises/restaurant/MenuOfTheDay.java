@@ -24,6 +24,16 @@ public class MenuOfTheDay {
         this.rnd = new Random();
         this.makeMenuOFTheDay();
     } 
+
+    public LinkedList<Dish> getLunch() {
+        return this.lunch;
+    }
+
+    public LinkedList<Dish> getDinner() {
+        return this.dinner;
+    }
+    
+    
     
     private void makeMenuOFTheDay() {
         this.lunch.add(this.menu.getTypeDishes(Course.FIRSTS).get(this.rnd.nextInt(this.menu.getTypeDishes(Course.FIRSTS).size())));

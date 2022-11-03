@@ -48,19 +48,27 @@ public class Shop implements IShop {
     
     // >> METODI STAFF <<
     @Override
-    public void addItem(String name, double price, int quantity) {
-        if(!this.checkItemByName(name))
+    public boolean addItem(String name, double price, int quantity) {
+        boolean done = false;
+        if(!this.checkItemByName(name)) {
             this.warehouse.add(new Item(name, price, quantity));
+            done = true;
+        }
         else
             System.out.println("Error: item already registered");
+        return done;
     }
     
     @Override
-    public void removeItem(Item i) {
-        if(this.checkItemByName(i.getName()))
+    public boolean removeItem(Item i) {
+        boolean done = false;
+        if(this.checkItemByName(i.getName())) {
+            done = true;
             this.warehouse.remove(i);
+        }
         else
             System.out.println("Error: item not registered");
+        return done;
     }
 
     @Override

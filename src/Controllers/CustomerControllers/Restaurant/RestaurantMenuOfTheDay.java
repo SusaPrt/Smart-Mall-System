@@ -19,40 +19,43 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 //@author Susanna
 
-public class RestaurantReserve implements Initializable {
+public class RestaurantMenuOfTheDay implements Initializable {
     private MainApplication mainApplication;
     private Customer customer;
     private Restaurant restaurant;
     private Parent root;
     private Stage stage;
     private Scene scene;
-    
+
     @FXML
     private Label label_name_enterprise;
     @FXML
-    private TextField name_reservation;
+    private Label label_lunch_first;
     @FXML
-    private TextField n_seats_reservation;
+    private Label label_lunch_second;
     @FXML
-    private Label label_response;
+    private Label label_lunch_dessert;
     @FXML
-    private Pane pnl_reserve;
+    private Label label_dinner_first;
+    @FXML
+    private Label label_dinner_second;
+    @FXML
+    private Label label_dinner_dessert;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    }    
-    public void setData(Customer c, Restaurant r, MainApplication mainApp) {
-        this.customer = c;
-        this.restaurant = r;
+    }   
+    void setData(Customer c, Restaurant r, MainApplication mainApp) {
         this.mainApplication = mainApp;
+        this.restaurant = r;
+        this.customer = c;
         this.label_name_enterprise.setText(r.getName());
-    }
+        this.setMenu(r);
+    }       
 
     @FXML
     private void showMenu(ActionEvent event) {
@@ -69,6 +72,7 @@ public class RestaurantReserve implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
 
     @FXML
     private void toHomepage(ActionEvent event) {
@@ -87,38 +91,29 @@ public class RestaurantReserve implements Initializable {
     }
 
     @FXML
-    private void addReservation(ActionEvent event) {
-        String name = this.name_reservation.getText();
-        int seats = Integer.parseInt(this.n_seats_reservation.getText());
-        if(!(name.isBlank())) {
-            boolean done = this.restaurant.reserveSeats(seats, name);
-            if(done)
-                this.label_response.setText("Reservation made!");
-            else
-                this.label_response.setText("Error");
-        }
-    }
-
-    @FXML
-    private void clearInputs(ActionEvent event) {
-        this.name_reservation.clear();
-        this.n_seats_reservation.clear();
-    }
-
-    @FXML
-    private void showMenuOfTheDay(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/CustomerViews/RestaurantMenuOfTheDay.fxml"));
+    private void showReserve(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/CustomerViews/Restaurant/RestaurantReserve.fxml"));
         try {
             root = loader.load();
         } catch (IOException ex) {
-            System.out.println(ex+"\nEccezione caricamento customer menu of the day");
+            System.out.println(ex+"\nEccezione caricamento customer restaurant reserve");
         }
-        RestaurantMenuOfTheDay cMOTDController = loader.getController();
-        cMOTDController.setData(this.customer, this.restaurant, this.mainApplication);
+        RestaurantReserve cRRController = loader.getController();
+        cRRController.setData(this.customer, this.restaurant, this.mainApplication);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    private void setMenu(Restaurant r) {
+        this.label_lunch_first.setText(r.getDailyMenu().getLunch().get(0).getName());
+        this.label_lunch_second.setText(r.getDailyMenu().getLunch().get(1).getName());
+        this.label_lunch_dessert.setText(r.getDailyMenu().getLunch().get(2).getName());
+        
+        this.label_dinner_first.setText(r.getDailyMenu().getLunch().get(0).getName());
+        this.label_dinner_second.setText(r.getDailyMenu().getLunch().get(1).getName());
+        this.label_dinner_dessert.setText(r.getDailyMenu().getLunch().get(2).getName());
     }
     
 }

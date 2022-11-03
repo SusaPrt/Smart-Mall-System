@@ -53,7 +53,6 @@ public class Restaurant implements IRestaurant {
         this.fileChecker();       
     }
 
-    // >> METODI PUBBLICI <<
     @Override
     public MenuOfTheDay getDailyMenu() {
         return this.menuOfTheDay;
@@ -74,7 +73,10 @@ public class Restaurant implements IRestaurant {
         return this.menuOfTheDay.toString();
     }    
     
-    // >> METODI STAFF <<
+    public Map<String, Integer> getReservations() {
+        return this.reservations;
+    }
+    
     @Override
     public boolean cancelReservation(String name) {
         boolean done = false;
@@ -86,7 +88,7 @@ public class Restaurant implements IRestaurant {
             System.out.println("Error: unregistered name");
         return done;
     }        
-    
+
     @Override
     public boolean refueling(Dish d, int i) {
         boolean done = false;
@@ -106,7 +108,6 @@ public class Restaurant implements IRestaurant {
         this.menuOfTheDay = new MenuOfTheDay(menu);
     }
     
-    // >> METODI CUSTOMER <<
     @Override
     public boolean orderADish(Dish d, int n, Customer c) {
         boolean done = false;

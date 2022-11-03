@@ -119,9 +119,12 @@ public class LibraryAddBook implements Initializable {
          String genre = this.genre_new_book.getText();
          int isbn = Integer.parseInt(this.isbn_new_book.getText());
          
-         if(!(genre == null) && !(name == null) && !(author == null)) {
-             this.library.addBook(name, author, price, quantity, year, genre, isbn);
-             this.label_response.setText("Book " + name + " added!");
+         if(!(genre == null) && !(name == null) && !(author == null) && price > 0 && quantity >= 0 && isbn >= 0) {
+             boolean done = this.library.addBook(name, author, price, quantity, year, genre, isbn);
+             if(done)
+                 this.label_response.setText("Book " + name + " added!");
+             else
+                 this.label_response.setText("ERROR");
          }
     }
 

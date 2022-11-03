@@ -20,8 +20,8 @@ public interface IMenu {
     public Set<Dish> getAvailableTypeDishes(Course course);
     
     //aggiunge un piatto al menu
-    public void addDish(String name, double price, int quantity, Course course);
+    public boolean addDish(String name, double price, int quantity, Course course);
     
     //rimuove un piatto dal menu
-    public void removeDish(Dish d);
+    public boolean removeDish(Dish d);
 }

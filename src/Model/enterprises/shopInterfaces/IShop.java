@@ -18,9 +18,9 @@ public interface IShop {
     public List<Item> getWarehouse();
     
     // >> METODI STAFF <<
-    public void addItem(String name, double price, int quantity);
+    public boolean addItem(String name, double price, int quantity);
     
-    public void removeItem(Item i);
+    public boolean removeItem(Item i);
     
     public boolean refueling(Item i, int n);
     

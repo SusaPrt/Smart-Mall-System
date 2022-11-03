@@ -170,7 +170,7 @@ public class HomepageStaff implements Initializable {
         
         Button btnRemove = new Button();
         btnRemove.setText("Remove");
-        vBox2.getChildren().add(btnOpen);
+        vBox2.getChildren().add(btnRemove);
         btnRemove.setAlignment(Pos.CENTER);
         
         btnOpen.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {

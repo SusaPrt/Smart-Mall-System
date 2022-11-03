@@ -2,13 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package Controllers.CustomerControllers.Restaurant;
+package Controllers.StaffControllers.Restaurant;
 
-import Controllers.CustomerControllers.Homepage;
 import Controllers.MainApplication;
-import Model.administration.Customer;
+import Controllers.StaffControllers.HomepageStaff;
+import Model.administration.Staff;
 import Model.enterprises.restaurant.Course;
 import Model.enterprises.restaurant.Dish;
+import Model.enterprises.restaurant.Menu;
 import Model.enterprises.restaurant.Restaurant;
 import java.io.IOException;
 import java.net.URL;
@@ -24,74 +25,106 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 //@author Susanna
 
-public class RestaurantMenu implements Initializable {
+public class RestaurantMenuS implements Initializable {
     private MainApplication mainApplication;
-    private Customer customer;
+    private Staff staff;
     private Restaurant restaurant;
     private Parent root;
     private Stage stage;
     private Scene scene;
-    
+
     @FXML
     private Label label_name_enterprise;
     @FXML
-    private ScrollPane scrollPane_menu;
+    private TextField name_new_dish;
+    @FXML
+    private TextField price_new_dish;
+    @FXML
+    private TextField quantity_new_dish;
+    @FXML
+    private ChoiceBox<Course> course_choise;
     @FXML
     private Label label_response;
+    @FXML
+    private ScrollPane scrollPane_menu;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }    
-    public void setData(Customer c, Restaurant r, MainApplication mainApp) {
-        this.customer = c;
-        this.restaurant = r;
+    public void setData(Staff s, Restaurant r, MainApplication mainApp) {
         this.mainApplication = mainApp;
+        this.staff = s;
+        this.restaurant = r;       
         this.label_name_enterprise.setText(r.getName());
-        this.showMenu(r);
+        this.course_choise.getItems().addAll(Course.FIRSTS, Course.SECONDS, Course.DESSERTS, Course.WINESANDSOFT);
+        this.showMenu(r.getMenu());
     }
 
     @FXML
-    private void showReserve(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/CustomerViews/Restaurant/RestaurantReserve.fxml"));
+    private void showReservations(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/StaffViews/RestaurantReservations.fxml"));
         try {
             root = loader.load();
         } catch (IOException ex) {
-            System.out.println(ex+"\nEccezione caricamento customer restaurant reserve");
+            System.out.println(ex+"\nEccezione caricamento staff restaurant reservations");
         }
-        RestaurantReserve cRRController = loader.getController();
-        cRRController.setData(this.customer, this.restaurant, this.mainApplication);
+        RestaurantReservations sRRController = loader.getController();
+        sRRController.setData(this.staff, this.restaurant, this.mainApplication);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
-        stage.show();
+        stage.show(); 
     }
 
     @FXML
     private void toHomepage(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/CustomerViews/HomepageCustomer.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/StaffViews/HomepageStaff.fxml"));
         try {
             root = loader.load();
         } catch (IOException ex) {
-            System.out.println(ex+"\nEccezione caricamento customer homepage");
+            System.out.println(ex+"\nEccezione caricamento staff homepage");
         }
-        Homepage cHController = loader.getController();
-        cHController.setData(this.customer, this.mainApplication);
+        HomepageStaff sHController = loader.getController();
+        sHController.setData(this.staff, this.mainApplication);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
-        stage.show();
+        stage.show(); 
     }
 
-    private void showMenu(Restaurant r) {
+    @FXML
+    private void addDish(ActionEvent event) {
+        String name = this.name_new_dish.getText();
+        double price = Double.parseDouble(this.price_new_dish.getText());
+        int quantity = Integer.parseInt(this.quantity_new_dish.getText());
+        Course course = this.course_choise.getValue();
+        if(!(name == null) && price >= 0 && quantity > 0 && !(course == null)) {
+            this.restaurant.getMenu().addDish(name, price, quantity, course);
+            this.showMenu(this.restaurant.getMenu());
+        }
+    }
+
+    @FXML
+    private void clearInputs(ActionEvent event) {
+        this.label_response.setText(" ");
+        this.name_new_dish.clear();
+        this.price_new_dish.clear();
+        this.quantity_new_dish.clear();
+    }
+
+    private void showMenu(Menu menu) {
         VBox vBox = new VBox();
+        
         vBox.getChildren().add(new Label("FIRSTS"));        
         for(Dish d : this.restaurant.getMenu().getAvailableTypeDishes(Course.FIRSTS)) {
             BorderPane pane = this.createViewDish(d);
@@ -115,12 +148,12 @@ public class RestaurantMenu implements Initializable {
             BorderPane pane = this.createViewDish(d);
             vBox.getChildren().add(pane);
         }
-        
+              
         this.scrollPane_menu.setContent(vBox);
         this.scrollPane_menu.fitToWidthProperty().set(true);
         this.scrollPane_menu.fitToHeightProperty().set(true);
     }
-
+    
     private BorderPane createViewDish(Dish d) {
         BorderPane pane = new BorderPane();
         pane.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
@@ -136,17 +169,20 @@ public class RestaurantMenu implements Initializable {
         vBox2.setAlignment(Pos.CENTER);
         pane.setRight(vBox2);
         
-        Button btnBuy = new Button();
-        btnBuy.setText("Buy");
-        vBox2.getChildren().add(btnBuy);
-        btnBuy.setAlignment(Pos.CENTER);
+        Button btnRemove = new Button();
+        btnRemove.setText("Remove");
+        vBox2.getChildren().add(btnRemove);
+        btnRemove.setAlignment(Pos.CENTER);
         
-        btnBuy.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+        btnRemove.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                customer.getCart().addItem(d);
-                d.decreaseQuantity(1);
-                label_response.setText("Book " + d.getName() + " added!");
+                boolean done = restaurant.getMenu().removeDish(d);
+                if(done) {
+                    label_response.setText("Reservation removed!");
+                    showMenu(restaurant.getMenu());
+                } else
+                    label_response.setText("ERROR");
             }
         });
         
@@ -154,22 +190,8 @@ public class RestaurantMenu implements Initializable {
     }
 
     @FXML
-    private void showMenuOfTheDay(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/CustomerViews/RestaurantMenuOfTheDay.fxml"));
-        try {
-            root = loader.load();
-        } catch (IOException ex) {
-            System.out.println(ex+"\nEccezione caricamento customer menu of the day");
-        }
-        RestaurantMenuOfTheDay cMOTDController = loader.getController();
-        cMOTDController.setData(this.customer, this.restaurant, this.mainApplication);
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    private void newDay(ActionEvent event) {
+        this.restaurant.newDay();
     }
-
-
-    
     
 }

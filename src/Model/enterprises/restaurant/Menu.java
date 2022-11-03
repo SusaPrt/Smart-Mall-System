@@ -38,19 +38,25 @@ public class Menu implements IMenu {
     }
     
     @Override
-    public void addDish(String name, double price, int quantity, Course course) {
-        if(!(this.checkDish(name, course)))
+    public boolean addDish(String name, double price, int quantity, Course course) {
+        boolean done = false;
+        if(!(this.checkDish(name, course))) {
             this.warehouse.get(course).add(new Dish(name, price, quantity, course));
-        else
+            done = true;
+        } else
             System.out.println("Error: dish already registered");
+        return done;
     }
     
     @Override
-    public void removeDish(Dish d) {
-        if(this.checkDish(d.getName(), d.getCourse()))    
+    public boolean removeDish(Dish d) {
+        boolean done = false;
+        if(this.checkDish(d.getName(), d.getCourse())) {
             this.warehouse.get(d.getCourse()).remove(d);
-        else
+            done = true;
+        } else
             System.out.println("Error: dish not in the menu");
+        return done;
     } 
     
     // >> METODO PRIVATO <<
