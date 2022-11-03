@@ -110,16 +110,16 @@ public class Homepage implements Initializable {
             btn.addEventHandler(ActionEvent.ACTION, (ActionEvent event) -> {
                 FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/CustomerViews/Library/LibraryAllBooks.fxml"));
                 try {
-                    root = loader.load();
-                    LibraryAllBooks cLController = loader.getController();
-                    cLController.setData(customer, l, mainApplication);
-                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                    scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
+                    root = loader.load();                    
                 } catch (IOException ex) {
                     System.out.println(ex+"\nEccezione caricamento customer library view"); 
-                }                
+                }      
+                LibraryAllBooks cLController = loader.getController();
+                cLController.setData(customer, l, mainApplication);
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
             });
         } else if(e instanceof Restaurant) {
             Restaurant r = (Restaurant) e;
@@ -142,14 +142,14 @@ public class Homepage implements Initializable {
             Shop s = (Shop) e;
             btn.setText(s.getName());
             btn.addEventHandler(ActionEvent.ACTION, (ActionEvent event) -> {
-                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/CustomerViews/RestaurantCustomerView.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/CustomerViews/ShopCustomer.fxml"));
                 try {
                     root = loader.load();
                 } catch (IOException ex) {
-                    System.out.println(ex+"\nEccezione caricamento customer restaurant view"); 
+                    System.out.println(ex+"\nEccezione caricamento customer shop view"); 
                 }
-                ShopCustomerViewController cSController = loader.getController();
-                cSController.setData(customer, s);
+                ShopCustomer cSController = loader.getController();
+                cSController.setData(customer, s, mainApplication);
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);

@@ -5,7 +5,7 @@
 package Controllers;
 
 import Controllers.CustomerControllers.Homepage;
-import Controllers.StaffControllers.StaffHomepageViewController;
+import Controllers.StaffControllers.HomepageStaff;
 import Model.administration.Customer;
 import Model.administration.Person;
 import Model.administration.Staff;
@@ -80,7 +80,7 @@ public class LoginViewController implements Initializable {
                 } catch (IOException ex) {
                     System.out.println(ex+"\nEccezione caricamento staff homepage");
                 }
-                StaffHomepageViewController sHController = loader.getController();
+                HomepageStaff sHController = loader.getController();
                 sHController.setData(s, this.mainApp);
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);

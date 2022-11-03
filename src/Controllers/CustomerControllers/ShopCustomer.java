@@ -4,10 +4,10 @@
  */
 package Controllers.CustomerControllers;
 
-import Controllers.LoginViewController;
 import Controllers.MainApplication;
 import Model.administration.Customer;
 import Model.administration.Item;
+import Model.enterprises.shop.Shop;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,81 +24,38 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-//@Author Susanna
+//@author Susanna
 
-public class PersonalSpace implements Initializable {
+public class ShopCustomer implements Initializable {
     private MainApplication mainApplication;
     private Customer customer;
+    private Shop shop;
     private Parent root;
     private Stage stage;
     private Scene scene;
     
     @FXML
-    private Label label_user_id;
+    private Label label_name_enterprise;
     @FXML
-    private Label label_user_credit;
+    private ScrollPane scrollPane_items;
     @FXML
-    private ScrollPane scrollPane_cart;
-    @FXML
-    private TextField credit_to_add;
-    @FXML
-    private Label label_user_name;
-    @FXML
-    private Text label_response;
+    private Label label_response;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    }  
-    void setData(MainApplication mainApp, Customer c) {
-        this.mainApplication = mainApp;
+    }    
+    void setData(Customer c, Shop s, MainApplication mainApp) {
         this.customer = c;
-        this.label_response.setText("");
-        this.label_user_name.setText(c.getName());
-        this.label_user_id.setText(""+c.getId());
-        this.label_user_credit.setText(""+c.getCredit());
-        this.showCart(c);
+        this.shop = s;
+        this.mainApplication = mainApp;
+        this.label_name_enterprise.setText(s.getName());
+        this.showItems(s);
     }
-    @FXML
-    private void toLogin(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/LoginView.fxml"));
-        try {
-            root = loader.load();
-        } catch (IOException ex) {
-            System.out.println(ex+"\nEccezione caricamento customer homepage");
-        }
-        LoginViewController lVcontroller = loader.getController();
-        lVcontroller.setData(this.mainApplication);
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    private void payCart(ActionEvent event) {
-        boolean done = this.customer.payTheCart();
-        if(done) {
-            for(Item i : this.customer.getCart().getProducts())
-                this.customer.getCart().removeProducts(i);
-            this.showCart(customer);
-            this.label_response.setText("Payment made");
-        } else {
-            this.label_response.setText("ERROR");
-        }
-    }
-
-    @FXML
-    private void addCredit(ActionEvent event) {
-        this.customer.addCredit(Double.parseDouble(this.credit_to_add.getText()));
-        this.label_user_credit.setText(""+this.customer.getCredit());
-    }
-
+    
     @FXML
     private void toHomepage(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/CustomerViews/HomepageCustomer.fxml"));
@@ -115,12 +72,12 @@ public class PersonalSpace implements Initializable {
         stage.show();
     }
 
-    private void showCart(Customer c) {
-        VBox vBox = new VBox();       
-        for(Item i : c.getCart().getProducts()) {
+    private void showItems(Shop s) {
+         VBox vBox = new VBox();
+         for(Item i : s.getWarehouse()) {
             BorderPane pane = this.createViewItem(i);
             vBox.getChildren().add(pane);
-        }
+         }
     }
 
     private BorderPane createViewItem(Item i) {
@@ -138,21 +95,21 @@ public class PersonalSpace implements Initializable {
         vBox2.setAlignment(Pos.CENTER);
         pane.setRight(vBox2);
         
-        Button btnRemove = new Button();
-        btnRemove.setText("Buy");
-        vBox2.getChildren().add(btnRemove);
-        btnRemove.setAlignment(Pos.CENTER);
+        Button btnBuy = new Button();
+        btnBuy.setText("Buy");
+        vBox2.getChildren().add(btnBuy);
+        btnBuy.setAlignment(Pos.CENTER);
         
-        btnRemove.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+        btnBuy.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                customer.getCart().removeProducts(i);
-                i.increaseQuantity(1);
-                showCart(customer);
+                customer.getCart().addItem(i);
+                i.decreaseQuantity(1);
+                label_response.setText("Item  " + i.getName() + " added!");
             }
         });
         
-        return pane;    
+        return pane;
     }
 
     

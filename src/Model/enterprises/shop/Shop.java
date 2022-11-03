@@ -142,6 +142,10 @@ public class Shop implements IShop {
     public String toString() {
         return "Shop " + this.name;
     }
+
+    public void setData(Customer customer, Shop s) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
      
 }

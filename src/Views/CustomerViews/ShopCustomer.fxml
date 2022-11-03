@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #25316D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CustomerControllers.ShopCustomer">
+   <children>
+      <AnchorPane prefHeight="409.0" prefWidth="195.0" style="-fx-background-color: #5F6F94;">
+         <children>
+            <Button layoutX="7.0" layoutY="104.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="176.0" style="-fx-background-color: #5F6F94;" text="Items" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="15.0" layoutY="366.0" mnemonicParsing="false" onAction="#toHomepage" prefHeight="20.0" prefWidth="48.0" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Back">
+               <font>
+                  <Font name="Calibri Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="label_name_enterprise" layoutX="52.0" layoutY="64.0" text="&lt;name&gt;" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="27.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="195.0" prefHeight="409.0" prefWidth="404.0">
+         <children>
+            <ScrollPane fx:id="scrollPane_items" layoutX="28.0" layoutY="62.0" prefHeight="317.0" prefWidth="349.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;" />
+            <Label layoutX="28.0" layoutY="36.0" text="Items" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="label_response" layoutX="202.0" layoutY="36.0" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

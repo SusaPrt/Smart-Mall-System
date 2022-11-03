@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #25316D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.StaffControllers.Library.LibraryAllBooksS">
+   <children>
+      <AnchorPane layoutY="-1.0" prefHeight="410.0" prefWidth="194.0" style="-fx-background-color: #5F6F94;">
+         <children>
+            <Button layoutX="7.0" layoutY="104.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="176.0" style="-fx-background-color: #5F6F94;" text="Books" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="7.0" layoutY="190.0" mnemonicParsing="false" onAction="#showAddBook" onMouseDragOver="#searchView" prefHeight="85.0" prefWidth="176.0" style="-fx-background-color: #5F6F94;" text="Add" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="7.0" layoutY="269.0" mnemonicParsing="false" onAction="#showLoans" prefHeight="85.0" prefWidth="176.0" style="-fx-background-color: #5F6F94;" text="Loans" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="15.0" layoutY="366.0" mnemonicParsing="false" onAction="#toHomepage" prefHeight="20.0" prefWidth="48.0" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Back">
+               <font>
+                  <Font name="Calibri Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="label_name_enterprise" layoutX="52.0" layoutY="53.0" text="&lt;name&gt;" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="27.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="195.0" prefHeight="410.0" prefWidth="404.0" style="-fx-background-color: #25316D;">
+         <children>
+            <Pane layoutX="17.0" layoutY="24.0" prefHeight="362.0" prefWidth="371.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;">
+               <children>
+                  <Button layoutX="300.0" layoutY="73.0" mnemonicParsing="false" onAction="#clearInputs" style="-fx-background-radius: 10; -fx-background-color: #FEF5AC;" text="Clear">
+                     <font>
+                        <Font name="Calibri Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="string_search" layoutX="18.0" layoutY="74.0" prefHeight="25.0" prefWidth="176.0" style="-fx-background-radius: 5;" />
+                  <Text layoutX="18.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search by">
+                     <font>
+                        <Font name="Calibri Bold" size="15.0" />
+                     </font>
+                  </Text>
+                  <ChoiceBox fx:id="choise_search" layoutX="18.0" layoutY="37.0" prefHeight="25.0" prefWidth="176.0" style="-fx-background-radius: 5;" />
+                  <Button layoutX="300.0" layoutY="36.0" mnemonicParsing="false" onAction="#searchBookBy" style="-fx-background-radius: 10; -fx-background-color: #FEF5AC;" text="Send">
+                     <font>
+                        <Font name="Calibri Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <ScrollPane fx:id="scrollPane_books" layoutX="18.0" layoutY="108.0" prefHeight="240.0" prefWidth="336.0" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

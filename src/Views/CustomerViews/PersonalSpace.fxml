@@ -78,6 +78,11 @@
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Button>
+            <Text fx:id="label_response" fill="WHITE" layoutX="347.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>

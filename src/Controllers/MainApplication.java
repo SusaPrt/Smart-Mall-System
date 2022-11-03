@@ -42,7 +42,7 @@ public class MainApplication {
         return this.libraries.stream().filter(l -> l.getName().equals("Library")).findFirst().get();
     }
     
-    public List getLibraries(){
+    public List<Library> getLibraries(){
         return this.libraries.stream().collect(Collectors.toList());
     }
 
@@ -50,7 +50,7 @@ public class MainApplication {
         return this.restaurants.stream().filter(r -> r.getName().equals("Restaurant")).findFirst().get();
     }
     
-    public List getRestaurants(){
+    public List<Restaurant> getRestaurants(){
         return this.restaurants.stream().collect(Collectors.toList());
     }
 
@@ -58,7 +58,7 @@ public class MainApplication {
         return this.shops.stream().filter(s -> s.getName().equals("Shop")).findFirst().get();
     }
     
-    public List getShops(){
+    public List<Shop> getShops(){
         return this.shops.stream().collect(Collectors.toList());
     }
     
