@@ -41,7 +41,7 @@
       </AnchorPane>
       <AnchorPane layoutX="195.0" prefHeight="410.0" prefWidth="406.0">
          <children>
-            <Pane fx:id="pnl_reserve" layoutX="19.0" layoutY="55.0" prefHeight="312.0" prefWidth="368.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;">
+            <Pane fx:id="pnl_reserve" layoutX="19.0" layoutY="55.0" prefHeight="210.0" prefWidth="368.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;">
                <children>
                   <TextField fx:id="name_reservation" layoutX="14.0" layoutY="47.0" prefHeight="25.0" prefWidth="223.0" style="-fx-background-radius: 10;" />
                   <Text layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
@@ -51,11 +51,6 @@
                   </Text>
                   <TextField fx:id="n_seats_reservation" layoutX="14.0" layoutY="115.0" prefHeight="25.0" prefWidth="85.0" style="-fx-background-radius: 10;" />
                   <Text layoutX="13.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N° seats:">
-                     <font>
-                        <Font name="Calibri Bold" size="20.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="14.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Response:">
                      <font>
                         <Font name="Calibri Bold" size="20.0" />
                      </font>
@@ -70,13 +65,13 @@
                         <Font name="Calibri Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Label fx:id="label_response" layoutX="14.0" layoutY="283.0">
-                     <font>
-                        <Font name="Calibri Bold" size="15.0" />
-                     </font>
-                  </Label>
                </children>
             </Pane>
+            <Label fx:id="label_response" layoutX="19.0" layoutY="281.0" prefHeight="18.0" prefWidth="368.0" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

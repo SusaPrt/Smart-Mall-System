@@ -29,7 +29,7 @@
       </AnchorPane>
       <AnchorPane layoutX="195.0" prefHeight="409.0" prefWidth="404.0">
          <children>
-            <ScrollPane fx:id="scrollPane_items" layoutX="28.0" layoutY="62.0" prefHeight="317.0" prefWidth="349.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;" />
+            <ScrollPane fx:id="scrollPane_items" layoutX="28.0" layoutY="62.0" prefHeight="317.0" prefWidth="349.0" />
             <Label layoutX="28.0" layoutY="36.0" text="Items" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="15.0" />

@@ -32,7 +32,7 @@
                   <Font name="Calibri Bold" size="27.0" />
                </font>
             </Label>
-            <Button layoutX="73.0" layoutY="366.0" mnemonicParsing="false" onAction="#newDay" prefHeight="27.0" prefWidth="69.0" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="New day" textFill="RED">
+            <Button layoutX="73.0" layoutY="366.0" mnemonicParsing="false" onAction="#newDay" prefHeight="27.0" prefWidth="74.0" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="New day" textFill="RED">
                <font>
                   <Font name="Calibri Bold" size="14.0" />
                </font>

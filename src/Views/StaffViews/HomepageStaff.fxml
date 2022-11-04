@@ -72,8 +72,8 @@
             <Font name="Calibri Bold" size="20.0" />
          </font>
       </Text>
-      <ScrollPane fx:id="scrollPane_libraries" layoutX="14.0" layoutY="98.0" prefHeight="174.0" prefWidth="160.0" style="-fx-background-color: #97D2EC;" />
-      <ScrollPane fx:id="scrollPane_restaurants" layoutX="220.0" layoutY="98.0" prefHeight="174.0" prefWidth="160.0" style="-fx-background-color: #97D2EC;" />
-      <ScrollPane fx:id="scrollPane_shops" layoutX="425.0" layoutY="98.0" prefHeight="174.0" prefWidth="160.0" style="-fx-background-color: #97D2EC;" />
+      <ScrollPane fx:id="scrollPane_libraries" layoutX="14.0" layoutY="98.0" prefHeight="174.0" prefWidth="160.0" />
+      <ScrollPane fx:id="scrollPane_restaurants" layoutX="220.0" layoutY="98.0" prefHeight="174.0" prefWidth="160.0" />
+      <ScrollPane fx:id="scrollPane_shops" layoutX="425.0" layoutY="98.0" prefHeight="174.0" prefWidth="160.0" />
    </children>
 </AnchorPane>

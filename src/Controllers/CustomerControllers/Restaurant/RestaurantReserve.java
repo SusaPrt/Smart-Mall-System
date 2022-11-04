@@ -107,7 +107,7 @@ public class RestaurantReserve implements Initializable {
 
     @FXML
     private void showMenuOfTheDay(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/CustomerViews/RestaurantMenuOfTheDay.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/CustomerViews/Restaurant/RestaurantMenuOfTheDay.fxml"));
         try {
             root = loader.load();
         } catch (IOException ex) {

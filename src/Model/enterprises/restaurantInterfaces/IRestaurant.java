@@ -13,23 +13,16 @@ import Model.enterprises.restaurant.MenuOfTheDay;
 
  
 public interface IRestaurant {
-    // >> METODI PUBBLICI <<
     public MenuOfTheDay getDailyMenu();
     
     public Menu getMenu();
     
-    public String getStringMenu();
-    
-    public String getStringDailyMenu();
-    
-    // >> METODI STAFF <<
     public boolean cancelReservation(String name);
     
     public boolean refueling(Dish d, int i);
     
     public void newDay();
     
-    // >> METODI CUSTOMER <<
     public boolean orderADish(Dish d, int n, Customer c);
     
     public boolean reserveSeats(int n, String name);

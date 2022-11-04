@@ -121,6 +121,9 @@ public class PersonalSpace implements Initializable {
             BorderPane pane = this.createViewItem(i);
             vBox.getChildren().add(pane);
         }
+        this.scrollPane_cart.setContent(vBox);
+        this.scrollPane_cart.fitToWidthProperty().set(true);
+        this.scrollPane_cart.fitToHeightProperty().set(true);
     }
 
     private BorderPane createViewItem(Item i) {
@@ -139,7 +142,7 @@ public class PersonalSpace implements Initializable {
         pane.setRight(vBox2);
         
         Button btnRemove = new Button();
-        btnRemove.setText("Buy");
+        btnRemove.setText("Remove");
         vBox2.getChildren().add(btnRemove);
         btnRemove.setAlignment(Pos.CENTER);
         

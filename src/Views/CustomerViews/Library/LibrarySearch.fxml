@@ -31,9 +31,9 @@
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Button>
-            <ScrollPane fx:id="scrollPane_books" layoutX="226.0" layoutY="132.0" prefHeight="253.0" prefWidth="353.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;">
+            <ScrollPane fx:id="scrollPane_books" layoutX="226.0" layoutY="132.0" prefHeight="253.0" prefWidth="353.0">
                <content>
-                  <VBox fx:id="vBox_search" prefHeight="255.0" prefWidth="352.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 5;" />
+                  <VBox fx:id="vBox_search" prefHeight="255.0" prefWidth="352.0" />
                </content>
             </ScrollPane>
             <Label fx:id="label_response" layoutX="440.0" layoutY="59.0" textFill="WHITE">

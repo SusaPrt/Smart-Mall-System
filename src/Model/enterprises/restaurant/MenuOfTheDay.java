@@ -33,8 +33,6 @@ public class MenuOfTheDay {
         return this.dinner;
     }
     
-    
-    
     private void makeMenuOFTheDay() {
         this.lunch.add(this.menu.getTypeDishes(Course.FIRSTS).get(this.rnd.nextInt(this.menu.getTypeDishes(Course.FIRSTS).size())));
         this.lunch.add(this.menu.getTypeDishes(Course.SECONDS).get(this.rnd.nextInt(this.menu.getTypeDishes(Course.SECONDS).size())));

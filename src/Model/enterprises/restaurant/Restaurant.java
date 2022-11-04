@@ -61,17 +61,7 @@ public class Restaurant implements IRestaurant {
     @Override
     public Menu getMenu() {
         return this.menu;
-    }
-    
-    @Override
-    public String getStringMenu() {
-        return this.menu.toString();
-    }
-    
-    @Override
-    public String getStringDailyMenu() {
-        return this.menuOfTheDay.toString();
-    }    
+    } 
     
     public Map<String, Integer> getReservations() {
         return this.reservations;

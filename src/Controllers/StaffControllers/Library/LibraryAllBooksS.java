@@ -47,13 +47,13 @@ public class LibraryAllBooksS implements Initializable {
     private Scene scene;    
 
     @FXML
-    private Label label_name_enterprise;
-    @FXML
     private TextField string_search;
     @FXML
     private ChoiceBox<String> choise_search;
     @FXML
     private ScrollPane scrollPane_books;
+    @FXML
+    private Label label_name_enterpris;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -62,7 +62,7 @@ public class LibraryAllBooksS implements Initializable {
         this.mainApplication = mainApp;
         this.staff = s;
         this.library = l;        
-        this.label_name_enterprise.setText(l.getName());
+        this.label_name_enterpris.setText(l.getName());
         this.choise_search.getItems().addAll(this.types);
         this.showBooks(l.getAllBooks());
     }
@@ -167,7 +167,7 @@ public class LibraryAllBooksS implements Initializable {
         pane.setRight(vBox2);
         
         Button btnRemove = new Button();
-        btnRemove.setText("Buy");
+        btnRemove.setText("Remove");
         vBox2.getChildren().add(btnRemove);
         btnRemove.setAlignment(Pos.CENTER);
         
@@ -182,6 +182,7 @@ public class LibraryAllBooksS implements Initializable {
 
         return pane;
     }
+
 
     
     

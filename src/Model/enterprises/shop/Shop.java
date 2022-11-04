@@ -40,13 +40,11 @@ public class Shop implements IShop {
         this.fileChecker();
     }
 
-    // >> METODI PUBBLICI <<
     @Override
     public List<Item> getWarehouse() {
         return this.warehouse.stream().filter(i -> i.getQuantity() > 0).collect(Collectors.toList());
     }
     
-    // >> METODI STAFF <<
     @Override
     public boolean addItem(String name, double price, int quantity) {
         boolean done = false;
@@ -86,7 +84,7 @@ public class Shop implements IShop {
     public String getName(){
         return this.name;
     }
-    // >> METODO CUSTOMER <<
+
     @Override
     public boolean buyAItem(Item i, int n, Customer c) {
         boolean done = false;
@@ -102,7 +100,6 @@ public class Shop implements IShop {
         return done;
     }
     
-    // >> METODI PRIVATI <<
     private boolean checkItemByName(String name) {
         return this.warehouse.stream().filter(item -> item.getName().equalsIgnoreCase(name)).findFirst().isPresent();
     }

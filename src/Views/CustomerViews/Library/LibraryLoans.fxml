@@ -11,7 +11,7 @@
    <children>
       <AnchorPane layoutX="34.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox fx:id="vBox_your_loans" layoutX="231.0" layoutY="63.0" prefHeight="274.0" prefWidth="313.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;" />
+            <VBox fx:id="vBox_your_loans" layoutX="231.0" layoutY="63.0" prefHeight="274.0" prefWidth="313.0" style="-fx-background-color: #97D2EC;" />
             <Text fill="WHITE" layoutX="231.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your loans">
                <font>
                   <Font name="Calibri Bold" size="15.0" />

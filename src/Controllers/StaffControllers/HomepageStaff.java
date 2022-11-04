@@ -4,10 +4,10 @@
  */
 package Controllers.StaffControllers;
 
-import Controllers.CustomerControllers.Library.LibraryAllBooks;
 import Controllers.LoginViewController;
 import Controllers.MainApplication;
 import Controllers.StaffControllers.Library.LibraryAllBooksS;
+import Controllers.StaffControllers.Restaurant.RestaurantMenuS;
 import Model.administration.Staff;
 import Model.enterprises.library.Library;
 import Model.enterprises.restaurant.Restaurant;
@@ -119,7 +119,7 @@ public class HomepageStaff implements Initializable {
     private void showRestaurants(MainApplication mainApplication) {
         VBox vBox = new VBox();
         for(Restaurant r : this.mainApplication.getRestaurants()) {
-            BorderPane pane = this.createViewEnterprises(r);
+            BorderPane pane = this.createViewEnterprises(r, r.getName());
             vBox.getChildren().add(pane);
         }            
         this.scrollPane_restaurants.setContent(vBox);
@@ -129,8 +129,8 @@ public class HomepageStaff implements Initializable {
 
     private void showShops(MainApplication mainApplication) {
         VBox vBox = new VBox();
-        for(Restaurant r : this.mainApplication.getRestaurants()) {
-            BorderPane pane = this.createViewEnterprises(r);
+        for(Shop s : this.mainApplication.getShops()) {
+            BorderPane pane = this.createViewEnterprises(s, s.getName());
             vBox.getChildren().add(pane);
         }            
         this.scrollPane_shops.setContent(vBox);
@@ -140,8 +140,8 @@ public class HomepageStaff implements Initializable {
 
     private void showLibraries(MainApplication mainApplication) {
         VBox vBox = new VBox();
-        for(Restaurant r : this.mainApplication.getRestaurants()) {
-            BorderPane pane = this.createViewEnterprises(r);
+        for(Library l : this.mainApplication.getLibraries()) {
+            BorderPane pane = this.createViewEnterprises(l, l.getName());
             vBox.getChildren().add(pane);
         }            
         this.scrollPane_libraries.setContent(vBox);
@@ -149,14 +149,14 @@ public class HomepageStaff implements Initializable {
         this.scrollPane_libraries.fitToHeightProperty().set(true);
     }
 
-    private BorderPane createViewEnterprises(Object e) {
+    private BorderPane createViewEnterprises(Object e, String name) {
         BorderPane pane = new BorderPane();
         pane.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
         VBox vBox1 = new VBox();
         vBox1.setAlignment(Pos.CENTER_LEFT);
         pane.setLeft(vBox1);
         
-        vBox1.getChildren().add(new Label("Name: " + e.getClass().getName()));
+        vBox1.getChildren().add(new Label("Name: " + name));
         vBox1.getChildren().add(new Label());
         
         VBox vBox2 = new VBox();
@@ -182,7 +182,7 @@ public class HomepageStaff implements Initializable {
                     try {
                         root = loader.load();                    
                     } catch (IOException ex) {
-                        System.out.println(ex+"\nEccezione caricamento customer library view"); 
+                        System.out.println(ex+"\nEccezione caricamento staff library view"); 
                     }      
                     LibraryAllBooksS cLController = loader.getController();
                     cLController.setData(staff, l, mainApplication);
@@ -191,9 +191,33 @@ public class HomepageStaff implements Initializable {
                     stage.setScene(scene);
                     stage.show();
                 } else if(e instanceof Restaurant) {
-                    
+                    Restaurant r = (Restaurant) e;
+                    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/StaffViews/Restaurant/RestaurantMenuS.fxml"));
+                    try {
+                        root = loader.load();                    
+                    } catch (IOException ex) {
+                        System.out.println(ex+"\nEccezione caricamento staff restaurant view"); 
+                    }      
+                    RestaurantMenuS sRMController = loader.getController();
+                    sRMController.setData(staff, r, mainApplication);
+                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
                 } else {
-                    
+                    Shop s = (Shop) e;
+                    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/StaffViews/ShopStaff.fxml"));
+                    try {
+                        root = loader.load();                    
+                    } catch (IOException ex) {
+                        System.out.println(ex+"\nEccezione caricamento staff shop view"); 
+                    }      
+                    ShopStaff sSController = loader.getController();
+                    sSController.setData(staff, s, mainApplication);
+                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
                 }                    
             }
         });
@@ -209,8 +233,7 @@ public class HomepageStaff implements Initializable {
                 else
                     showShops(mainApplication);
             }
-        });
-        
+        });        
         return pane;
     }
     

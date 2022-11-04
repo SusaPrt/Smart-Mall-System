@@ -19,7 +19,7 @@
                   <Font name="Calibri Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="7.0" layoutY="190.0" mnemonicParsing="false" onAction="#showAddBook" onMouseDragOver="#searchView" prefHeight="85.0" prefWidth="176.0" style="-fx-background-color: #5F6F94;" text="Add" textFill="WHITE">
+            <Button layoutX="7.0" layoutY="190.0" mnemonicParsing="false" onAction="#showAddBook" prefHeight="85.0" prefWidth="176.0" style="-fx-background-color: #5F6F94;" text="Add" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="14.0" />
                </font>
@@ -34,7 +34,7 @@
                   <Font name="Calibri Bold" size="14.0" />
                </font>
             </Button>
-            <Label fx:id="label_name_enterprise" layoutX="52.0" layoutY="53.0" text="&lt;name&gt;" textFill="WHITE">
+            <Label fx:id="label_name_enterpris" layoutX="52.0" layoutY="53.0" text="&lt;name&gt;" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="27.0" />
                </font>

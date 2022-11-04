@@ -40,7 +40,7 @@
       </AnchorPane>
       <AnchorPane layoutX="195.0" prefHeight="410.0" prefWidth="406.0">
          <children>
-            <ScrollPane fx:id="scrollPane_menu" layoutX="23.0" layoutY="63.0" prefHeight="334.0" prefWidth="359.0" style="-fx-background-color: #97D2EC; -fx-border-color: #97D2EC; -fx-background-radius: 10;" />
+            <ScrollPane fx:id="scrollPane_menu" layoutX="23.0" layoutY="63.0" prefHeight="334.0" prefWidth="359.0" />
             <Text fill="WHITE" layoutX="23.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu">
                <font>
                   <Font name="Calibri Bold" size="15.0" />
