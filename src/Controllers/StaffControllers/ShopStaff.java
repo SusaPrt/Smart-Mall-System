@@ -51,6 +51,8 @@ public class ShopStaff implements Initializable {
     private ScrollPane scrollPane_items;
     @FXML
     private Label label_name_enterprise;
+    @FXML
+    private TextField refueling;
 
     
     @Override
@@ -98,6 +100,7 @@ public class ShopStaff implements Initializable {
         this.name_new_item.clear();
         this.price_new_item.clear();
         this.quantity_new_item.clear();
+        this.refueling.clear();
     }
 
     private void showItems(Shop sh) {
@@ -138,8 +141,28 @@ public class ShopStaff implements Initializable {
             public void handle(ActionEvent event) {
                 boolean done = shop.removeItem(i);
                 if(done) {
-                    label_response.setText("Dish removed!");
+                    label_response.setText("Dish " + i.getName() + " removed!");
                     showItems(shop);
+                } else
+                    label_response.setText("ERROR");
+            }
+        });
+        
+        Button btnAdd = new Button();
+        btnAdd.setText("Refueling");
+        vBox2.getChildren().add(btnAdd);
+        btnAdd.setAlignment(Pos.CENTER_LEFT);
+        
+        btnAdd.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                int n = Integer.parseInt(refueling.getText());
+                if(n > 0) {
+                    boolean done = shop.refueling(i, n);
+                    if(done) {
+                        label_response.setText("Refueling " +i.getName() + " by " + n);
+                        showItems(shop);
+                    }
                 } else
                     label_response.setText("ERROR");
             }

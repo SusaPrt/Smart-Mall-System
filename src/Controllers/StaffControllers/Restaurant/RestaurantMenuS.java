@@ -52,11 +52,13 @@ public class RestaurantMenuS implements Initializable {
     @FXML
     private TextField quantity_new_dish;
     @FXML
-    private ChoiceBox<Course> course_choise;
+    private ChoiceBox<String> course_choise;
     @FXML
     private Label label_response;
     @FXML
     private ScrollPane scrollPane_menu;
+    @FXML
+    private TextField refueling;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -66,13 +68,13 @@ public class RestaurantMenuS implements Initializable {
         this.staff = s;
         this.restaurant = r;       
         this.label_name_enterprise.setText(r.getName());
-        this.course_choise.getItems().addAll(Course.FIRSTS, Course.SECONDS, Course.DESSERTS, Course.WINESANDSOFT);
+        this.course_choise.getItems().addAll(Course.FIRSTS.getName(), Course.SECONDS.getName(), Course.DESSERTS.getName(), Course.WINESANDSOFT.getName());
         this.showMenu(r.getMenu());
     }
 
     @FXML
     private void showReservations(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/StaffViews/RestaurantReservations.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/StaffViews/Restaurant/RestaurantReservations.fxml"));
         try {
             root = loader.load();
         } catch (IOException ex) {
@@ -107,9 +109,10 @@ public class RestaurantMenuS implements Initializable {
         String name = this.name_new_dish.getText();
         double price = Double.parseDouble(this.price_new_dish.getText());
         int quantity = Integer.parseInt(this.quantity_new_dish.getText());
-        Course course = this.course_choise.getValue();
+        Course course = Course.selectType(this.course_choise.getValue());
         if(!(name == null) && price >= 0 && quantity > 0 && !(course == null)) {
             this.restaurant.getMenu().addDish(name, price, quantity, course);
+            this.label_response.setText("Dish " + name + " added!");
             this.showMenu(this.restaurant.getMenu());
         }
     }
@@ -120,33 +123,34 @@ public class RestaurantMenuS implements Initializable {
         this.name_new_dish.clear();
         this.price_new_dish.clear();
         this.quantity_new_dish.clear();
+        this.refueling.clear();
     }
 
     private void showMenu(Menu menu) {
         VBox vBox = new VBox();
         
         vBox.getChildren().add(new Label("FIRSTS"));        
-        for(Dish d : this.restaurant.getMenu().getAvailableTypeDishes(Course.FIRSTS)) {
-            BorderPane pane = this.createViewDish(d);
-            vBox.getChildren().add(pane);
+        for(Dish d : this.restaurant.getMenu().getTypeDishes(Course.FIRSTS)) {
+            BorderPane paneFirsts = this.createViewDish(d);
+            vBox.getChildren().add(paneFirsts);
         }
         
         vBox.getChildren().add(new Label("SECONDS"));
-        for(Dish d : this.restaurant.getMenu().getAvailableTypeDishes(Course.SECONDS)) {
-            BorderPane pane = this.createViewDish(d);
-            vBox.getChildren().add(pane);
+        for(Dish d : this.restaurant.getMenu().getTypeDishes(Course.SECONDS)) {
+            BorderPane paneSeconds = this.createViewDish(d);
+            vBox.getChildren().add(paneSeconds);
         }
         
         vBox.getChildren().add(new Label("DESSERTS"));
-        for(Dish d : this.restaurant.getMenu().getAvailableTypeDishes(Course.DESSERTS)) {
-            BorderPane pane = this.createViewDish(d);
-            vBox.getChildren().add(pane);
+        for(Dish d : this.restaurant.getMenu().getTypeDishes(Course.DESSERTS)) {
+            BorderPane paneDesserts = this.createViewDish(d);
+            vBox.getChildren().add(paneDesserts);
         }
         
         vBox.getChildren().add(new Label("WINESANDSOFT"));
-        for(Dish d : this.restaurant.getMenu().getAvailableTypeDishes(Course.WINESANDSOFT)) {
-            BorderPane pane = this.createViewDish(d);
-            vBox.getChildren().add(pane);
+        for(Dish d : this.restaurant.getMenu().getTypeDishes(Course.WINESANDSOFT)) {
+            BorderPane paneWineAndSoft = this.createViewDish(d);
+            vBox.getChildren().add(paneWineAndSoft);
         }
               
         this.scrollPane_menu.setContent(vBox);
@@ -163,6 +167,7 @@ public class RestaurantMenuS implements Initializable {
         
         vBox1.getChildren().add(new Label("Name: " + d.getName()));
         vBox1.getChildren().add(new Label("Price: " + d.getPrice()));
+        vBox1.getChildren().add(new Label("Quantity: " + d.getQuantity()));
         vBox1.getChildren().add(new Label());
         
         VBox vBox2 = new VBox();
@@ -179,8 +184,28 @@ public class RestaurantMenuS implements Initializable {
             public void handle(ActionEvent event) {
                 boolean done = restaurant.getMenu().removeDish(d);
                 if(done) {
-                    label_response.setText("Reservation removed!");
+                    label_response.setText("Dish " +d.getName() + " removed!");
                     showMenu(restaurant.getMenu());
+                } else
+                    label_response.setText("ERROR");
+            }
+        });
+        
+        Button btnAdd = new Button();
+        btnAdd.setText("Refueling");
+        vBox2.getChildren().add(btnAdd);
+        btnAdd.setAlignment(Pos.CENTER_LEFT);
+        
+        btnAdd.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                int n = Integer.parseInt(refueling.getText());
+                if(n > 0) {
+                    boolean done = restaurant.refueling(d, n);
+                    if(done) {
+                        label_response.setText("Refueling " +d.getName());
+                        showMenu(restaurant.getMenu());
+                    }
                 } else
                     label_response.setText("ERROR");
             }
@@ -192,6 +217,7 @@ public class RestaurantMenuS implements Initializable {
     @FXML
     private void newDay(ActionEvent event) {
         this.restaurant.newDay();
+        this.label_response.setText("New day confirmed!");
     }
     
 }

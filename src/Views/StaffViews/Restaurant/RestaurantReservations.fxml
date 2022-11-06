@@ -32,7 +32,7 @@
                   <Font name="Calibri Bold" size="27.0" />
                </font>
             </Label>
-            <Button layoutX="73.0" layoutY="366.0" mnemonicParsing="false" onAction="#newDay" prefHeight="27.0" prefWidth="74.0" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="New day" textFill="RED">
+            <Button layoutX="73.0" layoutY="366.0" mnemonicParsing="false" onAction="#newDay" prefHeight="27.0" prefWidth="70.0" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="New day" textFill="RED">
                <font>
                   <Font name="Calibri Bold" size="14.0" />
                </font>
@@ -43,19 +43,19 @@
          <children>
             <Pane layoutX="19.0" layoutY="19.0" prefHeight="378.0" prefWidth="368.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;">
                <children>
-                  <Button layoutX="184.0" layoutY="53.0" mnemonicParsing="false" onAction="#addReservation" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Add">
+                  <Button layoutX="304.0" layoutY="21.0" mnemonicParsing="false" onAction="#addReservation" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Add">
                      <font>
                         <Font name="Calibri Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button layoutX="250.0" layoutY="53.0" mnemonicParsing="false" onAction="#clearInputs" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Clear">
+                  <Button layoutX="301.0" layoutY="54.0" mnemonicParsing="false" onAction="#clearInputs" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Clear">
                      <font>
                         <Font name="Calibri Bold" size="15.0" />
                      </font>
                   </Button>
                   <TextField fx:id="name_reservation" layoutX="14.0" layoutY="22.0" promptText="Name" style="-fx-background-radius: 5;" />
-                  <TextField fx:id="n_seats_reservation" layoutX="14.0" layoutY="54.0" promptText="N° Seats" style="-fx-background-radius: 5;" />
-                  <Label fx:id="label_response" layoutX="185.0" layoutY="26.0">
+                  <TextField fx:id="n_seats_reservation" alignment="CENTER" layoutX="173.0" layoutY="22.0" prefHeight="25.0" prefWidth="70.0" promptText="N° Seats" style="-fx-background-radius: 5;" />
+                  <Label fx:id="label_response" layoutX="14.0" layoutY="59.0" prefHeight="18.0" prefWidth="283.0" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="15.0" />
                      </font>

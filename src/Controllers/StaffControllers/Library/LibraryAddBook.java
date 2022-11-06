@@ -20,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseDragEvent;
 import javafx.stage.Stage;
 
 //@author Susanna
@@ -32,8 +33,6 @@ public class LibraryAddBook implements Initializable {
     private Stage stage;
     private Scene scene;
 
-    @FXML
-    private Label label_name_enterprise;
     @FXML
     private TextField name_new_book;
     @FXML
@@ -50,6 +49,8 @@ public class LibraryAddBook implements Initializable {
     private TextField isbn_new_book;
     @FXML
     private Label label_response;
+    @FXML
+    private Label label_name_enterpris;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -58,7 +59,7 @@ public class LibraryAddBook implements Initializable {
         this.mainApplication = mainApp;
         this.staff = s;
         this.library = l;       
-        this.label_name_enterprise.setText(l.getName());
+        this.label_name_enterpris.setText(l.getName());
     }
 
     @FXML
@@ -139,5 +140,6 @@ public class LibraryAddBook implements Initializable {
         this.isbn_new_book.clear();
         this.label_response.setText(" ");
     }
+
     
 }

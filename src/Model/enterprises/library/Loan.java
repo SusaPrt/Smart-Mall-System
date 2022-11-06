@@ -28,7 +28,6 @@ public class Loan implements ILoan {
         this.dueDate = due;
     }
     
-    // >> METODI PUBBLICI <<
     @Override
     public Book getBorrowedBook() {
         return this.borrowedBook;

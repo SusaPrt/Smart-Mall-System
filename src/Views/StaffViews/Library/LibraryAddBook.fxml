@@ -16,7 +16,7 @@
                   <Font name="Calibri Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="7.0" layoutY="190.0" mnemonicParsing="false" onMouseDragOver="#searchView" prefHeight="85.0" prefWidth="176.0" style="-fx-background-color: #5F6F94;" text="Add" textFill="WHITE">
+            <Button layoutX="7.0" layoutY="190.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="176.0" style="-fx-background-color: #5F6F94;" text="Add" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="14.0" />
                </font>
@@ -31,7 +31,7 @@
                   <Font name="Calibri Bold" size="14.0" />
                </font>
             </Button>
-            <Label fx:id="label_name_enterprise" layoutX="52.0" layoutY="53.0" text="&lt;name&gt;" textFill="WHITE">
+            <Label fx:id="label_name_enterpris" layoutX="52.0" layoutY="53.0" text="&lt;name&gt;" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="27.0" />
                </font>
@@ -77,24 +77,24 @@
                         <Font name="Calibri Bold" size="13.0" />
                      </font>
                   </TextField>
-                  <Button layoutX="46.0" layoutY="271.0" mnemonicParsing="false" onAction="#addBook" onMouseDragOver="#searchView" prefHeight="20.0" prefWidth="48.0" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Add">
+                  <Button layoutX="46.0" layoutY="271.0" mnemonicParsing="false" onAction="#addBook" prefHeight="20.0" prefWidth="48.0" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Add">
                      <font>
                         <Font name="Calibri Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button layoutX="118.0" layoutY="271.0" mnemonicParsing="false" onAction="#clearInputs" onMouseDragOver="#searchView" prefHeight="27.0" prefWidth="53.0" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Clear">
+                  <Button layoutX="118.0" layoutY="271.0" mnemonicParsing="false" onAction="#clearInputs" prefHeight="27.0" prefWidth="53.0" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Clear">
                      <font>
                         <Font name="Calibri Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Label layoutX="11.0" layoutY="14.0" text="Add a book">
+                  <Label layoutX="12.0" layoutY="9.0" text="Add a book">
                      <font>
                         <Font name="Calibri Bold" size="15.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Label fx:id="label_response" layoutX="59.0" layoutY="372.0" prefHeight="18.0" prefWidth="40.0" textFill="WHITE">
+            <Label fx:id="label_response" layoutX="59.0" layoutY="372.0" prefHeight="18.0" prefWidth="286.0" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="15.0" />
                </font>

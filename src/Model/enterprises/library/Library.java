@@ -10,8 +10,6 @@ import Model.administration.Administration;
 import Model.administration.Archive;
 import Model.administration.Customer;
 import Model.enterprises.libraryInterfaces.ILibrary;
-import Model.enterprises.restaurant.Menu;
-import Model.enterprises.restaurant.MenuOfTheDay;
 import Model.system.DataInterpreter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -58,7 +56,6 @@ public class Library implements ILibrary {
         this.fileChecker();
     }
     
-    // >> METODI PUBBLICI <<
     @Override
     public String getName() {
         return this.name;
@@ -88,7 +85,6 @@ public class Library implements ILibrary {
         return this.loansList.get(customer);
     }
     
-    // >> METODI STAFF <<
     @Override
     public Map<Customer, Set<Loan>> getAllLoans() {
         return this.loansList;
@@ -150,7 +146,7 @@ public class Library implements ILibrary {
             System.out.println("Error: book not registered");
         return done;
     }
-    // >> METODO CUSTOMER <<
+
     public boolean buyABook(Book b, int i, Customer c) {
         boolean done = false;
         if(b.getQuantity() >= i) {
@@ -165,7 +161,6 @@ public class Library implements ILibrary {
         return done;
     }
     
-    // >> METODI PRIVATI <<
     private boolean checkISBN(int isbn) {
         return this.booksList.stream().anyMatch(b -> isbn == b.getISBN());
     }

@@ -17,16 +17,21 @@
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Button>
+            <Button layoutX="455.0" layoutY="38.0" mnemonicParsing="false" onAction="#toHomepage" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Back">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="14.0" layoutY="91.0" prefHeight="294.0" prefWidth="571.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;">
          <children>
-            <Label fx:id="label_user_id" layoutX="34.0" layoutY="45.0" text="&lt;id user&gt;">
+            <Label fx:id="label_user_id" layoutX="91.0" layoutY="45.0" text="&lt;id user&gt;">
                <font>
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Label>
-            <Text layoutX="14.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id:">
+            <Text layoutX="14.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id Loacker:">
                <font>
                   <Font name="Calibri Bold" size="15.0" />
                </font>
@@ -73,11 +78,6 @@
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Label>
-            <Button layoutX="9.0" layoutY="259.0" mnemonicParsing="false" onAction="#toHomepage" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Back">
-               <font>
-                  <Font name="Calibri Bold" size="15.0" />
-               </font>
-            </Button>
             <Text fx:id="label_response" fill="WHITE" layoutX="347.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Calibri Bold" size="15.0" />

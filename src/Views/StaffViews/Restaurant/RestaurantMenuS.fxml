@@ -28,12 +28,12 @@
                   <Font name="Calibri Bold" size="14.0" />
                </font>
             </Button>
-            <Label fx:id="label_name_enterprise" layoutX="52.0" layoutY="72.0" text="&lt;name&gt;" textFill="WHITE">
+            <Label fx:id="label_name_enterprise" layoutX="49.0" layoutY="72.0" text="&lt;name&gt;" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="27.0" />
                </font>
             </Label>
-            <Button layoutX="74.0" layoutY="366.0" mnemonicParsing="false" onAction="#newDay" prefHeight="27.0" prefWidth="69.0" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="New day" textFill="RED">
+            <Button layoutX="74.0" layoutY="366.0" mnemonicParsing="false" onAction="#newDay" prefHeight="27.0" prefWidth="72.0" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="New day" textFill="RED">
                <font>
                   <Font name="Calibri Bold" size="14.0" />
                </font>
@@ -44,26 +44,27 @@
          <children>
             <Pane layoutX="19.0" layoutY="19.0" prefHeight="378.0" prefWidth="368.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;">
                <children>
-                  <Button layoutX="184.0" layoutY="117.0" mnemonicParsing="false" onAction="#addDish" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Add">
+                  <Button layoutX="16.0" layoutY="103.0" mnemonicParsing="false" onAction="#addDish" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Add">
                      <font>
                         <Font name="Calibri Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button layoutX="245.0" layoutY="117.0" mnemonicParsing="false" onAction="#clearInputs" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Clear">
+                  <Button layoutX="72.0" layoutY="103.0" mnemonicParsing="false" onAction="#clearInputs" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Clear">
                      <font>
                         <Font name="Calibri Bold" size="15.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="name_new_dish" layoutX="14.0" layoutY="22.0" promptText="Name" style="-fx-background-radius: 5;" />
-                  <TextField fx:id="price_new_dish" layoutX="14.0" layoutY="54.0" promptText="Price" style="-fx-background-radius: 5;" />
-                  <TextField fx:id="quantity_new_dish" layoutX="14.0" layoutY="86.0" promptText="Quantity" style="-fx-background-radius: 5;" />
-                  <ChoiceBox fx:id="course_choise" layoutX="13.0" layoutY="118.0" prefWidth="150.0" style="-fx-background-radius: 5;" />
-                  <Label fx:id="label_response" layoutX="184.0" layoutY="90.0">
+                  <TextField fx:id="name_new_dish" layoutX="14.0" layoutY="35.0" promptText="Name" style="-fx-background-radius: 5;" />
+                  <TextField fx:id="price_new_dish" layoutX="14.0" layoutY="67.0" promptText="Price" style="-fx-background-radius: 5;" />
+                  <TextField fx:id="quantity_new_dish" layoutX="203.0" layoutY="35.0" promptText="Quantity" style="-fx-background-radius: 5;" />
+                  <ChoiceBox fx:id="course_choise" layoutX="202.0" layoutY="67.0" prefWidth="150.0" style="-fx-background-radius: 5;" />
+                  <Label fx:id="label_response" layoutX="19.0" layoutY="11.0" prefHeight="18.0" prefWidth="336.0">
                      <font>
                         <Font name="Calibri Bold" size="15.0" />
                      </font>
                   </Label>
-                  <ScrollPane fx:id="scrollPane_menu" layoutX="16.0" layoutY="151.0" prefHeight="216.0" prefWidth="336.0" />
+                  <ScrollPane fx:id="scrollPane_menu" layoutX="16.0" layoutY="137.0" prefHeight="230.0" prefWidth="336.0" />
+                  <TextField fx:id="refueling" alignment="CENTER" layoutX="274.0" layoutY="104.0" prefHeight="25.0" prefWidth="78.0" promptText="N refueling" style="-fx-background-radius: 5;" />
                </children>
             </Pane>
          </children>

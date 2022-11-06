@@ -26,7 +26,6 @@ public class Menu implements IMenu {
         this.warehouse.put(Course.WINESANDSOFT, l.get(3));
     }  
     
-    // >> METODI PUBBLICI <<
     @Override
     public LinkedList<Dish> getTypeDishes(Course course) {
         return this.warehouse.get(course);
@@ -59,7 +58,6 @@ public class Menu implements IMenu {
         return done;
     } 
     
-    // >> METODO PRIVATO <<
     private boolean checkDish(String name, Course course) {
         return this.warehouse.get(course).stream().filter(dish -> dish.getName().equalsIgnoreCase(name)).findFirst().isPresent();
     }
@@ -90,10 +88,10 @@ public class Menu implements IMenu {
     @Override
     public String toString() {
         return "Menu\n" + this.warehouse;
-    }
-    
-    public Map<Course, LinkedList<Dish>> getWareouse(){
+    }    
+
+    public Map<Course, LinkedList<Dish>> getWarehouse() {
         return this.warehouse;
     }
-    
+
 }

@@ -54,7 +54,7 @@ public class MenuTest {
         instance.addDish(this.dish.getName(),this.dish.getPrice(), 
                 this.dish.getQuantity(), this.dish.getCourse());
         boolean expResult = true;
-        boolean result = this.instance.getWareouse()
+        boolean result = this.instance.getWarehouse()
                 .get(this.dish.getCourse()).contains(this.dish);
         assertEquals(expResult, result);
     }
@@ -67,7 +67,7 @@ public class MenuTest {
                 this.dish.getQuantity(), this.dish.getCourse());
         boolean expResult = true;
         instance.removeDish(this.dish);
-        boolean result = this.instance.getWareouse()
+        boolean result = this.instance.getWarehouse()
                 .get(this.dish.getCourse()).contains(this.dish);
         assertEquals(expResult, result);
     }

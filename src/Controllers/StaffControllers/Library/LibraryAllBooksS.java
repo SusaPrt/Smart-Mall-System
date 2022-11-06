@@ -54,6 +54,10 @@ public class LibraryAllBooksS implements Initializable {
     private ScrollPane scrollPane_books;
     @FXML
     private Label label_name_enterpris;
+    @FXML
+    private Label label_response;
+    @FXML
+    private TextField refueling;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -118,6 +122,8 @@ public class LibraryAllBooksS implements Initializable {
     @FXML
     private void clearInputs(ActionEvent event) {
         this.string_search.clear();
+        this.label_response.setText(" ");
+        this.refueling.clear();
         this.showBooks(this.library.getAllBooks());
     }
 
@@ -139,7 +145,7 @@ public class LibraryAllBooksS implements Initializable {
     private void showBooks(List<Book> books) {
         VBox vBox = new VBox();
         for(Book b : books) {
-            BorderPane pane = createViewBook(b);
+            BorderPane pane = this.createViewBook(b);
             vBox.getChildren().add(pane);
         }
         this.scrollPane_books.setContent(vBox);
@@ -175,11 +181,34 @@ public class LibraryAllBooksS implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 boolean done = library.removeBook(b);
-                if(done)
-                    showBooks(library.getAllBooks());                    
+                if(done) {
+                    showBooks(library.getAllBooks());      
+                    label_response.setText("Book " + b.getName() + " removed!");
+                } else
+                    label_response.setText("ERROR");
             }
         });
 
+        Button btnAdd = new Button();
+        btnAdd.setText("Refueling");
+        vBox2.getChildren().add(btnAdd);
+        btnAdd.setAlignment(Pos.CENTER_LEFT);
+        
+        btnAdd.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                int n = Integer.parseInt(refueling.getText());
+                if(n > 0) {
+                    boolean done = library.refueling(b, n);
+                    if(done) {
+                        label_response.setText("Refueling " +b.getName() + " by " + n);
+                        showBooks(library.getAllBooks());
+                    }
+                } else
+                    label_response.setText("ERROR");
+            }
+        });
+        
         return pane;
     }
 

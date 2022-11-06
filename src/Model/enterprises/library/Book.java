@@ -23,7 +23,6 @@ public class Book extends Item implements IBook {
         this.ISBN           = isbn;
     }
 
-    // >> METODI PUBBLICI <<
     @Override
     public String getAuthor(){
         return this.author;
@@ -64,7 +63,6 @@ public class Book extends Item implements IBook {
     public String toString(){
         return ("\nTitle: " + super.getName() + "\n Author: " + this.author +
                 "\n Publishing Year: " + this.publishingYear + "\n Genre: " + this.genre +
-                "\n ISBN: " + this.getISBN()) + "\n Price: " + super.getPrice() + 
-                "\n Available: " + "\n";
+                "\n ISBN: " + this.getISBN()) + "\n Price: " + super.getPrice();
     }
 }

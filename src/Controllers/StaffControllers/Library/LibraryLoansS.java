@@ -31,10 +31,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.input.MouseDragEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -49,13 +46,17 @@ public class LibraryLoansS implements Initializable {
     private Scene scene;
 
     @FXML
-    private Label label_name_enterprise;
-    @FXML
     private ChoiceBox<Customer> choice_customer;
     @FXML
     private ChoiceBox<Book> choice_book;
     @FXML
     private ScrollPane scrollPane_loans;
+    @FXML
+    private Label label_name_enterpris;
+    @FXML
+    private Label label_response;
+    @FXML
+    private ScrollPane scrollPane_customers;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -64,10 +65,10 @@ public class LibraryLoansS implements Initializable {
         this.mainApplication = mainApp;
         this.staff = s;
         this.library = l;     
-        this.label_name_enterprise.setText(l.getName());
+        this.label_name_enterpris.setText(l.getName());
         this.choice_customer.getItems().addAll(this.mainApplication.getAdminstration().getArchive().getCustomers().stream().collect(Collectors.toList()));
         this.choice_book.getItems().addAll(this.library.getAllBooks());
-        this.showLoans(l.getAllLoans());
+        this.showCustomers(l.getAllLoans());
     }
 
     @FXML
@@ -123,58 +124,90 @@ public class LibraryLoansS implements Initializable {
         Customer c = this.choice_customer.getValue();
         Book b = this.choice_book.getValue();
         if(!(c == null) && !(b == null)) {
-            this.library.createLoan(c, b);
-            this.showLoans(this.library.getAllLoans());
+            boolean done = this.library.createLoan(c, b);
+            if(done) {
+                this.showCustomers(this.library.getAllLoans());
+                this.showLoans(this.library.getCustomerLoans(c), c);
+                this.label_response.setText(c.getName() + "'s loan added!");
+            } else
+                this.label_response.setText("ERROR");
         }
+    }    
+
+    private void showCustomers(Map<Customer, Set<Loan>> allLoans) {
+        VBox vBoxC = new VBox();
+        for(Customer c : allLoans.keySet()) {
+            BorderPane pane = createViewCustomer(c);
+            vBoxC.getChildren().add(pane);
+        }
+        this.scrollPane_customers.setContent(vBoxC);
+        this.scrollPane_customers.fitToWidthProperty().set(true);
+        this.scrollPane_customers.fitToHeightProperty().set(true);
     }
 
-    private void showLoans(Map<Customer, Set<Loan>> loans) {
+    private BorderPane createViewCustomer(Customer c) {
+        BorderPane pane = new BorderPane();
         VBox vBox = new VBox();
-        for(Customer c : loans.keySet()) {
-            BorderPane pane = this.createViewLoansCustomer(c, loans.get(c));
-            vBox.getChildren().add(vBox);
+        vBox.setAlignment(Pos.CENTER);
+        pane.setCenter(vBox);
+        
+        Button btn = new Button();
+        btn.setText(c.getName());
+        vBox.getChildren().add(btn);
+        vBox.getChildren().add(new Label());
+        
+        btn.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                showLoans(library.getCustomerLoans(c), c);
+            }            
+        });
+        return pane;
+    }
+    
+    private void showLoans(Set<Loan> customerLoans, Customer c) {
+        VBox vBoxL = new VBox();
+        for(Loan l : customerLoans) {
+            BorderPane pane = this.createViewLoan(l, c);
+            vBoxL.getChildren().add(pane);
         }
-        this.scrollPane_loans.setContent(vBox);
+        this.scrollPane_loans.setContent(vBoxL);
         this.scrollPane_loans.fitToWidthProperty().set(true);
         this.scrollPane_loans.fitToHeightProperty().set(true);
     }
 
-    private BorderPane createViewLoansCustomer(Customer c, Set<Loan> loans) {
+    private BorderPane createViewLoan(Loan l, Customer c) {
         BorderPane pane = new BorderPane();
         pane.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
         VBox vBox1 = new VBox();
         vBox1.setAlignment(Pos.CENTER_LEFT);
         pane.setLeft(vBox1);
         
-        vBox1.getChildren().add(new Label(""));
-        vBox1.getChildren().add(new Label("Customer: " + c.getName()));
-        vBox1.getChildren().add(new Label("ID: " + c.getId()));
-        vBox1.getChildren().add(new Label("Loans: "));
-        for(Loan l : loans) {
-            vBox1.getChildren().add(new Label("Book: " + l.getBorrowedBook()));
-            vBox1.getChildren().add(new Label("Issue Date: " + l.getIssueDate()));
-            vBox1.getChildren().add(new Label("Due Date: " + l.getIssueDate()));
-            vBox1.getChildren().add(new Label(""));
+        vBox1.getChildren().add(new Label("Book: " + l.getBorrowedBook()));
+        vBox1.getChildren().add(new Label("Issue date: " + l.getIssueDate()));
+        vBox1.getChildren().add(new Label("Due date: " + l.getDueDate()));
+        vBox1.getChildren().add(new Label());
         
-            vBox1.getChildren().add(new Label(""));
-
-            VBox vBox2 = new VBox();
-            vBox2.setAlignment(Pos.CENTER);
-            pane.setRight(vBox2);
-
-            Button btnRemove = new Button();
-            btnRemove.setText("Buy");
-            vBox2.getChildren().add(btnRemove);
-            btnRemove.setAlignment(Pos.CENTER);
-
-            btnRemove.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    library.cancelLoan(c, l.getBorrowedBook());
-                    showLoans(library.getAllLoans());
-                }
-            });
-        }
+        VBox vBox2 = new VBox();
+        vBox2.setAlignment(Pos.CENTER);
+        pane.setRight(vBox2);
+        
+        Button btnRemove = new Button();
+        btnRemove.setText("Remove");
+        vBox2.getChildren().add(btnRemove);
+        btnRemove.setAlignment(Pos.CENTER);
+        
+        btnRemove.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                boolean done = library.cancelLoan(c, l.getBorrowedBook());
+                if(done) {
+                    showLoans(library.getCustomerLoans(c), c);     
+                    label_response.setText("Loan removed!");
+                } else
+                    label_response.setText("ERROR");
+            }
+        });
         return pane;
     }
 

@@ -42,7 +42,7 @@ public class MainApplicationTest {
     public void testGetDefaultRestaurant() {
         System.out.println("getDefaultRestaurant");
         boolean expResult = false;
-        boolean result = instance.getDefaultRestaurant().getMenu().getWareouse().isEmpty();
+        boolean result = instance.getDefaultRestaurant().getMenu().getWarehouse().isEmpty();
         assertEquals(expResult, result);
     }
 

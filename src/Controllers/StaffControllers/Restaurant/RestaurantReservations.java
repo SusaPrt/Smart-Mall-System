@@ -64,7 +64,7 @@ public class RestaurantReservations implements Initializable {
 
     @FXML
     private void showMenu(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/StaffViews/RestaurantMenuS.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/StaffViews/Restaurant/RestaurantMenuS.fxml"));
         try {
             root = loader.load();
         } catch (IOException ex) {
@@ -101,7 +101,7 @@ public class RestaurantReservations implements Initializable {
         if(!(name == null) && seats >= 0) {
             boolean done = this.restaurant.reserveSeats(seats, name);
             if(done) {
-                this.label_response.setText("Reservation added!");
+                this.label_response.setText("Reservation " + name + " added!");
                 this.showReservations(this.restaurant.getReservations());
             } else
                 this.label_response.setText("ERROR");
@@ -165,5 +165,6 @@ public class RestaurantReservations implements Initializable {
     private void newDay(ActionEvent event) {
         this.restaurant.newDay();
         this.showReservations(this.restaurant.getReservations());
+        this.label_response.setText("New day confirmed!");
     }
 }

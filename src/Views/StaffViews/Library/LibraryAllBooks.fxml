@@ -43,28 +43,34 @@
       </AnchorPane>
       <AnchorPane layoutX="195.0" prefHeight="410.0" prefWidth="404.0" style="-fx-background-color: #25316D;">
          <children>
-            <Pane layoutX="17.0" layoutY="24.0" prefHeight="362.0" prefWidth="371.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;">
+            <Pane layoutX="16.0" layoutY="48.0" prefHeight="350.0" prefWidth="371.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;">
                <children>
-                  <Button layoutX="300.0" layoutY="73.0" mnemonicParsing="false" onAction="#clearInputs" style="-fx-background-radius: 10; -fx-background-color: #FEF5AC;" text="Clear">
+                  <Button layoutX="78.0" layoutY="71.0" mnemonicParsing="false" onAction="#clearInputs" style="-fx-background-radius: 10; -fx-background-color: #FEF5AC;" text="Clear">
                      <font>
                         <Font name="Calibri Bold" size="15.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="string_search" layoutX="18.0" layoutY="74.0" prefHeight="25.0" prefWidth="176.0" style="-fx-background-radius: 5;" />
+                  <TextField fx:id="string_search" layoutX="192.0" layoutY="34.0" prefHeight="25.0" prefWidth="162.0" style="-fx-background-radius: 5;" />
                   <Text layoutX="18.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search by">
                      <font>
                         <Font name="Calibri Bold" size="15.0" />
                      </font>
                   </Text>
-                  <ChoiceBox fx:id="choise_search" layoutX="18.0" layoutY="37.0" prefHeight="25.0" prefWidth="176.0" style="-fx-background-radius: 5;" />
-                  <Button layoutX="300.0" layoutY="36.0" mnemonicParsing="false" onAction="#searchBookBy" style="-fx-background-radius: 10; -fx-background-color: #FEF5AC;" text="Send">
+                  <ChoiceBox fx:id="choise_search" layoutX="14.0" layoutY="34.0" prefHeight="25.0" prefWidth="162.0" style="-fx-background-radius: 5;" />
+                  <Button layoutX="14.0" layoutY="71.0" mnemonicParsing="false" onAction="#searchBookBy" style="-fx-background-radius: 10; -fx-background-color: #FEF5AC;" text="Send">
                      <font>
                         <Font name="Calibri Bold" size="15.0" />
                      </font>
                   </Button>
-                  <ScrollPane fx:id="scrollPane_books" layoutX="18.0" layoutY="108.0" prefHeight="240.0" prefWidth="336.0" />
+                  <ScrollPane fx:id="scrollPane_books" layoutX="18.0" layoutY="108.0" prefHeight="236.0" prefWidth="336.0" />
+                  <TextField fx:id="refueling" layoutX="275.0" layoutY="72.0" prefHeight="25.0" prefWidth="79.0" promptText="N refueling" style="-fx-background-radius: 5;" />
                </children>
             </Pane>
+            <Label fx:id="label_response" layoutX="18.0" layoutY="23.0" prefHeight="18.0" prefWidth="371.0" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
