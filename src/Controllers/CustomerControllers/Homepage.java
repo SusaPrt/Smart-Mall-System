@@ -20,6 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -84,6 +85,7 @@ public class Homepage implements Initializable {
             Button btn = this.createButton(l);
             this.vBox_libreries.getChildren().add(btn);
         }
+        this.vBox_libreries.setAlignment(Pos.TOP_CENTER);
     }
     
     private void viewRestaurants(List<Restaurant> res) {
@@ -92,6 +94,7 @@ public class Homepage implements Initializable {
             Button btn = this.createButton(r);
             this.vBox_restaurants.getChildren().add(btn);
         }
+        this.vBox_restaurants.setAlignment(Pos.TOP_CENTER);
     }
     
     private void viewShops(List<Shop> shops) {
@@ -100,6 +103,7 @@ public class Homepage implements Initializable {
             Button btn = this.createButton(s);
             this.vBox_shops.getChildren().add(btn);
         }
+        this.vBox_shops.setAlignment(Pos.TOP_CENTER);
     }
     
     private Button createButton(Object e) {

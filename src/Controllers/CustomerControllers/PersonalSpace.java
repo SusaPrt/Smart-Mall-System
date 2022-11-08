@@ -51,6 +51,8 @@ public class PersonalSpace implements Initializable {
     private Label label_user_name;
     @FXML
     private Text label_response;
+    @FXML
+    private Label label_cost;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -63,6 +65,7 @@ public class PersonalSpace implements Initializable {
         this.label_user_id.setText(""+c.getId());
         this.label_user_credit.setText(""+c.getCredit());
         this.showCart(c);
+        this.label_cost.setText(c.getCart().getTotCost() + " €");
     }
     @FXML
     private void toLogin(ActionEvent event) {
@@ -83,11 +86,10 @@ public class PersonalSpace implements Initializable {
     @FXML
     private void payCart(ActionEvent event) {
         boolean done = this.customer.payTheCart();
-        if(done) {
-            for(Item i : this.customer.getCart().getProducts())
-                this.customer.getCart().removeProducts(i);
+        if(done) {            
             this.showCart(customer);
             this.label_response.setText("Payment made");
+            this.label_cost.setText(this.customer.getCart().getTotCost() + " €");
         } else {
             this.label_response.setText("ERROR");
         }
@@ -97,6 +99,7 @@ public class PersonalSpace implements Initializable {
     private void addCredit(ActionEvent event) {
         this.customer.addCredit(Double.parseDouble(this.credit_to_add.getText()));
         this.label_user_credit.setText(""+this.customer.getCredit());
+        this.credit_to_add.clear();
     }
 
     @FXML
@@ -152,6 +155,7 @@ public class PersonalSpace implements Initializable {
                 customer.getCart().removeProducts(i);
                 i.increaseQuantity(1);
                 showCart(customer);
+                label_cost.setText(customer.getCart().getTotCost() + " €");
             }
         });
         

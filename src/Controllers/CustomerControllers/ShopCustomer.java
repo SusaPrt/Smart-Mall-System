@@ -78,6 +78,9 @@ public class ShopCustomer implements Initializable {
             BorderPane pane = this.createViewItem(i);
             vBox.getChildren().add(pane);
          }
+        this.scrollPane_items.setContent(vBox);
+        this.scrollPane_items.fitToWidthProperty().set(true);
+        this.scrollPane_items.fitToHeightProperty().set(true);
     }
 
     private BorderPane createViewItem(Item i) {
@@ -104,7 +107,6 @@ public class ShopCustomer implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 customer.getCart().addItem(i);
-                i.decreaseQuantity(1);
                 label_response.setText("Item  " + i.getName() + " added!");
             }
         });

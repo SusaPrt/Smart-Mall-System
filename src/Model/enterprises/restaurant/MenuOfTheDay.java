@@ -17,12 +17,12 @@ public class MenuOfTheDay {
     private final Random rnd;
     
     public MenuOfTheDay(Menu m) {
-        super();
         this.menu = m;
         this.lunch = new LinkedList<>();
         this.dinner = new LinkedList<>();
         this.rnd = new Random();
-        this.makeMenuOFTheDay();
+        if(!(m.getAvailableTypeDishes(Course.FIRSTS).isEmpty()))
+            this.makeMenuOFTheDay();
     } 
 
     public LinkedList<Dish> getLunch() {
@@ -34,13 +34,13 @@ public class MenuOfTheDay {
     }
     
     private void makeMenuOFTheDay() {
-        this.lunch.add(this.menu.getTypeDishes(Course.FIRSTS).get(this.rnd.nextInt(this.menu.getTypeDishes(Course.FIRSTS).size())));
-        this.lunch.add(this.menu.getTypeDishes(Course.SECONDS).get(this.rnd.nextInt(this.menu.getTypeDishes(Course.SECONDS).size())));
-        this.lunch.add(this.menu.getTypeDishes(Course.DESSERTS).get(this.rnd.nextInt(this.menu.getTypeDishes(Course.DESSERTS).size())));
-       
-        this.lunch.add(this.menu.getTypeDishes(Course.FIRSTS).get(this.rnd.nextInt(this.menu.getTypeDishes(Course.FIRSTS).size())));
-        this.lunch.add(this.menu.getTypeDishes(Course.SECONDS).get(this.rnd.nextInt(this.menu.getTypeDishes(Course.SECONDS).size())));
-        this.lunch.add(this.menu.getTypeDishes(Course.DESSERTS).get(this.rnd.nextInt(this.menu.getTypeDishes(Course.DESSERTS).size())));    
+        this.lunch.add(this.menu.getAvailableTypeDishes(Course.FIRSTS).get(this.rnd.nextInt(this.menu.getAvailableTypeDishes(Course.FIRSTS).size())));
+        this.lunch.add(this.menu.getAvailableTypeDishes(Course.SECONDS).get(this.rnd.nextInt(this.menu.getAvailableTypeDishes(Course.SECONDS).size())));
+        this.lunch.add(this.menu.getAvailableTypeDishes(Course.DESSERTS).get(this.rnd.nextInt(this.menu.getAvailableTypeDishes(Course.DESSERTS).size())));
+
+        this.dinner.add(this.menu.getAvailableTypeDishes(Course.FIRSTS).get(this.rnd.nextInt(this.menu.getAvailableTypeDishes(Course.FIRSTS).size())));
+        this.dinner.add(this.menu.getAvailableTypeDishes(Course.FIRSTS).get(this.rnd.nextInt(this.menu.getAvailableTypeDishes(Course.SECONDS).size())));
+        this.dinner.add(this.menu.getAvailableTypeDishes(Course.DESSERTS).get(this.rnd.nextInt(this.menu.getAvailableTypeDishes(Course.DESSERTS).size())));
     }
 
     @Override

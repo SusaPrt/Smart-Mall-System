@@ -145,7 +145,6 @@ public class RestaurantMenu implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 customer.getCart().addItem(d);
-                d.decreaseQuantity(1);
                 label_response.setText("Book " + d.getName() + " added!");
             }
         });

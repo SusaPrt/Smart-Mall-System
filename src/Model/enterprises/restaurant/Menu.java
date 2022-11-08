@@ -9,9 +9,11 @@ package Model.enterprises.restaurant;
 import Model.enterprises.restaurantInterfaces.IMenu;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class Menu implements IMenu {
@@ -26,14 +28,22 @@ public class Menu implements IMenu {
         this.warehouse.put(Course.WINESANDSOFT, l.get(3));
     }  
     
+    public Menu() {
+        this.warehouse = new HashMap<>();
+        this.warehouse.put(Course.FIRSTS, new LinkedList<>());
+        this.warehouse.put(Course.SECONDS, new LinkedList<>());
+        this.warehouse.put(Course.DESSERTS, new LinkedList<>());
+        this.warehouse.put(Course.WINESANDSOFT, new LinkedList<>());
+    }
+    
     @Override
     public LinkedList<Dish> getTypeDishes(Course course) {
         return this.warehouse.get(course);
     
     }
     @Override
-    public Set<Dish> getAvailableTypeDishes(Course course) {
-        return this.warehouse.get(course).stream().filter(d -> d.getQuantity() > 0).collect(Collectors.toSet());
+    public List<Dish> getAvailableTypeDishes(Course course) {
+        return this.warehouse.get(course).stream().filter(d -> d.getQuantity() > 0).collect(Collectors.toList());
     }
     
     @Override

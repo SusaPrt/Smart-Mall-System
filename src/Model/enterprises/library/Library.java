@@ -130,6 +130,8 @@ public class Library implements ILibrary {
         if(!(work == null)) {
             this.loansList.get(customer).remove(work);
             book.increaseQuantity(1);
+            if(this.loansList.get(customer).isEmpty())
+                this.loansList.keySet().remove(customer);
             done = true;
         }
         return done;

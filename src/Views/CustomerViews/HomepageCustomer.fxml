@@ -54,9 +54,9 @@
             <Pane layoutY="-1.0" prefHeight="262.0" prefWidth="130.0" style="-fx-background-color: #97D2EC;" />
             <Pane layoutX="219.0" layoutY="-1.0" prefHeight="262.0" prefWidth="130.0" style="-fx-background-color: #97D2EC;" />
             <Pane layoutX="440.0" layoutY="-1.0" prefHeight="262.0" prefWidth="130.0" style="-fx-background-color: #97D2EC;" />
-            <VBox fx:id="vBox_shops" layoutX="441.0" layoutY="3.0" prefHeight="262.0" prefWidth="129.0" />
+            <VBox fx:id="vBox_shops" layoutX="441.0" layoutY="-1.0" prefHeight="262.0" prefWidth="130.0" />
             <VBox fx:id="vBox_restaurants" layoutX="221.0" prefHeight="262.0" prefWidth="129.0" />
-            <VBox fx:id="vBox_libreries" prefHeight="262.0" prefWidth="129.0" />
+            <VBox fx:id="vBox_libreries" prefHeight="262.0" prefWidth="130.0" />
          </children>
       </AnchorPane>
    </children>

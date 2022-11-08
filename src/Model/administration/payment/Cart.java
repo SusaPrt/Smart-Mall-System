@@ -21,13 +21,13 @@ public class Cart implements CartInterface{
     
     @Override
     public void addItem(Item i){
+        i.decreaseQuantity(1);
         this.purchasedProducts.add(i);
     }
     
     @Override
     public void removeProducts(Item i){
-        this.purchasedProducts.remove(i);
-        
+        this.purchasedProducts.remove(i);        
     }
     
     @Override

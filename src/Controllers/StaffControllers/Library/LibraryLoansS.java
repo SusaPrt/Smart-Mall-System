@@ -68,7 +68,7 @@ public class LibraryLoansS implements Initializable {
         this.label_name_enterpris.setText(l.getName());
         this.choice_customer.getItems().addAll(this.mainApplication.getAdminstration().getArchive().getCustomers().stream().collect(Collectors.toList()));
         this.choice_book.getItems().addAll(this.library.getAllBooks());
-        this.showCustomers(l.getAllLoans());
+        this.showCustomers(l.getAllLoans());        
     }
 
     @FXML
@@ -183,7 +183,7 @@ public class LibraryLoansS implements Initializable {
         vBox1.setAlignment(Pos.CENTER_LEFT);
         pane.setLeft(vBox1);
         
-        vBox1.getChildren().add(new Label("Book: " + l.getBorrowedBook()));
+        vBox1.getChildren().add(new Label("Book: " + l.getBorrowedBook().getName()));
         vBox1.getChildren().add(new Label("Issue date: " + l.getIssueDate()));
         vBox1.getChildren().add(new Label("Due date: " + l.getDueDate()));
         vBox1.getChildren().add(new Label());
@@ -202,8 +202,12 @@ public class LibraryLoansS implements Initializable {
             public void handle(ActionEvent event) {
                 boolean done = library.cancelLoan(c, l.getBorrowedBook());
                 if(done) {
-                    showLoans(library.getCustomerLoans(c), c);     
-                    label_response.setText("Loan removed!");
+                    showCustomers(library.getAllLoans());
+                    if(library.getCustomerLoans(c) == null)
+                        scrollPane_loans.setContent(new VBox());
+                    else
+                        showLoans(library.getCustomerLoans(c), c);     
+                    label_response.setText("Loan " + c.getName() + "-" + l.getBorrowedBook().getName() + " removed!");
                 } else
                     label_response.setText("ERROR");
             }

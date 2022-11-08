@@ -30,34 +30,24 @@ public class LoginViewController implements Initializable {
     private Parent root;
     private Stage stage;
     private Scene scene;
-
-    @FXML
-    private TextField sign_up_username;    
+      
     @FXML
     private TextField sign_in_username;
     @FXML
-    private PasswordField sign_up_password;
-    @FXML
     private PasswordField sign_in_password;
     @FXML
-    private Button btn_sign_in;
-    @FXML
-    private Button btn_sign_up;
-    @FXML
     private Label label_error_sign_in;
+    @FXML
+    private TextField sign_up_username;  
+    @FXML
+    private PasswordField sign_up_password;  
     @FXML
     private Label label_error_sign_up;
 
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /*Carica un immagine
-        File nomeFile = new File("percorso image");
-        Image nomeImgae = new Image(nomeFile.toURI().toString());
-        nomeFXML.setImage(nomeImage);
-        */
         this.mainApp = new MainApplication();
-       
     }    
     
     public void setData(MainApplication mainApp){
@@ -110,8 +100,8 @@ public class LoginViewController implements Initializable {
 
     @FXML
     private void signUp(ActionEvent event){
-        String userName = this.sign_in_username.getText();
-        String userPwd = this.sign_in_password.getText();
+        String userName = this.sign_up_username.getText();
+        String userPwd = this.sign_up_password.getText();
         Customer c = null;
         
         if(!userName.isBlank() && !userPwd.isBlank()) {
@@ -134,7 +124,7 @@ public class LoginViewController implements Initializable {
             stage.show(); 
             
         } else {
-            this.label_error_sign_in.setText("Error: try again");
+            this.label_error_sign_up.setText("Error: try again");
         }
     }   
 }

@@ -41,6 +41,8 @@ public class Customer extends Person implements CustomerInterface{
         this.payment = new Payment(this);
         if(this.payment.checkStatus()){
             this.credit-=this.payment.getCost();
+            for(Item i : this.cart.getProducts())
+                this.cart.removeProducts(i);
             paid = true;
         }
         if(paid)

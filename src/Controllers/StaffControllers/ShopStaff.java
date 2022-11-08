@@ -160,7 +160,8 @@ public class ShopStaff implements Initializable {
                 if(n > 0) {
                     boolean done = shop.refueling(i, n);
                     if(done) {
-                        label_response.setText("Refueling " +i.getName() + " by " + n);
+                        refueling.clear();
+                        label_response.setText("Refueling " +i.getName());
                         showItems(shop);
                     }
                 } else

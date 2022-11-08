@@ -166,6 +166,7 @@ public class LibraryAllBooksS implements Initializable {
         vBox1.getChildren().add(new Label("Genre: " + b.getGenre()));
         vBox1.getChildren().add(new Label("Year: " + b.getPublishingYear()));
         vBox1.getChildren().add(new Label("Price: " + b.getPrice()));
+        vBox1.getChildren().add(new Label("Quantity: " + b.getQuantity()));
         vBox1.getChildren().add(new Label());
         
         VBox vBox2 = new VBox();

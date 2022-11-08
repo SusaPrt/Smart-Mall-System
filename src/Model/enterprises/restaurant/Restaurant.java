@@ -146,8 +146,8 @@ public class Restaurant implements IRestaurant {
             fw.write("#WINESANDSOFT\n");
             this.dataInt = new DataInterpreter(f, "Restaurant");
         }finally{
-            this.menu = new Menu(dataInt.getData());
-            this.menuOfTheDay = new MenuOfTheDay(menu);           
+            this.menu = new Menu();
+            this.menuOfTheDay = new MenuOfTheDay(this.menu);           
         }
     }    
     private boolean checkDish(Dish d) {

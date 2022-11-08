@@ -20,7 +20,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 //@author Susanna
@@ -42,7 +41,7 @@ public class RestaurantReserve implements Initializable {
     @FXML
     private Label label_response;
     @FXML
-    private Pane pnl_reserve;
+    private Label label_available_seats;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -52,6 +51,7 @@ public class RestaurantReserve implements Initializable {
         this.restaurant = r;
         this.mainApplication = mainApp;
         this.label_name_enterprise.setText(r.getName());
+        this.label_available_seats.setText(this.restaurant.getFreeSeats() + "");
     }
 
     @FXML
@@ -90,19 +90,23 @@ public class RestaurantReserve implements Initializable {
     private void addReservation(ActionEvent event) {
         String name = this.name_reservation.getText();
         int seats = Integer.parseInt(this.n_seats_reservation.getText());
-        if(!(name.isBlank())) {
+        if(!(name.isBlank()) && seats > 0) {
             boolean done = this.restaurant.reserveSeats(seats, name);
-            if(done)
-                this.label_response.setText("Reservation made!");
-            else
+            if(done) {
+                this.label_response.setText(name + "'s reservation for " + seats + " made!");
+                this.label_available_seats.setText(this.restaurant.getFreeSeats() + "");
+            } else
                 this.label_response.setText("Error");
         }
+        this.name_reservation.clear();
+        this.n_seats_reservation.clear();
     }
 
     @FXML
     private void clearInputs(ActionEvent event) {
         this.name_reservation.clear();
         this.n_seats_reservation.clear();
+        this.label_response.setText(" ");
     }
 
     @FXML

@@ -31,7 +31,7 @@
                   <Font name="Calibri Bold" size="27.0" />
                </font>
             </Label>
-            <Button layoutX="10.0" layoutY="275.0" mnemonicParsing="false" onAction="#showMenuOfTheDay" prefHeight="85.0" prefWidth="176.0" style="-fx-background-color: #5F6F94;" text="Mene of the day" textFill="WHITE">
+            <Button layoutX="10.0" layoutY="275.0" mnemonicParsing="false" onAction="#showMenuOfTheDay" prefHeight="85.0" prefWidth="176.0" style="-fx-background-color: #5F6F94;" text="Menu of the day" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="14.0" />
                </font>

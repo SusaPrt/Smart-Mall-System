@@ -11,7 +11,9 @@ import Model.enterprises.library.Library;
 import Model.enterprises.library.Loan;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +23,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -39,18 +43,20 @@ public class LibraryLoans implements Initializable {
     @FXML
     private Label label_name_enterprise;
     @FXML
-    private VBox vBox_your_loans;
+    private ScrollPane scrollPane_loans;
+    @FXML
+    private Label label_response;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    }   
-    
+    }       
     public void setData(Customer c, Library l, MainApplication mainApp) {
         this.mainApplication = mainApp;
         this.customer = c;
         this.library = l;
         this.label_name_enterprise.setText(l.getName());
-        this.showLoans(l);
+        this.showLoans(l.getAllLoans());
+        this.label_response.setText(" ");
     } 
     
     @FXML
@@ -75,7 +81,7 @@ public class LibraryLoans implements Initializable {
         try {
             root = loader.load();
         } catch (IOException ex) {
-            System.out.println(ex+"\nEccezione caricamento customer homepage");
+            System.out.println(ex+"\nEccezione caricamento customer library search");
         }
         LibrarySearch cLSController = loader.getController();
         cLSController.setData(this.customer, this.library, this.mainApplication);
@@ -85,14 +91,17 @@ public class LibraryLoans implements Initializable {
         stage.show();
     }
 
-    private void showLoans(Library l) {
-        this.vBox_your_loans.getChildren().clear();
-        if(l.getAllLoans().containsKey(this.customer)) {
-            for(Loan loan : l.getAllLoans().get(this.customer)) {
+    private void showLoans(Map<Customer, Set<Loan>> loans) {
+        VBox vBox = new VBox();
+        if(loans.containsKey(this.customer)) {
+            for(Loan loan : loans.get(this.customer)) {
                 BorderPane pane = createViewLoan(loan);
-                this.vBox_your_loans.getChildren().add(pane);
+                vBox.getChildren().add(pane);
             }
         }
+        this.scrollPane_loans.setContent(vBox);
+        this.scrollPane_loans.fitToWidthProperty().set(true);
+        this.scrollPane_loans.fitToHeightProperty().set(true);
     }
 
     @FXML
@@ -119,10 +128,28 @@ public class LibraryLoans implements Initializable {
         pane.setLeft(vBox);
         
         vBox.getChildren().add(new Label("Borrowed Book: " + loan.getBorrowedBook().getName()));
+        vBox.getChildren().add(new Label("ISBN: " + loan.getBorrowedBook().getISBN()));
         vBox.getChildren().add(new Label("Issue date: " + loan.getIssueDate()));
         vBox.getChildren().add(new Label("Due date: " + loan.getDueDate()));
         vBox.getChildren().add(new Label());
         
+        VBox vBox2 = new VBox();
+        vBox2.setAlignment(Pos.CENTER);
+        pane.setRight(vBox2);
+        
+        Button btnRemove = new Button();
+        btnRemove.setText("Remove");
+        vBox2.getChildren().add(btnRemove);
+        btnRemove.setAlignment(Pos.CENTER);
+        
+        btnRemove.addEventHandler(ActionEvent.ACTION, (ActionEvent event) -> {
+            boolean done = library.cancelLoan(customer, loan.getBorrowedBook());
+            if(done) {
+                showLoans(library.getAllLoans());
+                label_response.setText("Loan " + loan.getBorrowedBook().getName() + " removed!");
+            } else
+                label_response.setText("ERROR");
+        });
         return pane;
     }
     

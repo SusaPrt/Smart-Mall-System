@@ -50,6 +50,8 @@ public class RestaurantReservations implements Initializable {
     private Label label_response;
     @FXML
     private ScrollPane scrollPane_reservations;
+    @FXML
+    private Label label_available_seats;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -60,6 +62,7 @@ public class RestaurantReservations implements Initializable {
         this.restaurant = r;       
         this.label_name_enterprise.setText(r.getName());
         this.showReservations(r.getReservations());
+        this.label_available_seats.setText(r.getFreeSeats() + "");
     }
 
     @FXML
@@ -103,6 +106,7 @@ public class RestaurantReservations implements Initializable {
             if(done) {
                 this.label_response.setText("Reservation " + name + " added!");
                 this.showReservations(this.restaurant.getReservations());
+                this.label_available_seats.setText(this.restaurant.getFreeSeats() + "");
             } else
                 this.label_response.setText("ERROR");
         }
@@ -153,6 +157,7 @@ public class RestaurantReservations implements Initializable {
                 if(done) {
                     label_response.setText("Reservation " + s + " removed!");
                     showReservations(restaurant.getReservations());
+                    label_available_seats.setText(restaurant.getFreeSeats() + "");
                 } else
                     label_response.setText("ERROR");                
             }

@@ -157,11 +157,11 @@ public class LibrarySearch implements Initializable {
         pane.setLeft(vBox1);
         
         vBox1.getChildren().add(new Label("Name: " + b.getName()));
-        vBox1.getChildren().add(new Label("Author" + b.getAuthor()));
-        vBox1.getChildren().add(new Label("ISBN" + b.getISBN()));
-        vBox1.getChildren().add(new Label("Genre" + b.getGenre()));
-        vBox1.getChildren().add(new Label("Year" + b.getPublishingYear()));
-        vBox1.getChildren().add(new Label("Price" + b.getPrice()));
+        vBox1.getChildren().add(new Label("Author: " + b.getAuthor()));
+        vBox1.getChildren().add(new Label("ISBN: " + b.getISBN()));
+        vBox1.getChildren().add(new Label("Genre: " + b.getGenre()));
+        vBox1.getChildren().add(new Label("Year: " + b.getPublishingYear()));
+        vBox1.getChildren().add(new Label("Price: " + b.getPrice()));
         vBox1.getChildren().add(new Label());
         
         VBox vBox2 = new VBox();
@@ -182,7 +182,6 @@ public class LibrarySearch implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 customer.getCart().addItem(b);
-                b.decreaseQuantity(1);
                 label_response.setText("Book " + b.getName() + " added!");
             }
         });

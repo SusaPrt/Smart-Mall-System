@@ -111,9 +111,9 @@ public class RestaurantMenuOfTheDay implements Initializable {
         this.label_lunch_second.setText(r.getDailyMenu().getLunch().get(1).getName());
         this.label_lunch_dessert.setText(r.getDailyMenu().getLunch().get(2).getName());
         
-        this.label_dinner_first.setText(r.getDailyMenu().getLunch().get(0).getName());
-        this.label_dinner_second.setText(r.getDailyMenu().getLunch().get(1).getName());
-        this.label_dinner_dessert.setText(r.getDailyMenu().getLunch().get(2).getName());
+        this.label_dinner_first.setText(r.getDailyMenu().getDinner().get(0).getName());
+        this.label_dinner_second.setText(r.getDailyMenu().getDinner().get(1).getName());
+        this.label_dinner_dessert.setText(r.getDailyMenu().getDinner().get(2).getName());
     }
     
 }

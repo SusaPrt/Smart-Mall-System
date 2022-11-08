@@ -93,19 +93,26 @@ public class HomepageStaff implements Initializable {
 
     @FXML
     private void addRestaurant(ActionEvent event) throws IOException {
-        this.mainApplication.addEnterprises(new Restaurant(this.name_new_restaurant.getText(), Integer.parseInt(this.n_seats_new_restaurant.getText())));
+        String name = this.name_new_restaurant.getText();
+        int seats = Integer.parseInt(this.n_seats_new_restaurant.getText());
+        if(!(name.isBlank()) && seats > 0)
+            this.mainApplication.addEnterprises(new Restaurant(name, seats));
         this.showRestaurants(this.mainApplication);
     }
 
     @FXML
     private void addLibrary(ActionEvent event) throws IOException {
-        this.mainApplication.addEnterprises(new Library(this.name_new_library.getText(), this.mainApplication.getAdminstration()));
+        String name = this.name_new_library.getText();
+        if(!(name.isBlank()))
+            this.mainApplication.addEnterprises(new Library(name, this.mainApplication.getAdminstration()));
         this.showLibraries(this.mainApplication);
     }
 
     @FXML
     private void addShop(ActionEvent event) throws IOException {
-        this.mainApplication.addEnterprises(new Shop(this.name_new_shop.getText()));
+        String name = this.name_new_shop.getText();
+        if(!(name.isBlank()))
+            this.mainApplication.addEnterprises(new Shop(name));
         this.showShops(this.mainApplication);
     }
     
@@ -113,6 +120,7 @@ public class HomepageStaff implements Initializable {
     private void clearInputs(ActionEvent event) {
         this.name_new_library.clear();
         this.name_new_restaurant.clear();
+        this.n_seats_new_restaurant.clear();
         this.name_new_shop.clear();
     }
 
@@ -156,7 +164,7 @@ public class HomepageStaff implements Initializable {
         vBox1.setAlignment(Pos.CENTER_LEFT);
         pane.setLeft(vBox1);
         
-        vBox1.getChildren().add(new Label("Name: " + name));
+        vBox1.getChildren().add(new Label("" + name));
         vBox1.getChildren().add(new Label());
         
         VBox vBox2 = new VBox();
@@ -173,66 +181,60 @@ public class HomepageStaff implements Initializable {
         vBox2.getChildren().add(btnRemove);
         btnRemove.setAlignment(Pos.CENTER);
         
-        btnOpen.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(e instanceof Library) {
-                    Library l = (Library) e;
-                    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/StaffViews/Library/LibraryAllBooks.fxml"));
-                    try {
-                        root = loader.load();                    
-                    } catch (IOException ex) {
-                        System.out.println(ex+"\nEccezione caricamento staff library view"); 
-                    }      
-                    LibraryAllBooksS cLController = loader.getController();
-                    cLController.setData(staff, l, mainApplication);
-                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                    scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
-                } else if(e instanceof Restaurant) {
-                    Restaurant r = (Restaurant) e;
-                    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/StaffViews/Restaurant/RestaurantMenuS.fxml"));
-                    try {
-                        root = loader.load();                    
-                    } catch (IOException ex) {
-                        System.out.println(ex+"\nEccezione caricamento staff restaurant view"); 
-                    }      
-                    RestaurantMenuS sRMController = loader.getController();
-                    sRMController.setData(staff, r, mainApplication);
-                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                    scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
-                } else {
-                    Shop s = (Shop) e;
-                    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/StaffViews/ShopStaff.fxml"));
-                    try {
-                        root = loader.load();                    
-                    } catch (IOException ex) {
-                        System.out.println(ex+"\nEccezione caricamento staff shop view"); 
-                    }      
-                    ShopStaff sSController = loader.getController();
-                    sSController.setData(staff, s, mainApplication);
-                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                    scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
-                }                    
+        btnOpen.addEventHandler(ActionEvent.ACTION, (ActionEvent event) -> {
+            if(e instanceof Library) {
+                Library l = (Library) e;
+                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/StaffViews/Library/LibraryAllBooks.fxml"));
+                try {
+                    root = loader.load();
+                } catch (IOException ex) {
+                    System.out.println(ex+"\nEccezione caricamento staff library view");
+                }
+                LibraryAllBooksS cLController = loader.getController();
+                cLController.setData(staff, l, mainApplication);
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } else if(e instanceof Restaurant) {
+                Restaurant r = (Restaurant) e;
+                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/StaffViews/Restaurant/RestaurantMenuS.fxml"));
+                try {
+                    root = loader.load();
+                } catch (IOException ex) {
+                    System.out.println(ex+"\nEccezione caricamento staff restaurant view");
+                }
+                RestaurantMenuS sRMController = loader.getController();
+                sRMController.setData(staff, r, mainApplication);
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } else {
+                Shop s = (Shop) e;
+                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/StaffViews/ShopStaff.fxml"));
+                try {
+                    root = loader.load();
+                } catch (IOException ex) {
+                    System.out.println(ex+"\nEccezione caricamento staff shop view");
+                }
+                ShopStaff sSController = loader.getController();
+                sSController.setData(staff, s, mainApplication);
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();                    
             }
         });
         
-        btnRemove.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                mainApplication.removeEnterprises(e);
-                if(e instanceof Restaurant)
-                    showRestaurants(mainApplication);
-                else if(e instanceof Library)
-                    showLibraries(mainApplication);
-                else
-                    showShops(mainApplication);
-            }
+        btnRemove.addEventHandler(ActionEvent.ACTION, (ActionEvent event) -> {
+            mainApplication.removeEnterprises(e);
+            if(e instanceof Restaurant)
+                showRestaurants(mainApplication);
+            else if(e instanceof Library)
+                showLibraries(mainApplication);
+            else
+                showShops(mainApplication);
         });        
         return pane;
     }
