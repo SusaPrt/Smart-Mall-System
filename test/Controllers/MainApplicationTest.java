@@ -4,16 +4,13 @@
  */
 package Controllers;
 
-import Model.administration.Administration;
-import Model.enterprises.library.Library;
-import Model.enterprises.restaurant.Restaurant;
-import Model.enterprises.shop.Shop;
+import Model.enterprises.restaurant.Course;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
 public class MainApplicationTest {
     private final MainApplication instance;
@@ -24,33 +21,38 @@ public class MainApplicationTest {
 
     @Test
     public void testGetAdminstration() {
-        System.out.println("getAdminstration");
-        boolean expResult = false;
-        boolean result = instance.getAdminstration().getArchive().getCustomers().isEmpty();
+        System.out.println("Test metodo 'getAdminstration'");
+        boolean expResult = true;
+        boolean result = instance.getAdminstration()
+                .getArchive().getCustomers().stream()
+                .filter(c -> c.getName().equals("Simone") && c.getPassword().equals("3333"))
+                .findAny().isPresent();
         assertEquals(expResult, result);
     }
 
     @Test
     public void testGetDefaultLibrary() {
-        System.out.println("getDefaultLibrary");
-        boolean expResult = false;
-        boolean result = instance.getDefaultLibrary().getAllBooks().isEmpty();
+        System.out.println("Test metodo 'getDefaultLibrary'");
+        boolean expResult = true;
+        boolean result = instance.getDefaultLibrary().getAllBooks().get(0).getISBN() == 34524;
         assertEquals(expResult, result);
     }
 
     @Test
     public void testGetDefaultRestaurant() {
-        System.out.println("getDefaultRestaurant");
-        boolean expResult = false;
-        boolean result = instance.getDefaultRestaurant().getMenu().getWarehouse().isEmpty();
+        System.out.println("Test metodo 'getDefaultRestaurant'");
+        boolean expResult = true;
+        boolean result = instance.getDefaultRestaurant().getMenu().getWarehouse()
+                .get(Course.FIRSTS).getFirst().getName().equals("YYYYY");
         assertEquals(expResult, result);
     }
 
     @Test
     public void testGetDefaultShop() {
-        System.out.println("getDefaultShop");
-        boolean expResult = false;
-        boolean result = instance.getDefaultShop().getWarehouse().isEmpty();
+        System.out.println("Test metodo 'getDefaultShop'");
+        boolean expResult = true;
+        boolean result = instance.getDefaultShop().getWarehouse().get(0)
+                .getName().equals("YYYYYY");
         assertEquals(expResult, result);
     }    
 }

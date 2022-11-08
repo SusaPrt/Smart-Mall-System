@@ -4,15 +4,15 @@
  */
 package Model.enterprises.restaurant;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Set;
+import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
  *
- * @author Mars_DB
+ * @author Susanna
  */
 public class MenuTest {
     private final Menu instance;
@@ -26,7 +26,7 @@ public class MenuTest {
 
     @Test
     public void testGetTypeDishes() {
-        System.out.println("getTypeDishes");
+        System.out.println("Test per metodo 'getTypeDishes'");
         Course course = Course.SECONDS;
         LinkedList<Dish> expResult = new LinkedList();
         expResult.add(new Dish("YYYYYYYYY", 5, 720, Course.SECONDS));
@@ -38,18 +38,18 @@ public class MenuTest {
 
     @Test
     public void testGetAvailableTypeDishes() {
-        System.out.println("getAvailableTypeDishes");
-        Set<Dish> expResult = new HashSet();
+        System.out.println("Test per metodo 'getAvailableTypeDishes'");
+        List<Dish> expResult = new ArrayList();
         expResult.add(new Dish("YYYYYYYYY", 5, 720, Course.SECONDS));
         expResult.add(new Dish("YYYYYY", 12, 312, Course.SECONDS));
         
-        Set<Dish> result = instance.getAvailableTypeDishes(Course.SECONDS);
+        ArrayList<Dish> result = (ArrayList<Dish>) instance.getAvailableTypeDishes(Course.SECONDS);
         assertEquals(expResult, result);
     }
 
     @Test
     public void testAddDish() {
-        System.out.println("addDish");
+        System.out.println("Test per metodo 'addDish'");
 
         instance.addDish(this.dish.getName(),this.dish.getPrice(), 
                 this.dish.getQuantity(), this.dish.getCourse());
@@ -61,7 +61,7 @@ public class MenuTest {
 
     @Test
     public void testRemoveDish() {
-        System.out.println("removeDish");
+        System.out.println("Test per metodo 'removeDish'");
 
         instance.addDish(this.dish.getName(),this.dish.getPrice(), 
                 this.dish.getQuantity(), this.dish.getCourse());

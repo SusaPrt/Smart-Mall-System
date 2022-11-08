@@ -20,7 +20,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseDragEvent;
 import javafx.stage.Stage;
 
 //@author Susanna
@@ -114,19 +113,32 @@ public class LibraryAddBook implements Initializable {
     private void addBook(ActionEvent event) {
          String name = this.name_new_book.getText();
          String author = this.author_new_book.getText();
-         double price = Double.parseDouble(this.price_new_book.getText());
-         int quantity = Integer.parseInt(this.price_new_book.getText());
-         int year = Integer.parseInt(this.year_new_book.getText());
+         String price = this.price_new_book.getText();
+         String quantity = this.price_new_book.getText();
+         String year = this.year_new_book.getText();
          String genre = this.genre_new_book.getText();
-         int isbn = Integer.parseInt(this.isbn_new_book.getText());
+         String isbn = this.isbn_new_book.getText();
          
-         if(!(genre == null) && !(name == null) && !(author == null) && price > 0 && quantity >= 0 && isbn >= 0) {
-             boolean done = this.library.addBook(name, author, price, quantity, year, genre, isbn);
-             if(done)
-                 this.label_response.setText("Book " + name + " added!");
-             else
-                 this.label_response.setText("ERROR");
-         }
+        try {
+            boolean done = this.library.addBook(name, author, 
+                    Double.parseDouble(price), Integer.parseInt(quantity), 
+                    Integer.parseInt(year), genre, 
+                    Integer.parseInt(isbn));
+            if(done)
+                this.label_response.setText("Book " + name + " added!");
+            else
+                this.label_response.setText("ERROR");
+        } catch(NumberFormatException ex) {
+                    label_response.setText("ERROR");
+        } finally {
+            this.name_new_book.clear();
+            this.author_new_book.clear();
+            this.price_new_book.clear();
+            this.quantity_new_book.clear();
+            this.year_new_book.clear();
+            this.genre_new_book.clear();
+            this.isbn_new_book.clear();
+        }
     }
 
     @FXML

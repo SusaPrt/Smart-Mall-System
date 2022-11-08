@@ -18,10 +18,9 @@ import java.util.LinkedList;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
 public class DataInterpreter {
-    private Administration aD;
     private DataWriter dW;
     private DataReader dR;
     private LinkedList<LinkedList> data;
@@ -35,16 +34,6 @@ public class DataInterpreter {
         this.listReq = requirer;
         this.readData(this.dR.getRawData());
         this.dW = new DataWriter(f, requirer, this.dR.getRawData());
-    }
-    
-    public DataInterpreter(File f, String requirer, Administration aD) throws FileNotFoundException{
-        this.dR = new DataReader(f);
-        this.data = new LinkedList();
-        this.accounts = new LinkedList();
-        this.listReq = requirer;
-        this.readData(this.dR.getRawData());
-        this.dW = new DataWriter(f, requirer, this.dR.getRawData());
-        this.aD = aD;
     }
     
     private void readData(LinkedList<String> rawData){
@@ -114,7 +103,7 @@ public class DataInterpreter {
             }else{
                 Customer person = new Customer(tokens[0], 
                         tokens[1], Double.parseDouble(tokens[2]), 
-                        Integer.parseInt(tokens[3].replaceAll("\\D+", "")), this.aD);
+                        Integer.parseInt(tokens[3].replaceAll("\\D+", "")));
                 p = (Person)person;
             }
             this.accounts.add(p);

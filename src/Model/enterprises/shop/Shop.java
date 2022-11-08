@@ -6,6 +6,7 @@ package Model.enterprises.shop;
 
 //@Author Susanna
 
+import Model.administration.Administration;
 import Model.administration.Customer;
 import Model.administration.Item;
 import Model.enterprises.shopInterfaces.IShop;

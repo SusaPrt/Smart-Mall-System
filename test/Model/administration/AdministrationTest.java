@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
 public class AdministrationTest {
     private final Administration instance;
@@ -21,7 +21,7 @@ public class AdministrationTest {
     
     public AdministrationTest() {
         this.instance = new Administration();
-        this.c = new Customer("Simone", "1111", 300.00, 12345, instance);
+        this.c = new Customer("Simone", "1111", 300.00, 12345);
         this.c.getCart().addItem(new Item("Computer", 200.00, 1));
         this.c.getCart().addItem(new Item("Monitor", 100.00, 1));
         this.p = new Payment(c, 101);

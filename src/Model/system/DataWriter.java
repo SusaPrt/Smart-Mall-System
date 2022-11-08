@@ -20,7 +20,7 @@ import java.util.LinkedList;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
 public class DataWriter {
     private BufferedWriter bW;

@@ -27,7 +27,7 @@ public class Archive implements ArchiveInterface{
         try {
             this.dataInterpreter = 
                     new DataInterpreter(new File("./src/Model/system/DataFolder/Account.txt")
-                                                , "Archive", aD);
+                                                , "Archive");
         } catch (FileNotFoundException ex) {
             System.out.println(ex);
         }

@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
 public class PaymentTest {
     private final Customer c;
@@ -20,7 +20,7 @@ public class PaymentTest {
     private final Item i, e;
     
     public PaymentTest() {
-        this.c = new Customer("Simone", "77777", 300, new Administration());
+        this.c = new Customer("Simone", "77777", 300);
         this.i = new Item("Computer", 200.00, 1);
         this.e = new Item("Monitor", 100.00, 1);
         c.getCart().addItem(i);

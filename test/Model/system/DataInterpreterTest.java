@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
 public class DataInterpreterTest {
     private final DataInterpreter libraryDataInterpreter;
@@ -33,7 +33,7 @@ public class DataInterpreterTest {
     public DataInterpreterTest() throws FileNotFoundException {
         this.aD = new Administration();
         this.archiveDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Account.txt")
-                                                , "Archive", aD);
+                                                , "Archive");
         this.libraryDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Library.txt")
                                                 ,"Library");
         this.shopDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Shop.txt")
@@ -116,7 +116,7 @@ public class DataInterpreterTest {
         LinkedList<Person> expResult = new LinkedList();
         expResult.add(new Staff("Marzio", "1111", 12345));            
         expResult.add(new Staff("Susanna", "2222", 53421));
-        expResult.add(new Customer("Simone", "3333", 300.5, 12543, aD));
+        expResult.add(new Customer("Simone", "3333", 300.5, 12543));
         LinkedList<Person> result = archiveDataInterpreter.getAccounts();
         assertEquals(expResult, result);
     }   

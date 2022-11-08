@@ -27,7 +27,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 //@Author Susanna
@@ -50,7 +49,7 @@ public class PersonalSpace implements Initializable {
     @FXML
     private Label label_user_name;
     @FXML
-    private Text label_response;
+    private Label label_response;
     @FXML
     private Label label_cost;
 
@@ -85,7 +84,7 @@ public class PersonalSpace implements Initializable {
 
     @FXML
     private void payCart(ActionEvent event) {
-        boolean done = this.customer.payTheCart();
+        boolean done = this.customer.payTheCart(this.mainApplication.getAdminstration());
         if(done) {            
             this.showCart(customer);
             this.label_response.setText("Payment made");
@@ -97,9 +96,16 @@ public class PersonalSpace implements Initializable {
 
     @FXML
     private void addCredit(ActionEvent event) {
-        this.customer.addCredit(Double.parseDouble(this.credit_to_add.getText()));
-        this.label_user_credit.setText(""+this.customer.getCredit());
-        this.credit_to_add.clear();
+        String credit = this.credit_to_add.getText();
+        try{            
+            this.customer.addCredit(Double.parseDouble(credit));
+            this.label_user_credit.setText(""+this.customer.getCredit());
+            this.label_response.setText("Credit added");
+        } catch(NumberFormatException ex){
+            this.label_response.setText("ERROR");
+        } finally {
+            this.credit_to_add.clear();
+        }
     }
 
     @FXML

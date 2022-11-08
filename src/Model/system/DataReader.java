@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
 public class DataReader {
     private Scanner sc;

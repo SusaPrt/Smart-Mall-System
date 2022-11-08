@@ -4,6 +4,7 @@
  */
 package Model.administration.AdministrationInterfaces;
 
+import Model.administration.Administration;
 import Model.administration.payment.Cart;
 
 /**
@@ -12,7 +13,7 @@ import Model.administration.payment.Cart;
  */
 public interface CustomerInterface extends PersonInterface{
     
-    public Boolean payTheCart();
+    public Boolean payTheCart(Administration ad);
     
     public double getCredit();
     

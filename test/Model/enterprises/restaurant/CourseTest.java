@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Mars_DB
+ * @author Susanna
  */
 public class CourseTest {
     private final Course instance;

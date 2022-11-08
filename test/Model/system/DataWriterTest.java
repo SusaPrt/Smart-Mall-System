@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
 public class DataWriterTest {
     private final DataInterpreter ShopDataInterpreter;
@@ -32,7 +32,7 @@ public class DataWriterTest {
     public DataWriterTest() throws FileNotFoundException {
         this.aD = new Administration();
         this.ArchiveDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Account.txt")
-                                                , "Archive", aD);
+                                                , "Archive");
         this.ShopDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Shop.txt")
                                                 ,"Shop");
         this.LibraryDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Library.txt")
@@ -86,7 +86,6 @@ public class DataWriterTest {
                                                 ,"Restaurant");
         LinkedList<LinkedList> data = RestourantDataInterpreter.getData();
         boolean result = data.get(0).contains(d);
-        System.out.println(data.get(0).size());
         assertEquals(expResult, result);      
     }
 
@@ -99,7 +98,7 @@ public class DataWriterTest {
         this.ArchiveDataInterpreter.getDataWriter().writeOnFile();
         //simulo la chiusura e la riaccensione del sistema cosi che il DataReader legge i dati precedentemente salvati
         DataInterpreter ArchiveDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Account.txt")
-                                                , "Archive", aD);
+                                                , "Archive");
         LinkedList<Person> data = ArchiveDataInterpreter.getAccounts();
         boolean result = data.contains(p);
         

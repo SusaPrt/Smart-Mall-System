@@ -18,26 +18,22 @@ public class Customer extends Person implements CustomerInterface{
     private double credit;
     private final Cart cart;
     private Payment payment;
-    private final Administration aD;
 
-    public Customer(String name, String password, double credit, Administration ad){
+    public Customer(String name, String password, double credit){
         super(name, password);  
         this.credit = credit;
-        this.cart = new Cart();
-        this.aD = ad;
-        
+        this.cart = new Cart();        
     }
     
-    public Customer(String name, String password, double credit, int id, Administration ad){
+    public Customer(String name, String password, double credit, int id){
         super(name, password, id);  
         this.credit = credit;
         this.cart = new Cart();
-        this.aD = ad;
     }
        
     @Override
-    public Boolean payTheCart(){                                 //inserimento pagamento       
-        Boolean paid =false; 
+    public Boolean payTheCart(Administration adm){                                 //inserimento pagamento       
+        Boolean paid = false; 
         this.payment = new Payment(this);
         if(this.payment.checkStatus()){
             this.credit-=this.payment.getCost();
@@ -46,7 +42,8 @@ public class Customer extends Person implements CustomerInterface{
             paid = true;
         }
         if(paid)
-            this.aD.addPayment(payment);
+            //System.out.println(this.aD.toString());
+            adm.addPayment(payment);
         return paid;
     }
       

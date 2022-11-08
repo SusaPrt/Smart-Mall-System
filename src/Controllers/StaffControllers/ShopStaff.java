@@ -85,12 +85,18 @@ public class ShopStaff implements Initializable {
     @FXML
     private void addItem(ActionEvent event) {
         String name = this.name_new_item.getText();
-        double price = Double.parseDouble(this.price_new_item.getText());
-        int quantity = Integer.parseInt(this.quantity_new_item.getText());
-        if(!(name == null) && price > 0 && quantity >= 0) {
-            this.shop.addItem(name, price, quantity);
+        String price = this.price_new_item.getText();
+        String quantity = this.quantity_new_item.getText();
+        try {
+            this.shop.addItem(name, Double.parseDouble(price), Integer.parseInt(quantity));
             this.label_response.setText("Item " + name + " added!");
             this.showItems(this.shop);
+        } catch (NumberFormatException ex) {
+            this.label_response.setText("ERROR");
+        } finally {
+            this.name_new_item.clear();
+            this.price_new_item.clear();
+            this.quantity_new_item.clear();
         }
     }
 
@@ -108,8 +114,7 @@ public class ShopStaff implements Initializable {
         for(Item i : this.shop.getWarehouse()) {
             BorderPane pane = this.createViewItem(i);
             vBox.getChildren().add(pane);
-        }
-        
+        }        
         this.scrollPane_items.setContent(vBox);
         this.scrollPane_items.fitToWidthProperty().set(true);
         this.scrollPane_items.fitToHeightProperty().set(true);
@@ -156,16 +161,19 @@ public class ShopStaff implements Initializable {
         btnAdd.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                int n = Integer.parseInt(refueling.getText());
-                if(n > 0) {
-                    boolean done = shop.refueling(i, n);
-                    if(done) {
-                        refueling.clear();
+                String ref = refueling.getText();
+                try {
+                    boolean done = shop.refueling(i, Integer.parseInt(ref));
+                    if(done) {                        
                         label_response.setText("Refueling " +i.getName());
                         showItems(shop);
-                    }
-                } else
+                    } else                 
+                        label_response.setText("ERROR");
+                } catch(NumberFormatException ex) {
                     label_response.setText("ERROR");
+                } finally {
+                    refueling.clear();
+                }
             }
         });
         

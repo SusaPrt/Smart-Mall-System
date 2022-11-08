@@ -169,7 +169,7 @@ public class Homepage implements Initializable {
         try {
             root = loader.load();
         } catch (IOException ex) {
-            System.out.println(ex+"\nEccezione caricamento customer homepage");
+            System.out.println(ex+"\nEccezione caricamento customer personal space");
         }
         PersonalSpace cPScontroller = loader.getController();
         cPScontroller.setData(this.mainApplication, this.customer);

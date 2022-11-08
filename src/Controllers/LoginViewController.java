@@ -19,7 +19,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -107,7 +106,7 @@ public class LoginViewController implements Initializable {
         if(!userName.isBlank() && !userPwd.isBlank()) {
             this.mainApp.getAdminstration().getArchive()
                     .addPerson(c = new Customer(userName, userPwd, 
-                            100, this.mainApp.getAdminstration()));
+                            100));
             // richiamo view per customer
             
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/CustomerViews/HomepageCustomer.fxml"));

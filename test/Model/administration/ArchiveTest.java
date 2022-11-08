@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
 public class ArchiveTest {
     private final Archive instance;
@@ -21,7 +21,7 @@ public class ArchiveTest {
         this.Ad = new Administration();
         this.instance = new Archive(this.Ad);
         this.staff = new Staff("Marzio", "1111", 123458);
-        this.customer = new Customer("Simone", "2222", 100.00, 54321, this.Ad);
+        this.customer = new Customer("Simone", "2222", 100.00, 54321);
     }
     /*La classe Archivio compone la classe Administration che alla sua creazione
       carica gli account, se ce ne sono, dal file di test Account.txt, su file 

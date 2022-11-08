@@ -198,15 +198,19 @@ public class LibraryAllBooksS implements Initializable {
         btnAdd.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                int n = Integer.parseInt(refueling.getText());
-                if(n > 0) {
-                    boolean done = library.refueling(b, n);
+                String ref = refueling.getText();
+                try {
+                    boolean done = library.refueling(b, Integer.parseInt(ref));
                     if(done) {
-                        label_response.setText("Refueling " +b.getName() + " by " + n);
+                        label_response.setText("Refueling " +b.getName() + " by " + Integer.parseInt(ref));
                         showBooks(library.getAllBooks());
-                    }
-                } else
+                    } else
+                        label_response.setText("ERROR");
+                } catch(NumberFormatException ex) {
                     label_response.setText("ERROR");
+                } finally {
+                    refueling.clear();
+                }
             }
         });
         

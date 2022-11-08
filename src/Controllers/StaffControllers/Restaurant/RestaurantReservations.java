@@ -100,15 +100,20 @@ public class RestaurantReservations implements Initializable {
     @FXML
     private void addReservation(ActionEvent event) {
         String name = this.name_reservation.getText();
-        int seats = Integer.parseInt(this.n_seats_reservation.getText());
-        if(!(name == null) && seats >= 0) {
-            boolean done = this.restaurant.reserveSeats(seats, name);
+        String seats = this.n_seats_reservation.getText();
+        try {
+            boolean done = this.restaurant.reserveSeats(Integer.parseInt(seats), name);
             if(done) {
                 this.label_response.setText("Reservation " + name + " added!");
                 this.showReservations(this.restaurant.getReservations());
                 this.label_available_seats.setText(this.restaurant.getFreeSeats() + "");
             } else
                 this.label_response.setText("ERROR");
+        } catch(NumberFormatException ex) {
+            this.label_response.setText("ERROR");
+        } finally {
+            this.name_reservation.clear();
+            this.n_seats_reservation.clear();
         }
     }
 

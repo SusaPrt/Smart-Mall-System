@@ -5,14 +5,12 @@
 package Model.enterprises.library;
 
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
  *
- * @author Mars_DB
+ * @author Susanna
  */
 public class LoanTest {
     private final Loan instance;

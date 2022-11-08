@@ -107,13 +107,24 @@ public class RestaurantMenuS implements Initializable {
     @FXML
     private void addDish(ActionEvent event) {
         String name = this.name_new_dish.getText();
-        double price = Double.parseDouble(this.price_new_dish.getText());
-        int quantity = Integer.parseInt(this.quantity_new_dish.getText());
+        String price = this.price_new_dish.getText();
+        String quantity = this.quantity_new_dish.getText();
         Course course = Course.selectType(this.course_choise.getValue());
-        if(!(name == null) && price >= 0 && quantity > 0 && !(course == null)) {
-            this.restaurant.getMenu().addDish(name, price, quantity, course);
-            this.label_response.setText("Dish " + name + " added!");
-            this.showMenu(this.restaurant.getMenu());
+        try {
+            boolean done = this.restaurant.getMenu().addDish(name, 
+                    Double.parseDouble(price), 
+                    Integer.parseInt(quantity), course);
+            if(done) {
+                this.label_response.setText("Dish " + name + " added!");
+                this.showMenu(this.restaurant.getMenu());
+            } else
+                this.label_response.setText("ERROR");
+        } catch(NumberFormatException ex) {
+            this.label_response.setText("ERROR");
+        } finally {
+            this.name_new_dish.clear();
+            this.price_new_dish.clear();
+            this.quantity_new_dish.clear();
         }
     }
 
@@ -199,15 +210,19 @@ public class RestaurantMenuS implements Initializable {
         btnAdd.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                int n = Integer.parseInt(refueling.getText());
-                if(n > 0) {
-                    boolean done = restaurant.refueling(d, n);
-                    if(done) {
+                String ref = refueling.getText();
+                try {
+                    boolean done = restaurant.refueling(d, Integer.parseInt(ref));
+                    if(done) {                        
                         label_response.setText("Refueling " +d.getName());
                         showMenu(restaurant.getMenu());
-                    }
-                } else
+                    } else                 
+                        label_response.setText("ERROR");
+                } catch(NumberFormatException ex) {
                     label_response.setText("ERROR");
+                } finally {
+                    refueling.clear();
+                }
             }
         });
         
