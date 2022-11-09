@@ -11,13 +11,13 @@
    <children>
       <AnchorPane layoutX="34.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text fill="WHITE" layoutX="231.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your loans">
+            <Text fill="WHITE" layoutX="231.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your loans">
                <font>
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Text>
-            <ScrollPane fx:id="scrollPane_loans" layoutX="231.0" layoutY="66.0" prefHeight="297.0" prefWidth="323.0" style="-fx-background-color: #97D2EC;" />
-            <Label fx:id="label_response" layoutX="393.0" layoutY="40.0" textFill="WHITE">
+            <ScrollPane fx:id="scrollPane_loans" layoutX="231.0" layoutY="66.0" prefHeight="297.0" prefWidth="323.0" style="-fx-background-radius: 10;" />
+            <Label fx:id="label_response" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="303.0" layoutY="44.0" prefHeight="18.0" prefWidth="250.0" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="15.0" />
                </font>
@@ -45,7 +45,7 @@
                   <Font name="Calibri Bold" size="14.0" />
                </font>
             </Button>
-            <Label fx:id="label_name_enterprise" layoutX="52.0" layoutY="53.0" text="&lt;name&gt;" textFill="WHITE">
+            <Label fx:id="label_name_enterprise" alignment="CENTER" contentDisplay="CENTER" layoutX="-4.0" layoutY="72.0" prefHeight="31.0" prefWidth="183.0" text="&lt;name&gt;" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="27.0" />
                </font>

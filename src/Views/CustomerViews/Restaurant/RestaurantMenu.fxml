@@ -26,7 +26,7 @@
                   <Font name="Calibri Bold" size="14.0" />
                </font>
             </Button>
-            <Label fx:id="label_name_enterprise" layoutX="52.0" layoutY="57.0" text="&lt;name&gt;" textFill="WHITE">
+            <Label fx:id="label_name_enterprise" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="72.0" prefHeight="31.0" prefWidth="195.0" text="&lt;name&gt;" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="27.0" />
                </font>
@@ -40,8 +40,8 @@
       </AnchorPane>
       <AnchorPane layoutX="195.0" prefHeight="410.0" prefWidth="406.0">
          <children>
-            <ScrollPane fx:id="scrollPane_menu" layoutX="23.0" layoutY="63.0" prefHeight="334.0" prefWidth="359.0" />
-            <Text fill="WHITE" layoutX="23.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu">
+            <ScrollPane fx:id="scrollPane_menu" layoutX="23.0" layoutY="63.0" prefHeight="334.0" prefWidth="359.0" style="-fx-background-radius: 5;" />
+            <Text fill="WHITE" layoutX="23.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu">
                <font>
                   <Font name="Calibri Bold" size="15.0" />
                </font>

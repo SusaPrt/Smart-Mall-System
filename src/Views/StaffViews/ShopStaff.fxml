@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #25316D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.StaffControllers.ShopStaff">
    <children>
@@ -22,14 +23,14 @@
                   <Font name="Calibri Bold" size="14.0" />
                </font>
             </Button>
-            <Label fx:id="label_name_enterprise" layoutX="52.0" layoutY="73.0" text="&lt;name&gt;" textFill="WHITE">
+            <Label fx:id="label_name_enterprise" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="72.0" prefHeight="31.0" prefWidth="195.0" text="&lt;name&gt;" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="27.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <Pane layoutX="206.0" layoutY="10.0" prefHeight="392.0" prefWidth="382.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;">
+      <Pane layoutX="206.0" layoutY="39.0" prefHeight="363.0" prefWidth="382.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;">
          <children>
             <TextField fx:id="name_new_item" layoutX="14.0" layoutY="14.0" prefHeight="22.0" prefWidth="125.0" promptText="Name" style="-fx-background-radius: 5;">
                <font>
@@ -61,7 +62,7 @@
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Label>
-            <ScrollPane fx:id="scrollPane_items" layoutX="16.0" layoutY="126.0" prefHeight="258.0" prefWidth="351.0" />
+            <ScrollPane fx:id="scrollPane_items" layoutX="16.0" layoutY="126.0" prefHeight="225.0" prefWidth="351.0" />
             <TextField fx:id="refueling" layoutX="297.0" layoutY="72.0" prefHeight="22.0" prefWidth="70.0" promptText="N refueling" style="-fx-background-radius: 5;">
                <font>
                   <Font name="Calibri Bold" size="12.0" />
@@ -69,5 +70,10 @@
             </TextField>
          </children>
       </Pane>
+      <Text fill="WHITE" layoutX="206.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add item">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

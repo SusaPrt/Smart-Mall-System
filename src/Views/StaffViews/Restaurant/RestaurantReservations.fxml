@@ -28,7 +28,7 @@
                   <Font name="Calibri Bold" size="14.0" />
                </font>
             </Button>
-            <Label fx:id="label_name_enterprise" layoutX="52.0" layoutY="72.0" text="&lt;name&gt;" textFill="WHITE">
+            <Label fx:id="label_name_enterprise" alignment="CENTER" contentDisplay="CENTER" layoutY="72.0" prefHeight="31.0" prefWidth="195.0" text="&lt;name&gt;" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="27.0" />
                </font>
@@ -42,7 +42,7 @@
       </AnchorPane>
       <AnchorPane layoutX="193.0" layoutY="-1.0" prefHeight="410.0" prefWidth="406.0">
          <children>
-            <Pane layoutX="19.0" layoutY="19.0" prefHeight="378.0" prefWidth="368.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;">
+            <Pane layoutX="19.0" layoutY="40.0" prefHeight="357.0" prefWidth="368.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;">
                <children>
                   <Button layoutX="304.0" layoutY="21.0" mnemonicParsing="false" onAction="#addReservation" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Add">
                      <font>
@@ -62,7 +62,7 @@
                         <Font name="Calibri Bold" size="15.0" />
                      </font>
                   </Text>
-                  <Label fx:id="label_response" layoutX="8.0" layoutY="337.0" prefHeight="18.0" prefWidth="353.0">
+                  <Label fx:id="label_response" layoutX="8.0" layoutY="332.0" prefHeight="18.0" prefWidth="353.0">
                      <font>
                         <Font name="Calibri Bold" size="15.0" />
                      </font>
@@ -74,6 +74,11 @@
                   </Label>
                </children>
             </Pane>
+            <Text fill="WHITE" layoutX="19.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add reservation">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>

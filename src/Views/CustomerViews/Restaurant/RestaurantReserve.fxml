@@ -27,7 +27,7 @@
                   <Font name="Calibri Bold" size="14.0" />
                </font>
             </Button>
-            <Label fx:id="label_name_enterprise" layoutX="52.0" layoutY="57.0" text="&lt;name&gt;" textFill="WHITE">
+            <Label fx:id="label_name_enterprise" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="72.0" prefHeight="31.0" prefWidth="195.0" text="&lt;name&gt;" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="27.0" />
                </font>
@@ -41,7 +41,7 @@
       </AnchorPane>
       <AnchorPane layoutX="195.0" prefHeight="410.0" prefWidth="406.0">
          <children>
-            <Pane layoutX="19.0" layoutY="39.0" prefHeight="298.0" prefWidth="368.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;">
+            <Pane layoutX="19.0" layoutY="61.0" prefHeight="276.0" prefWidth="368.0" style="-fx-background-color: #97D2EC; -fx-background-radius: 10;">
                <children>
                   <TextField fx:id="name_reservation" layoutX="15.0" layoutY="91.0" prefHeight="25.0" prefWidth="223.0" style="-fx-background-radius: 10;" />
                   <Text layoutX="12.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
@@ -65,7 +65,7 @@
                         <Font name="Calibri Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Label fx:id="label_response" layoutX="15.0" layoutY="251.0" prefHeight="18.0" prefWidth="338.0">
+                  <Label fx:id="label_response" layoutX="15.0" layoutY="242.0" prefHeight="18.0" prefWidth="338.0">
                      <font>
                         <Font name="Calibri Bold" size="15.0" />
                      </font>
@@ -82,6 +82,11 @@
                   </Text>
                </children>
             </Pane>
+            <Text fill="WHITE" layoutX="19.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reserve">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>
