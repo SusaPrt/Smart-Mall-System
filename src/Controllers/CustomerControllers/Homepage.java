@@ -29,7 +29,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-//@author Susanna
+//@author Susanna & Marzio
 
 public class Homepage implements Initializable {
     private MainApplication mainApplication;
@@ -65,7 +65,8 @@ public class Homepage implements Initializable {
 
     @FXML
     private void toLogin(ActionEvent event){
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/LoginView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader()
+                .getResource("Views/LoginView.fxml"));
         try {
             root = loader.load();
         } catch (IOException ex) {
@@ -76,6 +77,7 @@ public class Homepage implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
     
@@ -83,6 +85,8 @@ public class Homepage implements Initializable {
         this.vBox_libreries.getChildren().clear();
         for(Library l : libs) {
             Button btn = this.createButton(l);
+            btn.setMinWidth(100);
+            btn.setMaxWidth(100);
             this.vBox_libreries.getChildren().add(btn);
         }
         this.vBox_libreries.setAlignment(Pos.TOP_CENTER);
@@ -92,6 +96,8 @@ public class Homepage implements Initializable {
         this.vBox_restaurants.getChildren().clear();
         for(Restaurant r : res) {
             Button btn = this.createButton(r);
+            btn.setMinWidth(100);
+            btn.setMaxWidth(100);
             this.vBox_restaurants.getChildren().add(btn);
         }
         this.vBox_restaurants.setAlignment(Pos.TOP_CENTER);
@@ -101,6 +107,8 @@ public class Homepage implements Initializable {
         this.vBox_shops.getChildren().clear();
         for(Shop s : shops) {
             Button btn = this.createButton(s);
+            btn.setMinWidth(100);
+            btn.setMaxWidth(100);
             this.vBox_shops.getChildren().add(btn);
         }
         this.vBox_shops.setAlignment(Pos.TOP_CENTER);
@@ -112,7 +120,8 @@ public class Homepage implements Initializable {
             Library l = (Library) e;
             btn.setText(l.getName());
             btn.addEventHandler(ActionEvent.ACTION, (ActionEvent event) -> {
-                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/CustomerViews/Library/LibraryAllBooks.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader()
+                        .getResource("Views/CustomerViews/Library/LibraryAllBooks.fxml"));
                 try {
                     root = loader.load();                    
                 } catch (IOException ex) {
@@ -123,13 +132,15 @@ public class Homepage implements Initializable {
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
+                stage.setResizable(false);
                 stage.show();
             });
         } else if(e instanceof Restaurant) {
             Restaurant r = (Restaurant) e;
             btn.setText(r.getName());
             btn.addEventHandler(ActionEvent.ACTION, (ActionEvent event) -> {
-                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/CustomerViews/Restaurant/RestaurantMenu.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader()
+                        .getResource("Views/CustomerViews/Restaurant/RestaurantMenu.fxml"));
                 try {
                     root = loader.load();
                 } catch (IOException ex) {
@@ -140,13 +151,15 @@ public class Homepage implements Initializable {
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
+                stage.setResizable(false);
                 stage.show();
             });
         } else {
             Shop s = (Shop) e;
             btn.setText(s.getName());
             btn.addEventHandler(ActionEvent.ACTION, (ActionEvent event) -> {
-                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/CustomerViews/ShopCustomer.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader()
+                        .getResource("Views/CustomerViews/ShopCustomer.fxml"));
                 try {
                     root = loader.load();
                 } catch (IOException ex) {
@@ -157,6 +170,7 @@ public class Homepage implements Initializable {
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
+                stage.setResizable(false);
                 stage.show();
             });
         }
@@ -165,7 +179,8 @@ public class Homepage implements Initializable {
 
     @FXML
     private void toCart(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/CustomerViews/PersonalSpace.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader()
+                .getResource("Views/CustomerViews/PersonalSpace.fxml"));
         try {
             root = loader.load();
         } catch (IOException ex) {
@@ -176,6 +191,7 @@ public class Homepage implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 }

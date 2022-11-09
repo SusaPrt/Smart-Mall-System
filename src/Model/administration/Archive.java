@@ -21,7 +21,7 @@ public class Archive implements ArchiveInterface{
     private HashSet<Customer> costumers;
     private DataInterpreter dataInterpreter;
     
-    public Archive(Administration aD){
+    public Archive(){
         this.staff = new HashSet();
         this.costumers = new HashSet();
         try {
@@ -126,6 +126,11 @@ public class Archive implements ArchiveInterface{
                                 .get();
         }       
         return p;
+    }
+    
+    @Override
+    public DataInterpreter getDataInterpreter(){
+        return this.dataInterpreter;
     }
     
     private void accountLoader(){

@@ -8,8 +8,13 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+/**
+ *
+ * @author Marzio & Susanna
+ */
 public class App extends Application{
 
     @Override
@@ -18,23 +23,16 @@ public class App extends Application{
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Views/LoginView.fxml"));
             Scene scene = new Scene(root);
-            
-            primaryStage.setTitle("Login");
+            Image icon = new Image("Model/System/DataFolder/icon.png");
+            primaryStage.getIcons().add(icon);
+            primaryStage.setTitle("Mall System");
             primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
             primaryStage.show();
             
         } catch(IOException e) {
             System.out.println(e);
         }
-/*
-        Button btnl = new Button("Hello World");
-        StackPane root = new StackPane();
-        root.getChildren().add(btnl);
-        Scene scene = new Scene(root, 600, 400);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Prova JavaFX application");
-        primaryStage.show();
-*/
     }
     public static void main(String[] args) {
         launch(args);

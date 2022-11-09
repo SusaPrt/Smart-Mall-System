@@ -31,7 +31,7 @@ public class LibraryTest {
     private Book dFault;
     
     public LibraryTest() {
-        this.instance = new Library(new Administration());
+        this.instance = new Library();
         
         this.book1 = this.instance.getAllBooks().get(0);
         this.book2 = this.instance.getAllBooks().get(1);

@@ -46,11 +46,12 @@ public class Restaurant implements IRestaurant {
     }
     public Restaurant(String name, int seats) throws IOException{
         super();
-        this.name = name;
+        this.name = name.substring(0, name.length()-4);
         this.totSeats = seats;
         this.freeSeats = seats;
         this.reservations = new HashMap<>();
-        this.fileChecker();       
+        
+        this.fileChecker(name);       
     }
 
     @Override
@@ -132,8 +133,13 @@ public class Restaurant implements IRestaurant {
         return this.name;
     }
     
+    @Override
+    public DataInterpreter getDataInterpreter(){
+        return this.dataInt;
+    }
+    
     // >> METODI PRIVATI <<
-    private void fileChecker() throws IOException{
+    private void fileChecker(String name) throws IOException{
         try{
         this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/" + name + ".txt"), "Restaurant");       
         }catch(FileNotFoundException fNf){
@@ -146,7 +152,7 @@ public class Restaurant implements IRestaurant {
             fw.write("#WINESANDSOFT\n");
             this.dataInt = new DataInterpreter(f, "Restaurant");
         }finally{
-            this.menu = new Menu();
+            this.menu = new Menu(this.dataInt.getData());
             this.menuOfTheDay = new MenuOfTheDay(this.menu);           
         }
     }    

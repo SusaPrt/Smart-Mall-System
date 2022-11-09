@@ -8,6 +8,7 @@ package Model.enterprises.shopInterfaces;
 
 import Model.administration.Customer;
 import Model.administration.Item;
+import Model.system.DataInterpreter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,6 +17,7 @@ public interface IShop {
     
     // >> METODI PUBBLICI <<
     public List<Item> getWarehouse();
+    public DataInterpreter getDataInterpreter();
     
     // >> METODI STAFF <<
     public boolean addItem(String name, double price, int quantity);

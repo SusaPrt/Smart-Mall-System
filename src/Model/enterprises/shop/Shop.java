@@ -13,6 +13,7 @@ import Model.enterprises.shopInterfaces.IShop;
 import Model.system.DataInterpreter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -37,8 +38,9 @@ public class Shop implements IShop {
     
     public Shop(String name) throws IOException {
         super();
-        this.name = name;
-        this.fileChecker();
+        this.name = name.substring(0, name.length()-4); 
+
+        this.fileChecker(name);
     }
 
     @Override
@@ -101,17 +103,24 @@ public class Shop implements IShop {
         return done;
     }
     
+    @Override
+    public DataInterpreter getDataInterpreter(){
+        return this.dataInt;
+    }
+    
     private boolean checkItemByName(String name) {
         return this.warehouse.stream().filter(item -> item.getName().equalsIgnoreCase(name)).findFirst().isPresent();
     }
     
-    private void fileChecker() throws IOException{
+    private void fileChecker(String name) throws IOException{
         try{
         this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/" + name + ".txt"), "Shop");       
         }catch(FileNotFoundException fNf){
             File f = new File("./src/Model/system/DataFolder/" + name + ".txt");
             f.createNewFile();
-            this.dataInt = new DataInterpreter(f, "Library");
+            FileWriter fw = new FileWriter(f, true);
+            fw.write("");
+            this.dataInt = new DataInterpreter(f, "Shop");
         }finally{
             this.warehouse = dataInt.getData().getFirst();          
         }

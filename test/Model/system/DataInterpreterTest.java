@@ -10,6 +10,7 @@ import Model.administration.Item;
 import Model.administration.Person;
 import Model.administration.Staff;
 import Model.enterprises.library.Book;
+import Model.enterprises.library.Library;
 import Model.enterprises.restaurant.Course;
 import Model.enterprises.restaurant.Dish;
 import java.io.File;
@@ -68,6 +69,14 @@ public class DataInterpreterTest {
     }
     
     @Test
+    public void testGetLibraryLoans() {
+        Library l = new Library();
+        boolean expResult = false;
+        boolean result = l.getAllLoans().isEmpty();     
+        assertEquals(expResult, result);       
+    }
+    
+    @Test
     public void testGetShopData() {
         System.out.println("Test relativo a shop per metodo 'getData'");
         LinkedList<LinkedList> expResult = new LinkedList();
@@ -118,6 +127,12 @@ public class DataInterpreterTest {
         expResult.add(new Staff("Susanna", "2222", 53421));
         expResult.add(new Customer("Simone", "3333", 300.5, 12543));
         LinkedList<Person> result = archiveDataInterpreter.getAccounts();
+        
+        File dir = new File("./src/Model/system/DataFolder");
+        String[] fileNames = dir.list();
+        for(String s: fileNames){
+            System.out.println(s);
+        }
         assertEquals(expResult, result);
     }   
 }

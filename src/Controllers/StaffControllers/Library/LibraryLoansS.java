@@ -84,6 +84,7 @@ public class LibraryLoansS implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -100,6 +101,7 @@ public class LibraryLoansS implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -116,6 +118,7 @@ public class LibraryLoansS implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show(); 
     }
 
@@ -152,6 +155,8 @@ public class LibraryLoansS implements Initializable {
         pane.setCenter(vBox);
         
         Button btn = new Button();
+        btn.setMinWidth(80);
+        btn.setMaxWidth(80);
         btn.setText(c.getName());
         vBox.getChildren().add(btn);
         vBox.getChildren().add(new Label());

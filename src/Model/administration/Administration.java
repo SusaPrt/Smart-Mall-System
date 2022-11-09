@@ -20,7 +20,7 @@ public class Administration implements AdministrationInterface{
     
     public Administration(){
         this.payments = new HashSet();
-        this.personArchive = new Archive(this);
+        this.personArchive = new Archive();
     }
     
     @Override

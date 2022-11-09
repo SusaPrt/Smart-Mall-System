@@ -8,24 +8,29 @@ package Model.enterprises.library;
 
 import Model.enterprises.libraryInterfaces.ILoan;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
  
 public class Loan implements ILoan {
     private final Book borrowedBook;
     private final LocalDate issueDate;      
-    private LocalDate dueDate;        
+    private LocalDate dueDate; 
+    private final DateTimeFormatter formatter; 
     
     public Loan(Book book) {
         super();
+        this.formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         this.borrowedBook   = book;
         this.issueDate = LocalDate.now();
         this.dueDate = LocalDate.now().plusDays(30);
     }
     
-    public Loan(Book book, LocalDate start, LocalDate due){
+    public Loan(Book book, String start, String due){
+        super();
+        this.formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         this.borrowedBook = book;
-        this.issueDate = start;
-        this.dueDate = due;
+        this.issueDate = LocalDate.parse(start, formatter);
+        this.dueDate = LocalDate.parse(due, formatter);
     }
     
     @Override

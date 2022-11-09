@@ -71,6 +71,7 @@ public class RestaurantMenu implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -87,30 +88,31 @@ public class RestaurantMenu implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
     private void showMenu(Restaurant r) {
         VBox vBox = new VBox();
-        vBox.getChildren().add(new Label("FIRSTS"));        
+        vBox.getChildren().add(new Label("\tFIRSTS"));        
         for(Dish d : this.restaurant.getMenu().getAvailableTypeDishes(Course.FIRSTS)) {
             BorderPane pane = this.createViewDish(d);
             vBox.getChildren().add(pane);
         }
         
-        vBox.getChildren().add(new Label("SECONDS"));
+        vBox.getChildren().add(new Label("\tSECONDS"));
         for(Dish d : this.restaurant.getMenu().getAvailableTypeDishes(Course.SECONDS)) {
             BorderPane pane = this.createViewDish(d);
             vBox.getChildren().add(pane);
         }
         
-        vBox.getChildren().add(new Label("DESSERTS"));
+        vBox.getChildren().add(new Label("\tDESSERTS"));
         for(Dish d : this.restaurant.getMenu().getAvailableTypeDishes(Course.DESSERTS)) {
             BorderPane pane = this.createViewDish(d);
             vBox.getChildren().add(pane);
         }
         
-        vBox.getChildren().add(new Label("WINESANDSOFT"));
+        vBox.getChildren().add(new Label("\tWINESANDSOFT"));
         for(Dish d : this.restaurant.getMenu().getAvailableTypeDishes(Course.WINESANDSOFT)) {
             BorderPane pane = this.createViewDish(d);
             vBox.getChildren().add(pane);
@@ -128,8 +130,8 @@ public class RestaurantMenu implements Initializable {
         vBox1.setAlignment(Pos.CENTER_LEFT);
         pane.setLeft(vBox1);
         
-        vBox1.getChildren().add(new Label("Name: " + d.getName()));
-        vBox1.getChildren().add(new Label("Price: " + d.getPrice()));
+        vBox1.getChildren().add(new Label("\tName: " + d.getName()));
+        vBox1.getChildren().add(new Label("\tPrice: " + d.getPrice()));
         vBox1.getChildren().add(new Label());
         
         VBox vBox2 = new VBox();
@@ -137,6 +139,8 @@ public class RestaurantMenu implements Initializable {
         pane.setRight(vBox2);
         
         Button btnBuy = new Button();
+        btnBuy.setMinWidth(50);
+        btnBuy.setMaxWidth(50);
         btnBuy.setText("Buy");
         vBox2.getChildren().add(btnBuy);
         btnBuy.setAlignment(Pos.CENTER);
@@ -165,6 +169,7 @@ public class RestaurantMenu implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

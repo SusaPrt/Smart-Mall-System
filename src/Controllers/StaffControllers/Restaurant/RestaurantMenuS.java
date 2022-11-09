@@ -85,6 +85,7 @@ public class RestaurantMenuS implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show(); 
     }
 
@@ -101,6 +102,7 @@ public class RestaurantMenuS implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show(); 
     }
 
@@ -186,6 +188,8 @@ public class RestaurantMenuS implements Initializable {
         pane.setRight(vBox2);
         
         Button btnRemove = new Button();
+        btnRemove.setMinWidth(80);
+        btnRemove.setMaxWidth(80);
         btnRemove.setText("Remove");
         vBox2.getChildren().add(btnRemove);
         btnRemove.setAlignment(Pos.CENTER);
@@ -203,6 +207,8 @@ public class RestaurantMenuS implements Initializable {
         });
         
         Button btnAdd = new Button();
+        btnAdd.setMinWidth(80);
+        btnAdd.setMaxWidth(80);
         btnAdd.setText("Refueling");
         vBox2.getChildren().add(btnAdd);
         btnAdd.setAlignment(Pos.CENTER_LEFT);

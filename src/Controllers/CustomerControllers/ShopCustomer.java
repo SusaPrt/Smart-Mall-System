@@ -69,6 +69,7 @@ public class ShopCustomer implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -90,8 +91,8 @@ public class ShopCustomer implements Initializable {
         vBox1.setAlignment(Pos.CENTER_LEFT);
         pane.setLeft(vBox1);
         
-        vBox1.getChildren().add(new Label("Name: " + i.getName()));
-        vBox1.getChildren().add(new Label("Price: " + i.getPrice()));
+        vBox1.getChildren().add(new Label("\tName: " + i.getName()));
+        vBox1.getChildren().add(new Label("\tPrice: " + i.getPrice()));
         vBox1.getChildren().add(new Label());
         
         VBox vBox2 = new VBox();
@@ -99,6 +100,8 @@ public class ShopCustomer implements Initializable {
         pane.setRight(vBox2);
         
         Button btnBuy = new Button();
+        btnBuy.setMinWidth(50);
+        btnBuy.setMaxWidth(50);
         btnBuy.setText("Buy");
         vBox2.getChildren().add(btnBuy);
         btnBuy.setAlignment(Pos.CENTER);
@@ -109,8 +112,7 @@ public class ShopCustomer implements Initializable {
                 customer.getCart().addItem(i);
                 label_response.setText("Item  " + i.getName() + " added!");
             }
-        });
-        
+        });      
         return pane;
     }
 

@@ -78,6 +78,7 @@ public class RestaurantReservations implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show(); 
     }
 
@@ -94,6 +95,7 @@ public class RestaurantReservations implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show(); 
     }
 

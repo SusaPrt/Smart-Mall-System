@@ -15,7 +15,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -34,7 +33,7 @@ public class Library implements ILibrary {
     private final Archive archive;
     
         
-    public Library(Administration ad){
+    public Library(){
         super();
         this.name = "Library";        
         this.loansList = new HashMap();
@@ -44,16 +43,17 @@ public class Library implements ILibrary {
             System.out.println(ex);
         }
         this.booksList = this.dataInt.getData().getFirst();
-        this.archive = ad.getArchive();
+        this.archive = new Archive();
         this.loansLoader();
     }
     
-    public Library(String name, Administration ad) throws IOException{
+    public Library(String name) throws IOException{
         super();
-        this.name = name;        
+        this.name = name.substring(0, name.length()-7);        
         this.loansList = new HashMap();
-        this.archive = ad.getArchive();
-        this.fileChecker();
+        this.archive = new Archive();
+        
+        this.fileChecker(name);
     }
     
     @Override
@@ -167,11 +167,15 @@ public class Library implements ILibrary {
         return this.booksList.stream().anyMatch(b -> isbn == b.getISBN());
     }
 
+    @Override
+    public DataInterpreter getDataInterpreter(){
+        return this.dataInt;
+    }
     
-    private void fileChecker() throws IOException{
+    private void fileChecker(String name) throws IOException{
         try{
-        this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/" + name + ".txt"), "Library"); 
-        this.loansLoader();
+            this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/" + name + ".txt"), "Library"); 
+            this.loansLoader();
         }catch(FileNotFoundException fNf){
             File f = new File("./src/Model/system/DataFolder/" + name + ".txt");
             f.createNewFile();
@@ -215,21 +219,24 @@ public class Library implements ILibrary {
         Customer c;
         Book b;
         Loan l;
-        LocalDate start, due;
-        
-        for(String[] s: (LinkedList<String[]>)this.dataInt.getData().get(1)){
-            c = (Customer) this.archive.getById(Integer.parseInt(s[0]));
-            b = this.booksList.stream().filter(bo -> bo.getISBN() == Integer.parseInt(s[1])).findFirst().get();
-            start = LocalDate.parse(s[2]);
-            due = LocalDate.parse(s[3]);
-            l = new Loan(b, start, due);
+        String start, due;
+        if(this.dataInt.getData().size() >= 2){
+            for(String[] s: (LinkedList<String[]>)this.dataInt.getData().get(1)){
+                c = (Customer) this.archive.getById(Integer.parseInt(s[0]));
+                b = this.booksList.stream().filter(bo -> bo.getISBN() == Integer.parseInt(s[1])).findFirst().get();
+                start = s[2];
+                due = s[3];
+                l = new Loan(b, start, due);
             
-            if(!this.loansList.containsKey(c)){
-                this.loansList.put(c, new HashSet());
-                this.loansList.get(c).add(l);
-            }else{
-                this.loansList.get(c).add(l);
-            }           
-        }     
+                if(!this.loansList.containsKey(c)){
+                    this.loansList.put(c, new HashSet());
+                    this.loansList.get(c).add(l);
+                }else{
+                    this.loansList.get(c).add(l);
+                }           
+            } 
+        }else{
+            this.loansList = new HashMap();
+        }
     } 
 }

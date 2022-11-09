@@ -59,12 +59,17 @@ public class DataWriter {
             Book b = (Book)o;
             this.itemsTowrite.add(this.itemsTowrite.indexOf("#"+b.getGenre())+1,
                     b.getName()+","+b.getAuthor()+","+b.getPrice()+","+b.getQuantity()
-                    +","+b.getPublishingYear()+","+b.getISBN());           
+                    +","+b.getPublishingYear()+","+b.getISBN());  
         }else{
             Item i = (Item)o;
             this.itemsTowrite.add(""+i.getName()+","+i.getPrice()+","+i.getQuantity());
         }
     } 
+    
+    public void addLoan(Loan l, Customer c){
+        this.itemsTowrite.add(this.itemsTowrite.indexOf("#Loans")+1, c.getId()
+                +","+l.getBorrowedBook().getISBN()+","+l.getIssueDate()+","+l.getDueDate());
+    }
     
     public void addPerson(Person p){
         if(p instanceof Staff){

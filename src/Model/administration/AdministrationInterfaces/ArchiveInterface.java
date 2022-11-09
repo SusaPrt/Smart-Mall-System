@@ -7,6 +7,7 @@ package Model.administration.AdministrationInterfaces;
 import Model.administration.Customer;
 import Model.administration.Person;
 import Model.administration.Staff;
+import Model.system.DataInterpreter;
 import java.util.HashSet;
 
 /**
@@ -28,4 +29,6 @@ public interface ArchiveInterface {
     public HashSet<Staff> getStaff();
     
     public HashSet<Customer> getCustomers();
+    
+    public DataInterpreter getDataInterpreter();
 }

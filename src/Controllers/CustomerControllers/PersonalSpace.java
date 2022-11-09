@@ -79,13 +79,15 @@ public class PersonalSpace implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
     @FXML
     private void payCart(ActionEvent event) {
         boolean done = this.customer.payTheCart(this.mainApplication.getAdminstration());
-        if(done) {            
+        if(done) {  
+            this.label_user_credit.setText(""+this.customer.getCredit());
             this.showCart(customer);
             this.label_response.setText("Payment made");
             this.label_cost.setText(this.customer.getCart().getTotCost() + " €");
@@ -163,8 +165,7 @@ public class PersonalSpace implements Initializable {
                 showCart(customer);
                 label_cost.setText(customer.getCart().getTotCost() + " €");
             }
-        });
-        
+        });     
         return pane;    
     }
 

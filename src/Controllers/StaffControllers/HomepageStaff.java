@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -104,7 +103,7 @@ public class HomepageStaff implements Initializable {
     private void addLibrary(ActionEvent event) throws IOException {
         String name = this.name_new_library.getText();
         if(!(name.isBlank()))
-            this.mainApplication.addEnterprises(new Library(name, this.mainApplication.getAdminstration()));
+            this.mainApplication.addEnterprises(new Library(name));
         this.showLibraries(this.mainApplication);
     }
 
@@ -172,11 +171,15 @@ public class HomepageStaff implements Initializable {
         pane.setRight(vBox2);
         
         Button btnOpen = new Button();
+        btnOpen.setMinWidth(80);
+        btnOpen.setMaxWidth(80);
         btnOpen.setText("Open");
         vBox2.getChildren().add(btnOpen);
         btnOpen.setAlignment(Pos.CENTER);
         
         Button btnRemove = new Button();
+        btnRemove.setMinWidth(80);
+        btnRemove.setMaxWidth(80);
         btnRemove.setText("Remove");
         vBox2.getChildren().add(btnRemove);
         btnRemove.setAlignment(Pos.CENTER);
@@ -237,7 +240,5 @@ public class HomepageStaff implements Initializable {
                 showShops(mainApplication);
         });        
         return pane;
-    }
-    
-    
+    }   
 }

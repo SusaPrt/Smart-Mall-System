@@ -85,6 +85,7 @@ public class LibraryAllBooks implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -101,6 +102,7 @@ public class LibraryAllBooks implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -117,6 +119,7 @@ public class LibraryAllBooks implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -127,12 +130,12 @@ public class LibraryAllBooks implements Initializable {
         vBox1.setAlignment(Pos.CENTER_LEFT);
         pane.setLeft(vBox1);
         
-        vBox1.getChildren().add(new Label("Name: " + b.getName()));
-        vBox1.getChildren().add(new Label("Author: " + b.getAuthor()));
-        vBox1.getChildren().add(new Label("ISBN: " + b.getISBN()));
-        vBox1.getChildren().add(new Label("Genre: " + b.getGenre()));
-        vBox1.getChildren().add(new Label("Year: " + b.getPublishingYear()));
-        vBox1.getChildren().add(new Label("Price: " + b.getPrice()));
+        vBox1.getChildren().add(new Label("\tName: " + b.getName()));
+        vBox1.getChildren().add(new Label("\tAuthor: " + b.getAuthor()));
+        vBox1.getChildren().add(new Label("\tISBN: " + b.getISBN()));
+        vBox1.getChildren().add(new Label("\tGenre: " + b.getGenre()));
+        vBox1.getChildren().add(new Label("\tYear: " + b.getPublishingYear()));
+        vBox1.getChildren().add(new Label("\tPrice: " + b.getPrice()));
         vBox1.getChildren().add(new Label());
         
         VBox vBox2 = new VBox();
@@ -140,11 +143,15 @@ public class LibraryAllBooks implements Initializable {
         pane.setRight(vBox2);
         
         Button btnBuy = new Button();
+        btnBuy.setMinWidth(50);
+        btnBuy.setMaxWidth(50);
         btnBuy.setText("Buy");
         vBox2.getChildren().add(btnBuy);
         btnBuy.setAlignment(Pos.CENTER);
         
         Button btnLoan = new Button();
+        btnLoan.setMinWidth(50);
+        btnLoan.setMaxWidth(50);
         btnLoan.setText("Loan");
         vBox2.getChildren().add(btnLoan);
         btnLoan.setAlignment(Pos.CENTER);

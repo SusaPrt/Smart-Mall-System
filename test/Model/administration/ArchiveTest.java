@@ -15,11 +15,9 @@ public class ArchiveTest {
     private final Archive instance;
     private final Staff staff;
     private final Customer customer;
-    private final Administration Ad;
     
     public ArchiveTest() {
-        this.Ad = new Administration();
-        this.instance = new Archive(this.Ad);
+        this.instance = new Archive();
         this.staff = new Staff("Marzio", "1111", 123458);
         this.customer = new Customer("Simone", "2222", 100.00, 54321);
     }

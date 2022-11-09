@@ -21,8 +21,8 @@ import java.util.LinkedList;
  * @author Marzio
  */
 public class DataInterpreter {
-    private DataWriter dW;
-    private DataReader dR;
+    private  final DataWriter dW;
+    private final DataReader dR;
     private LinkedList<LinkedList> data;
     private LinkedList<Person> accounts;
     private String listReq;                    // riferimento all'oggetto chiamante per tipo di oggetti da mettere in lista
@@ -47,8 +47,9 @@ public class DataInterpreter {
                    this.data.add(new LinkedList<Item>());
                    i++;
                 }
-                else if(type.equals("Loans")){
+                else if(type.equals("Loans") && !this.listReq.equals("Loans")){
                     this.data.add(new LinkedList<String[]>());
+                    this.listReq = "Loans";
                     i++;
                 }
             }else{
@@ -85,7 +86,7 @@ public class DataInterpreter {
                             Integer.parseInt(tokens[4].replaceAll("\\D+", "")), 
                             type, Integer.parseInt(tokens[5].replaceAll("\\D+", ""))));
         }
-        else if(this.listReq.equals("Library") && i > 0){
+        else if(this.listReq.equals("Loans")){
             this.data.get(i).add(tokens);
         }
         else if(this.listReq.equals("Shop")){

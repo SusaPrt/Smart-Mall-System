@@ -9,6 +9,7 @@ package Model.enterprises.libraryInterfaces;
 import Model.administration.Customer;
 import Model.enterprises.library.Book;
 import Model.enterprises.library.Loan;
+import Model.system.DataInterpreter;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -27,6 +28,8 @@ public interface ILibrary {
     public Set<Book> searchBookByAuthor(String author);
 
     public Set<Loan> getCustomerLoans(Customer customer);
+    
+    public DataInterpreter getDataInterpreter();
     
     // >> METODI STAFF <<
     public Map<Customer, Set<Loan>> getAllLoans();

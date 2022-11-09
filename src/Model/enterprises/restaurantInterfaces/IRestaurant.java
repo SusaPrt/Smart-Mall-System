@@ -10,6 +10,7 @@ import Model.administration.Customer;
 import Model.enterprises.restaurant.Dish;
 import Model.enterprises.restaurant.Menu;
 import Model.enterprises.restaurant.MenuOfTheDay;
+import Model.system.DataInterpreter;
 
  
 public interface IRestaurant {
@@ -26,4 +27,6 @@ public interface IRestaurant {
     public boolean orderADish(Dish d, int n, Customer c);
     
     public boolean reserveSeats(int n, String name);
+    
+    public DataInterpreter getDataInterpreter();
 }
