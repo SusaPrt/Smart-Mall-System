@@ -98,7 +98,8 @@ public class MainApplication {
         return success;
     }                                                           
     
-    public void saveData(){
+    // da finire con datawriter
+    private void saveData(){
         try {
             this.adminstration.getArchive().getDataInterpreter().getDataWriter().writeOnFile();
         } catch (IOException ex) {
@@ -108,10 +109,12 @@ public class MainApplication {
         this.libraries.stream().forEach(l -> {
             try {
                 l.getDataInterpreter().getDataWriter().writeOnFile();
+                l.getDataInterpreter().getDataWriter().writeOnFile();
             } catch (IOException ex) {
                 System.out.println("Scrittura su librerie: "+ex);
             }
         });
+        
         
         this.restaurants.stream().forEach(r -> {
             try {

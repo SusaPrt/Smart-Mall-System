@@ -16,14 +16,16 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Marzio
  */
 public class DataWriter {
-    private BufferedWriter bW;
     private final String requirer;
     private final File file;
     private LinkedList<String> itemsTowrite;
@@ -31,16 +33,63 @@ public class DataWriter {
     public DataWriter(File file, String requirer, LinkedList<String> rawData){
         this.file = file;
         this.requirer = requirer;
-        this.itemsTowrite = rawData;
+        this.itemsTowrite = new LinkedList();
+                //rawData;
+        
     }
     
     public void writeOnFile() throws IOException{
-        this.bW = new BufferedWriter(new FileWriter(this.file));
+        BufferedWriter bW = new BufferedWriter(new FileWriter(this.file));
         for(String s: this.itemsTowrite){
-            this.bW.write(s);
-            this.bW.newLine();
+            bW.write(s);
+            bW.newLine();
         }
-        this.bW.close();           
+        bW.close();           
+    }
+    
+    public void setDataToStore(Object datas){
+        if(this.requirer.equals("Shop")){
+            LinkedList<Item> items = (LinkedList<Item>) datas;
+            for(Item i: items){
+                this.itemsTowrite.add(i.getName()+","+i.getPrice()+","+i.getQuantity());
+            }            
+        }else if(this.requirer.equals("Library")){
+            LinkedList<Book> books = (LinkedList<Book>) datas;
+            this.itemsTowrite.add("#Adventure");
+            this.itemsTowrite.add("#Classics");
+            this.itemsTowrite.add("#Comic");
+            this.itemsTowrite.add("#Loan");
+            
+            for(Book b: books){
+                this.itemsTowrite.add(this.itemsTowrite.indexOf("#"+b.getGenre())+1, b.getName()+","+b.getAuthor()
+                    +","+b.getPrice()+","+b.getQuantity()
+                    +","+b.getPublishingYear()+","+b.getISBN());
+            }           
+        }else if(this.requirer.equals("Restaurant")){
+            HashMap<Course, LinkedList<Dish>> menu = (HashMap<Course, LinkedList<Dish>>) datas;
+            this.itemsTowrite.add("#FIRSTS");
+            for(Dish d: menu.get(Course.FIRSTS)){
+                this.itemsTowrite.add(d.getName()+","+d.getPrice()+","+d.getQuantity());
+            }
+            this.itemsTowrite.add("#SECONDS");
+            for(Dish d: menu.get(Course.SECONDS)){
+                this.itemsTowrite.add(d.getName()+","+d.getPrice()+","+d.getQuantity());
+            }
+            this.itemsTowrite.add("#DESSERTS");
+            for(Dish d: menu.get(Course.DESSERTS)){
+                this.itemsTowrite.add(d.getName()+","+d.getPrice()+","+d.getQuantity());
+            }
+            this.itemsTowrite.add("#WINESANDSOFT");
+            for(Dish d: menu.get(Course.WINESANDSOFT)){
+                this.itemsTowrite.add(d.getName()+","+d.getPrice()+","+d.getQuantity());
+            }
+        }   
+    }
+        
+    public void storeLoan(HashMap<Customer, Loan> loans){
+        loans.keySet().stream().forEach(c -> this.itemsTowrite.add(this.itemsTowrite.indexOf("#Loans")+1,
+                c.getId()+","+loans.get(c).getBorrowedBook().getISBN()+","+loans.get(c).getIssueDate()+","
+                +loans.get(c).getDueDate()));
     }
     
     //aggiunge una stringa alla posizione corretta alla lista di stringhe da scrivere su file
@@ -65,11 +114,6 @@ public class DataWriter {
             this.itemsTowrite.add(""+i.getName()+","+i.getPrice()+","+i.getQuantity());
         }
     } 
-    
-    public void addLoan(Loan l, Customer c){
-        this.itemsTowrite.add(this.itemsTowrite.indexOf("#Loans")+1, c.getId()
-                +","+l.getBorrowedBook().getISBN()+","+l.getIssueDate()+","+l.getDueDate());
-    }
     
     public void addPerson(Person p){
         if(p instanceof Staff){
