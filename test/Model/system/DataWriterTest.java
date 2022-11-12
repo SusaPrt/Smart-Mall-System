@@ -4,13 +4,18 @@
  */
 package Model.system;
 
-import Model.administration.Administration;
+import Model.administration.Archive;
+import Model.administration.Customer;
 import Model.administration.Item;
 import Model.administration.Person;
 import Model.administration.Staff;
 import Model.enterprises.library.Book;
+import Model.enterprises.library.Library;
+import Model.enterprises.library.Loan;
 import Model.enterprises.restaurant.Course;
 import Model.enterprises.restaurant.Dish;
+import Model.enterprises.restaurant.Restaurant;
+import Model.enterprises.shop.Shop;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -23,31 +28,18 @@ import static org.junit.Assert.*;
  * @author Marzio
  */
 public class DataWriterTest {
-    private final DataInterpreter ShopDataInterpreter;
-    private final DataInterpreter ArchiveDataInterpreter;
-    private final DataInterpreter LibraryDataInterpreter;
-    private final DataInterpreter RestourantDataInterpreter;
-    private final Administration aD;
     
-    public DataWriterTest() throws FileNotFoundException {
-        this.aD = new Administration();
-        this.ArchiveDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Account.txt")
-                                                , "Archive");
-        this.ShopDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Shop.txt")
-                                                ,"Shop");
-        this.LibraryDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Library.txt")
-                                                ,"Library");
-        this.RestourantDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Menu.txt")
-                                                ,"Restourant");
-    }
+    public DataWriterTest() throws FileNotFoundException {}
 
     @Test
     public void testAddItem() throws IOException {
         System.out.println("Test relativo a shop del metodo 'addItem'");
+        
+        Shop shop = new Shop();       
         Item i = new Item("Monitor", 150.5, 1);
+        shop.addItem("Monitor", 150, 1);
+        shop.saveData();
         boolean expResult = true;      
-        this.ShopDataInterpreter.getDataWriter().addItem(i);
-        this.ShopDataInterpreter.getDataWriter().writeOnFile();
         //simulo la chiusura e la riaccensione del sistema cosi che il DataReader legge i dati precedentemente salvati
         DataInterpreter ShopDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Shop.txt")
                                                 ,"Shop");
@@ -61,26 +53,50 @@ public class DataWriterTest {
     @Test
     public void testAddBook() throws IOException{
         System.out.println("Test relativo alla libreria del metodo 'addItem'");
+        
+        Library library = new Library();
         Book b = new Book("Il mondo di Sofia", "Jostein Gaarder", 20.50, 1, 1991, "Adventure", 9928 );
+        library.addBook("Il mondo di Sofia", "Jostein Gaarder", 20.50, 1, 1991, "Adventure", 9928);
+        library.saveData();
         boolean expResult = true;
-        this.LibraryDataInterpreter.getDataWriter().addItem(b);
-        this.LibraryDataInterpreter.getDataWriter().writeOnFile();
+
         //simulo la chiusura e la riaccensione del sistema cosi che il DataReader legge i dati precedentemente salvati
         DataInterpreter LibraryDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Library.txt")
                                                 ,"Library");
         LinkedList<LinkedList> data = LibraryDataInterpreter.getData();
         boolean result = data.get(0).contains(b);
-        assertEquals(expResult, result);
+        assertEquals(expResult, result);        
+    }
+    
+    @Test
+    public void testAddLoan() throws IOException{
+        System.out.println("Test relativo alla libreria del metodo 'addLoan'");
         
+        Library library = new Library();
+        Book b = new Book("Il mondo di Sofia", "Jostein Gaarder", 20.50, 1, 1991, "Adventure", 9928 );
+        library.addBook("Il mondo di Sofia", "Jostein Gaarder", 20.50, 1, 1991, "Adventure", 9928);
+        Loan l = new Loan(b);
+        Customer c = new Customer("Simone", "3333", 300.5, 12543);
+        library.createLoan(c, b);
+        library.saveData();
+        boolean expResult = true;
+
+        //simulo la chiusura e la riaccensione del sistema cosi che il DataReader legge i dati precedentemente salvati
+        Library library2 = new Library();
+        boolean result = library2.getAllLoans().get(c).contains(l);
+        assertEquals(expResult, result);        
     }
     
     @Test 
     public void testAddDish() throws IOException{
         System.out.println("Test relativo al ristorante del metodo 'addItem'");
+        
+        Restaurant restaurant = new Restaurant(200);      
         Dish d = new Dish("Cannelloni alla besciamella", 12.5, 100, Course.selectType("FIRSTS"));
+        restaurant.getMenu().addDish("Cannelloni alla besciamella", 12.5, 100, Course.FIRSTS);
+        restaurant.saveData();
         boolean expResult = true;
-        this.RestourantDataInterpreter.getDataWriter().addItem(d);
-        this.RestourantDataInterpreter.getDataWriter().writeOnFile();
+        
         //simulo la chiusura e la riaccensione del sistema cosi che il DataReader legge i dati precedentemente salvati
         DataInterpreter RestourantDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Menu.txt")
                                                 ,"Restaurant");
@@ -92,10 +108,12 @@ public class DataWriterTest {
     @Test
     public void testAddPerson() throws IOException {
         System.out.println("Test relativo all'archivio del metodo 'addPerson'");
+        Archive a = new Archive();        
         Staff p = new Staff("Giorgio", "123456", 9090);
+        a.addPerson(p);
         boolean expResult = true;
-        this.ArchiveDataInterpreter.getDataWriter().addPerson(p);
-        this.ArchiveDataInterpreter.getDataWriter().writeOnFile();
+        a.saveData();
+
         //simulo la chiusura e la riaccensione del sistema cosi che il DataReader legge i dati precedentemente salvati
         DataInterpreter ArchiveDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Account.txt")
                                                 , "Archive");
@@ -103,6 +121,33 @@ public class DataWriterTest {
         boolean result = data.contains(p);
         
         assertEquals(expResult, result);
-    }  
-
+    }
+     
+    @Test
+    public void testSaveArchiveData() throws IOException {
+        System.out.println("Test relativo al salvataggio dati per archivio");
+        Archive archive = new Archive();
+        archive.saveData();
+    }
+    
+    @Test
+    public void testSaveShopData() throws IOException {
+        System.out.println("Test relativo al salvataggio dati per shop");
+        Shop shop = new Shop();
+        shop.saveData();
+    }
+ 
+    @Test
+    public void testSaveLibraryData() throws IOException {
+        System.out.println("Test relativo al salvataggio dati per Libreria");
+        Library library = new Library();
+        library.saveData();
+    }
+    
+    @Test
+    public void testSaveRestaurantData() throws IOException {
+        System.out.println("Test relativo al salvataggio dati per Ristorante");
+        Restaurant restaurant = new Restaurant(200);
+        restaurant.saveData();
+    } 
 }

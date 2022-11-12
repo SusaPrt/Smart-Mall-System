@@ -133,6 +133,15 @@ public class Restaurant implements IRestaurant {
         return this.name;
     }
     
+    public void saveData() throws IOException{
+        this.getDataInterpreter().getDataWriter().setTxt();
+        this.getDataInterpreter().getDataWriter().setTxt();
+        this.getMenu().getWarehouse().keySet()
+                .forEach(c -> this.getMenu().getWarehouse().get(c)
+                        .forEach(d -> this.getDataInterpreter().getDataWriter().addItem(d)));
+        this.getDataInterpreter().getDataWriter().writeOnFile();
+    }
+    
     @Override
     public DataInterpreter getDataInterpreter(){
         return this.dataInt;

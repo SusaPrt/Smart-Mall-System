@@ -19,7 +19,7 @@ public class Loan implements ILoan {
     
     public Loan(Book book) {
         super();
-        this.formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.borrowedBook   = book;
         this.issueDate = LocalDate.now();
         this.dueDate = LocalDate.now().plusDays(30);
@@ -27,7 +27,7 @@ public class Loan implements ILoan {
     
     public Loan(Book book, String start, String due){
         super();
-        this.formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.borrowedBook = book;
         this.issueDate = LocalDate.parse(start, formatter);
         this.dueDate = LocalDate.parse(due, formatter);

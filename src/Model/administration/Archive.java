@@ -9,6 +9,7 @@ import Model.administration.AdministrationInterfaces.ArchiveInterface;
 import Model.system.DataInterpreter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashSet;
 
 
@@ -152,5 +153,12 @@ public class Archive implements ArchiveInterface{
     
     private static <T> HashSet<T> defend(HashSet<T> set){
         return (HashSet<T>) set.clone();
+    }
+    
+    public void saveData() throws IOException{
+        this.getDataInterpreter().getDataWriter().setTxt();
+        this.getStaff().forEach(s -> this.getDataInterpreter().getDataWriter().addPerson(s));
+        this.getCustomers().forEach(c -> this.getDataInterpreter().getDataWriter().addPerson(c));
+        this.getDataInterpreter().getDataWriter().writeOnFile();
     }
 }

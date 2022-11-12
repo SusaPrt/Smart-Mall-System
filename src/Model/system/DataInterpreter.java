@@ -21,7 +21,7 @@ import java.util.LinkedList;
  * @author Marzio
  */
 public class DataInterpreter {
-    private  final DataWriter dW;
+    private final DataWriter dW;
     private final DataReader dR;
     private LinkedList<LinkedList> data;
     private LinkedList<Person> accounts;
@@ -33,7 +33,7 @@ public class DataInterpreter {
         this.accounts = new LinkedList();
         this.listReq = requirer;
         this.readData(this.dR.getRawData());
-        this.dW = new DataWriter(f, requirer, this.dR.getRawData());
+        this.dW = new DataWriter(f, requirer);
     }
     
     private void readData(LinkedList<String> rawData){
@@ -53,7 +53,7 @@ public class DataInterpreter {
                     i++;
                 }
             }else{
-                    parseData(s, type, i);
+                parseData(s, type, i);
             }              
         }
     } 

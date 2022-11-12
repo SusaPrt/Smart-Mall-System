@@ -60,6 +60,16 @@ public class Library implements ILibrary {
         return this.name;
     }
     
+    public void saveData() throws IOException{
+        this.getDataInterpreter().getDataWriter().setTxt();
+        this.getAllBooks().forEach(b -> this.getDataInterpreter().getDataWriter().addItem(b));
+        this.getAllLoans().keySet()
+                .forEach(c -> this.getAllLoans().get(c)
+                        .forEach(l -> this.getDataInterpreter().getDataWriter().addLoan(c, l)));
+        this.getDataInterpreter().getDataWriter().writeOnFile();
+        
+    }
+    
     @Override
     public List<Book> getAllBooks() {
         return this.booksList.stream().filter(b -> b.getQuantity() > 0).collect(Collectors.toList());

@@ -103,6 +103,12 @@ public class Shop implements IShop {
         return done;
     }
     
+    public void saveData() throws IOException{
+        this.getDataInterpreter().getDataWriter().setTxt();
+        this.getWarehouse().forEach(i -> this.getDataInterpreter().getDataWriter().addItem(i));
+        this.getDataInterpreter().getDataWriter().writeOnFile();
+    }
+    
     @Override
     public DataInterpreter getDataInterpreter(){
         return this.dataInt;
@@ -157,10 +163,4 @@ public class Shop implements IShop {
     public String toString() {
         return "Shop " + this.name;
     }
-
-    public void setData(Customer customer, Shop s) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-     
 }
