@@ -9,7 +9,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
 public class Staff extends Person{
    
@@ -17,6 +17,7 @@ public class Staff extends Person{
         super(name, password);
     }
     
+    // Overloading del costruttore per caricamento account da file
     public Staff(String name, String password, int id){
         super(name, password, id);
     }

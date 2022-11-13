@@ -30,15 +30,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-//@author Susanna
+//@author Susanna & Marzio
 
 public class RestaurantMenu implements Initializable {
-    private MainApplication mainApplication;
-    private Customer customer;
-    private Restaurant restaurant;
     private Parent root;
     private Stage stage;
     private Scene scene;
+    private MainApplication mainApplication;
+    private Customer customer;
+    private Restaurant restaurant;
     
     @FXML
     private Label label_name_enterprise;
@@ -48,8 +48,9 @@ public class RestaurantMenu implements Initializable {
     private Label label_response;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }    
+    public void initialize(URL url, ResourceBundle rb) {}  
+    
+    // Metodo per il caricamento del modello da controller precedente
     public void setData(Customer c, Restaurant r, MainApplication mainApp) {
         this.customer = c;
         this.restaurant = r;
@@ -85,6 +86,23 @@ public class RestaurantMenu implements Initializable {
         }
         Homepage cHController = loader.getController();
         cHController.setData(this.customer, this.mainApplication);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+    }
+    
+    @FXML
+    private void showMenuOfTheDay(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/CustomerViews/Restaurant/RestaurantMenuOfTheDay.fxml"));
+        try {
+            root = loader.load();
+        } catch (IOException ex) {
+            System.out.println(ex+"\nEccezione caricamento customer menu of the day");
+        }
+        RestaurantMenuOfTheDay cMOTDController = loader.getController();
+        cMOTDController.setData(this.customer, this.restaurant, this.mainApplication);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -154,26 +172,5 @@ public class RestaurantMenu implements Initializable {
         });
         
         return pane;
-    }
-
-    @FXML
-    private void showMenuOfTheDay(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/CustomerViews/Restaurant/RestaurantMenuOfTheDay.fxml"));
-        try {
-            root = loader.load();
-        } catch (IOException ex) {
-            System.out.println(ex+"\nEccezione caricamento customer menu of the day");
-        }
-        RestaurantMenuOfTheDay cMOTDController = loader.getController();
-        cMOTDController.setData(this.customer, this.restaurant, this.mainApplication);
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
-    }
-
-
-    
-    
+    }   
 }

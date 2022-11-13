@@ -4,14 +4,14 @@
  */
 package Model.administration;
 
-import Model.administration.AdministrationInterfaces.ItemInterface;
 import java.util.Objects;
+import Model.administration.AdministrationInterfaces.IItem;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
-public class Item implements ItemInterface{
+public class Item implements IItem{
     private final String name;
     private final double price;
     private int quantity;

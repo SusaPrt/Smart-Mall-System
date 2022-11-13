@@ -43,7 +43,7 @@ public class ArchiveTest {
         System.out.println("Test metodo 'addPerson' per instanza di Customer");
         instance.addPerson(customer);
         int result = instance.getCustomers().size();
-        int expResult = 2;
+        int expResult = 3;
         assertEquals(expResult, result);
     }
 
@@ -87,7 +87,7 @@ public class ArchiveTest {
         instance.addPerson(customer);
         instance.removeById(id);
         int result = instance.getCustomers().size();
-        int expResult = 1;
+        int expResult = 2;
         assertEquals(expResult, result);
     }
 

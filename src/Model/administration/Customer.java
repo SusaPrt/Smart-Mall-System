@@ -4,16 +4,16 @@
  */
 package Model.administration;
 
-import Model.administration.AdministrationInterfaces.CustomerInterface;
 import Model.administration.payment.Cart;
 import Model.administration.payment.Payment;
 import java.util.Objects;
+import Model.administration.AdministrationInterfaces.ICustomer;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
-public class Customer extends Person implements CustomerInterface{
+public class Customer extends Person implements ICustomer{
 
     private double credit;
     private final Cart cart;
@@ -25,6 +25,7 @@ public class Customer extends Person implements CustomerInterface{
         this.cart = new Cart();        
     }
     
+    // Overloading del costruttore per customer da database
     public Customer(String name, String password, double credit, int id){
         super(name, password, id);  
         this.credit = credit;
@@ -42,7 +43,6 @@ public class Customer extends Person implements CustomerInterface{
             paid = true;
         }
         if(paid)
-            //System.out.println(this.aD.toString());
             adm.addPayment(payment);
         return paid;
     }

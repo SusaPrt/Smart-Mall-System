@@ -34,7 +34,15 @@ public class DataWriter {
         
     }
     
+    // Inserisce l'intestazione del file all'interno della LinkedList di stringhe
+    // necessario in quanto gli oggetti che dovranno successivamente essere salvati
+    // andranno a posizionarsi nella posizione corretta grazie all'inserimento
+    // di queste stringhe che indicheranno il tipo degli oggetti quando il file
+    // verrà aperto in lettura
     public void setTxt(){
+        
+        // Condizione di controllo per evitare che l'intestazione venga scritta
+        // più volte
         if(this.itemsToWrite.contains("#Staff") 
                 || this.itemsToWrite.contains("#Comic") 
                 || this.itemsToWrite.contains("#FIRSTS"))
@@ -57,7 +65,9 @@ public class DataWriter {
             }
         }
     }
-     
+    
+    // Scrive su file di testo ogni Stringa presente nella LinkedList
+    // 'itemsToWrite'
     public void writeOnFile() throws IOException{
         BufferedWriter bW = new BufferedWriter(new FileWriter(this.file));
         for(String s: this.itemsToWrite){
@@ -67,48 +77,60 @@ public class DataWriter {
         bW.close();           
     }
     
-    //aggiunge una stringa alla posizione corretta alla lista di stringhe da scrivere su file
-    //la lista di stringhe originale viene caricata alla creazione del DataWriter partendo dalle
-    //stringhe rawData lette dal DataReader
+    // Metodo utilizzato per popolare 'itemsToWrite' un oggetto alla volta
+    // convertendolo in una stringa di formato 'CSV'
     public void addItem(Object o){
         if(o instanceof Dish){
-            //String name, double price, int q, String course
+            // Parametri 'Dish' 
+            // String name, double price, int q, String course
             Dish d = (Dish)o;
             this.itemsToWrite.add(this.itemsToWrite.indexOf("#"+d.getCourse().getName())+1,
                     d.getName()+","+d.getPrice()+","+d.getQuantity());
             
             
         }else if(o instanceof Book){
-        //String name,  String author, double price, int quantity, int year, String genre, int sbn
+            // Parametri 'Book'  
+            // String name,  String author, double price, int quantity, int year, String genre, int sbn
             Book b = (Book)o;
             this.itemsToWrite.add(this.itemsToWrite.indexOf("#"+b.getGenre())+1,
                     b.getName()+","+b.getAuthor()+","+b.getPrice()+","+b.getQuantity()
                     +","+b.getPublishingYear()+","+b.getISBN());  
         }else{
+            // Parametri 'Item'
+            // String name, Double price, int quantity
             Item i = (Item)o;
             this.itemsToWrite.add(""+i.getName()+","+i.getPrice()+","+i.getQuantity());
         }
     } 
     
+    // Metodo simile a 'addItem' con la differenza che si occupa del salvataggio
+    // di oggetti estensioni di 'Person'
     public void addPerson(Person p){
         if(p instanceof Staff){
+            // Parametri 'Staff'
+            // String name, String password, int id
             Staff s = (Staff)p;
             this.itemsToWrite.add(this.itemsToWrite.indexOf("#Staff")+1,
                     s.getName()+","+s.getPassword()+","+s.getId());
         }else{
+            // Parametri 'Customer'
+            // String name, String password, Double credit, int id
             Customer c = (Customer)p;
             this.itemsToWrite.add(this.itemsToWrite.indexOf("#Customers")+1,
                     c.getName()+","+c.getPassword()+","+c.getCredit()+","+c.getId());
         }            
     }
     
+    // Metodo per salvataggio di oggetti 'Loan'
     public void addLoan(Customer c, Loan l){
+        // Parametri Loan
+        // int customerId, int bookISBN, String issueDate, String dueDate
         this.itemsToWrite.add(this.itemsToWrite.indexOf("#Loans")+1,
                     c.getId()+","+l.getBorrowedBook().getISBN()+","+l.getIssueDate()+","+l.getDueDate());
         
     }
-    
+    /*
     public LinkedList<String> getStuffToWrite(){
         return this.itemsToWrite;
-    }
+    }*/
 }

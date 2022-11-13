@@ -9,8 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /*
@@ -20,7 +18,7 @@ import java.util.stream.Collectors;
 
 /**
  *
- * @author Marzio
+ * @author Susanna & Marzio
  */
 public class MainApplication {
     private final Administration adminstration;
@@ -98,40 +96,16 @@ public class MainApplication {
         return success;
     }                                                           
     
-    // da finire con datawriter
-    private void saveData(){
-        try {
-            this.adminstration.getArchive().getDataInterpreter().getDataWriter().writeOnFile();
-        } catch (IOException ex) {
-            System.out.println("Scrittura su archivio: "+ex);
-        }
+    public void saveDatas(){
+        this.adminstration.getArchive().saveData();
         
-        this.libraries.stream().forEach(l -> {
-            try {
-                l.getDataInterpreter().getDataWriter().writeOnFile();
-                l.getDataInterpreter().getDataWriter().writeOnFile();
-            } catch (IOException ex) {
-                System.out.println("Scrittura su librerie: "+ex);
-            }
-        });
-        
-        
-        this.restaurants.stream().forEach(r -> {
-            try {
-                r.getDataInterpreter().getDataWriter().writeOnFile();
-            } catch (IOException ex) {
-                System.out.println("Scrittura su ristoranti: "+ex);
-            }
-        });
-        
-        this.shops.stream().forEach(s -> {
-            try {
-                s.getDataInterpreter().getDataWriter().writeOnFile();
-            } catch (IOException ex) {
-                System.out.println("Scrittura su shop: "+ex);
-            }
-        });
+        this.libraries.stream().forEach(l -> l.saveData());
+        this.restaurants.stream().forEach(r -> r.saveData());
+        this.shops.stream().forEach(s -> s.saveData());      
     }
+    
+    // Verifica attraverso il nome se sono presenti delle attività che non sono
+    // di default e nel qualcaso le carica
     private void findNonDefaultEnterprises(){
         File dir = new File("./src/Model/system/DataFolder");
         String[] fileNames = dir.list();
@@ -149,7 +123,7 @@ public class MainApplication {
                 }
             }
         } catch (IOException ex) {
-                        System.out.println("Eccezione caricamento nuove enterprises");
+                        System.out.println(ex);
         }
     }
 }

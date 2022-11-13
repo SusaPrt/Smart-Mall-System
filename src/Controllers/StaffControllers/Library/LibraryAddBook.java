@@ -22,15 +22,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-//@author Susanna
+//@author Susanna & Marzio
 
 public class LibraryAddBook implements Initializable {
-    private MainApplication mainApplication;
-    private Staff staff;
-    private Library library;
     private Parent root;
     private Stage stage;
     private Scene scene;
+    private MainApplication mainApplication;
+    private Staff staff;
+    private Library library;
 
     @FXML
     private TextField name_new_book;
@@ -52,8 +52,9 @@ public class LibraryAddBook implements Initializable {
     private Label label_name_enterpris;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }    
+    public void initialize(URL url, ResourceBundle rb) {}   
+    
+    // Metodo per il caricamento del modello da controller precedente
     public void setData(Staff s, Library l, MainApplication mainApp) {
         this.mainApplication = mainApp;
         this.staff = s;
@@ -155,6 +156,4 @@ public class LibraryAddBook implements Initializable {
         this.isbn_new_book.clear();
         this.label_response.setText(" ");
     }
-
-    
 }

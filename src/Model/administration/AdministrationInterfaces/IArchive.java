@@ -12,9 +12,9 @@ import java.util.HashSet;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
-public interface ArchiveInterface {
+public interface IArchive {
     
     public void addPerson(Person p);
     

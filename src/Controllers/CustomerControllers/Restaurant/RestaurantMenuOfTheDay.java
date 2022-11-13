@@ -21,15 +21,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-//@author Susanna
+//@author Susanna & Marzio
 
 public class RestaurantMenuOfTheDay implements Initializable {
-    private MainApplication mainApplication;
-    private Customer customer;
-    private Restaurant restaurant;
     private Parent root;
     private Stage stage;
     private Scene scene;
+    private MainApplication mainApplication;
+    private Customer customer;
+    private Restaurant restaurant;
 
     @FXML
     private Label label_name_enterprise;
@@ -47,8 +47,9 @@ public class RestaurantMenuOfTheDay implements Initializable {
     private Label label_dinner_dessert;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }   
+    public void initialize(URL url, ResourceBundle rb) {} 
+    
+    // Metodo per il caricamento del modello da controller precedente
     void setData(Customer c, Restaurant r, MainApplication mainApp) {
         this.mainApplication = mainApp;
         this.restaurant = r;
@@ -117,6 +118,5 @@ public class RestaurantMenuOfTheDay implements Initializable {
         this.label_dinner_first.setText(r.getDailyMenu().getDinner().get(0).getName());
         this.label_dinner_second.setText(r.getDailyMenu().getDinner().get(1).getName());
         this.label_dinner_dessert.setText(r.getDailyMenu().getDinner().get(2).getName());
-    }
-    
+    }    
 }

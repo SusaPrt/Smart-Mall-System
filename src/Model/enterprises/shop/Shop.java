@@ -6,7 +6,6 @@ package Model.enterprises.shop;
 
 //@Author Susanna
 
-import Model.administration.Administration;
 import Model.administration.Customer;
 import Model.administration.Item;
 import Model.enterprises.shopInterfaces.IShop;
@@ -18,6 +17,8 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class Shop implements IShop {
@@ -103,10 +104,14 @@ public class Shop implements IShop {
         return done;
     }
     
-    public void saveData() throws IOException{
+    public void saveData(){
         this.getDataInterpreter().getDataWriter().setTxt();
         this.getWarehouse().forEach(i -> this.getDataInterpreter().getDataWriter().addItem(i));
-        this.getDataInterpreter().getDataWriter().writeOnFile();
+        try {
+            this.getDataInterpreter().getDataWriter().writeOnFile();
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
     
     @Override

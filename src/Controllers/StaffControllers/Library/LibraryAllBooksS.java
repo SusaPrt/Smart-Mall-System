@@ -34,17 +34,16 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-//@author Susanna
+//@author Susanna & Marzio
 
 public class LibraryAllBooksS implements Initializable {
+    private Parent root;
+    private Stage stage;
+    private Scene scene;
     private MainApplication mainApplication;
     private Staff staff;
     private Library library;
-    private final String[] types = {"Title", "Genre", "Author"};
-    
-    private Parent root;
-    private Stage stage;
-    private Scene scene;    
+    private final String[] types = {"Title", "Genre", "Author"};    
 
     @FXML
     private TextField string_search;
@@ -60,8 +59,9 @@ public class LibraryAllBooksS implements Initializable {
     private TextField refueling;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }    
+    public void initialize(URL url, ResourceBundle rb) {}    
+    
+    // Metodo per il caricamento del modello da controller precedente
     public void setData(Staff s, Library l, MainApplication mainApp) {
         this.mainApplication = mainApp;
         this.staff = s;
@@ -222,9 +222,5 @@ public class LibraryAllBooksS implements Initializable {
         });
         
         return pane;
-    }
-
-
-    
-    
+    } 
 }

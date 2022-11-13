@@ -11,9 +11,9 @@ import java.util.Set;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
-public interface AdministrationInterface {
+public interface IAdministration {
     
     public void addPayment(Payment p);
     

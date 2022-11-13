@@ -10,7 +10,7 @@ import java.util.Random;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
 public class Payment implements PaymentInterface{
     

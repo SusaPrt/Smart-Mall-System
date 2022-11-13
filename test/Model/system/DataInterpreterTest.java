@@ -11,11 +11,16 @@ import Model.administration.Person;
 import Model.administration.Staff;
 import Model.enterprises.library.Book;
 import Model.enterprises.library.Library;
+import Model.enterprises.library.Loan;
 import Model.enterprises.restaurant.Course;
 import Model.enterprises.restaurant.Dish;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.Set;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -43,36 +48,51 @@ public class DataInterpreterTest {
                                                 ,"Restaurant");
     }
 
-    
     @Test
     public void testGetLibraryData() {
-        System.out.println("Test relativo a libreria per metodo 'getData'");
+        System.out.println("Test relativo a libreria per metodo 'getAllBooks'");
         LinkedList expResult = new LinkedList();
-        //String name,  String author, double price, int quantity, int year, String genre, int isbn
-        expResult.add(new Book("YYYYY","XXXX",4,283,1989,"Adventure",34524));//1
-        expResult.add(new Book("YYYYYY","XXXXX",5,623,1993,"Adventure",34566));//2
-        expResult.add(new Book("YYY","XXXXX",5,837,2009,"Adventure",7896));//3
-        expResult.add(new Book("YYYYYYY","XXXXX",7,625,2010,"Adventure",745));//4
+        // Parametri Book
+        // String name,  String author, double price, int quantity, int year, String genre, int isbn
+        expResult.add(new Book("YYYYYYY","XXXXX",7,625,2010,"Adventure",745));  //1
+        expResult.add(new Book("YYY","XXXXX",5,837,2009,"Adventure",7896));     //2
+        expResult.add(new Book("YYYYYY","XXXXX",5,623,1993,"Adventure",34566)); //3
+        expResult.add(new Book("YYYYY","XXXX",4,283,1989,"Adventure",34524));   //4
         
-        expResult.add(new Book("YYYYY","XXXXXX",2,872,2009,"Classics",123445));//5
-        expResult.add(new Book("YYY","XXXXX",9,615,1993,"Classics",378123));//6
-        expResult.add(new Book("YYYYYYY","XXXX",8,102,1999,"Classics",93847));//7
-        expResult.add(new Book("YYYYYY","XXXXX",7,61,2010,"Classics",94576));//8
+        expResult.add(new Book("YYYYYY","XXXXX",7,61,2010,"Classics",94576));   //5
+        expResult.add(new Book("YYYYYYY","XXXX",8,102,1999,"Classics",93847));  //6
+        expResult.add(new Book("YYY","XXXXX",9,615,1993,"Classics",378123));    //7
+        expResult.add(new Book("YYYYY","XXXXXX",2,872,2009,"Classics",123445)); //8
         
-        expResult.add(new Book("YYYYY","XXXXX",23,827,1979,"Comic",8355));//9
-        expResult.add(new Book("YYYYYY","XXXXX",9,201,2010,"Comic",93745));//10
-        expResult.add(new Book("YYYYYY","XXXXXX",27,817,2017,"Comic",28475));//11
-        expResult.add(new Book("YYYYYYY","XXXXXX",6,72,2009,"Comic",38485));//12
-               
+        expResult.add(new Book("YYYYYYY","XXXXXX",6,72,2009,"Comic",38485));    //9
+        expResult.add(new Book("YYYYYY","XXXXXX",27,817,2017,"Comic",28475));   //10
+        expResult.add(new Book("YYYYYY","XXXXX",9,201,2010,"Comic",93745));     //11
+        expResult.add(new Book("YYYYY","XXXXX",23,827,1979,"Comic",8355));      //12
+                   
         LinkedList result = libraryDataInterpreter.getData().getFirst();
         assertEquals(expResult, result);
     }
     
     @Test
     public void testGetLibraryLoans() {
+        System.out.println("Test relativo a libreria per metodo 'getAllLoans'");
         Library l = new Library();
-        boolean expResult = false;
-        boolean result = l.getAllLoans().isEmpty();     
+        Map<Customer, Set<Loan>> expResult = new HashMap();
+        
+        Customer g = new Customer("Giorgio", "4444", 200.0, 10101);
+        Customer s = new Customer("Simone", "3333", 300.5, 12543);
+        Book b1 = new Book("YYYYYY","XXXXXX",27,817,2017,"Comic",28475);
+        Book b2 = new Book("YYYYY","XXXX",4,283,1989,"Adventure",34524);
+        
+        expResult.put(g, 
+                new HashSet<Loan>());
+        expResult.put(s, 
+                new HashSet<Loan>());
+        
+        expResult.get(g).add(new Loan(b1, "2022-10-10", "2022-11-14"));
+        expResult.get(s).add(new Loan(b2, "2022-11-09", "2022-12-13"));
+        
+        Map<Customer, Set<Loan>> result = l.getAllLoans();     
         assertEquals(expResult, result);       
     }
     
@@ -81,7 +101,8 @@ public class DataInterpreterTest {
         System.out.println("Test relativo a shop per metodo 'getData'");
         LinkedList<LinkedList> expResult = new LinkedList();
         expResult.add(new LinkedList());
-        //String name, double price, int quantity
+        // Parametri Item
+        // String name, double price, int quantity
         expResult.get(0).add(new Item("YYYYYY", 10, 129));
         expResult.get(0).add(new Item("YYYY", 9, 372));
         expResult.get(0).add(new Item("YYYYYY", 11, 281));
@@ -96,7 +117,8 @@ public class DataInterpreterTest {
         System.out.println("Test relativo a restaurant per metodo 'getData'");
         LinkedList<LinkedList> expResult = new LinkedList();
         expResult.add(new LinkedList());
-        //String name, double price, int quantity, String description
+        // Parametri Dish
+        // String name, double price, int quantity, String description
         expResult.get(0).add(new Dish("YYYYY",4,625, Course.selectType("FIRSTS")));
         expResult.get(0).add(new Dish("YYYYYYY",3,253, Course.selectType("FIRSTS")));
         expResult.get(0).add(new Dish("YYYY",4,485, Course.selectType("FIRSTS")));
@@ -123,16 +145,12 @@ public class DataInterpreterTest {
     public void testGetAccounts() {
         System.out.println("Test per metodo 'getAccounts'");
         LinkedList<Person> expResult = new LinkedList();
-        expResult.add(new Staff("Marzio", "1111", 12345));            
         expResult.add(new Staff("Susanna", "2222", 53421));
+        expResult.add(new Staff("Marzio", "1111", 12345));            
+        expResult.add(new Customer("Giorgio", "4444", 200.0, 10101));
         expResult.add(new Customer("Simone", "3333", 300.5, 12543));
-        LinkedList<Person> result = archiveDataInterpreter.getAccounts();
         
-        File dir = new File("./src/Model/system/DataFolder");
-        String[] fileNames = dir.list();
-        for(String s: fileNames){
-            System.out.println(s);
-        }
+        LinkedList<Person> result = archiveDataInterpreter.getAccounts();
         assertEquals(expResult, result);
     }   
 }

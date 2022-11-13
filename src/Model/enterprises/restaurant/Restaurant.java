@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -133,13 +135,17 @@ public class Restaurant implements IRestaurant {
         return this.name;
     }
     
-    public void saveData() throws IOException{
+    public void saveData(){
         this.getDataInterpreter().getDataWriter().setTxt();
         this.getDataInterpreter().getDataWriter().setTxt();
         this.getMenu().getWarehouse().keySet()
                 .forEach(c -> this.getMenu().getWarehouse().get(c)
                         .forEach(d -> this.getDataInterpreter().getDataWriter().addItem(d)));
-        this.getDataInterpreter().getDataWriter().writeOnFile();
+        try {
+            this.getDataInterpreter().getDataWriter().writeOnFile();
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
     
     @Override

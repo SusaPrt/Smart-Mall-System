@@ -32,11 +32,11 @@ import javafx.stage.Stage;
 //@author Susanna & Marzio
 
 public class Homepage implements Initializable {
-    private MainApplication mainApplication;
-    private Customer customer;
     private Parent root;
     private Stage stage;
     private Scene scene;
+    private MainApplication mainApplication;
+    private Customer customer;
     
     @FXML
     private Label label_user_name;
@@ -50,9 +50,9 @@ public class Homepage implements Initializable {
     private VBox vBox_shops;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
-    }   
+    public void initialize(URL url, ResourceBundle rb) {}    
+    
+    // Metodo per il caricamento del modello da controller precedente
     public void setData(Customer c, MainApplication mainApp){
         this.customer = c;
         this.mainApplication = mainApp;
@@ -74,6 +74,27 @@ public class Homepage implements Initializable {
         }
         LoginViewController lVcontroller = loader.getController();
         lVcontroller.setData(this.mainApplication);
+        
+        this.mainApplication.saveDatas();
+        
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+    }
+    
+    @FXML
+    private void toCart(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader()
+                .getResource("Views/CustomerViews/PersonalSpace.fxml"));
+        try {
+            root = loader.load();
+        } catch (IOException ex) {
+            System.out.println(ex+"\nEccezione caricamento customer personal space");
+        }
+        PersonalSpace cPScontroller = loader.getController();
+        cPScontroller.setData(this.mainApplication, this.customer);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -175,23 +196,5 @@ public class Homepage implements Initializable {
             });
         }
         return btn;
-    }
-
-    @FXML
-    private void toCart(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader()
-                .getResource("Views/CustomerViews/PersonalSpace.fxml"));
-        try {
-            root = loader.load();
-        } catch (IOException ex) {
-            System.out.println(ex+"\nEccezione caricamento customer personal space");
-        }
-        PersonalSpace cPScontroller = loader.getController();
-        cPScontroller.setData(this.mainApplication, this.customer);
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
     }
 }

@@ -9,7 +9,7 @@ import java.util.LinkedList;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
 public interface CartInterface {
     

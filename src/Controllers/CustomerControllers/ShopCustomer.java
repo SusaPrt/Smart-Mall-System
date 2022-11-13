@@ -28,15 +28,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-//@author Susanna
+//@author Susanna & Marzio
 
 public class ShopCustomer implements Initializable {
-    private MainApplication mainApplication;
-    private Customer customer;
-    private Shop shop;
     private Parent root;
     private Stage stage;
     private Scene scene;
+    private MainApplication mainApplication;
+    private Customer customer;
+    private Shop shop;
     
     @FXML
     private Label label_name_enterprise;
@@ -46,8 +46,9 @@ public class ShopCustomer implements Initializable {
     private Label label_response;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }    
+    public void initialize(URL url, ResourceBundle rb) {}    
+    
+    // Metodo per il caricamento del modello da controller precedente
     void setData(Customer c, Shop s, MainApplication mainApp) {
         this.customer = c;
         this.shop = s;
@@ -114,8 +115,5 @@ public class ShopCustomer implements Initializable {
             }
         });      
         return pane;
-    }
-
-    
-    
+    }    
 }

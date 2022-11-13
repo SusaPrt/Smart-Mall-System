@@ -32,14 +32,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-//@author Susanna
+//@author Susanna & Marzio
 
 public class HomepageStaff implements Initializable {
-    private MainApplication mainApplication;
-    private Staff staff;
     private Parent root;
     private Stage stage;
     private Scene scene;
+    private MainApplication mainApplication;
+    private Staff staff;
 
     @FXML
     private Label label_staff_name;
@@ -61,8 +61,9 @@ public class HomepageStaff implements Initializable {
     private ScrollPane scrollPane_shops;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }    
+    public void initialize(URL url, ResourceBundle rb) {}    
+    
+    // Metodo per il caricamento del modello da controller precedente
     public void setData(Staff s, MainApplication mainApp) {
         this.mainApplication = mainApp;
         this.staff = s;
@@ -84,6 +85,9 @@ public class HomepageStaff implements Initializable {
         }
         LoginViewController lVcontroller = loader.getController();
         lVcontroller.setData(this.mainApplication);
+        
+        this.mainApplication.saveDatas();
+        
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

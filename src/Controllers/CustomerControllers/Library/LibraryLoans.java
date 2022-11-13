@@ -30,15 +30,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-//@author Susanna
+//@author Susanna & Marzio
 
 public class LibraryLoans implements Initializable {
-    private MainApplication mainApplication;
-    private Customer customer;
-    private Library library;
     private Parent root;
     private Stage stage;
     private Scene scene;
+    private MainApplication mainApplication;
+    private Customer customer;
+    private Library library;
     
     @FXML
     private Label label_name_enterprise;
@@ -48,8 +48,9 @@ public class LibraryLoans implements Initializable {
     private Label label_response;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }       
+    public void initialize(URL url, ResourceBundle rb) {}      
+    
+    // Metodo per il caricamento del modello da controller precedente
     public void setData(Customer c, Library l, MainApplication mainApp) {
         this.mainApplication = mainApp;
         this.customer = c;
@@ -92,19 +93,6 @@ public class LibraryLoans implements Initializable {
         stage.show();
     }
 
-    private void showLoans(Map<Customer, Set<Loan>> loans) {
-        VBox vBox = new VBox();
-        if(loans.containsKey(this.customer)) {
-            for(Loan loan : loans.get(this.customer)) {
-                BorderPane pane = createViewLoan(loan);
-                vBox.getChildren().add(pane);
-            }
-        }
-        this.scrollPane_loans.setContent(vBox);
-        this.scrollPane_loans.fitToWidthProperty().set(true);
-        this.scrollPane_loans.fitToHeightProperty().set(true);
-    }
-
     @FXML
     private void toHomepage(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/CustomerViews/HomepageCustomer.fxml"));
@@ -119,6 +107,19 @@ public class LibraryLoans implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+    
+    private void showLoans(Map<Customer, Set<Loan>> loans) {
+        VBox vBox = new VBox();
+        if(loans.containsKey(this.customer)) {
+            for(Loan loan : loans.get(this.customer)) {
+                BorderPane pane = createViewLoan(loan);
+                vBox.getChildren().add(pane);
+            }
+        }
+        this.scrollPane_loans.setContent(vBox);
+        this.scrollPane_loans.fitToWidthProperty().set(true);
+        this.scrollPane_loans.fitToHeightProperty().set(true);
     }
 
     private BorderPane createViewLoan(Loan loan) {

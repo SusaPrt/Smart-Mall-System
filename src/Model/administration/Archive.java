@@ -5,19 +5,18 @@
 package Model.administration;
 
 
-import Model.administration.AdministrationInterfaces.ArchiveInterface;
 import Model.system.DataInterpreter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashSet;
-
+import Model.administration.AdministrationInterfaces.IArchive;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
-public class Archive implements ArchiveInterface{
+public class Archive implements IArchive{
     private HashSet<Staff> staff;
     private HashSet<Customer> costumers;
     private DataInterpreter dataInterpreter;
@@ -42,6 +41,11 @@ public class Archive implements ArchiveInterface{
         else
             this.staff.add((Staff)p);
         
+    }
+    
+    @Override
+    public DataInterpreter getDataInterpreter(){
+        return this.dataInterpreter;
     }
         
     @Override
@@ -129,11 +133,19 @@ public class Archive implements ArchiveInterface{
         return p;
     }
     
-    @Override
-    public DataInterpreter getDataInterpreter(){
-        return this.dataInterpreter;
+    // Metodo per il salvataggio degli account presenti a tempo d'esecuzione su file mediante DataInterpreter
+    public void saveData(){
+        this.getDataInterpreter().getDataWriter().setTxt();
+        this.getStaff().forEach(s -> this.getDataInterpreter().getDataWriter().addPerson(s));
+        this.getCustomers().forEach(c -> this.getDataInterpreter().getDataWriter().addPerson(c));
+        try {
+            this.getDataInterpreter().getDataWriter().writeOnFile();
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
     
+    // Metodo privato per il caricamento degli account presenti nel database tramite DataInterpreter
     private void accountLoader(){
         this.dataInterpreter.getAccounts().stream().forEach((Person p) -> {
             if (p instanceof Staff staff1)
@@ -150,15 +162,8 @@ public class Archive implements ArchiveInterface{
             this.staff.remove((Staff)p);
     }
     
-    
+    // Metodo statico per ritornare set di account in lettura
     private static <T> HashSet<T> defend(HashSet<T> set){
         return (HashSet<T>) set.clone();
-    }
-    
-    public void saveData() throws IOException{
-        this.getDataInterpreter().getDataWriter().setTxt();
-        this.getStaff().forEach(s -> this.getDataInterpreter().getDataWriter().addPerson(s));
-        this.getCustomers().forEach(c -> this.getDataInterpreter().getDataWriter().addPerson(c));
-        this.getDataInterpreter().getDataWriter().writeOnFile();
-    }
+    }    
 }

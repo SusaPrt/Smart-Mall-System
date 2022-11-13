@@ -33,7 +33,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-//@author Susanna
+//@author Susanna & Marzio
 
 public class RestaurantMenuS implements Initializable {
     private MainApplication mainApplication;
@@ -62,7 +62,9 @@ public class RestaurantMenuS implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    }    
+    } 
+    
+    // Metodo per il caricamento del modello da controller precedente 
     public void setData(Staff s, Restaurant r, MainApplication mainApp) {
         this.mainApplication = mainApp;
         this.staff = s;
@@ -139,6 +141,13 @@ public class RestaurantMenuS implements Initializable {
         this.refueling.clear();
     }
 
+    @FXML
+    private void newDay(ActionEvent event) {
+        this.restaurant.newDay();
+        this.label_response.setText("New day confirmed!");
+    }
+
+    // PARAMETRO MENU NON VIENE MAI LETTO - SERVE ?
     private void showMenu(Menu menu) {
         VBox vBox = new VBox();
         
@@ -234,11 +243,4 @@ public class RestaurantMenuS implements Initializable {
         
         return pane;
     }
-
-    @FXML
-    private void newDay(ActionEvent event) {
-        this.restaurant.newDay();
-        this.label_response.setText("New day confirmed!");
-    }
-    
 }

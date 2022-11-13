@@ -25,7 +25,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -34,17 +33,16 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-//@author Susanna
+//@author Susanna & Marzio
 
 public class LibrarySearch implements Initializable {
+    private Parent root;
+    private Stage stage;
+    private Scene scene;
     private MainApplication mainApplication;
     private Customer customer;
     private Library library;
     private final String[] types = {"Title", "Genre", "Author"};
-    
-    private Parent root;
-    private Stage stage;
-    private Scene scene;
 
     @FXML
     private TextField string_search;
@@ -60,9 +58,9 @@ public class LibrarySearch implements Initializable {
     private ScrollPane scrollPane_books;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }    
+    public void initialize(URL url, ResourceBundle rb) {}    
     
+    // Metodo per il caricamento del modello da controller precedente
     public void setData(Customer c, Library l, MainApplication mainApp) {
         this.mainApplication = mainApp;
         this.customer = c;
@@ -202,7 +200,4 @@ public class LibrarySearch implements Initializable {
 
         return pane;
     }
-
-    
-
 }

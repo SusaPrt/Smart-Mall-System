@@ -4,17 +4,17 @@
  */
 package Model.administration;
 
-import Model.administration.AdministrationInterfaces.AdministrationInterface;
 import Model.administration.payment.Payment;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+import Model.administration.AdministrationInterfaces.IAdministration;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
-public class Administration implements AdministrationInterface{
+public class Administration implements IAdministration{
     private final Archive personArchive;
     private final HashSet<Payment> payments;
     
@@ -32,6 +32,7 @@ public class Administration implements AdministrationInterface{
     public void removePayment(Payment p){
         this.payments.remove(p);
     }
+    
     @Override
     public Set<Payment> getPaymentsByPersonId(int id){
         return Administration.defend(payments)
@@ -58,6 +59,7 @@ public class Administration implements AdministrationInterface{
         return Administration.defend(payments);
     }
     
+    // Metodo statico di lettura
     private static <T> HashSet<T> defend(HashSet<T> set){
         return (HashSet<T>) set.clone();
     }

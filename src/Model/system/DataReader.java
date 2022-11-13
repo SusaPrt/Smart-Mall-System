@@ -22,6 +22,8 @@ public class DataReader {
         this.sc = new Scanner(f);
     }
     
+    // Legge il file aperto in lettura riga per riga e ritorna la LinkedList di
+    // stringhe al DataInterpreter chiamante
     public LinkedList<String> getRawData(){
         String line;
         while (sc.hasNextLine()){                        

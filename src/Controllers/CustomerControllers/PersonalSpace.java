@@ -29,14 +29,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-//@Author Susanna
+//@Author Susanna & Marzio
 
 public class PersonalSpace implements Initializable {
-    private MainApplication mainApplication;
-    private Customer customer;
     private Parent root;
     private Stage stage;
     private Scene scene;
+    private MainApplication mainApplication;
+    private Customer customer;
     
     @FXML
     private Label label_user_id;
@@ -54,8 +54,9 @@ public class PersonalSpace implements Initializable {
     private Label label_cost;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }  
+    public void initialize(URL url, ResourceBundle rb) {}  
+    
+    // Metodo per il caricamento del modello da controller precedente
     void setData(MainApplication mainApp, Customer c) {
         this.mainApplication = mainApp;
         this.customer = c;
@@ -76,6 +77,9 @@ public class PersonalSpace implements Initializable {
         }
         LoginViewController lVcontroller = loader.getController();
         lVcontroller.setData(this.mainApplication);
+        
+        this.mainApplication.saveDatas();
+        
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -167,8 +171,5 @@ public class PersonalSpace implements Initializable {
             }
         });     
         return pane;    
-    }
-
-    
-    
+    } 
 }

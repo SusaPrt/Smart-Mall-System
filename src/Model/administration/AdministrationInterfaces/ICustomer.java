@@ -9,9 +9,9 @@ import Model.administration.payment.Cart;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
-public interface CustomerInterface extends PersonInterface{
+public interface ICustomer extends IPerson{
     
     public Boolean payTheCart(Administration ad);
     

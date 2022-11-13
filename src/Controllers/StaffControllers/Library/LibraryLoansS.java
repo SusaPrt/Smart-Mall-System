@@ -35,15 +35,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-//@author Susanna
+//@author Susanna & Marzio
 
 public class LibraryLoansS implements Initializable {
-    private MainApplication mainApplication;
-    private Staff staff;
-    private Library library;
     private Parent root;
     private Stage stage;
     private Scene scene;
+    private MainApplication mainApplication;
+    private Staff staff;
+    private Library library;
 
     @FXML
     private ChoiceBox<Customer> choice_customer;
@@ -59,8 +59,9 @@ public class LibraryLoansS implements Initializable {
     private ScrollPane scrollPane_customers;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }    
+    public void initialize(URL url, ResourceBundle rb) {}   
+    
+    // Metodo per il caricamento del modello da controller precedente
     public void setData(Staff s, Library l, MainApplication mainApp) {
         this.mainApplication = mainApp;
         this.staff = s;
@@ -219,7 +220,4 @@ public class LibraryLoansS implements Initializable {
         });
         return pane;
     }
-
-
-    
 }

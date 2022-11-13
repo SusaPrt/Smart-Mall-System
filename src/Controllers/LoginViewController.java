@@ -24,11 +24,13 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+//@author Susanna & Marzio
+
 public class LoginViewController implements Initializable {
-    private MainApplication mainApp;
     private Parent root;
     private Stage stage;
     private Scene scene;
+    private MainApplication mainApp;
       
     @FXML
     private TextField sign_in_username;
@@ -49,8 +51,10 @@ public class LoginViewController implements Initializable {
         this.mainApp = new MainApplication();
     }    
     
+    // Metodo per il caricamento del modello da controller precedente
     public void setData(MainApplication mainApp){
-        this.mainApp = mainApp;
+        if(this.mainApp == null)
+            this.mainApp = mainApp;
     }
     
     @FXML
@@ -80,7 +84,6 @@ public class LoginViewController implements Initializable {
                 
             }else{
                 Customer c = (Customer)p;
-                //richiamo view per CUSTOMER
                 FXMLLoader loader = new FXMLLoader(getClass().getClassLoader()
                         .getResource("Views/CustomerViews/HomepageCustomer.fxml"));
                 try {                                   

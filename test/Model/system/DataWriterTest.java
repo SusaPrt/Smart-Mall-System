@@ -122,32 +122,4 @@ public class DataWriterTest {
         
         assertEquals(expResult, result);
     }
-     
-    @Test
-    public void testSaveArchiveData() throws IOException {
-        System.out.println("Test relativo al salvataggio dati per archivio");
-        Archive archive = new Archive();
-        archive.saveData();
-    }
-    
-    @Test
-    public void testSaveShopData() throws IOException {
-        System.out.println("Test relativo al salvataggio dati per shop");
-        Shop shop = new Shop();
-        shop.saveData();
-    }
- 
-    @Test
-    public void testSaveLibraryData() throws IOException {
-        System.out.println("Test relativo al salvataggio dati per Libreria");
-        Library library = new Library();
-        library.saveData();
-    }
-    
-    @Test
-    public void testSaveRestaurantData() throws IOException {
-        System.out.println("Test relativo al salvataggio dati per Ristorante");
-        Restaurant restaurant = new Restaurant(200);
-        restaurant.saveData();
-    } 
 }

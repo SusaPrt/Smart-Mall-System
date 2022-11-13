@@ -6,9 +6,9 @@ package Model.administration.AdministrationInterfaces;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
-public interface ItemInterface {
+public interface IItem {
     
     public String getName();
     

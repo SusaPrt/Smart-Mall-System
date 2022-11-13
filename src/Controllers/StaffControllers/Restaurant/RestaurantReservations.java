@@ -30,15 +30,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-//@author Susanna
+//@author Susanna & Marzio
 
 public class RestaurantReservations implements Initializable {
-    private MainApplication mainApplication;
-    private Staff staff;
-    private Restaurant restaurant;
     private Parent root;
     private Stage stage;
     private Scene scene;
+    private MainApplication mainApplication;
+    private Staff staff;
+    private Restaurant restaurant;
 
     @FXML
     private Label label_name_enterprise;
@@ -54,8 +54,9 @@ public class RestaurantReservations implements Initializable {
     private Label label_available_seats;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }    
+    public void initialize(URL url, ResourceBundle rb) {}  
+    
+    // Metodo per il caricamento del modello da controller precedente 
     public void setData(Staff s, Restaurant r, MainApplication mainApp) {
         this.mainApplication = mainApp;
         this.staff = s;
@@ -124,8 +125,15 @@ public class RestaurantReservations implements Initializable {
         this.n_seats_reservation.clear();
         this.name_reservation.clear();
         this.label_response.setText(" ");
-    }
+    }    
 
+    @FXML
+    private void newDay(ActionEvent event) {
+        this.restaurant.newDay();
+        this.showReservations(this.restaurant.getReservations());
+        this.label_response.setText("New day confirmed!");
+    }
+    
     private void showReservations(Map<String, Integer> reservations) {
         VBox vBox = new VBox();
         for(String s : reservations.keySet()) {
@@ -171,12 +179,5 @@ public class RestaurantReservations implements Initializable {
         });
 
         return pane;
-    }    
-
-    @FXML
-    private void newDay(ActionEvent event) {
-        this.restaurant.newDay();
-        this.showReservations(this.restaurant.getReservations());
-        this.label_response.setText("New day confirmed!");
     }
 }

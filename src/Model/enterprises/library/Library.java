@@ -45,7 +45,9 @@ public class Library implements ILibrary {
         this.archive = new Archive();
         this.loansLoader();
     }
-    
+   
+    // Overloading del costruttore per la creazione di una nuova libreria
+    // non di default
     public Library(String name) throws IOException{
         super();
         this.name = name.substring(0, name.length()-7);        
@@ -60,13 +62,18 @@ public class Library implements ILibrary {
         return this.name;
     }
     
-    public void saveData() throws IOException{
+    // Metodo per salvare i dati su file di testo
+    public void saveData(){
         this.getDataInterpreter().getDataWriter().setTxt();
         this.getAllBooks().forEach(b -> this.getDataInterpreter().getDataWriter().addItem(b));
         this.getAllLoans().keySet()
                 .forEach(c -> this.getAllLoans().get(c)
                         .forEach(l -> this.getDataInterpreter().getDataWriter().addLoan(c, l)));
-        this.getDataInterpreter().getDataWriter().writeOnFile();
+        try {
+            this.getDataInterpreter().getDataWriter().writeOnFile();
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
         
     }
     
@@ -181,6 +188,8 @@ public class Library implements ILibrary {
         return this.dataInt;
     }
     
+    // Verifica la presenza del propio file, nel caso non ci fosse lo crea e ne 
+    // inserisce l'intestazione
     private void fileChecker(String name) throws IOException{
         try{
             this.dataInt = new DataInterpreter(new File("./src/Model/system/DataFolder/" + name + ".txt"), "Library"); 
@@ -229,6 +238,10 @@ public class Library implements ILibrary {
         Book b;
         Loan l;
         String start, due;
+        
+        // size di dataInt.getData() deve essere maggiore di due se ci sono 
+        // dei 'Loans' salvati in memoria, se no è popolata la prima posizione
+        // con tutti i libri
         if(this.dataInt.getData().size() >= 2){
             for(String[] s: (LinkedList<String[]>)this.dataInt.getData().get(1)){
                 c = (Customer) this.archive.getById(Integer.parseInt(s[0]));

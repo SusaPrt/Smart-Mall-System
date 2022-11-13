@@ -29,15 +29,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-//@author Susanna
+//@author Susanna & Marzio
 
 public class ShopStaff implements Initializable {
-    private MainApplication mainApplication;
-    private Staff staff;
-    private Shop shop;
     private Parent root;
     private Stage stage;
     private Scene scene;
+    private MainApplication mainApplication;
+    private Staff staff;
+    private Shop shop;
 
     @FXML
     private TextField name_new_item;
@@ -56,8 +56,9 @@ public class ShopStaff implements Initializable {
 
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }    
+    public void initialize(URL url, ResourceBundle rb) {}
+
+    // Metodo per il caricamento del modello da controller precedente 
     public void setData(Staff s, Shop sh, MainApplication mainApp) {
         this.mainApplication = mainApp;
         this.staff = s;
@@ -183,6 +184,5 @@ public class ShopStaff implements Initializable {
         });
         
         return pane;
-    }
-    
+    }   
 }

@@ -29,15 +29,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-//@author Susanna
+//@author Susanna & Marzio
 
 public class LibraryAllBooks implements Initializable {
-    private MainApplication mainApplication;
-    private Customer customer;
-    private Library library;
     private Parent root;
     private Stage stage;
     private Scene scene;
+    private MainApplication mainApplication;
+    private Customer customer;
+    private Library library;
 
     @FXML
     private VBox vBox_all_books;
@@ -49,9 +49,9 @@ public class LibraryAllBooks implements Initializable {
     private ScrollPane scrollPane_books;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }    
-
+    public void initialize(URL url, ResourceBundle rb) {}    
+    
+    // Metodo per il caricamento del modello da controller precedente
     public void setData(Customer c, Library l, MainApplication mainApp) {
         this.mainApplication = mainApp;
         this.customer = c;
@@ -177,8 +177,5 @@ public class LibraryAllBooks implements Initializable {
         });
 
         return pane;
-    }
-
-    
-    
+    }    
 }

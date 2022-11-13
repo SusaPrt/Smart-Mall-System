@@ -8,7 +8,7 @@ import Model.administration.Customer;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
 public interface PaymentInterface {
     

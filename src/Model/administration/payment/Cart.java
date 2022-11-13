@@ -10,7 +10,7 @@ import java.util.LinkedList;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
 public class Cart implements CartInterface{
     private LinkedList<Item> purchasedProducts;

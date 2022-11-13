@@ -22,15 +22,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-//@author Susanna
+//@author Susanna & Marzio
 
 public class RestaurantReserve implements Initializable {
-    private MainApplication mainApplication;
-    private Customer customer;
-    private Restaurant restaurant;
     private Parent root;
     private Stage stage;
     private Scene scene;
+    private MainApplication mainApplication;
+    private Customer customer;
+    private Restaurant restaurant;
     
     @FXML
     private Label label_name_enterprise;
@@ -44,8 +44,9 @@ public class RestaurantReserve implements Initializable {
     private Label label_available_seats;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }    
+    public void initialize(URL url, ResourceBundle rb) {}    
+    
+    // Metodo per il caricamento del modello da controller precedente
     public void setData(Customer c, Restaurant r, MainApplication mainApp) {
         this.customer = c;
         this.restaurant = r;
@@ -126,6 +127,5 @@ public class RestaurantReserve implements Initializable {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
-    }
-    
+    }    
 }

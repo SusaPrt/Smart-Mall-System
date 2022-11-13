@@ -4,15 +4,15 @@
  */
 package Model.administration;
 
-import Model.administration.AdministrationInterfaces.PersonInterface;
 import java.util.Objects;
 import java.util.Random;
+import Model.administration.AdministrationInterfaces.IPerson;
 
 /**
  *
- * @author Mars_DB
+ * @author Marzio
  */
-public abstract class Person implements PersonInterface{
+public abstract class Person implements IPerson{
     private  final String name;
     private  final String password;
     private final int id;
