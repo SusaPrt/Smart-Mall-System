@@ -37,7 +37,7 @@ public class Administration implements IAdministration{
     public Set<Payment> getPaymentsByPersonId(int id){
         return Administration.defend(payments)
                 .stream()
-                .filter(p -> p.getCustomer().getId()==id)
+                .filter(p -> p.getId() == id)
                 .collect(Collectors.toSet());
     }
     

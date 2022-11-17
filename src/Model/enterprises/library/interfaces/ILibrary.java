@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package Model.enterprises.libraryInterfaces;
+package Model.enterprises.library.interfaces;
 
 //@author Susanna
 
 import Model.administration.Customer;
-import Model.enterprises.library.Book;
-import Model.enterprises.library.Loan;
+import Model.enterprises.library.classes.Book;
+import Model.enterprises.library.classes.Loan;
 import Model.system.DataInterpreter;
 import java.util.List;
 import java.util.Map;

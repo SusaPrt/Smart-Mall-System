@@ -4,6 +4,11 @@
  */
 package Model.enterprises.restaurant;
 
+import Model.enterprises.restaurant.classes.Course;
+import Model.enterprises.restaurant.classes.Menu;
+import Model.enterprises.restaurant.classes.Dish;
+import Model.enterprises.restaurant.classes.Restaurant;
+import Model.enterprises.restaurant.classes.MenuOfTheDay;
 import Model.administration.Administration;
 import Model.administration.Customer;
 import Model.system.DataInterpreter;

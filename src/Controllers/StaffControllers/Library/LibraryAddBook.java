@@ -7,7 +7,7 @@ package Controllers.StaffControllers.Library;
 import Controllers.MainApplication;
 import Controllers.StaffControllers.HomepageStaff;
 import Model.administration.Staff;
-import Model.enterprises.library.Library;
+import Model.enterprises.library.classes.Library;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

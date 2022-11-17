@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #25316D;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CustomerControllers.PersonalSpace">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #25316D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CustomerControllers.PersonalSpace">
    <children>
       <AnchorPane prefHeight="78.0" prefWidth="600.0" style="-fx-background-color: #5F6F94;">
          <children>
@@ -46,24 +46,24 @@
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Text>
-            <Text layoutX="270.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cart:">
+            <Text layoutX="292.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cart:">
                <font>
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Text>
-            <ScrollPane fx:id="scrollPane_cart" layoutX="270.0" layoutY="28.0" prefHeight="218.0" prefWidth="284.0" />
-            <Button layoutX="270.0" layoutY="259.0" mnemonicParsing="false" onAction="#payCart" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Pay">
+            <ScrollPane fx:id="scrollPane_cart" layoutX="295.0" layoutY="28.0" prefHeight="218.0" prefWidth="259.0" />
+            <Button layoutX="295.0" layoutY="258.0" mnemonicParsing="false" onAction="#payCart" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Pay">
                <font>
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Button>
-            <Text layoutX="13.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add credit">
+            <Text layoutX="14.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add credit">
                <font>
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Text>
-            <TextField fx:id="credit_to_add" layoutX="13.0" layoutY="147.0" prefHeight="26.0" prefWidth="65.0" />
-            <Button layoutX="90.0" layoutY="146.0" mnemonicParsing="false" onAction="#addCredit" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Add">
+            <TextField fx:id="credit_to_add" layoutX="14.0" layoutY="115.0" prefHeight="26.0" prefWidth="65.0" />
+            <Button layoutX="90.0" layoutY="114.0" mnemonicParsing="false" onAction="#addCredit" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Add">
                <font>
                   <Font name="Calibri Bold" size="15.0" />
                </font>
@@ -78,21 +78,27 @@
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="label_cost" layoutX="351.0" layoutY="264.0" text="&lt;credit&gt;">
+            <Label fx:id="label_cost" layoutX="376.0" layoutY="263.0" text="&lt;credit&gt;">
                <font>
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Label>
-            <Text layoutX="322.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tot:">
+            <Text layoutX="347.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tot:">
                <font>
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Text>
-            <Label fx:id="label_response" layoutX="13.0" layoutY="190.0" prefHeight="18.0" prefWidth="238.0">
+            <Label fx:id="label_response" layoutX="13.0" layoutY="5.0" prefHeight="18.0" prefWidth="238.0">
                <font>
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Label>
+            <ScrollPane fx:id="scrollPane_payments" layoutX="14.0" layoutY="176.0" prefHeight="107.0" prefWidth="238.0" />
+            <Text layoutX="15.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payments:">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>

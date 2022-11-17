@@ -7,7 +7,7 @@ package Controllers.CustomerControllers;
 import Controllers.MainApplication;
 import Model.administration.Customer;
 import Model.administration.Item;
-import Model.enterprises.shop.Shop;
+import Model.enterprises.shop.classes.Shop;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

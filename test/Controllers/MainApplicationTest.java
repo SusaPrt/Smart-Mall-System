@@ -4,7 +4,7 @@
  */
 package Controllers;
 
-import Model.enterprises.restaurant.Course;
+import Model.enterprises.restaurant.classes.Course;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

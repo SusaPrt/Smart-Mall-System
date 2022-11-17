@@ -6,11 +6,11 @@ package Model.system;
 
 import Model.administration.Customer;
 import Model.administration.Item;
-import Model.enterprises.restaurant.Dish;
+import Model.enterprises.restaurant.classes.Dish;
 import Model.administration.Person;
 import Model.administration.Staff;
-import Model.enterprises.library.Book;
-import Model.enterprises.restaurant.Course;
+import Model.enterprises.library.classes.Book;
+import Model.enterprises.restaurant.classes.Course;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;

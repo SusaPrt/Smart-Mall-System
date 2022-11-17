@@ -2,9 +2,9 @@ package Controllers;
 
 
 import Model.administration.Administration;
-import Model.enterprises.library.Library;
-import Model.enterprises.restaurant.Restaurant;
-import Model.enterprises.shop.Shop;
+import Model.enterprises.library.classes.Library;
+import Model.enterprises.restaurant.classes.Restaurant;
+import Model.enterprises.shop.classes.Shop;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;

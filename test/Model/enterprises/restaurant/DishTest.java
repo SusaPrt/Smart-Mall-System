@@ -4,6 +4,8 @@
  */
 package Model.enterprises.restaurant;
 
+import Model.enterprises.restaurant.classes.Course;
+import Model.enterprises.restaurant.classes.Dish;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

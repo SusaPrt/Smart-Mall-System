@@ -4,6 +4,7 @@
  */
 package Model.enterprises.library;
 
+import Model.enterprises.library.classes.Book;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

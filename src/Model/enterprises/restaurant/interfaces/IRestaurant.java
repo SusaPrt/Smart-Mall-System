@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package Model.enterprises.restaurantInterfaces;
+package Model.enterprises.restaurant.interfaces;
 
 // @author Susanna
 
 import Model.administration.Customer;
-import Model.enterprises.restaurant.Dish;
-import Model.enterprises.restaurant.Menu;
-import Model.enterprises.restaurant.MenuOfTheDay;
+import Model.enterprises.restaurant.classes.Dish;
+import Model.enterprises.restaurant.classes.Menu;
+import Model.enterprises.restaurant.classes.MenuOfTheDay;
 import Model.system.DataInterpreter;
 
  

@@ -4,30 +4,22 @@
  */
 package Model.administration.payment;
 
-import Model.administration.Customer;
-import Model.administration.payment.PaymentInterfaces.PaymentInterface;
 import java.util.Random;
+import Model.administration.payment.PaymentInterfaces.IPayment;
 
 /**
  *
  * @author Marzio
  */
-public class Payment implements PaymentInterface{
+public class Payment implements IPayment{
     
-    private final Customer customer;
     private final double cost;                                              
     private final int id;
+    private final Random rnd;
     
-    public Payment(Customer c, int id){                                                                     
-        this.cost = c.getCart().getTotCost(); 
-        this.customer = c;
-        this.id = id;
-    }
-    
-    public Payment(Customer c){                                                                    
-        this.cost = c.getCart().getTotCost(); 
-        this.customer = c;
-        Random rnd = new Random();
+    public Payment(double c){                                                                     
+        this.cost = c;
+        this.rnd = new Random();
         this.id = rnd.nextInt(1000)+101;
     }
 
@@ -36,18 +28,6 @@ public class Payment implements PaymentInterface{
        return this.cost;
     }
 
-    @Override
-    public boolean checkStatus(){
-        boolean b = false;
-        if(this.cost <= this.customer.getCredit())
-            b = true;
-        return b;
-    }
-    
-    @Override
-    public Customer getCustomer(){
-        return this.customer;
-    }
     
     @Override
     public int getId(){
@@ -56,8 +36,7 @@ public class Payment implements PaymentInterface{
     
     @Override
     public String toString(){
-        return "\nPayment of "+this.cost+"€"+"\nCustomer: "
-                +this.customer.getName()+" id: "+this.customer.getId();
+        return "\nPayment of "+this.cost+"€";
     }
 }
 

@@ -4,6 +4,7 @@
  */
 package Model.enterprises.shop;
 
+import Model.enterprises.shop.classes.Shop;
 import Model.administration.Item;
 import Model.system.DataInterpreter;
 import java.io.File;

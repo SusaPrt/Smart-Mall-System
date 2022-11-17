@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Model.enterprises.restaurant;
+package Model.enterprises.restaurant.classes;
 
 //@author Susanna
 
 import Model.administration.Customer;
-import Model.enterprises.restaurantInterfaces.IRestaurant;
+import Model.enterprises.restaurant.interfaces.IRestaurant;
 import Model.system.DataInterpreter;
 import java.io.File;
 import java.io.FileNotFoundException;

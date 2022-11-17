@@ -4,6 +4,10 @@
  */
 package Model.enterprises.restaurant;
 
+import Model.enterprises.restaurant.classes.Course;
+import Model.enterprises.restaurant.classes.Menu;
+import Model.enterprises.restaurant.classes.Dish;
+import Model.enterprises.restaurant.classes.Restaurant;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;

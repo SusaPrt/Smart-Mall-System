@@ -5,14 +5,14 @@
 package Model.administration.payment;
 
 import Model.administration.Item;
-import Model.administration.payment.PaymentInterfaces.CartInterface;
 import java.util.LinkedList;
+import Model.administration.payment.PaymentInterfaces.ICart;
 
 /**
  *
  * @author Marzio
  */
-public class Cart implements CartInterface{
+public class Cart implements ICart{
     private LinkedList<Item> purchasedProducts;
     
     public Cart(){

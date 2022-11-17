@@ -4,6 +4,8 @@
  */
 package Model.enterprises.library;
 
+import Model.enterprises.library.classes.Loan;
+import Model.enterprises.library.classes.Book;
 import java.time.LocalDate;
 import org.junit.Test;
 import static org.junit.Assert.*;

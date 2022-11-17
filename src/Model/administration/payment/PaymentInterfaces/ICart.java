@@ -4,19 +4,20 @@
  */
 package Model.administration.payment.PaymentInterfaces;
 
-import Model.administration.Customer;
+import Model.administration.Item;
+import java.util.LinkedList;
 
 /**
  *
  * @author Marzio
  */
-public interface PaymentInterface {
+public interface ICart {
     
-    public double getCost();
+    public void addItem(Item i);
     
-    public boolean checkStatus();
+    public void removeProducts(Item i);
     
-    public Customer getCustomer();
+    public LinkedList<Item> getProducts();
     
-    public int getId();
+    public double getTotCost();
 }

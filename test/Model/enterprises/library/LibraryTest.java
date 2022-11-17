@@ -4,6 +4,9 @@
  */
 package Model.enterprises.library;
 
+import Model.enterprises.library.classes.Loan;
+import Model.enterprises.library.classes.Library;
+import Model.enterprises.library.classes.Book;
 import Model.administration.Administration;
 import Model.administration.Customer;
 import Model.system.DataInterpreter;

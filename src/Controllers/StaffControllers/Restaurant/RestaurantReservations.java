@@ -7,7 +7,7 @@ package Controllers.StaffControllers.Restaurant;
 import Controllers.MainApplication;
 import Controllers.StaffControllers.HomepageStaff;
 import Model.administration.Staff;
-import Model.enterprises.restaurant.Restaurant;
+import Model.enterprises.restaurant.classes.Restaurant;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Map;

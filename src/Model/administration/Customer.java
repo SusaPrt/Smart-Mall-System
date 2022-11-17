@@ -8,6 +8,7 @@ import Model.administration.payment.Cart;
 import Model.administration.payment.Payment;
 import java.util.Objects;
 import Model.administration.AdministrationInterfaces.ICustomer;
+import java.util.LinkedList;
 
 /**
  *
@@ -17,12 +18,13 @@ public class Customer extends Person implements ICustomer{
 
     private double credit;
     private final Cart cart;
-    private Payment payment;
+    private LinkedList payments;
 
     public Customer(String name, String password, double credit){
         super(name, password);  
         this.credit = credit;
-        this.cart = new Cart();        
+        this.cart = new Cart(); 
+        this.payments = new LinkedList<Payment>();
     }
     
     // Overloading del costruttore per customer da database
@@ -30,20 +32,19 @@ public class Customer extends Person implements ICustomer{
         super(name, password, id);  
         this.credit = credit;
         this.cart = new Cart();
+        this.payments = new LinkedList<Payment>();
     }
        
     @Override
     public Boolean payTheCart(Administration adm){                                 //inserimento pagamento       
         Boolean paid = false; 
-        this.payment = new Payment(this);
-        if(this.payment.checkStatus()){
-            this.credit-=this.payment.getCost();
+        boolean done = this.payments.add(new Payment(this.cart.getTotCost()));
+        if(done){
+            this.credit-=this.cart.getTotCost();
             for(Item i : this.cart.getProducts())
                 this.cart.removeProducts(i);
-            paid = true;
+            adm.addPayment((Payment) this.payments.getLast());
         }
-        if(paid)
-            adm.addPayment(payment);
         return paid;
     }
       
@@ -60,6 +61,10 @@ public class Customer extends Person implements ICustomer{
     @Override
     public Cart getCart(){
         return this.cart;
+    }
+    
+    public LinkedList<Payment> getPayments() {
+        return this.payments;
     }
     
     @Override

@@ -2,11 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Model.enterprises.library;
+package Model.enterprises.library.classes;
 
 //@author Susanna
 
-import Model.enterprises.libraryInterfaces.ILoan;
+import Model.enterprises.library.classes.Book;
+import Model.enterprises.library.interfaces.ILoan;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;

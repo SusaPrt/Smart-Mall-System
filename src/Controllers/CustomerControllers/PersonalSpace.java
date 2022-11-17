@@ -8,6 +8,7 @@ import Controllers.LoginViewController;
 import Controllers.MainApplication;
 import Model.administration.Customer;
 import Model.administration.Item;
+import Model.administration.payment.Payment;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -52,6 +53,8 @@ public class PersonalSpace implements Initializable {
     private Label label_response;
     @FXML
     private Label label_cost;
+    @FXML
+    private ScrollPane scrollPane_payments;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {}  
@@ -65,6 +68,7 @@ public class PersonalSpace implements Initializable {
         this.label_user_id.setText(""+c.getId());
         this.label_user_credit.setText(""+c.getCredit());
         this.showCart(c);
+        this.showPayments(c);
         this.label_cost.setText(c.getCart().getTotCost() + " €");
     }
     @FXML
@@ -172,4 +176,26 @@ public class PersonalSpace implements Initializable {
         });     
         return pane;    
     } 
+
+    private void showPayments(Customer c) {
+        VBox vBox = new VBox(); 
+        for(Payment p : c.getPayments()){
+            BorderPane pane = this.createViewPayment(p);
+            vBox.getChildren().add(pane);
+        }
+    }
+
+    private BorderPane createViewPayment(Payment p) {
+        BorderPane pane = new BorderPane();
+        pane.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+        VBox vBox1 = new VBox();
+        vBox1.setAlignment(Pos.CENTER_LEFT);
+        pane.setLeft(vBox1);
+        
+        vBox1.getChildren().add(new Label("Id: " + p.getId()));
+        vBox1.getChildren().add(new Label("Cost: " + p.getCost()));
+        vBox1.getChildren().add(new Label());    
+    
+        return pane;
+    }
 }

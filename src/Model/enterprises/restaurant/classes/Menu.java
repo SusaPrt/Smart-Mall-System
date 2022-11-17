@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Model.enterprises.restaurant;
+package Model.enterprises.restaurant.classes;
 
 //@author Susanna
 
-import Model.enterprises.restaurantInterfaces.IMenu;
+import Model.enterprises.restaurant.interfaces.IMenu;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
