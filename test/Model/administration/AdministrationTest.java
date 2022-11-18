@@ -5,8 +5,7 @@
 package Model.administration;
 
 import Model.administration.payment.Payment;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -24,7 +23,7 @@ public class AdministrationTest {
         this.c = new Customer("Simone", "1111", 300.00, 12345);
         this.c.getCart().addItem(new Item("Computer", 200.00, 1));
         this.c.getCart().addItem(new Item("Monitor", 100.00, 1));
-        this.p = new Payment(c, 101);
+        this.p = new Payment(300, c.getId());
     }
 
     @Test
@@ -50,10 +49,10 @@ public class AdministrationTest {
     public void testGetPaymentsByPersonId() {
         System.out.println("Test per metodo 'getPaymentsByPersonId'");
         int id = 12345;
-        Set<Payment> expResult = new HashSet();
+        LinkedList<Payment> expResult = new LinkedList();
         expResult.add(p);
         instance.addPayment(p);
-        Set<Payment> result = instance.getPaymentsByPersonId(id);
+        LinkedList<Payment> result = instance.getPaymentsByPersonId(id);
         assertEquals(expResult, result);
     }
 

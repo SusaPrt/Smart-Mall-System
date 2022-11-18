@@ -6,8 +6,8 @@ package Model.administration.AdministrationInterfaces;
 
 import Model.administration.Archive;
 import Model.administration.payment.Payment;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.Map;
 
 /**
  *
@@ -19,11 +19,11 @@ public interface IAdministration {
     
     public void removePayment(Payment p);
     
-    public Set<Payment> getPaymentsByPersonId(int id);
+    public LinkedList<Payment> getPaymentsByPersonId(int id);
     
     public Archive getArchive();
     
     public double getTotalDayEarnings();
     
-    public HashSet<Payment> getPayments();
+    public Map<Integer, LinkedList<Payment>> getPayments();
 }

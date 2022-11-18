@@ -4,7 +4,6 @@
  */
 package Model.administration.payment;
 
-import Model.administration.Administration;
 import Model.administration.Customer;
 import Model.administration.Item;
 import org.junit.Test;
@@ -25,7 +24,7 @@ public class PaymentTest {
         this.e = new Item("Monitor", 100.00, 1);
         c.getCart().addItem(i);
         c.getCart().addItem(e);
-        this.instance = new Payment(c, 101);
+        this.instance = new Payment(300, 101);
         
     }
 
@@ -38,26 +37,10 @@ public class PaymentTest {
     }
 
     @Test
-    public void testCheckStatus() {
-        System.out.println("Test per metodo 'checkStatus'");
-        boolean expResult = true;
-        boolean result = instance.checkStatus();
-        assertEquals(expResult, result);
-    }
-
-    @Test
-    public void testGetCustomer() {
+    public void testGetCustomerId() {
         System.out.println("Test per metodo 'getCustomer'");
-        Customer expResult = c;
-        Customer result = instance.getCustomer();
+        int expResult = c.getId();
+        int result = instance.getCustomerId();
         assertEquals(expResult, result);
-    }
-
-    @Test
-    public void testGetId() {
-        System.out.println("Test per metodo 'getId'");
-        int expResult = 101;
-        int result = instance.getId();
-        assertEquals(expResult, result);
-    }    
+    }  
 }

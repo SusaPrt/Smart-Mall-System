@@ -4,8 +4,8 @@
  */
 package Model.administration.payment;
 
-import java.util.Random;
 import Model.administration.payment.PaymentInterfaces.IPayment;
+import java.util.Objects;
 
 /**
  *
@@ -14,13 +14,11 @@ import Model.administration.payment.PaymentInterfaces.IPayment;
 public class Payment implements IPayment{
     
     private final double cost;                                              
-    private final int id;
-    private final Random rnd;
+    private final int customerId;
     
-    public Payment(double c){                                                                     
+    public Payment(double c, int customerId){                                                                     
         this.cost = c;
-        this.rnd = new Random();
-        this.id = rnd.nextInt(1000)+101;
+        this.customerId = customerId;
     }
 
     @Override
@@ -30,8 +28,35 @@ public class Payment implements IPayment{
 
     
     @Override
-    public int getId(){
-        return this.id;
+    public int getCustomerId(){
+        return this.customerId;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + (int) (Double.doubleToLongBits(this.cost) ^ (Double.doubleToLongBits(this.cost) >>> 32));
+        hash = 67 * hash + this.customerId;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Payment other = (Payment) obj;
+        if (Double.doubleToLongBits(this.cost) != Double.doubleToLongBits(other.cost)) {
+            return false;
+        }
+
+        return Objects.equals(this.customerId, other.customerId);
     }
     
     @Override

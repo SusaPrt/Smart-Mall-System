@@ -93,12 +93,22 @@
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Label>
-            <ScrollPane fx:id="scrollPane_payments" layoutX="14.0" layoutY="176.0" prefHeight="107.0" prefWidth="238.0" />
+            <ScrollPane fx:id="scrollPane_payments" layoutX="14.0" layoutY="176.0" prefHeight="107.0" prefWidth="138.0" />
             <Text layoutX="15.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payments:">
                <font>
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Text>
+            <Text layoutX="164.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total:" wrappingWidth="41.89453125">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Text>
+            <Label fx:id="label_total" layoutX="206.0" layoutY="263.0" prefHeight="18.0" prefWidth="66.0">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

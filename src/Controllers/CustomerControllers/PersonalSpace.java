@@ -55,6 +55,8 @@ public class PersonalSpace implements Initializable {
     private Label label_cost;
     @FXML
     private ScrollPane scrollPane_payments;
+    @FXML
+    private Label label_total;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {}  
@@ -66,7 +68,7 @@ public class PersonalSpace implements Initializable {
         this.label_response.setText("");
         this.label_user_name.setText(c.getName());
         this.label_user_id.setText(""+c.getId());
-        this.label_user_credit.setText(""+c.getCredit());
+        this.label_user_credit.setText(""+c.getCredit()+" €");
         this.showCart(c);
         this.showPayments(c);
         this.label_cost.setText(c.getCart().getTotCost() + " €");
@@ -95,10 +97,12 @@ public class PersonalSpace implements Initializable {
     private void payCart(ActionEvent event) {
         boolean done = this.customer.payTheCart(this.mainApplication.getAdminstration());
         if(done) {  
-            this.label_user_credit.setText(""+this.customer.getCredit());
+            this.label_user_credit.setText(""+this.customer.getCredit()+" €");
             this.showCart(customer);
             this.label_response.setText("Payment made");
             this.label_cost.setText(this.customer.getCart().getTotCost() + " €");
+            
+            this.showPayments(this.customer);
         } else {
             this.label_response.setText("ERROR");
         }
@@ -109,7 +113,7 @@ public class PersonalSpace implements Initializable {
         String credit = this.credit_to_add.getText();
         try{            
             this.customer.addCredit(Double.parseDouble(credit));
-            this.label_user_credit.setText(""+this.customer.getCredit());
+            this.label_user_credit.setText(""+this.customer.getCredit()+" €");
             this.label_response.setText("Credit added");
         } catch(NumberFormatException ex){
             this.label_response.setText("ERROR");
@@ -179,21 +183,31 @@ public class PersonalSpace implements Initializable {
 
     private void showPayments(Customer c) {
         VBox vBox = new VBox(); 
-        for(Payment p : c.getPayments()){
-            BorderPane pane = this.createViewPayment(p);
-            vBox.getChildren().add(pane);
+        int counter = 0;
+        double totalCost = 0;
+        if(this.mainApplication.getAdminstration().getPaymentsByPersonId(this.customer.getId()) != null){
+            for(Payment p : this.mainApplication.getAdminstration().getPaymentsByPersonId(this.customer.getId())){
+                counter++;
+                totalCost += p.getCost();
+                BorderPane pane = this.createViewPayment(p, counter);
+                vBox.getChildren().add(pane);
+            }          
+            this.scrollPane_payments.setContent(vBox);
+            this.scrollPane_payments.fitToWidthProperty().set(true);
+            this.scrollPane_payments.fitToHeightProperty().set(true);
         }
+        this.label_total.setText(totalCost+" €");
     }
 
-    private BorderPane createViewPayment(Payment p) {
+    private BorderPane createViewPayment(Payment p, int i) {
         BorderPane pane = new BorderPane();
         pane.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
         VBox vBox1 = new VBox();
         vBox1.setAlignment(Pos.CENTER_LEFT);
         pane.setLeft(vBox1);
         
-        vBox1.getChildren().add(new Label("Id: " + p.getId()));
-        vBox1.getChildren().add(new Label("Cost: " + p.getCost()));
+        vBox1.getChildren().add(new Label("Payment: #" + i));
+        vBox1.getChildren().add(new Label("Cost: " + p.getCost()+" €"));
         vBox1.getChildren().add(new Label());    
     
         return pane;

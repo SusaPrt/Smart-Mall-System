@@ -8,7 +8,6 @@ import Model.administration.payment.Cart;
 import Model.administration.payment.Payment;
 import java.util.Objects;
 import Model.administration.AdministrationInterfaces.ICustomer;
-import java.util.LinkedList;
 
 /**
  *
@@ -18,13 +17,13 @@ public class Customer extends Person implements ICustomer{
 
     private double credit;
     private final Cart cart;
-    private LinkedList payments;
+    //private LinkedList payments;
 
     public Customer(String name, String password, double credit){
         super(name, password);  
         this.credit = credit;
         this.cart = new Cart(); 
-        this.payments = new LinkedList<Payment>();
+        //this.payments = new LinkedList<Payment>();
     }
     
     // Overloading del costruttore per customer da database
@@ -32,18 +31,20 @@ public class Customer extends Person implements ICustomer{
         super(name, password, id);  
         this.credit = credit;
         this.cart = new Cart();
-        this.payments = new LinkedList<Payment>();
+        //this.payments = new LinkedList<Payment>();
     }
        
     @Override
-    public Boolean payTheCart(Administration adm){                                 //inserimento pagamento       
+    public Boolean payTheCart(Administration adm){                                 //metodo modificato       
         Boolean paid = false; 
-        boolean done = this.payments.add(new Payment(this.cart.getTotCost()));
+        Payment payment = new Payment(this.cart.getTotCost(), super.getId());
+        boolean done = this.credit >= this.cart.getTotCost();
         if(done){
             this.credit-=this.cart.getTotCost();
+            paid = true;
             for(Item i : this.cart.getProducts())
                 this.cart.removeProducts(i);
-            adm.addPayment((Payment) this.payments.getLast());
+            adm.addPayment(payment);
         }
         return paid;
     }
@@ -62,11 +63,11 @@ public class Customer extends Person implements ICustomer{
     public Cart getCart(){
         return this.cart;
     }
-    
+    /*
     public LinkedList<Payment> getPayments() {
         return this.payments;
     }
-    
+    */
     @Override
     public String toString(){
         return "\nName: " + super.getName() + "\nCredit: "
