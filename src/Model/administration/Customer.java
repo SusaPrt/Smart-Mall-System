@@ -17,13 +17,11 @@ public class Customer extends Person implements ICustomer{
 
     private double credit;
     private final Cart cart;
-    //private LinkedList payments;
 
     public Customer(String name, String password, double credit){
         super(name, password);  
         this.credit = credit;
         this.cart = new Cart(); 
-        //this.payments = new LinkedList<Payment>();
     }
     
     // Overloading del costruttore per customer da database
@@ -31,7 +29,6 @@ public class Customer extends Person implements ICustomer{
         super(name, password, id);  
         this.credit = credit;
         this.cart = new Cart();
-        //this.payments = new LinkedList<Payment>();
     }
        
     @Override
@@ -63,11 +60,7 @@ public class Customer extends Person implements ICustomer{
     public Cart getCart(){
         return this.cart;
     }
-    /*
-    public LinkedList<Payment> getPayments() {
-        return this.payments;
-    }
-    */
+
     @Override
     public String toString(){
         return "\nName: " + super.getName() + "\nCredit: "

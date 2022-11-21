@@ -6,7 +6,6 @@ package Model.enterprises.library.classes;
 
 //@author Susanna
 
-import Model.enterprises.library.classes.Book;
 import Model.administration.Archive;
 import Model.administration.Customer;
 import Model.enterprises.library.interfaces.ILibrary;

@@ -6,7 +6,6 @@ package Model.enterprises.library.classes;
 
 //@author Susanna
 
-import Model.enterprises.library.classes.Book;
 import Model.enterprises.library.interfaces.ILoan;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
