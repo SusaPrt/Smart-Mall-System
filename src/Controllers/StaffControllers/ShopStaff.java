@@ -29,8 +29,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-//@author Susanna & Marzio
-
 public class ShopStaff implements Initializable {
     private Parent root;
     private Stage stage;
