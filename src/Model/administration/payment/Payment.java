@@ -4,6 +4,7 @@
  */
 package Model.administration.payment;
 
+import Model.administration.Customer;
 import Model.administration.payment.PaymentInterfaces.IPayment;
 import java.util.Objects;
 
@@ -14,11 +15,11 @@ import java.util.Objects;
 public class Payment implements IPayment{
     
     private final double cost;                                              
-    private final int customerId;
+    private final Customer customer;
     
-    public Payment(double c, int customerId){                                                                     
+    public Payment(double c, Customer customer){                                                                     
         this.cost = c;
-        this.customerId = customerId;
+        this.customer = customer;
     }
 
     @Override
@@ -28,15 +29,15 @@ public class Payment implements IPayment{
 
     
     @Override
-    public int getCustomerId(){
-        return this.customerId;
+    public Customer getCustomer(){
+        return this.customer;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 67 * hash + (int) (Double.doubleToLongBits(this.cost) ^ (Double.doubleToLongBits(this.cost) >>> 32));
-        hash = 67 * hash + this.customerId;
+        hash = 67 * hash + this.customer.getId();
         return hash;
     }
 
@@ -56,7 +57,7 @@ public class Payment implements IPayment{
             return false;
         }
 
-        return Objects.equals(this.customerId, other.customerId);
+        return Objects.equals(this.customer.getId(), other.customer.getId());
     }
     
     @Override

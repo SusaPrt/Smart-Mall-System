@@ -14,5 +14,5 @@ public interface IPayment {
     
     public double getCost();
    
-    public int getCustomerId();
+    public Customer getCustomer();
 }

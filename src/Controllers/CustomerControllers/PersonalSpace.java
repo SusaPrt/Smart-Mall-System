@@ -185,8 +185,8 @@ public class PersonalSpace implements Initializable {
         VBox vBox = new VBox(); 
         int counter = 0;
         double totalCost = 0;
-        if(this.mainApplication.getAdminstration().getPaymentsByPersonId(this.customer.getId()) != null){
-            for(Payment p : this.mainApplication.getAdminstration().getPaymentsByPersonId(this.customer.getId())){
+        if(this.mainApplication.getAdminstration().getPaymentsByPerson(this.customer) != null){
+            for(Payment p : this.mainApplication.getAdminstration().getPaymentsByPerson(this.customer)){
                 counter++;
                 totalCost += p.getCost();
                 BorderPane pane = this.createViewPayment(p, counter);

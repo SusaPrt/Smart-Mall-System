@@ -34,7 +34,7 @@ public class Customer extends Person implements ICustomer{
     @Override
     public Boolean payTheCart(Administration adm){                                 //metodo modificato       
         Boolean paid = false; 
-        Payment payment = new Payment(this.cart.getTotCost(), super.getId());
+        Payment payment = new Payment(this.cart.getTotCost(), this);
         boolean done = this.credit >= this.cart.getTotCost();
         if(done){
             this.credit-=this.cart.getTotCost();

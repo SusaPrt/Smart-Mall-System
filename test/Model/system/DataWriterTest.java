@@ -106,10 +106,28 @@ public class DataWriterTest {
     }
 
     @Test
-    public void testAddPerson() throws IOException {
-        System.out.println("Test relativo all'archivio del metodo 'addPerson'");
+    public void testAddStaff() throws IOException {
+        System.out.println("Test relativo all'archivio del metodo 'addPerson' per Staff");
         Archive a = new Archive();        
         Staff p = new Staff("Giorgio", "123456", 9090);
+        a.addPerson(p);
+        boolean expResult = true;
+        a.saveData();
+
+        //simulo la chiusura e la riaccensione del sistema cosi che il DataReader legge i dati precedentemente salvati
+        DataInterpreter ArchiveDataInterpreter = new DataInterpreter(new File("./src/Model/system/DataFolder/Account.txt")
+                                                , "Archive");
+        LinkedList<Person> data = ArchiveDataInterpreter.getAccounts();
+        boolean result = data.contains(p);
+        
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testAddCustomer() throws IOException {
+        System.out.println("Test relativo all'archivio del metodo 'addPerson' per Customer");
+        Archive a = new Archive();        
+        Customer p = new Customer("Giorgio", "123456", 100, 9090);
         a.addPerson(p);
         boolean expResult = true;
         a.saveData();

@@ -23,7 +23,7 @@ public class AdministrationTest {
         this.c = new Customer("Simone", "1111", 300.00, 12345);
         this.c.getCart().addItem(new Item("Computer", 200.00, 1));
         this.c.getCart().addItem(new Item("Monitor", 100.00, 1));
-        this.p = new Payment(300, c.getId());
+        this.p = new Payment(300, c);
     }
 
     @Test
@@ -46,13 +46,13 @@ public class AdministrationTest {
     }
 
     @Test
-    public void testGetPaymentsByPersonId() {
+    public void testGetPaymentsByPerson() {
         System.out.println("Test per metodo 'getPaymentsByPersonId'");
         int id = 12345;
         LinkedList<Payment> expResult = new LinkedList();
         expResult.add(p);
         instance.addPayment(p);
-        LinkedList<Payment> result = instance.getPaymentsByPersonId(id);
+        LinkedList<Payment> result = instance.getPaymentsByPerson(c);
         assertEquals(expResult, result);
     }
 
