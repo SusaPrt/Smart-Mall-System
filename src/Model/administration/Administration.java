@@ -17,22 +17,21 @@ import java.util.Map;
  */
 public class Administration implements IAdministration{
     private final Archive personArchive;
-    //private final HashSet<Payment> payments;
-    private HashMap<Integer, LinkedList<Payment>> payments;
+    private HashMap<Customer, LinkedList<Payment>> payments;
     
     public Administration(){
-        this.payments = new HashMap<Integer, LinkedList<Payment>>();
+        this.payments = new HashMap<Customer, LinkedList<Payment>>();
         this.personArchive = new Archive();
     }
     
     @Override
     public void addPayment(Payment p){
-        Customer c = (Customer) this.personArchive.getById(p.getCustomerId());
-        if(!this.payments.containsKey(p.getCustomerId())){
-            this.payments.put(p.getCustomerId(), new LinkedList<Payment>());
+        
+        if(!this.payments.containsKey(p.getCustomer())){
+            this.payments.put(p.getCustomer(), new LinkedList<Payment>());
         }
         
-        this.payments.get(p.getCustomerId()).add(p);
+        this.payments.get(p.getCustomer()).add(p);
     }
     
     @Override
@@ -42,18 +41,8 @@ public class Administration implements IAdministration{
     
     //  REVIEW
     @Override
-    public LinkedList<Payment> getPaymentsByPersonId(int id){
-    //    LinkedList<Payment> ps = new LinkedList();
-    /*    this.payments.keySet().stream()
-                .forEach(s -> this.payments.get(id).stream()
-                        .filter(p -> p.getCustomerId() == id)
-                        .forEach(p -> ps.addFirst(p)));
-    */
-        return this.payments.get(id);
-        /*return Administration.defend(payments)
-                .stream()
-                .filter(p -> p.getId() == id)
-                .collect(Collectors.toSet());*/
+    public LinkedList<Payment> getPaymentsByPerson(Customer c){
+        return this.payments.get(c);
     }
     
     @Override
@@ -66,16 +55,11 @@ public class Administration implements IAdministration{
         LinkedList<Payment> earnings = new LinkedList();
         Administration.mapDefend(this.payments)
                 .values().forEach(l -> l.stream().forEach(p -> earnings.addFirst(p)));
-                /*
-                .stream()
-                .mapToDouble(Payment::getCost)
-                .sum();*/
-                
         return earnings.stream().mapToDouble(Payment::getCost).sum();
     }
     
     @Override
-    public Map<Integer, LinkedList<Payment>> getPayments(){
+    public Map<Customer, LinkedList<Payment>> getPayments(){
         return Administration.mapDefend(this.payments);
     }
     

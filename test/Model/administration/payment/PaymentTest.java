@@ -24,7 +24,7 @@ public class PaymentTest {
         this.e = new Item("Monitor", 100.00, 1);
         c.getCart().addItem(i);
         c.getCart().addItem(e);
-        this.instance = new Payment(300, 101);
+        this.instance = new Payment(300, c);
         
     }
 
@@ -39,8 +39,8 @@ public class PaymentTest {
     @Test
     public void testGetCustomerId() {
         System.out.println("Test per metodo 'getCustomer'");
-        int expResult = c.getId();
-        int result = instance.getCustomerId();
+        Customer expResult = c;
+        Customer result = instance.getCustomer();
         assertEquals(expResult, result);
     }  
 }

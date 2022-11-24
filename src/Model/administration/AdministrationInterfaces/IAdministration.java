@@ -5,6 +5,7 @@
 package Model.administration.AdministrationInterfaces;
 
 import Model.administration.Archive;
+import Model.administration.Customer;
 import Model.administration.payment.Payment;
 import java.util.LinkedList;
 import java.util.Map;
@@ -19,11 +20,11 @@ public interface IAdministration {
     
     public void removePayment(Payment p);
     
-    public LinkedList<Payment> getPaymentsByPersonId(int id);
+    public LinkedList<Payment> getPaymentsByPerson(Customer c);
     
     public Archive getArchive();
     
     public double getTotalDayEarnings();
     
-    public Map<Integer, LinkedList<Payment>> getPayments();
+    public Map<Customer, LinkedList<Payment>> getPayments();
 }
