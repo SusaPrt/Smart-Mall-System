@@ -27,6 +27,11 @@
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Button>
+            <Button layoutX="386.0" layoutY="16.0" mnemonicParsing="false" onAction="#toDailyPayments" style="-fx-background-color: #FEF5AC; -fx-background-radius: 10;" text="Daily payments">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="14.0" layoutY="282.0" prefHeight="107.0" prefWidth="571.0" style="-fx-background-color: #5F6F94; -fx-background-radius: 10;">

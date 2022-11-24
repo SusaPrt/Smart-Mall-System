@@ -32,8 +32,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-//@author Susanna & Marzio
-
 public class HomepageStaff implements Initializable {
     private Parent root;
     private Stage stage;
@@ -245,4 +243,23 @@ public class HomepageStaff implements Initializable {
         });        
         return pane;
     }   
+
+    @FXML
+    private void toDailyPayments(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Views/StaffViews/Payments.fxml"));
+        try {
+            root = loader.load();
+        } catch (IOException ex) {
+            System.out.println(ex+"\nEccezione caricamento daily payments");
+        }
+        Payments PScontroller = loader.getController();
+        PScontroller.setData(this.mainApplication, this.staff);
+        
+        this.mainApplication.saveDatas();
+        
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }
