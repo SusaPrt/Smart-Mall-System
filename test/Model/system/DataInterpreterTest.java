@@ -51,25 +51,25 @@ public class DataInterpreterTest {
     @Test
     public void testGetLibraryData() {
         System.out.println("Test relativo a libreria per metodo 'getAllBooks'");
-        LinkedList expResult = new LinkedList();
+        LinkedList l = libraryDataInterpreter.getData().getFirst();
+        boolean expResult = true;
+        boolean result = true;
         // Parametri Book
         // String name,  String author, double price, int quantity, int year, String genre, int isbn
-        expResult.add(new Book("YYYYYYY","XXXXX",7,625,2010,"Adventure",745));  //1
-        expResult.add(new Book("YYY","XXXXX",5,837,2009,"Adventure",7896));     //2
-        expResult.add(new Book("YYYYYY","XXXXX",5,623,1993,"Adventure",34566)); //3
-        expResult.add(new Book("YYYYY","XXXX",4,283,1989,"Adventure",34524));   //4
-        
-        expResult.add(new Book("YYYYYY","XXXXX",7,61,2010,"Classics",94576));   //5
-        expResult.add(new Book("YYYYYYY","XXXX",8,102,1999,"Classics",93847));  //6
-        expResult.add(new Book("YYY","XXXXX",9,615,1993,"Classics",378123));    //7
-        expResult.add(new Book("YYYYY","XXXXXX",2,872,2009,"Classics",123445)); //8
-        
-        expResult.add(new Book("YYYYYYY","XXXXXX",6,72,2009,"Comic",38485));    //9
-        expResult.add(new Book("YYYYYY","XXXXXX",27,817,2017,"Comic",28475));   //10
-        expResult.add(new Book("YYYYYY","XXXXX",9,201,2010,"Comic",93745));     //11
-        expResult.add(new Book("YYYYY","XXXXX",23,827,1979,"Comic",8355));      //12
-                   
-        LinkedList result = libraryDataInterpreter.getData().getFirst();
+        if(!l.contains(new Book("YYYYYYY","XXXXX",7,625,2010,"Adventure",745)))
+            result = false;
+        else if(!l.contains(new Book("YYY","XXXXX",5,837,2009,"Adventure",7896)))
+            result = false;
+        else if(!l.contains(new Book("YYYYYY","XXXXX",5,623,1993,"Adventure",34566)))
+            result = false;
+        else if(!l.contains(new Book("YYYYY","XXXX",4,283,1989,"Adventure",34524)))
+            result = false;
+        else if(!l.contains(new Book("YYYYYY","XXXXX",7,61,2010,"Classics",94576)))
+            result = false;
+        else if(!l.contains(new Book("YYYYYYY","XXXXXX",6,72,2009,"Comic",38485)))
+            result = false;
+        else if(!l.contains(new Book("YYY","XXXXX",9,615,1993,"Classics",378123)))
+            result = false;
         assertEquals(expResult, result);
     }
     

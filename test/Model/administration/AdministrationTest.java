@@ -36,16 +36,6 @@ public class AdministrationTest {
     }
 
     @Test
-    public void testRemovePayment() {
-        System.out.println("Test per metodo 'removePayment'");
-        instance.addPayment(p);
-        instance.removePayment(p);
-        int result = this.instance.getPayments().size();
-        int expResult = 0;
-        assertEquals(expResult, result);
-    }
-
-    @Test
     public void testGetPaymentsByPerson() {
         System.out.println("Test per metodo 'getPaymentsByPersonId'");
         int id = 12345;

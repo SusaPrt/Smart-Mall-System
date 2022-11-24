@@ -7,7 +7,6 @@ package Model.enterprises.library;
 import Model.enterprises.library.classes.Loan;
 import Model.enterprises.library.classes.Library;
 import Model.enterprises.library.classes.Book;
-import Model.administration.Administration;
 import Model.administration.Customer;
 import Model.system.DataInterpreter;
 import java.io.File;
@@ -91,8 +90,8 @@ public class LibraryTest {
     @Test
     public void testGetAllLoans() {
         System.out.println("Test per metodo 'getAllLoans'");
-        Map<Customer, Set<Loan>> expResult = this.loans;
-        Map<Customer, Set<Loan>> result = instance.getAllLoans();
+        boolean expResult = false;
+        boolean result = instance.getAllLoans().get(new Customer("Simone","3333",300.5,12543)).isEmpty();
         
         assertEquals(expResult, result);
     }

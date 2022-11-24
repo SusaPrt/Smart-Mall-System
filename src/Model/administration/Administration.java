@@ -34,11 +34,6 @@ public class Administration implements IAdministration{
         this.payments.get(p.getCustomer()).add(p);
     }
     
-    @Override
-    public void removePayment(Payment p){
-        this.payments.remove(p);
-    }
-    
     //  REVIEW
     @Override
     public LinkedList<Payment> getPaymentsByPerson(Customer c){

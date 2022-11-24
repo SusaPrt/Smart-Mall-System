@@ -1,6 +1,8 @@
 #Staff
 Susanna,2222,53421
 Marzio,1111,12345
+Giorgio,123456,9090
 #Customers
 Giorgio,4444,200.0,10101
 Simone,3333,300.5,12543
+Giorgio,123456,100.0,9090

@@ -18,8 +18,6 @@ public interface IAdministration {
     
     public void addPayment(Payment p);
     
-    public void removePayment(Payment p);
-    
     public LinkedList<Payment> getPaymentsByPerson(Customer c);
     
     public Archive getArchive();
